@@ -1,0 +1,12 @@
+{
+ "instrument": "00881",
+ "name": "國泰台灣科技龍頭",
+ "issuer": "國泰投信",
+ "top_n": 10,
+ "ex_dividend": {
+  "date": "2026-08-18",
+  "cash": 4.6,
+  "reference_price": 50.55,
+  "full_recovery": 55.15
+ }
+}

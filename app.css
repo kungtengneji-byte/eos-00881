@@ -174,10 +174,37 @@ th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 tr:last-child td { border-bottom: 0; }
 .src { color: var(--muted); font-size: .92em; line-height: 1.35; }
+
+/* 明細分組標題：對齊既有工作表「正式收盤與基金資料／市場與籌碼摘要」的分區習慣 */
+.grp {
+  margin: 18px 0 6px; font-size: .82rem; font-weight: 600; color: var(--ink-2);
+  padding-bottom: 4px; border-bottom: 1px solid var(--grid);
+}
+.grp:first-child { margin-top: 4px; }
+#detail table { margin-bottom: 4px; }
+#detail thead { display: none; }          /* 分組標題已說明，不需重複表頭 */
+
+.fname { font-size: .86rem; }
+/* 標出這個欄位計入哪個構面；沒有標記的是參考資訊，不進計分 */
+.dimtag {
+  display: inline-block; margin-inline-start: 6px; padding: 0 5px;
+  border-radius: 4px; font-size: .68rem; font-weight: 600;
+  background: var(--track); color: var(--ink-2);
+}
+
+/* 前十大持股表 */
+table.holdings { font-size: .78rem; }
+table.holdings thead { display: table-header-group; }
+table.holdings th, table.holdings td { padding: 5px 4px; }
+table.holdings tr:last-child td { border-top: 1px solid var(--axis); font-weight: 600; }
+.ret { font-variant-numeric: tabular-nums; white-space: nowrap; }
+#holdings-asof { font-size: .72rem; }
 /* 明細表兩欄：左欄可換行，右欄貼齊且不換行 */
 #detail td:first-child { width: 62%; word-break: break-word; }
 #detail td.num > div:first-child { font-variant-numeric: tabular-nums; }
 #detail .flag { display: inline-block; margin-top: 3px; }
+/* 判讀：對齊工作表「判讀」欄，一句話說明這個數字代表什麼 */
+.read { font-size: .76rem; color: var(--ink-2); margin-top: 1px; }
 .flag {
   font-size: .72rem; padding: 1px 6px; border-radius: 999px;
   border: 1px solid var(--border); white-space: nowrap; color: var(--ink-2);

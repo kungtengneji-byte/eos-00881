@@ -43,12 +43,8 @@
 
   <!-- 二、六構面 -->
   <section class="card">
-    <div class="card-head">
-      <h2>六構面得分</h2>
-      <button class="link-btn" type="button" data-table="dims">表格</button>
-    </div>
+    <div class="card-head"><h2>EOS 六構面評分</h2></div>
     <div id="dims" class="dims"></div>
-    <div id="dims-table" class="table-wrap" hidden></div>
     <p class="legend-note subtle">
       實心為已得分，淡色軌道為該構面滿分。構面有缺值時，以短豎線標出當日實際可計分上限。
     </p>
@@ -75,7 +71,16 @@
     <div id="hist-table" class="table-wrap" hidden></div>
   </section>
 
-  <!-- 四、當日明細：每個數字的來源與時間戳 -->
+  <!-- 四、前十大持股 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>前十大持股</h2>
+      <span id="holdings-asof" class="subtle"></span>
+    </div>
+    <div id="holdings" class="table-wrap"></div>
+  </section>
+
+  <!-- 五、當日明細：每個數字的來源與時間戳 -->
   <section class="card">
     <div class="card-head">
       <h2>當日資料明細</h2>

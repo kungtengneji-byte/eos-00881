@@ -200,33 +200,10 @@ def part_constituents(cfg: dict, day: date, *, force: bool) -> dict[str, Field]:
            {"as_of": as_of.isoformat() if as_of else None,
             "holdings": [{"code": h.code, "name": h.name, "weight": h.weight} for h in top]})
 
-    wcr = 0.0
-    up = 0
-    scored = 0
-    details = []
-    for h in top:
-        try:
-            ensure_month(h.code, day, force=force)
-            bars = load_all_bars(h.code)
-        except SourceError as exc:
-            details.append(f"{h.code} 取得失敗：{exc}")
-            continue
-        by_date = {b.date: b for b in bars}
-        dates = sorted(by_date)
-        if day not in by_date:
-            details.append(f"{h.code} 無 {day} 收盤")
-            continue
-        i = dates.index(day)
-        if i == 0:
-            continue
-        prev, cur = by_date[dates[i - 1]].close, by_date[day].close
-        if not prev or cur is None:
-            continue
-        r = cur / prev - 1
-        wcr += h.weight * r
-        up += 1 if r > 0 else 0
-        scored += 1
-        details.append(f"{h.code} {h.weight:.2%}x{r:+.2%}")
+    breakdown, details = holdings_breakdown(top, day, force=force)
+    scored = len(breakdown)
+    wcr = sum(b["contrib"] for b in breakdown)
+    up = sum(1 for b in breakdown if b["ret"] > 0)
 
     src = "國泰投信權重 + TWSE 個股收盤"
     if scored < top_n:
@@ -250,7 +227,44 @@ def part_constituents(cfg: dict, day: date, *, force: bool) -> dict[str, Field]:
                      as_of=as_of_str, status=status, note=note),
         "breadth_count": Field(name="breadth_count", value=up, source=src, url=url,
                                as_of=as_of_str, status=status, note=note),
+        # 保留每一檔的分解，前端才做得出「前十大持股」明細表。
+        # 只存彙總數字的話，看到 WCR -0.24% 也不知道是誰拖累的。
+        "top_holdings": Field(name="top_holdings", value=breakdown, source=src, url=url,
+                              as_of=as_of_str, status=status, note=note),
     }
+
+
+def holdings_breakdown(top, day: date, *, force: bool) -> tuple[list[dict[str, Any]], list[str]]:
+    """逐檔算出當日漲跌幅與權重貢獻。回傳 (明細, 問題紀錄)。"""
+    rows: list[dict[str, Any]] = []
+    problems: list[str] = []
+    for h in top:
+        try:
+            ensure_month(h.code, day, force=force)
+            bars = load_all_bars(h.code)
+        except SourceError as exc:
+            problems.append(f"{h.code} 取得失敗：{exc}")
+            continue
+        by_date = {b.date: b for b in bars}
+        dates = sorted(by_date)
+        if day not in by_date:
+            problems.append(f"{h.code} 無 {day} 收盤")
+            continue
+        i = dates.index(day)
+        if i == 0:
+            problems.append(f"{h.code} 無前一交易日可比")
+            continue
+        prev, cur = by_date[dates[i - 1]].close, by_date[day].close
+        if not prev or cur is None:
+            problems.append(f"{h.code} 收盤價缺值")
+            continue
+        r = cur / prev - 1
+        rows.append({
+            "code": h.code, "name": h.name, "weight": h.weight,
+            "close": cur, "prev_close": prev, "ret": r,
+            "contrib": h.weight * r,
+        })
+    return rows, problems
 
 
 def part_overseas(cfg: dict, day: date, **_: Any) -> dict[str, Field]:

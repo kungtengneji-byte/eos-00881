@@ -43,6 +43,7 @@
   }
 
   let history = [];
+  let meta = null;
   let range = 30;
 
   /* ---------------------------------------------------------- 主題切換 */
@@ -108,7 +109,10 @@
       const line = el("div", "dim-row");
       const n = el("div", "dim-name"); n.textContent = `${k}　${name}`;
       const v = el("div", "dim-val");
-      v.textContent = earned == null ? `—／${max}` : `${earned.toFixed(1)}／${max}`;
+      // 工作表的「滿分／今日／得分率」三欄，在窄畫面壓成一行
+      v.textContent = earned == null
+        ? `—／${max}`
+        : `${earned.toFixed(1)}／${max}　${Math.round((earned / max) * 100)}%`;
       line.append(n, v);
 
       const barBox = el("div", "dim-bar");
@@ -294,14 +298,63 @@
     t.append(tb); return t;
   }
 
-  function renderDimTable(row) {
-    const box = $("#dims-table"); box.textContent = "";
-    box.append(table(["構面", "得分", "滿分"],
-      Object.entries(DIMS).map(([k, n]) => [
-        `${k} ${n}`,
-        { node: document.createTextNode(row[k] == null ? "—" : row[k].toFixed(1)), cls: "num" },
-        { node: document.createTextNode(String(DIM_MAX[k])), cls: "num" },
-      ])));
+  /* 前十大持股：對齊工作表的成分股分頁。
+     只顯示彙總的 WCR 看不出是誰拖累的 —— 逐檔攤開才有診斷價值。 */
+  function renderHoldings(snap) {
+    const box = $("#holdings");
+    const cap = $("#holdings-asof");
+    box.textContent = "";
+    const f = (snap.fields || {}).top_holdings;
+    const rows = f && Array.isArray(f.value) ? f.value : null;
+    if (!rows || !rows.length) {
+      box.textContent = "該日未取得成分股明細。";
+      cap.textContent = "";
+      return;
+    }
+    cap.textContent = f.status === "stale" ? `權重 ${f.as_of}（非當日）` : `權重 ${f.as_of}`;
+    cap.className = f.status === "stale" ? "flag" : "subtle";
+    if (f.status === "stale") cap.dataset.s = "stale";
+
+    const body = rows.map((r) => [
+      { node: nameCell(r) },
+      { node: document.createTextNode(pct(r.weight, 2)), cls: "num" },
+      { node: document.createTextNode(smart(r.close)), cls: "num" },
+      { node: retCell(r.ret), cls: "num" },
+      { node: retCell(r.contrib, 3), cls: "num" },
+    ]);
+    const up = rows.filter((r) => r.ret > 0).length;
+    const sumW = rows.reduce((a, r) => a + r.weight, 0);
+    const sumC = rows.reduce((a, r) => a + r.contrib, 0);
+    body.push([
+      { node: document.createTextNode("合計") },
+      { node: document.createTextNode(pct(sumW, 2)), cls: "num" },
+      { node: document.createTextNode(`${up} 漲 / ${rows.length - up} 跌`), cls: "num" },
+      { node: document.createTextNode("") },
+      { node: retCell(sumC, 3), cls: "num" },
+    ]);
+
+    const t = table(["成分股", "權重", "收盤", "漲跌幅", "加權貢獻"], body);
+    t.classList.add("holdings");
+    box.append(t);
+  }
+
+  function nameCell(r) {
+    const d = el("div");
+    const n = el("div", "fname"); n.textContent = r.name;
+    const c = el("div", "src"); c.textContent = r.code;
+    d.append(n, c);
+    return d;
+  }
+
+  /* 漲跌以符號與文字標示，不靠顏色 —— 台股紅漲綠跌與國際慣例相反，
+     用顏色反而會讓不同習慣的讀者讀錯方向。 */
+  function retCell(v, d = 2) {
+    const s = el("span");
+    if (v === null || v === undefined) { s.textContent = "—"; return s; }
+    const sign = v > 0 ? "▲" : v < 0 ? "▼" : "－";
+    s.textContent = `${sign}${Math.abs(v * 100).toFixed(d)}%`;
+    s.className = "ret";
+    return s;
   }
 
   function renderHistTable(rows) {
@@ -318,7 +371,139 @@
 
   /* ---------------------------------------------------------- 當日明細 */
   const PCT_FIELDS = new Set(["premium", "ret5", "ret20", "ret60", "drawdown20",
-    "drawdown60", "rv20", "wcr", "sox_ret", "ndx_ret", "tsm_ret", "nvda_ret", "twd_change"]);
+    "drawdown60", "rv20", "wcr", "sox_ret", "ndx_ret", "tsm_ret", "nvda_ret", "twd_change",
+    "vs_ex_ref", "to_full_recovery"]);
+
+  /* 欄位說明。原始欄位名是程式識別字，對照 eos_rubric_v1.1.yaml 時有用，
+     但不該是使用者看到的主要文字。dim 標出這個欄位餵給哪個構面，
+     沒有 dim 的是參考資訊，不進計分。 */
+  const FIELD_META = {
+    // 價格與成交
+    close:        { g: "價格與成交", label: "收盤價", unit: "元" },
+    open:         { g: "價格與成交", label: "開盤價", unit: "元" },
+    high:         { g: "價格與成交", label: "最高價", unit: "元" },
+    low:          { g: "價格與成交", label: "最低價", unit: "元" },
+    volume_lots:  { g: "價格與成交", label: "成交量", unit: "張" },
+    turnover_100m:{ g: "價格與成交", label: "成交值", unit: "億元" },
+    avg_vol20:    { g: "價格與成交", label: "20 日均量", unit: "張" },
+    volume_ratio: { g: "價格與成交", label: "量比（當日量／20 日均量）", unit: "倍", dim: "F" },
+    day_direction:{ g: "價格與成交", label: "當日漲跌方向", dim: "F" },
+
+    // 淨值
+    nav:      { g: "淨值與折溢價", label: "正式淨值 NAV", unit: "元" },
+    premium:  { g: "淨值與折溢價", label: "折溢價（市價相對淨值）", dim: "A" },
+
+    // 價格位置（由收盤價與除息基準推算，非收集而來）
+    vs_ex_ref:        { g: "價格位置", label: "相對除息參考價" },
+    to_full_recovery: { g: "價格位置", label: "距完整填息目標" },
+
+    // 含息技術面
+    close_adj:          { g: "含息技術面", label: "含息調整價", unit: "元" },
+    ma20:               { g: "含息技術面", label: "20 日均線", unit: "元" },
+    ma60:               { g: "含息技術面", label: "60 日均線", unit: "元" },
+    ma120:              { g: "含息技術面", label: "120 日均線", unit: "元" },
+    close_adj_gt_ma20:  { g: "含息技術面", label: "站上 20 日均線", dim: "B" },
+    ma20_gt_ma60:       { g: "含息技術面", label: "20 日均線在 60 日之上", dim: "B" },
+    close_adj_gt_ma120: { g: "含息技術面", label: "站上 120 日均線", dim: "B" },
+    ret60_positive:     { g: "含息技術面", label: "60 日總報酬為正", dim: "B" },
+    ret5:       { g: "含息技術面", label: "5 日含息總報酬" },
+    ret20:      { g: "含息技術面", label: "20 日含息總報酬" },
+    ret60:      { g: "含息技術面", label: "60 日含息總報酬" },
+    drawdown20: { g: "含息技術面", label: "距 20 日高點回檔", dim: "B" },
+    drawdown60: { g: "含息技術面", label: "距 60 日高點回檔" },
+    rsi14:      { g: "含息技術面", label: "RSI14（Wilder）", dim: "B" },
+    rv20:       { g: "含息技術面", label: "20 日實現波動率（年化）", dim: "B" },
+
+    // 成分股
+    wcr:           { g: "成分股廣度", label: "Top10 加權報酬貢獻", dim: "C" },
+    breadth_count: { g: "成分股廣度", label: "Top10 上漲家數", unit: "／10 檔", dim: "C" },
+
+    // 海外
+    sox_ret:  { g: "海外科技（前一美股時段）", label: "費城半導體指數 SOX", dim: "D" },
+    ndx_ret:  { g: "海外科技（前一美股時段）", label: "那斯達克指數", dim: "D" },
+    tsm_ret:  { g: "海外科技（前一美股時段）", label: "台積電 ADR", dim: "D" },
+    nvda_ret: { g: "海外科技（前一美股時段）", label: "輝達 NVDA", dim: "D" },
+
+    // 風險環境
+    vix:        { g: "風險環境", label: "VIX 波動率指數", dim: "E" },
+    us10y:      { g: "風險環境", label: "美國 10 年期公債殖利率", unit: "%", dim: "E" },
+    usdtwd:     { g: "風險環境", label: "美元兌台幣匯率" },
+    twd_change: { g: "風險環境", label: "台幣日變動（負值為升值）", dim: "E" },
+
+    // 法人
+    institutional_net:            { g: "法人資金流", label: "三大法人買賣超", unit: "億元", dim: "F" },
+    institutional_net_100m:       { g: "法人資金流", label: "三大法人買賣超（同上）", unit: "億元" },
+    foreign_net_100m:             { g: "法人資金流", label: "外資及陸資買賣超", unit: "億元" },
+    stock_foreign_net_lots:       { g: "法人資金流", label: "00881 外資買賣超", unit: "張" },
+    stock_institutional_net_lots: { g: "法人資金流", label: "00881 三大法人買賣超", unit: "張" },
+  };
+  const GROUP_ORDER = ["淨值與折溢價", "價格位置", "價格與成交", "含息技術面", "成分股廣度",
+                       "海外科技（前一美股時段）", "風險環境", "法人資金流", "其他"];
+
+  /* 判讀：把數字翻成一句話，對齊工作表「判讀」欄的用語。
+     門檻與 eos_rubric_v1.1.yaml 一致，但這裡只負責呈現，不參與計分。 */
+  const band = (v, pairs) => {
+    for (const [lt, text] of pairs) if (lt === null || v < lt) return text;
+    return pairs[pairs.length - 1][1];
+  };
+  const US_BAND = [[-0.015, "強負向"], [-0.005, "負向"], [0.005, "持平"],
+                   [0.015, "正向"], [null, "強正向"]];
+
+  const INTERPRET = {
+    premium: (v) => band(v, [[-0.005, "明顯折價"], [-0.001, "小幅折價"],
+                             [0.003, "接近淨值"], [0.008, "溢價"], [null, "高溢價"]]),
+    sox_ret: (v) => band(v, US_BAND), ndx_ret: (v) => band(v, US_BAND),
+    tsm_ret: (v) => band(v, US_BAND), nvda_ret: (v) => band(v, US_BAND),
+    vix: (v) => band(v, [[15, "低波動"], [18, "偏低"], [22, "中性"], [28, "偏高"], [null, "高波動"]]),
+    us10y: (v) => band(v, [[4, "寬鬆"], [4.5, "中性"], [4.8, "偏高"], [5, "高"], [null, "明顯偏高"]]),
+    twd_change: (v) => band(v, [[-0.003, "台幣明顯升值"], [0, "台幣升值"],
+                                [0.003, "台幣貶值"], [null, "台幣明顯貶值"]]),
+    rsi14: (v) => band(v, [[30, "超賣"], [40, "偏弱"], [55, "中性"], [65, "偏強"],
+                           [75, "強勢"], [null, "過熱"]]),
+    rv20: (v) => band(v, [[0.2, "波動收斂"], [0.25, "中性"], [0.32, "偏高"], [null, "高波動"]]),
+    drawdown20: (v) => band(Math.abs(v), [[0.01, "貼近高點"], [0.03, "小幅回檔"],
+                                          [0.08, "健康回檔"], [0.15, "深度回檔"], [null, "趨勢轉弱"]]),
+    institutional_net: (v) => band(v, [[-300, "大幅賣超"], [-100, "賣超"], [100, "中性"],
+                                       [300, "買超"], [null, "大幅買超"]]),
+    foreign_net_100m: (v) => band(v, [[-300, "大幅賣超"], [-100, "賣超"], [100, "中性"],
+                                      [300, "買超"], [null, "大幅買超"]]),
+    wcr: (v) => (v > 0.0005 ? "正向" : v < -0.0005 ? "負向" : "持平"),
+    breadth_count: (v) => `${v} / 10 檔上漲`,
+    vs_ex_ref: (v) => (v >= 0 ? "已站上除息參考價" : "仍低於除息參考價"),
+    to_full_recovery: (v) => (v <= 0 ? "已完成填息" : `距完整填息尚需 ${(v * 100).toFixed(2)}%`),
+  };
+
+  function interpret(name, f, snap) {
+    if (f.value === null || f.value === undefined) return "";
+    if (name === "volume_ratio") {
+      const dir = (snap.fields.day_direction || {}).value;
+      if (!dir) return "";
+      const heavy = f.value >= 1.2, light = f.value < 0.5;
+      return dir === "up"
+        ? (heavy ? "放量上漲（確認）" : light ? "無量上漲" : "量能普通")
+        : (heavy ? "放量下跌" : light ? "縮量下跌（賣壓不重）" : "量能普通");
+    }
+    if (name.endsWith("_gt_ma20") || name.endsWith("_gt_ma60") || name.endsWith("_gt_ma120"))
+      return f.value ? "站上" : "跌破";
+    if (name === "ret60_positive") return f.value ? "60 日為正報酬" : "60 日為負報酬";
+    const fn = INTERPRET[name];
+    return fn ? fn(f.value) : "";
+  }
+
+  /* 除息參考價與填息目標是設定值，不是每天收集來的資料，
+     因此在前端由收盤價推算，而不是在 30 份快照裡各存一次。
+     填息目標只是市場心理標記，不是合理價值（v1.0 文件 5.）。 */
+  function addPricePosition(snap) {
+    const ex = (meta && meta.ex_dividend) || {};
+    const close = (snap.fields.close || {}).value;
+    if (!close || !ex.reference_price || !ex.full_recovery) return;
+    const base = {
+      source: `由收盤價推算（除息 ${ex.date}，配息 ${ex.cash} 元）`,
+      url: "", as_of: snap.trade_date, status: "ok", note: "",
+    };
+    snap.fields.vs_ex_ref = { ...base, value: close / ex.reference_price - 1 };
+    snap.fields.to_full_recovery = { ...base, value: ex.full_recovery / close - 1 };
+  }
 
   async function loadDetail(day) {
     const box = $("#detail");
@@ -332,31 +517,69 @@
       return;
     }
     /* 375px 寬放不下四欄，硬塞會把「資料日期」切掉。
-       改為兩欄：左邊欄位名 + 來源/日期小字，右邊數值 + 狀態標記。 */
+       改為兩欄：左邊中文說明 + 原始欄位名/來源小字，右邊數值 + 狀態標記。
+       並依構面分組，讓「這個數字餵給哪一段模型」一眼看得出來。 */
+    // 必須在建立分組前補上推算欄位，否則它們不會被分進任何一組
+    addPricePosition(snap);
+
     const fields = snap.fields || {};
-    const rows = Object.keys(fields).sort().map((name) => {
-      const f = fields[name];
+    const groups = new Map();
+    for (const name of Object.keys(fields)) {
+      const meta = FIELD_META[name] || { g: "其他", label: name };
+      if (!groups.has(meta.g)) groups.set(meta.g, []);
+      groups.get(meta.g).push([name, meta]);
+    }
 
-      const left = el("div");
-      const nm = el("div"); nm.textContent = name;
-      const src = el("div", "src");
-      src.textContent = `${f.as_of || "—"}　${f.source || ""}`.trim();
-      left.append(nm, src);
-      if (f.note) {
-        const note = el("div", "src"); note.textContent = f.note; left.append(note);
-      }
+    renderHoldings(snap);
 
-      const right = el("div");
-      const val = el("div");
-      val.textContent = PCT_FIELDS.has(name) ? pct(f.value) : smart(f.value);
-      const flag = el("span", "flag");
-      flag.dataset.s = f.status; flag.textContent = f.status;
-      right.append(val, flag);
-
-      return [{ node: left }, { node: right, cls: "num" }];
-    });
     box.textContent = "";
-    box.append(table(["欄位／來源", "值"], rows));
+    for (const g of GROUP_ORDER) {
+      const items = groups.get(g);
+      if (!items || !items.length) continue;
+
+      const h = el("h3", "grp");
+      h.textContent = g;
+      box.append(h);
+
+      const rows = items
+        .sort((a, b) => a[1].label.localeCompare(b[1].label, "zh-Hant"))
+        .map(([name, meta]) => {
+          const f = fields[name];
+
+          const left = el("div");
+          const nm = el("div", "fname");
+          nm.textContent = meta.label;
+          if (meta.dim) {
+            const tag = el("span", "dimtag");
+            tag.textContent = meta.dim;
+            tag.title = `此欄位計入 ${meta.dim} 構面`;
+            nm.append(tag);
+          }
+          const src = el("div", "src");
+          src.textContent = `${name}　${f.as_of || "—"}　${f.source || ""}`.trim();
+          left.append(nm, src);
+          if (f.note) {
+            const note = el("div", "src"); note.textContent = f.note; left.append(note);
+          }
+
+          const right = el("div");
+          const val = el("div");
+          const shown = PCT_FIELDS.has(name) ? pct(f.value) : smart(f.value);
+          val.textContent = meta.unit && f.value !== null && f.value !== undefined
+            ? `${shown} ${meta.unit}` : shown;
+          right.append(val);
+
+          const read = interpret(name, f, snap);
+          if (read) { const r = el("div", "read"); r.textContent = read; right.append(r); }
+
+          const flag = el("span", "flag");
+          flag.dataset.s = f.status; flag.textContent = f.status;
+          right.append(flag);
+
+          return [{ node: left }, { node: right, cls: "num" }];
+        });
+      box.append(table(["項目", "值"], rows));
+    }
   }
 
   /* ---------------------------------------------------------- 組裝 */
@@ -372,7 +595,6 @@
     if (latest) {
       renderHero(latest, prev && prev.date !== latest.date ? prev : null);
       renderDims(latest);
-      renderDimTable(latest);
     }
     renderChart(rows);
     renderHistTable(rows);
@@ -431,6 +653,11 @@
     }
     history = history.filter((r) => r && r.date).sort((a, b) => a.date.localeCompare(b.date));
     if (!history.length) { $("#fallback").textContent = "尚無任何每日快照。"; return; }
+
+    try {
+      const m = await fetch(`data/instrument_${INSTRUMENT}.json`, { cache: "no-cache" });
+      if (m.ok) meta = await m.json();
+    } catch { /* 沒有也不影響主要內容，只是少了價格位置兩列 */ }
 
     const picker = $("#day-picker");
     [...history].reverse().forEach((r) => {

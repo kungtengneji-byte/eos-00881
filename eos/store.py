@@ -106,6 +106,33 @@ def recent_days(instrument: str, limit: int) -> list[date]:
     return sorted(days, reverse=True)[:limit]
 
 
+def write_instrument_meta(cfg: dict[str, Any]) -> Path:
+    """把標的設定中前端需要的部分輸出成 JSON。
+
+    前端要算「相對除息參考價」與「距完整填息」這兩個工作表既有的欄位，
+    需要除息基準價與填息目標。這些是設定，不是每日收集到的資料，
+    所以獨立一個檔而不是塞進每日快照重複 30 次。
+    """
+    inst = cfg["instrument"]
+    ex = cfg.get("ex_dividend") or {}
+    payload = {
+        "instrument": inst,
+        "name": cfg.get("name", inst),
+        "issuer": cfg.get("issuer", ""),
+        "top_n": cfg.get("top_n", 10),
+        "ex_dividend": {
+            "date": ex.get("date"),
+            "cash": ex.get("cash"),
+            "reference_price": ex.get("reference_price"),
+            "full_recovery": ex.get("full_recovery"),
+        },
+    }
+    out = ROOT / "data" / f"instrument_{inst}.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+    return out
+
+
 def write_series_index(instrument: str) -> Path:
     """把所有每日快照壓成一份給前端用的精簡時間序列。
 
