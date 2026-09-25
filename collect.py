@@ -31,7 +31,7 @@ from typing import Any, Callable
 
 import yaml
 
-from eos import engine, series as series_mod, store
+from eos import engine, series as series_mod, store, summary
 from eos.models import Field, Status
 from eos.rubric import Rubric
 from sources import cathay, twse, yahoo
@@ -336,7 +336,28 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
               if f.get("status") in ("ok", "stale")}
     result = engine.compute(rubric, inputs)
 
-    store.save(inst, day, fields=fields, eos=result.to_dict(), windows=[window])
+    # 與前一個「有發布分數」的交易日比較，不是單純的前一天 ——
+    # 前一天可能因覆蓋率不足而未出分，拿它比會得到假的變化
+    prev_result = prev_date = None
+    for d in store.recent_days(inst, 10):
+        if d >= day:
+            continue
+        snap = store.load(inst, d) or {}
+        pf = snap.get("fields") or {}
+        pin = {n: f.get("value") for n, f in pf.items()
+               if f.get("status") in ("ok", "stale")}
+        pr = engine.compute(rubric, pin)
+        if pr.published:
+            prev_result, prev_date = pr, d.isoformat()
+            break
+
+    meta_path = store.write_instrument_meta(cfg)
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    payload = result.to_dict()
+    payload["summary"] = summary.build(rubric, result, prev_result, fields,
+                                       meta=meta, prev_date=prev_date)
+
+    store.save(inst, day, fields=fields, eos=payload, windows=[window])
     print(f"  更新 {len(changed)} 個欄位" + (f"：{', '.join(changed[:6])}" if changed else ""))
     print(result.explain())
 

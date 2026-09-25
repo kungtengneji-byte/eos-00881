@@ -205,6 +205,19 @@ table.holdings tr:last-child td { border-top: 1px solid var(--axis); font-weight
 #detail .flag { display: inline-block; margin-top: 3px; }
 /* 判讀：對齊工作表「判讀」欄，一句話說明這個數字代表什麼 */
 .read { font-size: .76rem; color: var(--ink-2); margin-top: 1px; }
+
+/* 今日結論 */
+.sum-head { margin: 0 0 12px; font-size: .92rem; font-weight: 600; line-height: 1.55; }
+.sum-block { margin: 10px 0; }
+.sum-title {
+  font-size: .72rem; letter-spacing: .06em; color: var(--muted);
+  text-transform: uppercase; margin-bottom: 3px;
+}
+.sum-block ul { margin: 0; padding-inline-start: 1.15em; }
+.sum-block li { font-size: .82rem; color: var(--ink-2); margin: 2px 0; }
+/* 資料品質用左側細線標示，不用底色 —— 底色會讓它看起來像警告框 */
+.sum-block.warn { border-inline-start: 2px solid var(--st-warning); padding-inline-start: 10px; }
+.sum-block.warn ul { padding-inline-start: 1em; }
 .flag {
   font-size: .72rem; padding: 1px 6px; border-radius: 999px;
   border: 1px solid var(--border); white-space: nowrap; color: var(--ink-2);

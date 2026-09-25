@@ -300,6 +300,37 @@
 
   /* 前十大持股：對齊工作表的成分股分頁。
      只顯示彙總的 WCR 看不出是誰拖累的 —— 逐檔攤開才有診斷價值。 */
+  /* 今日結論：由 eos/summary.py 在收集時產生並存進快照。
+     放在 Python 端而不是這裡，是為了讓它可被測試，
+     並且 Phase 5 的 Email 通知能用同一份文字。 */
+  function renderSummary(row, snap) {
+    const card = $("#summary-card");
+    const box = $("#summary");
+    const s = ((snap || {}).eos || {}).summary;
+    if (!s || !s.headline) { card.hidden = true; return; }
+    card.hidden = false;
+    box.textContent = "";
+
+    const head = el("p", "sum-head");
+    head.textContent = s.headline;
+    box.append(head);
+
+    const block = (title, items, cls) => {
+      if (!items || !items.length) return;
+      const wrap = el("div", `sum-block ${cls || ""}`);
+      const t = el("div", "sum-title"); t.textContent = title;
+      const ul = el("ul");
+      items.forEach((x) => { const li = el("li"); li.textContent = x; ul.append(li); });
+      wrap.append(t, ul);
+      box.append(wrap);
+    };
+    block("改善", s.drivers);
+    block("拖累", s.drags);
+    block("佐證", s.evidence);
+    block("資料品質", s.quality, "warn");
+    block("待觀察", s.watch);
+  }
+
   function renderHoldings(snap) {
     const box = $("#holdings");
     const cap = $("#holdings-asof");
@@ -531,6 +562,8 @@
     }
 
     renderHoldings(snap);
+    // 結論只在看最新交易日時顯示；翻閱歷史日時顯示該日自己的結論
+    renderSummary(null, snap);
 
     box.textContent = "";
     for (const g of GROUP_ORDER) {
