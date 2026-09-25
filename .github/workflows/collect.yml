@@ -1,0 +1,121 @@
+name: collect
+
+# 四個收集時間窗。cron 一律以 UTC 設定，註解標的是台北時間。
+#
+# 重要：GitHub Actions 的排程「不準時」，實際觸發常延遲 5–15 分鐘，
+# 尖峰時段可能更久，偶爾會被丟棄。因此每個窗都刻意避開整點，
+# 且 W4 回補窗會把前幾天漏掉的補回來 —— 單次排程被跳過不會造成永久缺口。
+on:
+  schedule:
+    # W3 海外與風險：台北 05:35（美股前一時段已收盤，台股尚未開盤）
+    - cron: "35 21 * * 0-4"
+    # W1 台股收盤：台北 15:15
+    - cron: "15 7 * * 1-5"
+    # W2 正式 NAV 與成分股權重：台北 19:35
+    - cron: "35 11 * * 1-5"
+    # W2 重試：台北 21:35（NAV 常延遲發布，實測 9/24 到 19:58 仍未發布）
+    - cron: "35 13 * * 1-5"
+    # W4 回補：台北隔日 09:05
+    - cron: "5 1 * * 2-6"
+  workflow_dispatch:
+    inputs:
+      window:
+        description: "要執行的收集窗"
+        required: true
+        default: "all"
+        type: choice
+        options: [w1, w2, w3, w4, all]
+      date:
+        description: "目標交易日 YYYY-MM-DD（留空為今天）"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+# 同時只跑一個收集作業：兩個窗同時寫同一天的快照會產生 push 衝突
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+env:
+  # 關鍵：runner 預設 UTC，collect.py 用 date.today() 決定目標日。
+  # 不設這個，台北 05:35 的那一跑會把日期算成前一天。
+  TZ: Asia/Taipei
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: 決定收集窗
+        id: pick
+        run: |
+          case "${{ github.event.schedule }}" in
+            "35 21 * * 0-4") W=w3 ;;
+            "15 7 * * 1-5")  W=w1 ;;
+            "35 11 * * 1-5") W=w2 ;;
+            "35 13 * * 1-5") W=w2 ;;
+            "5 1 * * 2-6")   W=w4 ;;
+            *)               W="${{ inputs.window || 'all' }}" ;;
+          esac
+          echo "window=$W" >> "$GITHUB_OUTPUT"
+          echo "今天（台北）：$(date '+%Y-%m-%d %H:%M %Z')　收集窗：$W"
+
+      - name: 收集
+        run: |
+          ARGS="--window ${{ steps.pick.outputs.window }}"
+          if [ -n "${{ inputs.date }}" ]; then ARGS="$ARGS --date ${{ inputs.date }}"; fi
+          python collect.py $ARGS
+
+      - name: 提交資料
+        run: |
+          git config user.name "eos-collector"
+          git config user.email "eos-collector@users.noreply.github.com"
+          # 先 add 再比對 index：新的每日快照是未追蹤檔案，
+          # 用 git diff 檢查工作區看不到它們，會漏掉第一次產生的當日資料
+          git add data raw
+          if git diff --cached --quiet; then
+            echo "資料沒有變化，不提交（休市日或該窗的來源尚未更新）"
+            exit 0
+          fi
+          git commit -m "資料更新：${{ steps.pick.outputs.window }} $(date '+%Y-%m-%d %H:%M')"
+          # 兩個窗若幾乎同時完成，rebase 後重試一次即可
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push origin HEAD:main && exit 0
+            echo "推送失敗，第 $i 次重試"
+            sleep 5
+          done
+          exit 1
+
+      - name: 摘要
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          p = pathlib.Path("data/eos_history_00881.json")
+          if not p.exists():
+              print("尚無歷史資料"); raise SystemExit
+          rows = json.loads(p.read_text(encoding="utf-8"))
+          last = rows[-1]
+          print(f"## 最新交易日 {last['date']}\n")
+          print(f"- EOS **{last['eos'] if last['eos'] is not None else '未出分'}**"
+                f"（{last['rating'] or last['status']}）")
+          print(f"- 覆蓋率 {last['coverage']}/100　狀態 {last['status']}")
+          print(f"- 累積 {len(rows)} 個交易日")
+          snap = json.loads(pathlib.Path(
+              f"data/daily/00881/{last['date']}.json").read_text(encoding="utf-8"))
+          s = (snap.get("eos") or {}).get("summary") or {}
+          if s.get("headline"):
+              print(f"\n### 今日結論\n\n{s['headline']}\n")
+              for k, t in (("drivers", "改善"), ("drags", "拖累"), ("watch", "待觀察")):
+                  if s.get(k):
+                      print(f"- **{t}**：{'、'.join(s[k])}")
+          PY

@@ -41,8 +41,12 @@ ROOT = Path(__file__).resolve().parent
 RAW = ROOT / "raw"
 CONFIG_DIR = ROOT / "config" / "instruments"
 
+# constituents 同時排在 W1 與 W2 是刻意的：
+#   W1（15:15）時國泰投信多半還是前一日權重，算出來的加權貢獻會標 STALE，
+#   但已足以讓覆蓋率達 85 而出「暫定」分數 —— 否則收盤後要等到 19:35 才看得到任何分數。
+#   W2（19:35）當日權重發布後再收一次，合併規則會用 OK 覆蓋掉 STALE。
 PARTS_BY_WINDOW = {
-    "w1": ("prices", "institutional"),
+    "w1": ("prices", "institutional", "constituents"),
     "w2": ("nav", "constituents"),
     "w3": ("overseas",),
 }

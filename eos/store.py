@@ -143,6 +143,12 @@ def write_series_index(instrument: str) -> Path:
     rows = []
     for p in sorted(d.glob("*.json")) if d.exists() else []:
         snap = json.loads(p.read_text(encoding="utf-8"))
+        # 沒有 TWSE 收盤價就不是這檔標的的交易日。
+        # 排程上線後，W3（早上 05:35）會在台股開盤前先收海外資料，
+        # 若當天適逢休市就只會留下一份幾乎全空的快照 —— 不該出現在歷史裡。
+        close = (snap.get("fields") or {}).get("close") or {}
+        if close.get("value") is None:
+            continue
         eos = snap.get("eos") or {}
         row = {
             "date": snap["trade_date"],
