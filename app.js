@@ -343,8 +343,10 @@
     if (!rows || !rows.length) {
       box.textContent = "該日未取得成分股明細。";
       cap.textContent = "";
+      $("#holdings-chart").textContent = "";
       return;
     }
+    renderContribChart(rows);
     cap.textContent = f.status === "stale" ? `權重 ${f.as_of}（非當日）` : `權重 ${f.as_of}`;
     cap.className = f.status === "stale" ? "flag" : "subtle";
     if (f.status === "stale") cap.dataset.s = "stale";
@@ -370,6 +372,97 @@
     const t = table(["成分股", "權重", "收盤", "漲跌幅", "加權貢獻"], body);
     t.classList.add("holdings");
     box.append(t);
+  }
+
+  /* Top10 權重×漲跌貢獻：以零線為中心的橫條。
+
+     刻意不用顏色區分正負 —— 條的方向已經把正負講完了，再加顏色是重複編碼；
+     而且台股紅漲綠跌與國際慣例相反，用顏色反而製造誤讀。
+     手機上用橫條而非直條，中文名才能水平閱讀，不必轉九十度。 */
+  function renderContribChart(rows) {
+    const wrap = $("#holdings-chart");
+    wrap.textContent = "";
+    if (!rows || !rows.length) return;
+
+    const NS = "http://www.w3.org/2000/svg";
+    const rowH = 20, gap = 4;
+    const P = { t: 8, r: 8, b: 16, l: 62 };
+    const W = 340;
+    const H = P.t + rows.length * (rowH + gap) - gap + P.b;
+    const iw = W - P.l - P.r;
+    const zero = P.l + iw / 2;
+
+    const maxAbs = Math.max(...rows.map((r) => Math.abs(r.contrib)), 1e-6);
+    const X = (v) => zero + (v / maxAbs) * (iw / 2 - 26);   // 留空間給極值標籤
+
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "前十大持股的權重加權貢獻");
+    const add = (tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+      if (text != null) n.textContent = text;
+      svg.append(n); return n;
+    };
+
+    const best = rows.reduce((a, b) => (b.contrib > a.contrib ? b : a));
+    const worst = rows.reduce((a, b) => (b.contrib < a.contrib ? b : a));
+
+    rows.forEach((r, i) => {
+      const y = P.t + i * (rowH + gap);
+      add("text", { x: P.l - 6, y: y + rowH / 2 + 3.5, "font-size": 9,
+                    "text-anchor": "end", fill: "var(--ink-2)" }, r.name);
+
+      const x = X(r.contrib);
+      const w = Math.max(1.5, Math.abs(x - zero));
+      add("rect", {
+        x: r.contrib >= 0 ? zero : zero - w, y: y + 3,
+        width: w, height: rowH - 6, rx: 2, ry: 2, fill: "var(--series-1)",
+      });
+
+      // 只標極值；其餘由下方表格提供完整數字（表格即 table view）
+      if (r === best || r === worst) {
+        const pos = r.contrib >= 0;
+        const text = `${(r.contrib * 100).toFixed(3)}%`;
+        const est = text.length * 4.6;            // 概估字寬，用來判斷會不會撞到名稱欄
+        const outside = pos ? x + 4 : x - 4;
+        // 外側放不下就翻到長條內側，否則負值極值會壓到左邊的成分股名稱
+        const collides = !pos && outside - est < P.l + 2;
+        add("text", {
+          x: collides ? x + 4 : outside,
+          y: y + rowH / 2 + 3.5, "font-size": 8.5, "font-weight": 600,
+          "text-anchor": collides ? "start" : (pos ? "start" : "end"),
+          fill: collides ? "var(--surface-1)" : "var(--ink)",
+        }, text);
+      }
+    });
+
+    // 零線畫在最後，才不會被長條蓋住
+    add("line", { x1: zero, x2: zero, y1: P.t - 2, y2: H - P.b + 2,
+                  stroke: "var(--axis)", "stroke-width": 1 });
+    add("text", { x: zero, y: H - 4, "font-size": 8, "text-anchor": "middle",
+                  fill: "var(--muted)" }, "0");
+
+    wrap.append(svg);
+
+    const tip = el("div", "tip"); tip.hidden = true; wrap.append(tip);
+    const show = (e) => {
+      const box = svg.getBoundingClientRect();
+      const vy = ((e.clientY - box.top) / box.height) * H;
+      const i = Math.floor((vy - P.t) / (rowH + gap));
+      if (i < 0 || i >= rows.length) { tip.hidden = true; return; }
+      const r = rows[i];
+      tip.hidden = false;
+      tip.innerHTML = `${r.name}（${r.code}）<br>權重 <b>${pct(r.weight, 2)}</b>　`
+        + `漲跌 <b>${(r.ret * 100).toFixed(2)}%</b><br>`
+        + `貢獻 <b>${(r.contrib * 100).toFixed(3)}%</b>`;
+      tip.style.left = "8px";
+      tip.style.top = Math.max(0, (i * (rowH + gap) / H) * box.height - 6) + "px";
+    };
+    wrap.addEventListener("pointermove", show);
+    wrap.addEventListener("pointerdown", show);
+    wrap.addEventListener("pointerleave", () => { tip.hidden = true; });
   }
 
   function nameCell(r) {
