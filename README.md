@@ -58,6 +58,10 @@ Imperva challenge。本專案**不繞過**這類機制，兩者皆已剔除並�
 這個門檻是實測得出的：覆蓋率 ≥96% 的三天與人工判讀誤差為 0 / −2 / +5，
 覆蓋率 75–83% 的四天則擴大到 −12 ~ +16。
 
+計分規則全部寫在 YAML，`eos/rubric.py` 只是解釋器 —— 調整門檻不需要改 Python。
+8 個有人工判讀可對照的錨點日被鎖在 `tests/test_engine.py` 的回歸測試裡，
+改動 rubric 就會失敗。資料齊全的兩天（9/3、9/24）誤差為 −2 與 **0**。
+
 ## 收集排程
 
 | 窗 | 台灣時間 | 內容 |
@@ -87,7 +91,8 @@ pytest
 
 - [x] Phase 1 歷史回填（1,407 個交易日，2020-12-10 起，含息調整序列）
 - [x] Phase 2 資料源 adapter 與測試
-- [ ] Phase 3 EOS 計算引擎
+- [x] Phase 3a 計分核心（`eos/rubric.py`、`eos/engine.py`）
+- [ ] Phase 3b 收集協調器（`collect.py`，四個時間窗與回補）
 - [ ] Phase 4 手機前端（PWA）
 - [ ] Phase 5 排程與 Email 通知
 - [ ] Phase 6 機率模型（v2.0）
