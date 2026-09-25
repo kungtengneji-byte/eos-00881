@@ -499,69 +499,74 @@
   /* ---------------------------------------------------------- 當日明細 */
   const PCT_FIELDS = new Set(["premium", "ret5", "ret20", "ret60", "drawdown20",
     "drawdown60", "rv20", "wcr", "sox_ret", "ndx_ret", "tsm_ret", "nvda_ret", "twd_change",
-    "vs_ex_ref", "to_full_recovery"]);
+    "vs_ex_ref", "to_full_recovery", "day_change"]);
 
   /* 欄位說明。原始欄位名是程式識別字，對照 eos_rubric_v1.1.yaml 時有用，
      但不該是使用者看到的主要文字。dim 標出這個欄位餵給哪個構面，
      沒有 dim 的是參考資訊，不進計分。 */
+  /* o = 組內排序。刻意手動指定而非依字面排序 ——
+     照中文字面排會得到「20日均量→成交值→成交量→收盤價」這種沒有邏輯的順序。
+     順序對齊既有工作表的「正式收盤與基金資料」與「價格/技術位置」兩個區塊。 */
   const FIELD_META = {
-    // 價格與成交
-    close:        { g: "價格與成交", label: "收盤價", unit: "元" },
-    open:         { g: "價格與成交", label: "開盤價", unit: "元" },
-    high:         { g: "價格與成交", label: "最高價", unit: "元" },
-    low:          { g: "價格與成交", label: "最低價", unit: "元" },
-    volume_lots:  { g: "價格與成交", label: "成交量", unit: "張" },
-    turnover_100m:{ g: "價格與成交", label: "成交值", unit: "億元" },
-    avg_vol20:    { g: "價格與成交", label: "20 日均量", unit: "張" },
-    volume_ratio: { g: "價格與成交", label: "量比（當日量／20 日均量）", unit: "倍", dim: "F" },
-    day_direction:{ g: "價格與成交", label: "當日漲跌方向", dim: "F" },
-
-    // 淨值
-    nav:      { g: "淨值與折溢價", label: "正式淨值 NAV", unit: "元" },
-    premium:  { g: "淨值與折溢價", label: "折溢價（市價相對淨值）", dim: "A" },
+    // 淨值（工作表左區塊尾端）
+    nav:      { g: "淨值與折溢價", o: 1, label: "正式淨值 NAV", unit: "元" },
+    premium:  { g: "淨值與折溢價", o: 2, label: "正式折溢價", dim: "A" },
 
     // 價格位置（由收盤價與除息基準推算，非收集而來）
-    vs_ex_ref:        { g: "價格位置", label: "相對除息參考價" },
-    to_full_recovery: { g: "價格位置", label: "距完整填息目標" },
+    vs_ex_ref:        { g: "價格位置", o: 1, label: "相對除息參考價 50.55" },
+    to_full_recovery: { g: "價格位置", o: 2, label: "距 55.15 剩餘漲幅" },
 
-    // 含息技術面
-    close_adj:          { g: "含息技術面", label: "含息調整價", unit: "元" },
-    ma20:               { g: "含息技術面", label: "20 日均線", unit: "元" },
-    ma60:               { g: "含息技術面", label: "60 日均線", unit: "元" },
-    ma120:              { g: "含息技術面", label: "120 日均線", unit: "元" },
-    close_adj_gt_ma20:  { g: "含息技術面", label: "站上 20 日均線", dim: "B" },
-    ma20_gt_ma60:       { g: "含息技術面", label: "20 日均線在 60 日之上", dim: "B" },
-    close_adj_gt_ma120: { g: "含息技術面", label: "站上 120 日均線", dim: "B" },
-    ret60_positive:     { g: "含息技術面", label: "60 日總報酬為正", dim: "B" },
-    ret5:       { g: "含息技術面", label: "5 日含息總報酬" },
-    ret20:      { g: "含息技術面", label: "20 日含息總報酬" },
-    ret60:      { g: "含息技術面", label: "60 日含息總報酬" },
-    drawdown20: { g: "含息技術面", label: "距 20 日高點回檔", dim: "B" },
-    drawdown60: { g: "含息技術面", label: "距 60 日高點回檔" },
-    rsi14:      { g: "含息技術面", label: "RSI14（Wilder）", dim: "B" },
-    rv20:       { g: "含息技術面", label: "20 日實現波動率（年化）", dim: "B" },
+    // 價格與成交 —— 工作表順序：收盤 開盤 最高 最低 漲跌幅 成交量 成交值
+    close:        { g: "價格與成交", o: 1, label: "收盤價", unit: "元" },
+    open:         { g: "價格與成交", o: 2, label: "開盤價", unit: "元" },
+    high:         { g: "價格與成交", o: 3, label: "最高價", unit: "元" },
+    low:          { g: "價格與成交", o: 4, label: "最低價", unit: "元" },
+    day_change:   { g: "價格與成交", o: 5, label: "漲跌幅" },
+    volume_lots:  { g: "價格與成交", o: 6, label: "成交量", unit: "張" },
+    turnover_100m:{ g: "價格與成交", o: 7, label: "成交值", unit: "億元" },
+    avg_vol20:    { g: "價格與成交", o: 8, label: "20 日平均量", unit: "張" },
+    volume_ratio: { g: "價格與成交", o: 9, label: "全日量比", unit: "倍", dim: "F" },
+    day_direction:{ g: "價格與成交", o: 10, label: "當日漲跌方向", dim: "F" },
+
+    // 含息技術面 —— 工作表順序：5/20/60日總報酬 MA20/60/120狀態 RSI14 20日高點回檔
+    ret5:               { g: "含息技術面", o: 1, label: "5 日總報酬" },
+    ret20:              { g: "含息技術面", o: 2, label: "20 日總報酬" },
+    ret60:              { g: "含息技術面", o: 3, label: "60 日總報酬" },
+    close_adj_gt_ma20:  { g: "含息技術面", o: 4, label: "MA20 狀態", dim: "B" },
+    ma20_gt_ma60:       { g: "含息技術面", o: 5, label: "MA60 狀態（MA20 在 MA60 之上）", dim: "B" },
+    close_adj_gt_ma120: { g: "含息技術面", o: 6, label: "MA120 狀態", dim: "B" },
+    ret60_positive:     { g: "含息技術面", o: 7, label: "60 日總報酬為正", dim: "B" },
+    rsi14:      { g: "含息技術面", o: 8, label: "RSI14", dim: "B" },
+    drawdown20: { g: "含息技術面", o: 9, label: "20 日高點回檔", dim: "B" },
+    drawdown60: { g: "含息技術面", o: 10, label: "60 日高點回檔" },
+    rv20:       { g: "含息技術面", o: 11, label: "RV20（年化實現波動率）", dim: "B" },
+    // 以下為支撐上列判斷的原始值，工作表未列，排在後面
+    close_adj:  { g: "含息技術面", o: 20, label: "含息調整價", unit: "元" },
+    ma20:       { g: "含息技術面", o: 21, label: "20 日均線", unit: "元" },
+    ma60:       { g: "含息技術面", o: 22, label: "60 日均線", unit: "元" },
+    ma120:      { g: "含息技術面", o: 23, label: "120 日均線", unit: "元" },
 
     // 成分股
-    wcr:           { g: "成分股廣度", label: "Top10 加權報酬貢獻", dim: "C" },
-    breadth_count: { g: "成分股廣度", label: "Top10 上漲家數", unit: "／10 檔", dim: "C" },
+    wcr:           { g: "成分股廣度", o: 1, label: "Top10 加權貢獻", dim: "C" },
+    breadth_count: { g: "成分股廣度", o: 2, label: "Top10 上漲家數", unit: "／10 檔", dim: "C" },
 
-    // 海外
-    sox_ret:  { g: "海外科技（前一美股時段）", label: "費城半導體指數 SOX", dim: "D" },
-    ndx_ret:  { g: "海外科技（前一美股時段）", label: "那斯達克指數", dim: "D" },
-    tsm_ret:  { g: "海外科技（前一美股時段）", label: "台積電 ADR", dim: "D" },
-    nvda_ret: { g: "海外科技（前一美股時段）", label: "輝達 NVDA", dim: "D" },
+    // 海外 —— 工作表順序：SOX Nasdaq TSM ADR NVDA
+    sox_ret:  { g: "海外科技（前一美股時段）", o: 1, label: "SOX", dim: "D" },
+    ndx_ret:  { g: "海外科技（前一美股時段）", o: 2, label: "Nasdaq", dim: "D" },
+    tsm_ret:  { g: "海外科技（前一美股時段）", o: 3, label: "TSM ADR", dim: "D" },
+    nvda_ret: { g: "海外科技（前一美股時段）", o: 4, label: "NVDA", dim: "D" },
 
-    // 風險環境
-    vix:        { g: "風險環境", label: "VIX 波動率指數", dim: "E" },
-    us10y:      { g: "風險環境", label: "美國 10 年期公債殖利率", unit: "%", dim: "E" },
-    usdtwd:     { g: "風險環境", label: "美元兌台幣匯率" },
-    twd_change: { g: "風險環境", label: "台幣日變動（負值為升值）", dim: "E" },
+    // 風險環境 —— 工作表順序：VIX US10Y USD/TWD
+    vix:        { g: "風險環境", o: 1, label: "VIX", dim: "E" },
+    us10y:      { g: "風險環境", o: 2, label: "US10Y", unit: "%", dim: "E" },
+    usdtwd:     { g: "風險環境", o: 3, label: "USD/TWD" },
+    twd_change: { g: "風險環境", o: 4, label: "台幣日變動（負值為升值）", dim: "E" },
 
-    // 法人
-    institutional_net:            { g: "法人資金流", label: "三大法人買賣超", unit: "億元", dim: "F" },
-    foreign_net_100m:             { g: "法人資金流", label: "外資及陸資買賣超", unit: "億元" },
-    stock_foreign_net_lots:       { g: "法人資金流", label: "00881 外資買賣超", unit: "張" },
-    stock_institutional_net_lots: { g: "法人資金流", label: "00881 三大法人買賣超", unit: "張" },
+    // 法人 —— 工作表順序：外資台股買賣超 三大法人買賣超
+    foreign_net_100m:             { g: "法人資金流", o: 1, label: "外資台股買賣超", unit: "億元" },
+    institutional_net:            { g: "法人資金流", o: 2, label: "三大法人買賣超", unit: "億元", dim: "F" },
+    stock_foreign_net_lots:       { g: "法人資金流", o: 3, label: "00881 外資買賣超", unit: "張" },
+    stock_institutional_net_lots: { g: "法人資金流", o: 4, label: "00881 三大法人買賣超", unit: "張" },
   };
   const GROUP_ORDER = ["淨值與折溢價", "價格位置", "價格與成交", "含息技術面", "成分股廣度",
                        "海外科技（前一美股時段）", "風險環境", "法人資金流", "其他"];
@@ -627,8 +632,20 @@
      因此在前端由收盤價推算，而不是在 30 份快照裡各存一次。
      填息目標只是市場心理標記，不是合理價值（v1.0 文件 5.）。 */
   function addPricePosition(snap) {
-    const ex = (meta && meta.ex_dividend) || {};
     const close = (snap.fields.close || {}).value;
+
+    // 漲跌幅：工作表有這一列，但平台不需要另存一個欄位 ——
+    // 由歷史序列的前一交易日收盤推算即可
+    const i = history.findIndex((r) => r.date === snap.trade_date);
+    const prevClose = i > 0 ? history[i - 1].close : null;
+    if (close && prevClose) {
+      snap.fields.day_change = {
+        value: close / prevClose - 1, status: "ok", as_of: snap.trade_date,
+        source: `由前一交易日收盤 ${prevClose} 元推算`, url: "", note: "",
+      };
+    }
+
+    const ex = (meta && meta.ex_dividend) || {};
     if (!close || !ex.reference_price || !ex.full_recovery) return;
     const base = {
       source: `由收盤價推算（除息 ${ex.date}，配息 ${ex.cash} 元）`,
@@ -678,7 +695,7 @@
       box.append(h);
 
       const rows = items
-        .sort((a, b) => a[1].label.localeCompare(b[1].label, "zh-Hant"))
+        .sort((a, b) => (a[1].o ?? 999) - (b[1].o ?? 999))
         .map(([name, meta]) => {
           const f = fields[name];
 
