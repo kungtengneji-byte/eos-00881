@@ -376,11 +376,32 @@
     }
     renderChart(rows);
     renderHistTable(rows);
+    syncRangeButtons();
+    const cap = $("#chart-count");
+    if (cap) {
+      cap.textContent = rows.length === history.length
+        ? `顯示全部 ${rows.length} 個交易日`
+        : `顯示最近 ${rows.length} 個交易日（累積 ${history.length}）`;
+    }
+  }
+
+  /* 資料還不夠長時，較長的期間選項取到的結果與較短的完全相同 ——
+     按鈕看起來能按卻沒反應，會被當成壞掉。直接停用並說明原因。 */
+  function syncRangeButtons() {
+    document.querySelectorAll("[data-range]").forEach((b) => {
+      if (b.dataset.range === "all") return;
+      const n = Number(b.dataset.range);
+      const short = history.length < n;
+      b.disabled = short;
+      b.classList.toggle("is-off", short);
+      b.title = short ? `目前僅累積 ${history.length} 個交易日，尚不足 ${n} 日` : "";
+    });
   }
 
   function initControls() {
     document.querySelectorAll("[data-range]").forEach((b) => {
       b.addEventListener("click", () => {
+        if (b.disabled) return;
         document.querySelectorAll("[data-range]").forEach((x) => x.classList.remove("is-on"));
         b.classList.add("is-on");
         range = b.dataset.range === "all" ? "all" : Number(b.dataset.range);

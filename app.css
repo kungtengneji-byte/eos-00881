@@ -142,12 +142,15 @@ body {
 .legend-note { margin: 14px 0 0; font-size: .75rem; }
 
 /* ---------------------------------------------------------------- 圖表 */
-.filters { display: flex; gap: 6px; margin-bottom: 12px; }
+.filters { display: flex; gap: 6px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
 .seg {
   border: 1px solid var(--border); background: transparent; color: var(--ink-2);
   border-radius: 999px; padding: 5px 12px; font: inherit; font-size: .8rem; cursor: pointer;
 }
 .seg.is-on { background: var(--series-1); border-color: var(--series-1); color: #fff; }
+/* 資料長度不足的期間：停用並降低存在感，避免「按了沒反應」 */
+.seg.is-off { opacity: .4; cursor: not-allowed; }
+.count { font-size: .74rem; margin-inline-start: auto; }
 
 .chart-figure { margin: 0; }
 .chart-figure figcaption { font-size: .74rem; margin-top: 8px; }
