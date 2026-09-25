@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 22 * * 0"    # 每週一 06:00 台灣時間，檢查來源契約是否腐化
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    # fixture 驅動，完全不連外網，因此穩定且可重現
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: pytest
+
+  contracts:
+    # 每週對真實來源打一次，確認契約沒被改版或加上機器人驗證。
+    # 失敗不擋合併，但會在 Actions 留下紀錄 —— 這是來源腐化的早期警報。
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 重抓 fixture 並比對結構
+        run: python -m scripts.refresh_fixtures --check

@@ -1,0 +1,5 @@
+# 執行期：僅用標準函式庫 urllib，不引入 requests，減少供應鏈面積
+PyYAML==6.0.2
+
+# 開發/CI
+pytest==8.3.4

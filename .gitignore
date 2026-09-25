@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# 注意：raw/ 與 data/ 刻意「不」忽略。
+# 原始 API 回應與計算結果是本專案的審計軌跡，git 歷史就是溯源紀錄 ——
+# 這是 Sources 分頁「每個數字都說得出哪裡來、什麼時候的」那條原則的延伸。

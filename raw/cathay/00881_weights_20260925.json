@@ -1,0 +1,160 @@
+{
+    "result":  {
+                   "date":  "2026/09/24",
+                   "stockWeights":  [
+                                        {
+                                            "stockCode":  "2330",
+                                            "stockName":  "台積電",
+                                            "weights":  "37.97"
+                                        },
+                                        {
+                                            "stockCode":  "2454",
+                                            "stockName":  "聯發科",
+                                            "weights":  "12.15"
+                                        },
+                                        {
+                                            "stockCode":  "2308",
+                                            "stockName":  "台達電",
+                                            "weights":  "6.07"
+                                        },
+                                        {
+                                            "stockCode":  "2317",
+                                            "stockName":  "鴻海",
+                                            "weights":  "4.60"
+                                        },
+                                        {
+                                            "stockCode":  "2303",
+                                            "stockName":  "聯電",
+                                            "weights":  "3.49"
+                                        },
+                                        {
+                                            "stockCode":  "3037",
+                                            "stockName":  "欣興",
+                                            "weights":  "3.41"
+                                        },
+                                        {
+                                            "stockCode":  "2059",
+                                            "stockName":  "川湖",
+                                            "weights":  "2.67"
+                                        },
+                                        {
+                                            "stockCode":  "2383",
+                                            "stockName":  "台光電",
+                                            "weights":  "2.49"
+                                        },
+                                        {
+                                            "stockCode":  "3017",
+                                            "stockName":  "奇鋐",
+                                            "weights":  "2.29"
+                                        },
+                                        {
+                                            "stockCode":  "3008",
+                                            "stockName":  "大立光",
+                                            "weights":  "2.08"
+                                        },
+                                        {
+                                            "stockCode":  "2360",
+                                            "stockName":  "致茂",
+                                            "weights":  "2.01"
+                                        },
+                                        {
+                                            "stockCode":  "3231",
+                                            "stockName":  "緯創",
+                                            "weights":  "1.62"
+                                        },
+                                        {
+                                            "stockCode":  "2345",
+                                            "stockName":  "智邦",
+                                            "weights":  "1.61"
+                                        },
+                                        {
+                                            "stockCode":  "2382",
+                                            "stockName":  "廣達",
+                                            "weights":  "1.56"
+                                        },
+                                        {
+                                            "stockCode":  "6274",
+                                            "stockName":  "台  燿",
+                                            "weights":  "1.36"
+                                        },
+                                        {
+                                            "stockCode":  "6223",
+                                            "stockName":  "旺矽",
+                                            "weights":  "1.36"
+                                        },
+                                        {
+                                            "stockCode":  "3665",
+                                            "stockName":  "貿聯-KY",
+                                            "weights":  "1.29"
+                                        },
+                                        {
+                                            "stockCode":  "4958",
+                                            "stockName":  "臻鼎-KY",
+                                            "weights":  "1.21"
+                                        },
+                                        {
+                                            "stockCode":  "2379",
+                                            "stockName":  "瑞昱",
+                                            "weights":  "1.13"
+                                        },
+                                        {
+                                            "stockCode":  "2368",
+                                            "stockName":  "金像電",
+                                            "weights":  "1.09"
+                                        },
+                                        {
+                                            "stockCode":  "2449",
+                                            "stockName":  "京元電子",
+                                            "weights":  "1.08"
+                                        },
+                                        {
+                                            "stockCode":  "3034",
+                                            "stockName":  "聯詠",
+                                            "weights":  "0.99"
+                                        },
+                                        {
+                                            "stockCode":  "3044",
+                                            "stockName":  "健鼎",
+                                            "weights":  "0.88"
+                                        },
+                                        {
+                                            "stockCode":  "3045",
+                                            "stockName":  "台灣大",
+                                            "weights":  "0.84"
+                                        },
+                                        {
+                                            "stockCode":  "4904",
+                                            "stockName":  "遠傳",
+                                            "weights":  "0.80"
+                                        },
+                                        {
+                                            "stockCode":  "2313",
+                                            "stockName":  "華通",
+                                            "weights":  "0.70"
+                                        },
+                                        {
+                                            "stockCode":  "3105",
+                                            "stockName":  "穩懋",
+                                            "weights":  "0.69"
+                                        },
+                                        {
+                                            "stockCode":  "4938",
+                                            "stockName":  "和碩",
+                                            "weights":  "0.62"
+                                        },
+                                        {
+                                            "stockCode":  "6515",
+                                            "stockName":  "穎崴",
+                                            "weights":  "0.52"
+                                        },
+                                        {
+                                            "stockCode":  "3036",
+                                            "stockName":  "文曄",
+                                            "weights":  "0.51"
+                                        }
+                                    ]
+               },
+    "returnCode":  "2000",
+    "success":  true,
+    "returnMessage":  "成功"
+}

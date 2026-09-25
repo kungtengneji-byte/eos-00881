@@ -1,0 +1,9 @@
+# 統一換行：repo 內一律 LF，避免 Windows 開發 / Linux CI 之間的差異。
+* text=auto eol=lf
+
+# 這些在 Windows 本機執行，保留 CRLF
+*.ps1 text eol=crlf
+
+# fixture 是原始 API 回應，不得做任何轉換 —— 一改動就不再是「真實回應」
+tests/fixtures/*.json -text
+raw/** -text

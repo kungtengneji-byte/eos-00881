@@ -1,0 +1,281 @@
+                                                                  # EOS Rubric v1.1 — 草案，待審
+# 依據 00881_買進機會評估模型_v1.0.docx 的構面權重與敘述，補上可執行的門檻。
+# 消費者：eos/engine.py（Python）。本檔為語言中立規格，PowerShell 校準腳本亦讀同一份。
+#
+# 缺值原則（延續你「留白不冒充」的做法）：
+#   任何子項 status != ok → 該子項不計分，且從「可得滿分」中扣除，
+#   最後以 earned / available_max * 100 標準化為 EOS。
+#   絕不以 0 分或猜測值填補。normalized=true 時 UI 必須標示「部分構面缺值」。
+
+version: "1.1-draft"
+based_on: "00881_買進機會評估模型_v1.0.docx (2026-08-27)"
+scale: 100
+
+# 標準化覆蓋率閘門 —— 由 2026-09-25 校準實測得出，不是拍腦袋的數字。
+# 實測：可得滿分 100/85/81 的三天，模型與人工差異僅 -2/-5/+3；
+#       可得滿分 31/31/35/53/58 的五天，差異放大到 +14/+9/-3/+6/-15。
+# 結論：低覆蓋率下做 earned/available 標準化會嚴重失真，必須拒絕出分。
+coverage_gate:
+  # 2026-09-25 Phase 2 實測（A 構面接上國泰投信官方折溢價後重跑）：
+  #   覆蓋率 100 的兩天 → 誤差 0 與 -2
+  #   覆蓋率  96 的一天 → 誤差 +5
+  #   覆蓋率 83/76/75  → 誤差 +16 / +7 / -12
+  # 誤差與覆蓋率高度相關，因此改為兩級制而不是單一門檻。
+  tiers:
+    - min_available: 90            # 資料完整，分數可信
+      status: "confirmed"
+      publish_eos: true
+    - min_available: 70            # 可算但在外插，標為暫定
+      status: "provisional"
+      publish_eos: true
+      ui_badge: "暫定"
+      ui_message: "當日 {available}/100 構面可計分，分數為暫定值，回補後會更新"
+    - min_available: 0             # 不足以出分
+      status: "insufficient"
+      publish_eos: false
+      ui_message: "當日可計分構面僅 {available}/100，依規則不計算 EOS"
+  always_publish: [dimension_scores, raw_metrics, sources]
+  note: |
+    典型情境：NAV 當晚未發布 → 覆蓋率 85 → 發「暫定」分數；
+    隔日 W4 回補 NAV → 覆蓋率 100 → 升級為「confirmed」並改寫當日分數。
+    這是你既有紀律的一般化（9/9、9/24 因 NAV 未發布而不計折溢價），
+    差別在於平台會自動回補，而不是永久留白。
+
+rating_bands:                      # 文件第 1 節，未更動
+  - { min: 80, max: 100, label: "高機會區" }
+  - { min: 65, max: 79,  label: "偏有利" }
+  - { min: 50, max: 64,  label: "中性等待" }
+  - { min: 35, max: 49,  label: "偏不利" }
+  - { min: 0,  max: 34,  label: "高風險區" }
+
+dimensions:
+
+  # ─────────────────────────────────────────────────────────────
+  A:
+    name: "ETF 合理交易價格／折溢價"
+    max: 15
+    note: |
+      維持文件 3.1 的原始查表，未加入「價格位置」。
+      理由：Dashboard 標題雖寫「價格/折溢價」，但文件只定義折溢價，
+      且歷史人工分數（9/3 premium +0.44% → 11 分）與任何單調的價格位置
+      規則都無法同時相容。NAV 缺漏時走標準化，不硬湊分數。
+    items:
+      - id: A1
+        name: "折溢價 (P-NAV)/NAV"
+        max: 15
+        input: premium
+        bands:                     # 上界為開區間
+          - { lt: -0.0050, score: 15 }
+          - { lt: -0.0010, score: 13 }
+          - { lt:  0.0030, score: 10 }
+          - { lt:  0.0080, score: 6  }
+          - { lt:  null,   score: 2  }
+        missing_policy: exclude    # NAV 未發布 → 整個 A 不計，EOS 標準化
+
+  # ─────────────────────────────────────────────────────────────
+  B:
+    name: "含息趨勢與健康回檔"
+    max: 25
+    note: "子權重 10/7/4/4 直接取自文件 3.2。所有輸入必須用含息調整序列。"
+    items:
+      - id: B1
+        name: "趨勢"
+        max: 10
+        type: checklist            # 可得項加總後 prorate 至 max
+        checks:
+          - { name: "P > MA20",        input: close_adj_gt_ma20,  weight: 3 }
+          - { name: "MA20 > MA60",     input: ma20_gt_ma60,       weight: 2 }
+          - { name: "P > MA120",       input: close_adj_gt_ma120, weight: 3 }
+          - { name: "60日含息總報酬>0", input: ret60_positive,     weight: 2 }
+        missing_policy: prorate
+        warning: |
+          目前僅 MA20 可得（含息序列不足 60/120 日），prorate 後 B1 恆為 10，
+          明顯高估。Phase 1 回填近 3 年日線後此項才有意義 —— 這是重新校準的前提。
+
+      - id: B2
+        name: "距 20 日高點回檔"
+        max: 7
+        input: drawdown20          # 負值，取絕對值
+        transform: abs
+        note: "文件 3.2：3%–8% 給較高分；『越跌越高分』不是本模型邏輯。"
+        bands:
+          - { lt: 0.010, score: 4 }   # 貼在高點，非回檔買點
+          - { lt: 0.030, score: 5 }
+          - { lt: 0.080, score: 7 }   # 理想區間
+          - { lt: 0.150, score: 4 }
+          - { lt: null,  score: 2 }   # 趨勢可能已反轉
+        missing_policy: exclude
+
+      - id: B3
+        name: "RSI14 (Wilder, 含息序列)"
+        max: 4
+        input: rsi14
+        note: "文件 3.2：中性偏弱區視為風險報酬改善；RSI<30 不自動等同買點。"
+        bands:
+          - { lt: 30, score: 2 }
+          - { lt: 40, score: 3 }
+          - { lt: 55, score: 4 }
+          - { lt: 65, score: 3 }
+          - { lt: 75, score: 2 }
+          - { lt: null, score: 1 }
+        missing_policy: exclude
+
+      - id: B4
+        name: "RV20 實現波動率"
+        max: 4
+        input: rv20
+        note: |
+          文件 3.2 要求「與自身歷史常態比較」。Phase 1 回填後改為
+          相對 250 日中位數的分位數門檻；下列絕對門檻為過渡方案。
+        bands:
+          - { lt: 0.20, score: 4 }
+          - { lt: 0.25, score: 3 }
+          - { lt: 0.32, score: 2 }
+          - { lt: null, score: 1 }
+        missing_policy: exclude
+        todo: "Phase 1 後改為 percentile_of(rv20, trailing_250d)"
+
+  # ─────────────────────────────────────────────────────────────
+  C:
+    name: "成分股廣度與加權貢獻"
+    max: 20
+    note: "文件 3.3：WCR = Σ wᵢ×rᵢ；Breadth = 上漲家數/10。分配 12 / 8。"
+    items:
+      - id: C1
+        name: "Top10 加權報酬貢獻 WCR"
+        max: 12
+        input: wcr
+        bands:
+          - { lt: -0.0060, score: 0  }
+          - { lt: -0.0025, score: 2  }
+          - { lt: -0.0005, score: 4  }
+          - { lt:  0.0005, score: 6  }
+          - { lt:  0.0025, score: 8  }
+          - { lt:  0.0060, score: 10 }
+          - { lt:  null,   score: 12 }
+        missing_policy: exclude
+      - id: C2
+        name: "Top10 上漲家數"
+        max: 8
+        input: breadth_count
+        bands:
+          - { lt: 3,  score: 0 }
+          - { lt: 5,  score: 2 }
+          - { lt: 6,  score: 4 }
+          - { lt: 7,  score: 5 }
+          - { lt: 9,  score: 7 }
+          - { lt: null, score: 8 }
+        missing_policy: exclude
+
+  # ─────────────────────────────────────────────────────────────
+  D:
+    name: "海外科技領先因子"
+    max: 15
+    note: |
+      文件 3.4 四個變數。權重 SOX 5 / TSM ADR 4 / Nasdaq 3 / NVDA 3
+      —— SOX 與 TSM 對 00881 的傳導性最高（台積電權重 39%）。
+      文件第 9 節已提醒四者高度相關，故 v2.0 進迴歸時不可重複計入。
+      使用「前一完整美股交易時段」收盤漲跌幅。
+    shared_bands: &us_bands
+      - { lt: -0.015, score_pct: 0.00 }
+      - { lt: -0.005, score_pct: 0.25 }
+      - { lt:  0.005, score_pct: 0.50 }
+      - { lt:  0.015, score_pct: 0.80 }
+      - { lt:  null,  score_pct: 1.00 }
+    items:
+      - { id: D1, name: "SOX",     max: 5, input: sox_ret,   bands_pct: *us_bands, missing_policy: exclude }
+      - { id: D2, name: "TSM ADR", max: 4, input: tsm_ret,   bands_pct: *us_bands, missing_policy: exclude }
+      - { id: D3, name: "Nasdaq",  max: 3, input: ndx_ret,   bands_pct: *us_bands, missing_policy: exclude }
+      - { id: D4, name: "NVDA",    max: 3, input: nvda_ret,  bands_pct: *us_bands, missing_policy: exclude }
+
+  # ─────────────────────────────────────────────────────────────
+  E:
+    name: "波動與總經風險"
+    max: 15
+    note: "文件 3.5。RV20 已在 B4 計分，此處不重複，改以 VIX/US10Y/匯率 6/5/4 分配。"
+    items:
+      - id: E1
+        name: "VIX 水準"
+        max: 6
+        input: vix
+        note: "文件 3.5：高 VIX 不等同直接買點。"
+        bands:
+          - { lt: 15, score: 6 }
+          - { lt: 18, score: 5 }
+          - { lt: 22, score: 3 }
+          - { lt: 28, score: 2 }
+          - { lt: null, score: 1 }
+        missing_policy: exclude
+      - id: E2
+        name: "US10Y 殖利率"
+        max: 5
+        input: us10y
+        note: "科技股高 duration，折現率上升提高估值壓力。"
+        bands:
+          - { lt: 4.00, score: 5 }
+          - { lt: 4.50, score: 4 }
+          - { lt: 4.80, score: 3 }
+          - { lt: 5.00, score: 2 }
+          - { lt: null, score: 1 }
+        missing_policy: exclude
+      - id: E3
+        name: "USD/TWD 日變動"
+        max: 4
+        input: twd_change          # (今日-昨日)/昨日；負 = 台幣升值
+        note: "文件 3.5：不使用『升值=必漲』的單一因果判斷，僅作外資環境輔助。"
+        bands:
+          - { lt: -0.0030, score: 4 }
+          - { lt:  0.0000, score: 3 }
+          - { lt:  0.0030, score: 2 }
+          - { lt:  null,   score: 1 }
+        missing_policy: exclude
+
+  # ─────────────────────────────────────────────────────────────
+  F:
+    name: "成交量與法人資金流"
+    max: 10
+    note: |
+      文件 3.6 強調「價格變動是否獲得資金確認」，因此量比必須條件化於
+      當日漲跌方向：放量上漲=確認，無量上漲=不可信，放量下跌=負向，
+      縮量下跌=賣壓不重。這是 v1.0 文字有、但查表缺的邏輯。
+    items:
+      - id: F1
+        name: "量比（全日量 / 20日均量）"
+        max: 5
+        input: volume_ratio
+        conditional_on: day_direction
+        bands_by_condition:
+          up:                       # 當日收盤 >= 前日
+            - { lt: 0.50, score: 1 }   # 無量上漲
+            - { lt: 0.80, score: 2 }
+            - { lt: 1.20, score: 4 }
+            - { lt: null, score: 5 }   # 放量上漲 = 確認
+          down:
+            - { lt: 0.50, score: 4 }   # 縮量下跌 = 賣壓不重
+            - { lt: 0.80, score: 3 }
+            - { lt: 1.20, score: 2 }
+            - { lt: null, score: 0 }   # 放量下跌
+        missing_policy: exclude
+        todo: |
+          文件 3.6 指定的理想指標是「同時段量比」（09:00–12:00 對過去 20 日同時段）。
+          全日量比僅為替代。若日後改為盤中 12:00 追蹤，必須換成同時段口徑。
+      - id: F2
+        name: "三大法人買賣超（億元）"
+        max: 5
+        input: institutional_net
+        bands:
+          - { lt: -300, score: 1 }
+          - { lt: -100, score: 2 }
+          - { lt:  100, score: 3 }
+          - { lt:  300, score: 4 }
+          - { lt:  null, score: 5 }
+        missing_policy: exclude
+
+# ─────────────────────────────────────────────────────────────
+open_questions:
+  - id: Q1
+    text: "A 構面是否應納入『相對除息參考價 / 距填息目標』？目前未納入（見 A.note）。若要納入，需先定義它對『買進機會』是正向還是負向 —— 歷史分數兩個方向都出現過。"
+  - id: Q2
+    text: "F2 用三大法人合計或只用外資？既有檔案兩者都記錄，9/3 外資 -481.46 但三大法人 -637.12，方向同但幅度不同。"
+  - id: Q3
+    text: "休市日不計 EOS（文件第 6 節）。但美股休市而台股開市時，D 構面該 exclude 還是沿用前一交易日？目前設計為沿用最近一個完整美股交易時段，並標 stale。"
