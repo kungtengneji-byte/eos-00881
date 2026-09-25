@@ -1,16 +1,16 @@
 {
  "instrument": "00881",
- "trade_date": "2026-09-24",
- "first_collected_at": "2026-09-25T21:48:55",
- "updated_at": "2026-09-25T21:48:55",
+ "trade_date": "2026-08-18",
+ "first_collected_at": "2026-09-25T21:46:41",
+ "updated_at": "2026-09-25T21:46:41",
  "windows": [
   "backfill"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 58,
-  "raw_eos": 57.75,
-  "earned": 57.75,
+  "eos": 50,
+  "raw_eos": 50.2,
+  "earned": 50.2,
   "available": 100.0,
   "coverage_status": "confirmed",
   "published": true,
@@ -20,7 +20,7 @@
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": 13.0,
+    "earned": 6.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -28,18 +28,18 @@
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": 13.0,
+      "earned": 6.0,
       "available": 15.0,
       "max": 15.0,
       "scored": true,
-      "detail": "-0.0038 -> 13"
+      "detail": "0.003 -> 6"
      }
     ]
    },
    "B": {
     "key": "B",
     "name": "含息趨勢與健康回檔",
-    "earned": 19.0,
+    "earned": 17.0,
     "available": 25.0,
     "max": 25.0,
     "complete": true,
@@ -47,45 +47,45 @@
      {
       "id": "B1",
       "name": "趨勢",
-      "earned": 10.0,
+      "earned": 8.0,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "10/10 成立(P > MA20, MA20 > MA60, P > MA120, 60日含息總報酬>0)"
+      "detail": "8/10 成立(P > MA20, P > MA120, 60日含息總報酬>0)"
      },
      {
       "id": "B2",
       "name": "距 20 日高點回檔",
-      "earned": 4.0,
+      "earned": 5.0,
       "available": 7.0,
       "max": 7.0,
       "scored": true,
-      "detail": "0.001901 -> 4"
+      "detail": "0.0194 -> 5"
      },
      {
       "id": "B3",
       "name": "RSI14 (Wilder, 含息序列)",
-      "earned": 2.0,
-      "available": 4.0,
-      "max": 4.0,
-      "scored": true,
-      "detail": "65.44 -> 2"
-     },
-     {
-      "id": "B4",
-      "name": "RV20 實現波動率",
       "earned": 3.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "0.2078 -> 3"
+      "detail": "56.08 -> 3"
+     },
+     {
+      "id": "B4",
+      "name": "RV20 實現波動率",
+      "earned": 1.0,
+      "available": 4.0,
+      "max": 4.0,
+      "scored": true,
+      "detail": "0.4917 -> 1"
      }
     ]
    },
    "C": {
     "key": "C",
     "name": "成分股廣度與加權貢獻",
-    "earned": 9.0,
+    "earned": 2.0,
     "available": 20.0,
     "max": 20.0,
     "complete": true,
@@ -93,27 +93,27 @@
      {
       "id": "C1",
       "name": "Top10 加權報酬貢獻 WCR",
-      "earned": 4.0,
+      "earned": 0.0,
       "available": 12.0,
       "max": 12.0,
       "scored": true,
-      "detail": "-0.001888 -> 4"
+      "detail": "-0.01054 -> 0"
      },
      {
       "id": "C2",
       "name": "Top10 上漲家數",
-      "earned": 5.0,
+      "earned": 2.0,
       "available": 8.0,
       "max": 8.0,
       "scored": true,
-      "detail": "6 -> 5"
+      "detail": "3 -> 2"
      }
     ]
    },
    "D": {
     "key": "D",
     "name": "海外科技領先因子",
-    "earned": 3.75,
+    "earned": 11.2,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -121,45 +121,45 @@
      {
       "id": "D1",
       "name": "SOX",
-      "earned": 1.25,
+      "earned": 5.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "-0.01226 -> 25% x 5"
+      "detail": "0.01643 -> 100% x 5"
      },
      {
       "id": "D2",
       "name": "TSM ADR",
-      "earned": 1.0,
+      "earned": 3.2,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "-0.01201 -> 25% x 4"
+      "detail": "0.01084 -> 80% x 4"
      },
      {
       "id": "D3",
       "name": "Nasdaq",
-      "earned": 0.75,
+      "earned": 1.5,
       "available": 3.0,
       "max": 3.0,
       "scored": true,
-      "detail": "-0.01131 -> 25% x 3"
+      "detail": "-0.003152 -> 50% x 3"
      },
      {
       "id": "D4",
       "name": "NVDA",
-      "earned": 0.75,
+      "earned": 1.5,
       "available": 3.0,
       "max": 3.0,
       "scored": true,
-      "detail": "-0.01468 -> 25% x 3"
+      "detail": "-0.0006662 -> 50% x 3"
      }
     ]
    },
    "E": {
     "key": "E",
     "name": "波動與總經風險",
-    "earned": 9.0,
+    "earned": 12.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -171,32 +171,32 @@
       "available": 6.0,
       "max": 6.0,
       "scored": true,
-      "detail": "15.18 -> 5"
+      "detail": "15.19 -> 5"
      },
      {
       "id": "E2",
       "name": "US10Y 殖利率",
-      "earned": 1.0,
+      "earned": 3.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "5.114 -> 1"
+      "detail": "4.724 -> 3"
      },
      {
       "id": "E3",
       "name": "USD/TWD 日變動",
-      "earned": 3.0,
+      "earned": 4.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "-0.001856 -> 3"
+      "detail": "-0.004168 -> 4"
      }
     ]
    },
    "F": {
     "key": "F",
     "name": "成交量與法人資金流",
-    "earned": 4.0,
+    "earned": 2.0,
     "available": 10.0,
     "max": 10.0,
     "complete": true,
@@ -204,20 +204,20 @@
      {
       "id": "F1",
       "name": "量比（全日量 / 20日均量）",
-      "earned": 3.0,
+      "earned": 0.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "down 日 量比 0.572 -> 3"
+      "detail": "down 日 量比 2.32 -> 0"
      },
      {
       "id": "F2",
       "name": "三大法人買賣超（億元）",
-      "earned": 1.0,
+      "earned": 2.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "-444.5 -> 1"
+      "detail": "-257.7 -> 2"
      }
     ]
    }
@@ -225,330 +225,330 @@
  },
  "fields": {
   "close": {
-   "value": 52.5,
+   "value": 49.48,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "open": {
-   "value": 52.4,
+   "value": 50.5,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "high": {
-   "value": 52.6,
+   "value": 50.5,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "low": {
-   "value": 52.25,
+   "value": 49.35,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "volume_lots": {
-   "value": 10442,
+   "value": 90127,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "turnover_100m": {
-   "value": 5.471,
+   "value": 44.9522,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "close_adj": {
-   "value": 80.84083044851181,
+   "value": 76.19055791604498,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ma20": {
-   "value": 77.96520662255759,
+   "value": 73.04037138682389,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ma60": {
-   "value": 75.2736128052322,
+   "value": 75.0437547698974,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ma120": {
-   "value": 72.72924096372863,
+   "value": 66.98889499810251,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ret5": {
-   "value": 0.05400521983537443,
+   "value": 0.01084112149532701,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ret20": {
-   "value": 0.05825438419673512,
+   "value": 0.0583170254403127,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ret60": {
-   "value": 0.027408413661435205,
+   "value": 0.05831702544031314,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "drawdown20": {
-   "value": -0.0019011406844107182,
+   "value": -0.019401631912964623,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "drawdown60": {
-   "value": -0.0019011406844107182,
+   "value": -0.0570183086312116,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "rsi14": {
-   "value": 65.44417572978722,
+   "value": 56.07882874186242,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "rv20": {
-   "value": 0.20783505908648878,
+   "value": 0.4916751700100287,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "avg_vol20": {
-   "value": 18245.21605,
+   "value": 38921.57445,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "close_adj_gt_ma20": {
    "value": true,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ma20_gt_ma60": {
-   "value": true,
+   "value": false,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "close_adj_gt_ma120": {
    "value": true,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "ret60_positive": {
    "value": true,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "volume_ratio": {
-   "value": 0.5723065142876179,
+   "value": 2.3155996198401474,
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "day_direction": {
    "value": "down",
    "source": "TWSE STOCK_DAY",
-   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260901&stockNo=00881&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20260801&stockNo=00881&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "foreign_net_100m": {
-   "value": -329.65,
+   "value": -119.86,
    "source": "TWSE BFI82U",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260924&type=day&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260818&type=day&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "institutional_net_100m": {
-   "value": -444.49,
+   "value": -257.66,
    "source": "TWSE BFI82U",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260924&type=day&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260818&type=day&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "institutional_net": {
-   "value": -444.49,
+   "value": -257.66,
    "source": "TWSE BFI82U",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260924&type=day&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260818&type=day&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "stock_foreign_net_lots": {
-   "value": -401.585,
+   "value": 1171.79,
    "source": "TWSE T86",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260924&selectType=ALLBUT0999&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260818&selectType=ALLBUT0999&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "stock_institutional_net_lots": {
-   "value": 644.061,
+   "value": -65840.707,
    "source": "TWSE T86",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260924&selectType=ALLBUT0999&response=json",
-   "as_of": "2026-09-24",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260818&selectType=ALLBUT0999&response=json",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "nav": {
-   "value": 52.7,
+   "value": 49.33,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": "2026-09-24",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "premium": {
-   "value": -0.0038,
+   "value": 0.003,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": "2026-09-24",
+   "as_of": "2026-08-18",
    "status": "ok",
    "note": ""
   },
   "wcr": {
-   "value": -0.00188797433897364,
+   "value": -0.01054469238562377,
    "source": "國泰投信權重 + TWSE 個股收盤",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
    "as_of": "2026-09-24",
-   "status": "ok",
-   "note": "權重基準日 2026-09-24"
+   "status": "stale",
+   "note": "權重基準日 2026-09-24，非 2026-08-18 當日權重；歷史日的加權貢獻為估計值"
   },
   "breadth_count": {
-   "value": 6,
+   "value": 3,
    "source": "國泰投信權重 + TWSE 個股收盤",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
    "as_of": "2026-09-24",
-   "status": "ok",
-   "note": "權重基準日 2026-09-24"
+   "status": "stale",
+   "note": "權重基準日 2026-09-24，非 2026-08-18 當日權重；歷史日的加權貢獻為估計值"
   },
   "sox_ret": {
-   "value": -0.012257071828612576,
+   "value": 0.01642501226301829,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "ndx_ret": {
-   "value": -0.01131394341601677,
+   "value": -0.0031519882969573976,
    "source": "Yahoo Finance ^IXIC",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "tsm_ret": {
-   "value": -0.012013258132259397,
+   "value": 0.010836155860323382,
    "source": "Yahoo Finance TSM",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TSM?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "nvda_ret": {
-   "value": -0.014680826154739757,
+   "value": -0.0006662335798259811,
    "source": "Yahoo Finance NVDA",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "vix": {
-   "value": 15.180000305175781,
+   "value": 15.1899995803833,
    "source": "Yahoo Finance ^VIX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "us10y": {
-   "value": 5.113999843597412,
+   "value": 4.723999977111816,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "usdtwd": {
-   "value": 31.679500579833984,
+   "value": 31.99020004272461,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   },
   "twd_change": {
-   "value": -0.0018557623162702708,
+   "value": -0.004168200504919728,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-09-23",
+   "as_of": "2026-08-17",
    "status": "ok",
    "note": ""
   }

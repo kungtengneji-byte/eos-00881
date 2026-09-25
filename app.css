@@ -1,0 +1,199 @@
+/* 色彩取自 dataviz 參考調色盤。深色模式是「選過的」步階，不是自動反轉：
+   同時宣告於 prefers-color-scheme 與 data-theme 兩個作用域，
+   讓使用者的切換能勝過作業系統設定。 */
+:root {
+  color-scheme: light;
+  --surface-1:  #fcfcfb;   /* 卡片 / 圖表面 */
+  --plane:      #f9f9f7;   /* 頁面底 */
+  --ink:        #0b0b0b;
+  --ink-2:      #52514e;
+  --muted:      #898781;
+  --grid:       #e1e0d9;
+  --axis:       #c3c2b7;
+  --border:     rgba(11, 11, 11, .10);
+  --series-1:   #2a78d6;
+  --track:      #e8eef7;
+
+  /* 評級為五級有序類別 -> 單一藍色序數色階（非紅綠）。
+     台股紅漲綠跌，用紅色表示「高風險」會與市場慣例直接衝突，
+     因此意義一律由中文標籤承載，顏色只表達順序。 */
+  --rank-1: #86b6ef;  /* 高風險區 */
+  --rank-2: #5598e7;  /* 偏不利   */
+  --rank-3: #2a78d6;  /* 中性等待 */
+  --rank-4: #1c5cab;  /* 偏有利   */
+  --rank-5: #104281;  /* 高機會區 */
+
+  /* 資料完整度用狀態色，一律伴隨文字標籤 */
+  --st-good:    #0ca30c;
+  --st-warning: #fab219;
+  --st-serious: #ec835a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --plane:     #0d0d0d;
+    --ink:       #ffffff;
+    --ink-2:     #c3c2b7;
+    --muted:     #898781;
+    --grid:      #2c2c2a;
+    --axis:      #383835;
+    --border:    rgba(255, 255, 255, .10);
+    --series-1:  #3987e5;
+    --track:     #232b36;
+    --rank-1: #9ec5f4; --rank-2: #6da7ec; --rank-3: #3987e5;
+    --rank-4: #256abf; --rank-5: #184f95;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-1: #1a1a19;
+  --plane:     #0d0d0d;
+  --ink:       #ffffff;
+  --ink-2:     #c3c2b7;
+  --muted:     #898781;
+  --grid:      #2c2c2a;
+  --axis:      #383835;
+  --border:    rgba(255, 255, 255, .10);
+  --series-1:  #3987e5;
+  --track:     #232b36;
+  --rank-1: #9ec5f4; --rank-2: #6da7ec; --rank-3: #3987e5;
+  --rank-4: #256abf; --rank-5: #184f95;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 16px 48px;          /* 手機側邊留白 16px */
+  background: var(--plane);
+  color: var(--ink);
+  font: 15px/1.6 system-ui, -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+  max-width: 680px;
+  margin-inline: auto;
+  overflow-x: hidden;            /* 不允許整頁橫向捲動 */
+}
+
+.subtle { color: var(--muted); }
+
+/* ---------------------------------------------------------------- 頁首 */
+.topbar { padding: 20px 0 8px; }
+.topbar-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.topbar h1 { margin: 0; font-size: 1.05rem; font-weight: 650; letter-spacing: .01em; }
+.topbar h1 .subtle { font-weight: 400; font-size: .85em; }
+.topbar p { margin: 4px 0 0; font-size: .82rem; }
+
+.icon-btn {
+  border: 1px solid var(--border); background: var(--surface-1); color: var(--ink-2);
+  border-radius: 999px; width: 36px; height: 36px; font-size: 1rem;
+  cursor: pointer; flex: none;
+}
+
+/* ---------------------------------------------------------------- 卡片 */
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 12px 0;
+}
+.card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px;
+}
+.card h2 { margin: 0; font-size: .95rem; font-weight: 600; }
+
+.link-btn {
+  border: 0; background: none; color: var(--series-1);
+  font: inherit; font-size: .82rem; cursor: pointer; padding: 6px 4px;
+}
+
+/* ---------------------------------------------------------------- 主數字 */
+.hero-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.hero-label { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+/* 主數字用同一套 sans、比例數字（非 tabular）—— 大字下等寬數字會顯得鬆散 */
+.hero-figure { font-size: 4rem; line-height: 1; font-weight: 600; letter-spacing: -.02em; }
+.hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 6px; }
+.delta { font-size: .82rem; }
+
+.chip {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: .78rem; font-weight: 600; white-space: nowrap;
+}
+.chip.rating { color: #fff; background: var(--rank-3); }
+/* 狀態色只掛在圓點上，文字維持高對比墨色。
+   status good 在淺色底的對比是 3.27，拿來當正文會低於 AA 的 4.5:1；
+   把顏色移到圓點，既保留「顏色非唯一編碼」也不犧牲可讀性。 */
+.chip.status { border: 1px solid var(--border); color: var(--ink-2); background: transparent; }
+.chip.status::before { content: "●"; margin-inline-end: 5px; color: var(--muted); }
+.chip.status[data-s="confirmed"]::before   { color: var(--st-good); }
+.chip.status[data-s="provisional"]::before { color: var(--st-warning); }
+.chip.status[data-s="insufficient"]::before{ color: var(--st-serious); }
+
+.note { margin: 12px 0 0; font-size: .82rem; color: var(--ink-2); }
+
+/* ---------------------------------------------------------------- 六構面 */
+.dims { display: flex; flex-direction: column; gap: 10px; }
+.dim-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; align-items: center; }
+.dim-name { font-size: .84rem; color: var(--ink-2); }
+.dim-val  { font-size: .84rem; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.dim-bar  { grid-column: 1 / -1; }
+.legend-note { margin: 14px 0 0; font-size: .75rem; }
+
+/* ---------------------------------------------------------------- 圖表 */
+.filters { display: flex; gap: 6px; margin-bottom: 12px; }
+.seg {
+  border: 1px solid var(--border); background: transparent; color: var(--ink-2);
+  border-radius: 999px; padding: 5px 12px; font: inherit; font-size: .8rem; cursor: pointer;
+}
+.seg.is-on { background: var(--series-1); border-color: var(--series-1); color: #fff; }
+
+.chart-figure { margin: 0; }
+.chart-figure figcaption { font-size: .74rem; margin-top: 8px; }
+.chart-wrap { position: relative; touch-action: pan-y; }
+.chart-wrap svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.tip {
+  position: absolute; pointer-events: none; z-index: 2;
+  background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 10px; font-size: .78rem; line-height: 1.45;
+  box-shadow: 0 4px 14px rgba(0,0,0,.14); white-space: nowrap;
+}
+.tip b { font-variant-numeric: tabular-nums; }
+.tip[hidden] { display: none; }
+
+/* ---------------------------------------------------------------- 表格 */
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .8rem; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.src { color: var(--muted); font-size: .92em; line-height: 1.35; }
+/* 明細表兩欄：左欄可換行，右欄貼齊且不換行 */
+#detail td:first-child { width: 62%; word-break: break-word; }
+#detail td.num > div:first-child { font-variant-numeric: tabular-nums; }
+#detail .flag { display: inline-block; margin-top: 3px; }
+.flag {
+  font-size: .72rem; padding: 1px 6px; border-radius: 999px;
+  border: 1px solid var(--border); white-space: nowrap; color: var(--ink-2);
+}
+.flag::before { content: "●"; margin-inline-end: 4px; color: var(--muted); }
+.flag[data-s="ok"]::before          { color: var(--st-good); }
+.flag[data-s="stale"]::before       { color: var(--st-warning); }
+.flag[data-s="missing"]::before     { color: var(--muted); }
+.flag[data-s="unavailable"]::before { color: var(--st-serious); }
+
+select {
+  font: inherit; font-size: .82rem; padding: 5px 8px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface-1); color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- 頁尾 */
+.disclaimer { margin: 24px 0 0; font-size: .78rem; color: var(--ink-2); }
+.disclaimer p { margin: 6px 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .seg, .icon-btn, .link-btn { transition: background-color .15s, color .15s; }
+}

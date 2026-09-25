@@ -74,6 +74,24 @@ Imperva challenge。本專案**不繞過**這類機制，兩者皆已剔除並�
 台股 T 日一律使用美股 **T−1** 的時段，避免用到台股收盤後才發生的資訊
 （lookahead bias）。
 
+## 手機介面
+
+前端是零相依的靜態 PWA（`index.html` / `app.css` / `app.js` / `sw.js`），
+圖表為手寫 SVG —— 不依賴任何 CDN，這個專案已經被 Stooq 與台銀的機器人驗證教訓過一次。
+
+啟用方式：GitHub repo → Settings → Pages → Source 選 **Deploy from a branch**，
+branch `main`、資料夾 `/ (root)`。網址為 `https://<帳號>.github.io/eos-00881/`，
+手機開啟後可「加入主畫面」，離線時仍可讀取已快取的歷史。
+
+Service Worker 對外殼採 cache-first、對 `data/` 採 network-first ——
+顯示過期的 EOS 又看不出來，比多載一秒糟糕得多。
+
+本機預覽：
+
+```bash
+python -m http.server 8811
+```
+
 ## 執行
 
 ```bash
@@ -105,7 +123,7 @@ pytest
 - [x] Phase 2 資料源 adapter 與測試
 - [x] Phase 3a 計分核心（`eos/rubric.py`、`eos/engine.py`）
 - [x] Phase 3b 收集協調器（`collect.py`，四個時間窗與回補）
-- [ ] Phase 4 手機前端（PWA）
+- [x] Phase 4 手機前端（PWA）
 - [ ] Phase 5 排程與 Email 通知
 - [ ] Phase 6 機率模型（v2.0）
 

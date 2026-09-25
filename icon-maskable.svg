@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="EOS">
+  <!-- maskable：內容留在中央 80% 安全區內，系統裁切成圓形也不會切到 -->
+  <rect width="192" height="192" fill="#184f95"/>
+  <polyline points="52,124 74,106 96,115 118,78 142,92"
+            fill="none" stroke="#86b6ef" stroke-width="8"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="118" cy="78" r="9" fill="#fcfcfb"/>
+  <text x="96" y="146" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="24" font-weight="600" fill="#cde2fb">00881</text>
+</svg>

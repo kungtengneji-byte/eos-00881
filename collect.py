@@ -235,13 +235,21 @@ def part_constituents(cfg: dict, day: date, *, force: bool) -> dict[str, Field]:
             "wcr": Field.missing("wcr", source=src, url=url, note=note),
             "breadth_count": Field.missing("breadth_count", source=src, url=url, note=note),
         }
-    as_of_str = day.isoformat()
+    # 國泰投信只提供「當日」權重快照，沒有歷史權重。回填歷史日時只能沿用
+    # 目前的權重去套當天的個股報酬 —— 那是估計值，不是那天的實際加權貢獻。
+    # 標成 STALE 而不是 OK：值仍可計分，但 UI 必須看得出它不是當日權重。
+    stale = as_of is not None and as_of != day
+    status = Status.STALE if stale else Status.OK
     note = f"權重基準日 {as_of.isoformat() if as_of else '未知'}"
+    if stale:
+        note += f"，非 {day.isoformat()} 當日權重；歷史日的加權貢獻為估計值"
+
+    as_of_str = (as_of or day).isoformat()
     return {
         "wcr": Field(name="wcr", value=wcr, source=src, url=url,
-                     as_of=as_of_str, status=Status.OK, note=note),
+                     as_of=as_of_str, status=status, note=note),
         "breadth_count": Field(name="breadth_count", value=up, source=src, url=url,
-                               as_of=as_of_str, status=Status.OK, note=note),
+                               as_of=as_of_str, status=status, note=note),
     }
 
 

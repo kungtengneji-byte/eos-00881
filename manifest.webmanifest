@@ -1,0 +1,16 @@
+{
+  "name": "00881 EOS 追蹤",
+  "short_name": "00881 EOS",
+  "description": "國泰台灣科技龍頭 ETF Entry Opportunity Score 每日追蹤",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f9f9f7",
+  "theme_color": "#f9f9f7",
+  "lang": "zh-Hant",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>00881 EOS 追蹤</title>
+<meta name="description" content="國泰台灣科技龍頭 ETF（00881）Entry Opportunity Score 每日追蹤">
+<meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-main">
+    <h1>00881 <span class="subtle">國泰台灣科技龍頭</span></h1>
+    <button id="theme-toggle" class="icon-btn" type="button"
+            aria-label="切換深淺色" title="切換深淺色">◐</button>
+  </div>
+  <p id="asof" class="subtle">載入中…</p>
+</header>
+
+<main id="app" hidden>
+
+  <!-- 一、今日分數：這是一個數字的故事，用 stat tile 而不是圖表 -->
+  <section class="card hero">
+    <div class="hero-row">
+      <div>
+        <div class="hero-label">Entry Opportunity Score</div>
+        <div id="hero-eos" class="hero-figure">--</div>
+      </div>
+      <div class="hero-side">
+        <span id="hero-rating" class="chip rating">—</span>
+        <span id="hero-coverage" class="chip status">—</span>
+        <div id="hero-delta" class="delta subtle"></div>
+      </div>
+    </div>
+    <p id="hero-note" class="note"></p>
+  </section>
+
+  <!-- 二、六構面 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>六構面得分</h2>
+      <button class="link-btn" type="button" data-table="dims">表格</button>
+    </div>
+    <div id="dims" class="dims"></div>
+    <div id="dims-table" class="table-wrap" hidden></div>
+    <p class="legend-note subtle">
+      實心為已得分，淡色軌道為該構面滿分。構面有缺值時，以短豎線標出當日實際可計分上限。
+    </p>
+  </section>
+
+  <!-- 三、EOS 走勢。篩選列在圖表上方，一列統管 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>EOS 走勢</h2>
+      <button class="link-btn" type="button" data-table="hist">表格</button>
+    </div>
+    <div class="filters" role="group" aria-label="期間">
+      <button type="button" data-range="30" class="seg is-on">30 日</button>
+      <button type="button" data-range="90" class="seg">90 日</button>
+      <button type="button" data-range="all" class="seg">全部</button>
+    </div>
+    <figure class="chart-figure">
+      <div id="chart-wrap" class="chart-wrap"></div>
+      <figcaption class="subtle">
+        實心點為資料完整（確定）；空心點為部分缺值（暫定）。橫線為評級門檻。
+      </figcaption>
+    </figure>
+    <div id="hist-table" class="table-wrap" hidden></div>
+  </section>
+
+  <!-- 四、當日明細：每個數字的來源與時間戳 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>當日資料明細</h2>
+      <select id="day-picker" aria-label="選擇日期"></select>
+    </div>
+    <div id="detail" class="table-wrap"></div>
+  </section>
+
+  <footer class="disclaimer">
+    <p><strong>EOS 不是上漲機率。</strong>80 分不代表「80% 會漲」。
+       本頁為研究型決策支援，不構成投資建議、報酬保證或價格承諾。</p>
+    <p class="subtle">資料來源：臺灣證券交易所、國泰投信、Yahoo Finance。
+       成交量與成交值以 TWSE 為準。</p>
+  </footer>
+</main>
+
+<p id="fallback" class="card">載入資料中…</p>
+
+<script src="app.js"></script>
+</body>
+</html>

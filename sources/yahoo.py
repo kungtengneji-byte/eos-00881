@@ -33,7 +33,7 @@ SYMBOLS = {
 }
 
 
-def chart_url(symbol: str, rng: str = "1mo") -> str:
+def chart_url(symbol: str, rng: str = "3mo") -> str:
     from urllib.parse import quote
     return f"{BASE}/{quote(symbol)}?interval=1d&range={rng}"
 
@@ -161,7 +161,7 @@ def to_field(name: str, symbol: str, series: list[tuple[date, float]],
                  status=status, note=note)
 
 
-def fetch_field(name: str, target_day: date, *, as_change: bool, rng: str = "1mo") -> Field:
+def fetch_field(name: str, target_day: date, *, as_change: bool, rng: str = "3mo") -> Field:
     symbol = SYMBOLS[name]
     url = chart_url(symbol, rng)
     series = parse_chart(fetch_json(url), url=url)

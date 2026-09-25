@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="EOS">
+  <rect width="192" height="192" rx="40" fill="#184f95"/>
+  <!-- 一條走勢線，暗示這是追蹤分數的工具 -->
+  <polyline points="34,128 64,104 94,116 124,66 158,84"
+            fill="none" stroke="#86b6ef" stroke-width="9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="124" cy="66" r="11" fill="#fcfcfb"/>
+  <text x="96" y="168" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="30" font-weight="600" fill="#cde2fb">00881</text>
+</svg>

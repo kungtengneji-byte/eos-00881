@@ -126,6 +126,8 @@ def write_series_index(instrument: str) -> Path:
         }
         for k, dim in (eos.get("dimensions") or {}).items():
             row[k] = dim.get("earned")
+            # 前端用它畫出「該構面當日實際可計分上限」，與滿分區隔開
+            row[f"{k}_avail"] = dim.get("available")
         for name in ("close", "premium", "rsi14", "volume_ratio"):
             f = (snap.get("fields") or {}).get(name)
             if f:
