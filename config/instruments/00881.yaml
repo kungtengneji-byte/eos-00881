@@ -1,0 +1,19 @@
+# 追蹤標的設定。新增一檔 ETF 只需要在此目錄放一份同格式的檔案，
+# 並在 sources/cathay.py 的 INSTRUMENT_FUND_CODE 登記發行商內部代碼。
+instrument: "00881"
+name: "國泰台灣科技龍頭"
+issuer: "國泰投信"
+
+# C 構面取前幾大成分股。v1.0 文件 3.3 定為 Top 10。
+top_n: 10
+
+# W4 回補窗往回掃幾天。設 7 是因為連假加上 NAV 延遲，
+# 最壞情況下一筆資料可能要四到五個日曆日才補得齊。
+backfill_days: 7
+
+# 本次除息的市場心理參考點，非合理價值（v1.0 文件 5. 明確區分）
+ex_dividend:
+  date: "2026-08-18"
+  cash: 4.60
+  reference_price: 50.55      # 除息參考價
+  full_recovery: 55.15        # 完整填息目標

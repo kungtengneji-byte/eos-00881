@@ -16,7 +16,7 @@
       "ma20_gt_ma60": true,
       "close_adj_gt_ma120": true,
       "ret60_positive": true,
-      "drawdown20": 0,
+      "drawdown20": 0.0,
       "rsi14": 63.00363869297406,
       "rv20": 0.22645152845194969,
       "wcr": null,
@@ -28,7 +28,7 @@
       "vix": 16.34,
       "us10y": 4.75,
       "twd_change": null,
-      "volume_ratio": 0.8566961928022132,
+      "volume_ratio": 0.856696192802213,
       "day_direction": "up",
       "institutional_net": 561.39
     }
@@ -62,7 +62,7 @@
       "vix": 15.2,
       "us10y": 4.794,
       "twd_change": 0.0030031928682072717,
-      "volume_ratio": 0.5279213098321279,
+      "volume_ratio": 0.5279213098321278,
       "day_direction": "down",
       "institutional_net": null
     }
@@ -120,7 +120,7 @@
       "ret60_positive": true,
       "drawdown20": -0.007789678675754641,
       "rsi14": 59.174493542087845,
-      "rv20": 0.21720162391497075,
+      "rv20": 0.21720162391497078,
       "wcr": 0.000970554,
       "breadth_count": 6,
       "sox_ret": 0.013,
@@ -130,7 +130,7 @@
       "vix": 15.33,
       "us10y": 4.789,
       "twd_change": null,
-      "volume_ratio": 0.27043117317760085,
+      "volume_ratio": 0.2704311731776008,
       "day_direction": "up",
       "institutional_net": 211.25
     }
@@ -152,9 +152,9 @@
       "ma20_gt_ma60": true,
       "close_adj_gt_ma120": true,
       "ret60_positive": true,
-      "drawdown20": 0,
+      "drawdown20": 0.0,
       "rsi14": 62.72918225918397,
-      "rv20": 0.21620796057710764,
+      "rv20": 0.21620796057710767,
       "wcr": null,
       "breadth_count": null,
       "sox_ret": 0.043,
@@ -186,9 +186,9 @@
       "ma20_gt_ma60": true,
       "close_adj_gt_ma120": true,
       "ret60_positive": true,
-      "drawdown20": 0,
+      "drawdown20": 0.0,
       "rsi14": 64.55210266135394,
-      "rv20": 0.21649358078938893,
+      "rv20": 0.21649358078938896,
       "wcr": null,
       "breadth_count": null,
       "sox_ret": 0.011,
@@ -198,7 +198,7 @@
       "vix": 14.21,
       "us10y": 4.935,
       "twd_change": -0.001574406448768828,
-      "volume_ratio": 0.9534270785125263,
+      "volume_ratio": 0.9534270785125264,
       "day_direction": "up",
       "institutional_net": 608.2
     }
@@ -220,9 +220,9 @@
       "ma20_gt_ma60": true,
       "close_adj_gt_ma120": true,
       "ret60_positive": true,
-      "drawdown20": 0,
+      "drawdown20": 0.0,
       "rsi14": 66.3258048110317,
-      "rv20": 0.2071276953843863,
+      "rv20": 0.20712769538438633,
       "wcr": null,
       "breadth_count": null,
       "sox_ret": null,
@@ -232,7 +232,7 @@
       "vix": 15.18,
       "us10y": 5.106,
       "twd_change": 0.00025230225810535245,
-      "volume_ratio": 0.5059481937544872,
+      "volume_ratio": 0.5059481937544873,
       "day_direction": "up",
       "institutional_net": 389.21
     }

@@ -74,6 +74,18 @@ Imperva challenge。本專案**不繞過**這類機制，兩者皆已剔除並�
 台股 T 日一律使用美股 **T−1** 的時段，避免用到台股收盤後才發生的資訊
 （lookahead bias）。
 
+## 執行
+
+```bash
+python collect.py --window w1              # 台股收盤窗
+python collect.py --window all --date 2026-09-24
+python collect.py --window w4              # 回補過去 7 天的缺值
+python -m scripts.show_snapshot 2026-09-24 # 檢視某日每個欄位的值與來源
+```
+
+每個部件（價格／法人／NAV／成分股／海外）獨立失敗，一個來源掛掉不會拖垮整天的收集；
+所有部件皆為冪等，重跑同一個窗不會造成重複或損壞。
+
 ## 開發
 
 ```bash
@@ -92,7 +104,7 @@ pytest
 - [x] Phase 1 歷史回填（1,407 個交易日，2020-12-10 起，含息調整序列）
 - [x] Phase 2 資料源 adapter 與測試
 - [x] Phase 3a 計分核心（`eos/rubric.py`、`eos/engine.py`）
-- [ ] Phase 3b 收集協調器（`collect.py`，四個時間窗與回補）
+- [x] Phase 3b 收集協調器（`collect.py`，四個時間窗與回補）
 - [ ] Phase 4 手機前端（PWA）
 - [ ] Phase 5 排程與 Email 通知
 - [ ] Phase 6 機率模型（v2.0）
