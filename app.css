@@ -200,7 +200,9 @@ table.holdings tr:last-child td { border-top: 1px solid var(--axis); font-weight
 .ret { font-variant-numeric: tabular-nums; white-space: nowrap; }
 #holdings-asof { font-size: .72rem; }
 /* 明細表兩欄：左欄可換行，右欄貼齊且不換行 */
-#detail td:first-child { width: 62%; word-break: break-word; }
+/* 兩欄都要能斷字：任何一個超長不可斷的字串都會把另一欄擠成一字一行 */
+#detail td { word-break: break-word; overflow-wrap: anywhere; }
+#detail td:first-child { width: 62%; }
 #detail td.num > div:first-child { font-variant-numeric: tabular-nums; }
 #detail .flag { display: inline-block; margin-top: 3px; }
 /* 判讀：對齊工作表「判讀」欄，一句話說明這個數字代表什麼 */

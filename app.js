@@ -33,6 +33,9 @@
   function smart(v) {
     if (v === null || v === undefined) return "—";
     if (typeof v === "boolean") return v ? "是" : "否";
+    // 防呆：結構化欄位不該被當成單一數值輸出，否則會變成 [object Object]
+    if (Array.isArray(v)) return `${v.length} 筆明細`;
+    if (typeof v === "object") return "結構化資料";
     if (typeof v !== "number") return String(v);
     const a = Math.abs(v);
     if (Number.isInteger(v)) return v.toLocaleString("en-US");
@@ -463,13 +466,19 @@
 
     // 法人
     institutional_net:            { g: "法人資金流", label: "三大法人買賣超", unit: "億元", dim: "F" },
-    institutional_net_100m:       { g: "法人資金流", label: "三大法人買賣超（同上）", unit: "億元" },
     foreign_net_100m:             { g: "法人資金流", label: "外資及陸資買賣超", unit: "億元" },
     stock_foreign_net_lots:       { g: "法人資金流", label: "00881 外資買賣超", unit: "張" },
     stock_institutional_net_lots: { g: "法人資金流", label: "00881 三大法人買賣超", unit: "張" },
   };
   const GROUP_ORDER = ["淨值與折溢價", "價格位置", "價格與成交", "含息技術面", "成分股廣度",
                        "海外科技（前一美股時段）", "風險環境", "法人資金流", "其他"];
+
+  /* 不列進明細的欄位：
+     top_holdings —— 物件陣列，已由「前十大持股」表呈現；
+                     硬塞進單值欄位會變成 [object Object] 並撐爆版面
+     institutional_net_100m —— 與 institutional_net 同值，
+                     後者是 rubric 實際讀取的名稱，列兩次只是雜訊 */
+  const RENDERED_ELSEWHERE = new Set(["top_holdings", "institutional_net_100m"]);
 
   /* 判讀：把數字翻成一句話，對齊工作表「判讀」欄的用語。
      門檻與 eos_rubric_v1.1.yaml 一致，但這裡只負責呈現，不參與計分。 */
@@ -556,6 +565,7 @@
     const fields = snap.fields || {};
     const groups = new Map();
     for (const name of Object.keys(fields)) {
+      if (RENDERED_ELSEWHERE.has(name)) continue;
       const meta = FIELD_META[name] || { g: "其他", label: name };
       if (!groups.has(meta.g)) groups.set(meta.g, []);
       groups.get(meta.g).push([name, meta]);
