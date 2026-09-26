@@ -98,6 +98,10 @@ body {
 td.now { font-weight: 650; color: var(--series-1); }
 #levels tr:has(td.now) { background: color-mix(in srgb, var(--series-1) 9%, transparent); }
 
+/* 備份下載連結 */
+a.dl { color: var(--series-1); text-decoration: none; word-break: break-all; }
+a.dl:hover { text-decoration: underline; }
+
 /* 點位成因的小標籤（K線／資金／區間） */
 .tag {
   display: inline-block; padding: 1px 6px; border-radius: 999px;

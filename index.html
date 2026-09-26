@@ -105,6 +105,20 @@
     <div id="detail" class="table-wrap"></div>
   </section>
 
+  <!-- 備份下載 -->
+  <section class="card" id="export-card" hidden>
+    <div class="card-head">
+      <h2>資料備份</h2>
+      <span id="export-at" class="subtle"></span>
+    </div>
+    <div id="exports" class="table-wrap"></div>
+    <p class="legend-note subtle">
+      每次收集完自動重新產生，UTF-8 BOM，可直接用 Excel 開啟。
+      要回到某一天的版本看 repo 的 commit 紀錄即可 —— 每次更新都是一次 commit，
+      歷史版本全部留著，不必自己存一堆檔案。
+    </p>
+  </section>
+
   <!-- 六、大盤摘要：00881 的漲跌有一半是大盤的事，兩頁互相帶一張小卡 -->
   <section class="card crosslink" id="cross-card" hidden>
     <div class="card-head">

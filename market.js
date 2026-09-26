@@ -709,6 +709,7 @@
     $("#fallback").hidden = true;
     $("#app").hidden = false;
 
+    EOSUI.renderExports($("#export-card"), $("#exports"), $("#export-at"));
     // 不 await：逐檔報表比較大，抓不到也不該卡住主要內容
     loadStreaks();
 

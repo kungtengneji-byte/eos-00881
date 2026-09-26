@@ -11,7 +11,7 @@
    延遲可以忽略，卻換掉一整類「為什麼我看到的是舊版」的問題。
    快取因此退居單純的離線備援。 */
 
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE = `eos-${VERSION}`;
 
 const SHELL = [

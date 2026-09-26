@@ -31,7 +31,7 @@ from typing import Any, Callable
 
 import yaml
 
-from eos import engine, marketflow, series as series_mod, stockflow, store, summary
+from eos import engine, export, marketflow, series as series_mod, stockflow, store, summary
 from eos.models import Field, Status
 from eos.rubric import Rubric
 from sources import cathay, taifex, twse, yahoo
@@ -565,6 +565,7 @@ def write_index(cfg: dict) -> None:
     """產生前端用的精簡時間序列。判斷交易日的欄位與摘要欄位依標的而異。"""
     if cfg.get("kind") != "market":
         store.write_series_index(cfg["instrument"])
+        _export()
         return
 
     store.write_series_index(
@@ -583,6 +584,16 @@ def write_index(cfg: dict) -> None:
         lookback=int(st.get("lookback_days", stockflow.DEFAULT_WINDOW)),
         params=stockflow.ScoreParams.from_config(st),
     )
+    _export()
+
+
+def _export() -> None:
+    """輸出 CSV 備份。失敗不影響收集 —— 少一份可讀副本，不該讓當天資料不進 repo。"""
+    try:
+        made = export.export_all()
+        print(f"  匯出 {len(made)} 份 CSV：{', '.join(p.name for p in made)}")
+    except Exception as exc:                      # noqa: BLE001
+        print(f"  CSV 匯出失敗（不影響資料）：{type(exc).__name__}: {exc}")
 
 
 def backfill(cfg: dict, rubric: Rubric, days: int, *, force: bool) -> None:

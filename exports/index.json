@@ -1,0 +1,35 @@
+{
+ "generated_at": "2026-09-26T22:17:32",
+ "files": [
+  {
+   "file": "00881_每日分數.csv",
+   "bytes": 3920,
+   "rows": 30
+  },
+  {
+   "file": "00881_每日欄位明細.csv",
+   "bytes": 158415,
+   "rows": 1318
+  },
+  {
+   "file": "TWMARKET_每日分數.csv",
+   "bytes": 4775,
+   "rows": 35
+  },
+  {
+   "file": "TWMARKET_每日欄位明細.csv",
+   "bytes": 139837,
+   "rows": 1436
+  },
+  {
+   "file": "TWMARKET_壓力與支撐.csv",
+   "bytes": 1376,
+   "rows": 11
+  },
+  {
+   "file": "連續買賣超.csv",
+   "bytes": 27212,
+   "rows": 200
+  }
+ ]
+}

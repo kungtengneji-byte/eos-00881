@@ -387,6 +387,46 @@ window.EOSUI = (() => {
     card.hidden = false;
   }
 
+  /* ---------------------------------------------------------- 備份下載 */
+  /* CSV 由 eos/export.py 在收集完之後產生，這裡只把清單列出來。
+     兩頁共用同一份 —— 備份的是整個平台，不是某一頁。 */
+  async function renderExports(card, box, atEl) {
+    // 容器不存在就什麼都不做：共用元件不該預設每一頁都長一樣，
+    // 而且舊版外殼還留在 Service Worker 快取裡時，新的 JS 會配到舊的 HTML
+    if (!card || !box) return;
+    let idx;
+    try {
+      idx = await loadJSON("exports/index.json");
+    } catch {
+      card.hidden = true;                 // 還沒跑過收集就整張不顯示
+      return;
+    }
+    const files = (idx && idx.files) || [];
+    if (!files.length) { card.hidden = true; return; }
+
+    if (atEl && idx.generated_at) {
+      atEl.textContent = "產生於 " + idx.generated_at.replace("T", " ");
+    }
+    box.textContent = "";
+    box.append(table(["檔案", "筆數", "大小"], files.map((f) => {
+      const a = el("a", "dl");
+      a.href = "exports/" + encodeURIComponent(f.file);
+      a.textContent = f.file;
+      a.setAttribute("download", f.file);
+      return [
+        { node: a },
+        { node: textish(f.rows == null ? "—" : f.rows.toLocaleString("en-US")), cls: "num" },
+        { node: textish(kb(f.bytes)), cls: "num" },
+      ];
+    })));
+    card.hidden = false;
+  }
+
+  const textish = (s) => { const d = el("div"); d.textContent = s; return d; };
+  const kb = (b) => (b == null ? "—"
+    : b >= 1024 * 1024 ? (b / 1024 / 1024).toFixed(1) + " MB"
+    : Math.max(1, Math.round(b / 1024)) + " KB");
+
   /* ---------------------------------------------------------- 資料 */
   async function loadJSON(url) {
     const res = await fetch(url, { cache: "no-cache" });
@@ -403,6 +443,6 @@ window.EOSUI = (() => {
   }
 
   return { $, el, rect, fmt, pct, signed, smart, table, initTheme, barList,
-           scoreChart, renderSummary, crossSummary, syncRangeButtons,
+           scoreChart, renderSummary, crossSummary, renderExports, syncRangeButtons,
            initRangeControls, initTableToggles, loadJSON, registerSW };
 })();
