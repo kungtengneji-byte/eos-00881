@@ -1,8 +1,8 @@
 {
  "instrument": "00881",
- "trade_date": "2026-09-25",
- "first_collected_at": "2026-09-26T00:15:48",
- "updated_at": "2026-09-26T09:14:34",
+ "trade_date": "2026-09-26",
+ "first_collected_at": "2026-09-26T00:26:03",
+ "updated_at": "2026-09-26T09:14:31",
  "windows": [
   "all",
   "w4"
@@ -10,8 +10,8 @@
  "eos": {
   "rubric_version": "1.1-draft",
   "eos": null,
-  "raw_eos": 52.33333333333333,
-  "earned": 15.7,
+  "raw_eos": 67.33333333333333,
+  "earned": 20.2,
   "available": 30.0,
   "coverage_status": "insufficient",
   "published": false,
@@ -124,7 +124,7 @@
    "D": {
     "key": "D",
     "name": "海外科技領先因子",
-    "earned": 8.7,
+    "earned": 10.2,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -132,11 +132,11 @@
      {
       "id": "D1",
       "name": "SOX",
-      "earned": 2.5,
+      "earned": 4.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "-0.00333 -> 50% x 5"
+      "detail": "0.01412 -> 80% x 5"
      },
      {
       "id": "D2",
@@ -154,7 +154,7 @@
       "available": 3.0,
       "max": 3.0,
       "scored": true,
-      "detail": "0.0001236 -> 50% x 3"
+      "detail": "0.004801 -> 50% x 3"
      },
      {
       "id": "D4",
@@ -170,7 +170,7 @@
    "E": {
     "key": "E",
     "name": "波動與總經風險",
-    "earned": 7.0,
+    "earned": 10.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -178,11 +178,11 @@
      {
       "id": "E1",
       "name": "VIX 水準",
-      "earned": 5.0,
+      "earned": 6.0,
       "available": 6.0,
       "max": 6.0,
       "scored": true,
-      "detail": "15.67 -> 5"
+      "detail": "14.87 -> 6"
      },
      {
       "id": "E2",
@@ -196,11 +196,11 @@
      {
       "id": "E3",
       "name": "USD/TWD 日變動",
-      "earned": 1.0,
+      "earned": 3.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "0.003472 -> 1"
+      "detail": "-0.002973 -> 3"
      }
     ]
    },
@@ -239,12 +239,13 @@
    "drags": [],
    "evidence": [],
    "quality": [
-    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
+    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
+    "NVDA、TSM ADR、US10Y 為較舊時點資料"
    ],
    "watch": [
     "當日正式 NAV 尚未發布，折溢價待回補"
    ],
-   "text": "當日可計分構面僅 30/100，依規則不計算 EOS；已取得的構面仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
+   "text": "當日可計分構面僅 30/100，依規則不計算 EOS；已取得的構面仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　NVDA、TSM ADR、US10Y 為較舊時點資料"
   }
  },
  "fields": {
@@ -347,7 +348,7 @@
   "foreign_net_100m": {
    "value": null,
    "source": "TWSE BFI82U",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260925&type=day&response=json",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260926&type=day&response=json",
    "as_of": null,
    "status": "missing",
    "note": "當日尚未發布或查無資料"
@@ -355,7 +356,7 @@
   "institutional_net_100m": {
    "value": null,
    "source": "TWSE BFI82U",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260925&type=day&response=json",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260926&type=day&response=json",
    "as_of": null,
    "status": "missing",
    "note": "當日尚未發布或查無資料"
@@ -363,7 +364,7 @@
   "institutional_net": {
    "value": null,
    "source": "TWSE BFI82U",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260925&type=day&response=json",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260926&type=day&response=json",
    "as_of": null,
    "status": "missing",
    "note": "當日尚未發布或查無資料"
@@ -371,7 +372,7 @@
   "stock_foreign_net_lots": {
    "value": null,
    "source": "TWSE T86",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260925&selectType=ALLBUT0999&response=json",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260926&selectType=ALLBUT0999&response=json",
    "as_of": null,
    "status": "missing",
    "note": "00881 當日無法人交易紀錄"
@@ -379,10 +380,26 @@
   "stock_institutional_net_lots": {
    "value": null,
    "source": "TWSE T86",
-   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260925&selectType=ALLBUT0999&response=json",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260926&selectType=ALLBUT0999&response=json",
    "as_of": null,
    "status": "missing",
    "note": "00881 當日無法人交易紀錄"
+  },
+  "wcr": {
+   "value": null,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "僅 0/10 檔取得報酬：2383 無 2026-09-26 收盤；3017 無 2026-09-26 收盤；3008 無 2026-09-26 收盤"
+  },
+  "breadth_count": {
+   "value": null,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "僅 0/10 檔取得報酬：2383 無 2026-09-26 收盤；3017 無 2026-09-26 收盤；3008 無 2026-09-26 收盤"
   },
   "nav": {
    "value": null,
@@ -400,35 +417,19 @@
    "status": "missing",
    "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
   },
-  "wcr": {
-   "value": null,
-   "source": "國泰投信權重 + TWSE 個股收盤",
-   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "僅 0/10 檔取得報酬：2383 無 2026-09-25 收盤；3017 無 2026-09-25 收盤；3008 無 2026-09-25 收盤"
-  },
-  "breadth_count": {
-   "value": null,
-   "source": "國泰投信權重 + TWSE 個股收盤",
-   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "僅 0/10 檔取得報酬：2383 無 2026-09-25 收盤；3017 無 2026-09-25 收盤；3008 無 2026-09-25 收盤"
-  },
   "sox_ret": {
-   "value": -0.003330086248626185,
+   "value": 0.014119520235553074,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
+   "as_of": "2026-09-25",
    "status": "ok",
    "note": ""
   },
   "ndx_ret": {
-   "value": 0.00012362909473329076,
+   "value": 0.004801435979246538,
    "source": "Yahoo Finance ^IXIC",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
+   "as_of": "2026-09-25",
    "status": "ok",
    "note": ""
   },
@@ -437,22 +438,22 @@
    "source": "Yahoo Finance TSM",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TSM?interval=1d&range=3mo",
    "as_of": "2026-09-24",
-   "status": "ok",
-   "note": ""
+   "status": "stale",
+   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
   },
   "nvda_ret": {
    "value": -0.004123953254555501,
    "source": "Yahoo Finance NVDA",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?interval=1d&range=3mo",
    "as_of": "2026-09-24",
-   "status": "ok",
-   "note": ""
+   "status": "stale",
+   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
   },
   "vix": {
-   "value": 15.670000076293945,
+   "value": 14.869999885559082,
    "source": "Yahoo Finance ^VIX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
+   "as_of": "2026-09-25",
    "status": "ok",
    "note": ""
   },
@@ -461,22 +462,22 @@
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
    "as_of": "2026-09-24",
-   "status": "ok",
-   "note": ""
+   "status": "stale",
+   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
   },
   "usdtwd": {
-   "value": 31.789499282836914,
+   "value": 31.69499969482422,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
+   "as_of": "2026-09-25",
    "status": "ok",
    "note": ""
   },
   "twd_change": {
-   "value": 0.00347223601981117,
+   "value": -0.0029726667655856076,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
+   "as_of": "2026-09-25",
    "status": "ok",
    "note": ""
   }
