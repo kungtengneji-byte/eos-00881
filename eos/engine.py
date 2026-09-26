@@ -182,9 +182,24 @@ def compare(current: EosResult, previous: EosResult | None) -> dict[str, Any]:
             continue
         per_dim[key] = round(d.earned - p.earned, 2)
 
+    # 子項層級的變化。單構面的模型（大盤燈號只有一個 LIGHT 構面）拆到
+    # 構面等於沒拆 —— 「總分 -11」與「構面 -11」是同一句話，看不出是誰動的。
+    per_item: dict[str, float | None] = {}
+    for key, d in current.dimensions.items():
+        p = previous.dimensions.get(key)
+        prev_items = {i.id: i for i in p.items} if p else {}
+        for it in d.items:
+            pi = prev_items.get(it.id)
+            if (pi is None or it.earned is None or pi.earned is None
+                    or abs(it.available - pi.available) > 1e-9):
+                per_item[it.id] = None
+            else:
+                per_item[it.id] = round(it.earned - pi.earned, 2)
+
     assert current.eos is not None and previous.eos is not None
     return {
         "comparable": True,
         "eos_delta": current.eos - previous.eos,
         "dimension_delta": per_dim,
+        "item_delta": per_item,
     }

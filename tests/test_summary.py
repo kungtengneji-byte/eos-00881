@@ -134,3 +134,61 @@ def test_text_is_assembled_from_the_parts(rubric, anchors):
     for part in s["evidence"]:
         assert part in s["text"]
     assert json.dumps(s, ensure_ascii=False)     # 必須可序列化進快照
+
+
+# ---------------------------------------------------------------- 大盤燈號
+
+# 燈號模型只有一個構面，拆到構面等於沒拆；而 summary 原本把 A–F 寫死在
+# DIM_NAME 裡，換成 LIGHT 會直接 KeyError —— 收集器在線上就會整個掛掉。
+MARKET_INPUTS = {
+    "wave_days": 1, "max_buy_wave_days": 6,
+    "wave_cumulative_100m": -329.65, "max_buy_wave_cumulative_100m": 1234.5,
+    "foreign_futures_oi_change_5d": 1643.0, "gap_to_resistance_pct": 0.00276296,
+    "margin_change_2d_100m": 102.42, "sox_prev_session_ret": -0.0122571,
+    "us10y": 5.114,
+}
+
+
+@pytest.fixture(scope="module")
+def market_rubric() -> Rubric:
+    return Rubric.load(Path(__file__).parent.parent / "market_rubric_v1.0.yaml")
+
+
+def _market_fields(**overrides):
+    vals = {**MARKET_INPUTS, **overrides}
+    return {k: {"value": v, "status": "ok", "as_of": "2026-09-24",
+                "source": "t", "note": ""} for k, v in vals.items()}
+
+
+def test_market_summary_does_not_crash_on_single_dimension(market_rubric):
+    r = engine.compute(market_rubric, MARKET_INPUTS)
+    s = summary.build(market_rubric, r, None, _market_fields())
+    assert "燈號" in s["headline"]
+    assert "可續買但進入賣壓測試區" in s["headline"]
+
+
+def test_market_breakdown_is_by_item_not_dimension(market_rubric):
+    """LIGHT -11 沒有資訊量，要看到是 F5 還是 F6 在動。"""
+    now = engine.compute(market_rubric, MARKET_INPUTS)
+    before = engine.compute(market_rubric, {**MARKET_INPUTS, "margin_change_2d_100m": 0.0})
+    s = summary.build(market_rubric, now, before, _market_fields(),
+                      prev_date="2026-09-23")
+    moved = s["drivers"] + s["drags"]
+    assert moved, "融資從持平變成 +102 億，不可能零變化"
+    assert all(line.startswith("F") for line in moved)
+    assert not any("LIGHT" in line for line in moved)
+    assert any("融資熱度" in line for line in moved)
+
+
+def test_market_evidence_comes_from_the_item_own_input(market_rubric):
+    now = engine.compute(market_rubric, MARKET_INPUTS)
+    before = engine.compute(market_rubric, {**MARKET_INPUTS, "us10y": 4.75})
+    s = summary.build(market_rubric, now, before, _market_fields())
+    joined = "　".join(s["evidence"])
+    assert "US10Y 5.11" in joined
+
+
+def test_market_watch_points_at_the_next_rating_band(market_rubric):
+    r = engine.compute(market_rubric, MARKET_INPUTS)
+    s = summary.build(market_rubric, r, None, _market_fields())
+    assert any("續買動能明確" in w and "65" in w for w in s["watch"])

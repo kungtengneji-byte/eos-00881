@@ -420,7 +420,12 @@ def run_parts(cfg: dict, day: date, parts: tuple[str, ...], *, force: bool) -> d
 
 
 def score_and_save(cfg: dict, day: date, rubric: Rubric,
-                   collected: dict[str, Field], window: str) -> dict[str, Any]:
+                   collected: dict[str, Field], window: str | None) -> dict[str, Any]:
+    """計分並寫回快照。
+
+    window 為 None 代表「只重算、不是一次收集」（scripts.rescore 用）——
+    此時不在 windows 裡多記一筆，否則每次調整 rubric 都會污染收集紀錄。
+    """
     inst = cfg["instrument"]
     existing = store.load(inst, day) or {}
     fields, changed = store.merge_fields(existing.get("fields", {}), collected)
@@ -472,9 +477,7 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
     # 與前一個「有發布分數」的交易日比較，不是單純的前一天 ——
     # 前一天可能因覆蓋率不足而未出分，拿它比會得到假的變化
     prev_result = prev_date = None
-    for d in store.recent_days(inst, 10):
-        if d >= day:
-            continue
+    for d in store.days_before(inst, day, 10):
         snap = store.load(inst, d) or {}
         pf = snap.get("fields") or {}
         pin = {n: f.get("value") for n, f in pf.items()
@@ -492,7 +495,8 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
     if outlook is not None:
         payload["outlook"] = outlook
 
-    store.save(inst, day, fields=fields, eos=payload, windows=[window])
+    store.save(inst, day, fields=fields, eos=payload,
+               windows=[window] if window else [])
     print(f"  更新 {len(changed)} 個欄位" + (f"：{', '.join(changed[:6])}" if changed else ""))
     print(result.explain())
 

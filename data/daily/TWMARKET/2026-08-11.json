@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-08-11",
  "first_collected_at": "2026-09-26T15:27:33",
- "updated_at": "2026-09-26T15:27:33",
+ "updated_at": "2026-09-26T16:03:42",
  "windows": [
   "backfill"
  ],
@@ -96,7 +96,7 @@
    }
   },
   "summary": {
-   "headline": "當日可計分構面僅 50/100，依規則不計算 EOS；已取得的構面仍列於下方",
+   "headline": "當日可計分項目僅 50/100，依規則不計算 燈號；已取得的項目仍列於下方",
    "drivers": [],
    "drags": [],
    "evidence": [],
@@ -104,7 +104,7 @@
     "3 個子項缺值不計分（F1, F2, F3），EOS 以可得滿分 50 標準化"
    ],
    "watch": [],
-   "text": "當日可計分構面僅 50/100，依規則不計算 EOS；已取得的構面仍列於下方　3 個子項缺值不計分（F1, F2, F3），EOS 以可得滿分 50 標準化"
+   "text": "當日可計分項目僅 50/100，依規則不計算 燈號；已取得的項目仍列於下方　3 個子項缺值不計分（F1, F2, F3），EOS 以可得滿分 50 標準化"
   }
  },
  "fields": {
@@ -243,6 +243,158 @@
    "as_of": "2026-08-10",
    "status": "ok",
    "note": ""
+  },
+  "completed_buy_waves": {
+   "value": 0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "completed_sell_waves": {
+   "value": 0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "avg_buy_wave_days": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "max_buy_wave_days": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "avg_buy_wave_cumulative_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "max_buy_wave_cumulative_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "avg_sell_wave_days": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "avg_sell_wave_cumulative_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "wave_direction": {
+   "value": "buy",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "wave_days": {
+   "value": 2,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "wave_cumulative_100m": {
+   "value": 740.7,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "wave_start": {
+   "value": "2026-08-10",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "resistance_close": {
+   "value": 45120.72,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "resistance_date": {
+   "value": "2026-08-11",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "latest_close": {
+   "value": 45120.72,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "gap_to_resistance_pct": {
+   "value": 0.0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "foreign_futures_oi_change_5d": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "margin_change_2d_100m": {
+   "value": 64.87467000000015,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
+  },
+  "window_days": {
+   "value": 3,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-11",
+   "status": "ok",
+   "note": "由最近 3 個交易日的序列推導"
   }
  }
 }

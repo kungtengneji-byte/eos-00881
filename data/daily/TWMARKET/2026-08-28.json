@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-08-28",
  "first_collected_at": "2026-09-26T15:29:31",
- "updated_at": "2026-09-26T15:29:31",
+ "updated_at": "2026-09-26T16:03:42",
  "windows": [
   "backfill"
  ],
@@ -92,15 +92,26 @@
    }
   },
   "summary": {
-   "headline": "EOS 43/100，屬「賣壓風險升高」（前一交易日無已發布分數，或當日未達發布門檻）",
-   "drivers": [],
-   "drags": [],
-   "evidence": [],
+   "headline": "燈號 43/100，屬「賣壓風險升高」，較 08-27 上升 1 分",
+   "drivers": [
+    "F6 前一美股費半 +5.3",
+    "F3 外資期貨 5 日回補 +1.4"
+   ],
+   "drags": [
+    "F7 美 10 年期公債殖利率 -0.1",
+    "F4 距前高壓力空間 -0.5",
+    "F2 本波累計規模餘裕 -2.5",
+    "F1 本波連買天數餘裕 -2.5"
+   ],
+   "evidence": [
+    "F6 前一美股費半：費半（前一時段） +2.33%",
+    "F1 本波連買天數餘裕：本波連買天數 3 天"
+   ],
    "quality": [],
    "watch": [
     "距「可續買但進入賣壓測試區」（45 分）尚差 2 分"
    ],
-   "text": "EOS 43/100，屬「賣壓風險升高」（前一交易日無已發布分數，或當日未達發布門檻）　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 2 分"
+   "text": "燈號 43/100，屬「賣壓風險升高」，較 08-27 上升 1 分　改善：F6 前一美股費半 +5.3、F3 外資期貨 5 日回補 +1.4　拖累：F7 美 10 年期公債殖利率 -0.1、F4 距前高壓力空間 -0.5、F2 本波累計規模餘裕 -2.5、F1 本波連買天數餘裕 -2.5　F6 前一美股費半：費半（前一時段） +2.33%　F1 本波連買天數餘裕：本波連買天數 3 天　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 2 分"
   }
  },
  "fields": {
@@ -239,6 +250,158 @@
    "as_of": "2026-08-27",
    "status": "ok",
    "note": ""
+  },
+  "completed_buy_waves": {
+   "value": 2,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "completed_sell_waves": {
+   "value": 2,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "avg_buy_wave_days": {
+   "value": 4.0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "max_buy_wave_days": {
+   "value": 6,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "avg_buy_wave_cumulative_100m": {
+   "value": 1436.035,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "max_buy_wave_cumulative_100m": {
+   "value": 2515.84,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "avg_sell_wave_days": {
+   "value": 2.0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "avg_sell_wave_cumulative_100m": {
+   "value": -350.74,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "wave_direction": {
+   "value": "buy",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "wave_days": {
+   "value": 3,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "wave_cumulative_100m": {
+   "value": 1274.61,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "wave_start": {
+   "value": "2026-08-26",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "resistance_close": {
+   "value": 46331.45,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "resistance_date": {
+   "value": "2026-08-28",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "latest_close": {
+   "value": 46331.45,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "gap_to_resistance_pct": {
+   "value": 0.0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "foreign_futures_oi_change_5d": {
+   "value": -1061.0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "margin_change_2d_100m": {
+   "value": 123.74950999999965,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
+  },
+  "window_days": {
+   "value": 16,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "由最近 16 個交易日的序列推導"
   }
  }
 }

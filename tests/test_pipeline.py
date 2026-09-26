@@ -197,3 +197,46 @@ def test_collected_snapshot_domestic_fields_are_same_day():
         f = fields.get(name)
         if f and f["value"] is not None:
             assert f["as_of"] == "2026-09-24", name
+
+
+# ---------------------------------------------------------------- 日期查詢
+
+def _fake_snapshots(tmp_path, monkeypatch, days):
+    d = tmp_path / "daily" / "X"
+    d.mkdir(parents=True)
+    for day in days:
+        (d / f"{day}.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(store, "DAILY", tmp_path / "daily")
+
+
+DAYS = ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-21",
+        "2026-09-22", "2026-09-23", "2026-09-24"]
+
+
+def test_recent_days_is_newest_first(tmp_path, monkeypatch):
+    _fake_snapshots(tmp_path, monkeypatch, DAYS)
+    assert store.recent_days("X", 3) == [date(2026, 9, 24), date(2026, 9, 23),
+                                         date(2026, 9, 22)]
+
+
+def test_days_before_looks_back_from_the_target_not_from_today(tmp_path, monkeypatch):
+    """重算 9/02 時要看到 9/01。
+
+    用 recent_days(10) 再篩掉 >= 目標日的做法在歷史一長就失效：
+    最新的 N 天全在目標日之後，篩完一天不剩，結論會誤報
+    「前一交易日無已發布分數」而不是與前一日比較。
+    """
+    _fake_snapshots(tmp_path, monkeypatch, DAYS)
+    assert store.days_before("X", date(2026, 9, 2), 10) == [date(2026, 9, 1)]
+
+
+def test_days_before_excludes_the_day_itself(tmp_path, monkeypatch):
+    _fake_snapshots(tmp_path, monkeypatch, DAYS)
+    got = store.days_before("X", date(2026, 9, 22), 10)
+    assert date(2026, 9, 22) not in got
+    assert got[0] == date(2026, 9, 21)
+
+
+def test_days_before_returns_empty_for_the_earliest_day(tmp_path, monkeypatch):
+    _fake_snapshots(tmp_path, monkeypatch, DAYS)
+    assert store.days_before("X", date(2026, 9, 1), 10) == []

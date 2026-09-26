@@ -1,72 +1,86 @@
-"""用既有快照裡的欄位重算 EOS 與今日結論，完全不連網。
+"""用既有快照裡的欄位重算分數與今日結論，完全不連網。
 
   python -m scripts.rescore
+  python -m scripts.rescore --instrument TWMARKET
 
 rubric 門檻調整、結論邏輯變更之後都跑這支 —— 收集到的原始欄位不變，
 變的只是解讀，沒有理由重新打一次所有來源。
 這也是為什麼每日快照存的是「欄位 + 來源」而不是只存分數。
+
+刻意走 collect.score_and_save 而不是自己算一遍：大盤的波段推導、
+明日展望、與前一個「有發布分數」交易日的比較都在那裡，
+在這裡複製一份的話，兩邊遲早會算出不一樣的結果。
 """
 
 from __future__ import annotations
 
+import argparse
+import contextlib
+import io
 import json
-from pathlib import Path
 
 import collect
-from eos import engine, store, summary
-from eos.rubric import Rubric
-
-ROOT = Path(__file__).resolve().parent.parent
+from eos import store
 
 
 def main(argv: list[str] | None = None) -> int:
-    instrument = "00881"
-    cfg = collect.load_config(instrument)
-    rubric = Rubric.load()
-    meta_path = store.write_instrument_meta(cfg)
-    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    ap = argparse.ArgumentParser(description="以既有欄位重算分數")
+    ap.add_argument("--instrument", default="00881")
+    ap.add_argument("--verbose", action="store_true", help="顯示每一天的計分明細")
+    args = ap.parse_args(argv)
 
-    days = sorted(store.recent_days(instrument, 9999))
-    prev_result = None
-    prev_date = None
+    inst = args.instrument
+    cfg = collect.load_config(inst)
+    rubric = collect.rubric_for(cfg)
+
+    days = sorted(store.recent_days(inst, 9999))
+    if not days:
+        print(f"{inst} 沒有任何快照")
+        return 1
+
     changed = 0
-
+    # 由舊到新：大盤的波段推導會讀已存檔的歷史，順序反了早期的日子會看到未來資料
     for day in days:
-        snap = store.load(instrument, day)
+        snap = store.load(inst, day)
         if not snap:
             continue
-        fields = snap.get("fields") or {}
-        inputs = {n: f.get("value") for n, f in fields.items()
-                  if f.get("status") in ("ok", "stale")}
-        result = engine.compute(rubric, inputs)
-        summ = summary.build(rubric, result, prev_result, fields,
-                             meta=meta, prev_date=prev_date)
-
-        payload = result.to_dict()
-        payload["summary"] = summ
-        before = json.dumps(snap.get("eos"), ensure_ascii=False, sort_keys=True)
-        after = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-        if before != after:
-            store.save(instrument, day, fields=fields, eos=payload,
-                       windows=snap.get("windows", []))
+        before = json.dumps(snap, ensure_ascii=False, sort_keys=True)
+        sink = io.StringIO()
+        with contextlib.redirect_stdout(sink if not args.verbose else io.StringIO()):
+            collect.score_and_save(cfg, day, rubric, {}, None)
+        if args.verbose:
+            print(f"\n== {day} ==")
+        after = store.load(inst, day)
+        # updated_at 每次都會變，比對時要排除，否則 35 天全被算成「有變動」
+        a = dict(after or {}); b = json.loads(before)
+        for d in (a, b):
+            d.pop("updated_at", None)
+        if json.dumps(a, ensure_ascii=False, sort_keys=True) != \
+           json.dumps(b, ensure_ascii=False, sort_keys=True):
             changed += 1
 
-        if result.published:
-            prev_result, prev_date = result, day.isoformat()
+    collect.write_index(cfg)
+    print(f"{inst}：重算 {len(days)} 天，更新 {changed} 天")
 
-    store.write_series_index(instrument)
-    print(f"重算 {len(days)} 天，更新 {changed} 天")
-
-    last = store.load(instrument, days[-1])
+    last = store.load(inst, days[-1]) or {}
+    eos = last.get("eos") or {}
+    s = eos.get("summary") or {}
     print(f"\n最新交易日 {days[-1]} 的結論：\n")
-    s = (last.get("eos") or {}).get("summary") or {}
-    for line in [s.get("headline", "")] + \
-                (["改善：" + "、".join(s["drivers"])] if s.get("drivers") else []) + \
-                (["拖累：" + "、".join(s["drags"])] if s.get("drags") else []) + \
-                s.get("evidence", []) + \
-                (["資料品質：" + "；".join(s["quality"])] if s.get("quality") else []) + \
-                (["待觀察：" + "；".join(s["watch"])] if s.get("watch") else []):
+    lines = [s.get("headline", "")]
+    for key, prefix in (("drivers", "改善："), ("drags", "拖累：")):
+        if s.get(key):
+            lines.append(prefix + "、".join(s[key]))
+    lines += s.get("evidence", [])
+    for key, prefix in (("quality", "資料品質："), ("watch", "待觀察：")):
+        if s.get(key):
+            lines.append(prefix + "；".join(s[key]))
+    for line in lines:
         print(f"  {line}")
+
+    o = eos.get("outlook")
+    if o:
+        print(f"\n  明日展望：{o.get('eos')}/100（{o.get('rating')}）"
+              f"　美股時段 {o.get('us_session')}")
     return 0
 
 

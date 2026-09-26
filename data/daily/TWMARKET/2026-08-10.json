@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-08-10",
  "first_collected_at": "2026-09-26T15:27:24",
- "updated_at": "2026-09-26T15:27:24",
+ "updated_at": "2026-09-26T16:03:42",
  "windows": [
   "backfill"
  ],
@@ -97,16 +97,16 @@
    }
   },
   "summary": {
-   "headline": "當日可計分構面僅 40/100，依規則不計算 EOS；已取得的構面仍列於下方",
+   "headline": "當日可計分項目僅 40/100，依規則不計算 燈號；已取得的項目仍列於下方",
    "drivers": [],
    "drags": [],
    "evidence": [],
    "quality": [
     "4 個子項缺值不計分（F1, F2, F3, F5），EOS 以可得滿分 40 標準化",
-    "US10Y 為較舊時點資料"
+    "費半（前一時段）、US10Y 為較舊時點資料"
    ],
    "watch": [],
-   "text": "當日可計分構面僅 40/100，依規則不計算 EOS；已取得的構面仍列於下方　4 個子項缺值不計分（F1, F2, F3, F5），EOS 以可得滿分 40 標準化　US10Y 為較舊時點資料"
+   "text": "當日可計分項目僅 40/100，依規則不計算 燈號；已取得的項目仍列於下方　4 個子項缺值不計分（F1, F2, F3, F5），EOS 以可得滿分 40 標準化　費半（前一時段）、US10Y 為較舊時點資料"
   }
  },
  "fields": {
@@ -245,6 +245,158 @@
    "as_of": "2026-08-07",
    "status": "stale",
    "note": "美股資料為 2026-08-07，較預期的 2026-08-09 舊 2 天（休市或缺值）"
+  },
+  "completed_buy_waves": {
+   "value": 0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "completed_sell_waves": {
+   "value": 0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "avg_buy_wave_days": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "max_buy_wave_days": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "avg_buy_wave_cumulative_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "max_buy_wave_cumulative_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "avg_sell_wave_days": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "avg_sell_wave_cumulative_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "wave_direction": {
+   "value": "buy",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "wave_days": {
+   "value": 1,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "wave_cumulative_100m": {
+   "value": 517.41,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "wave_start": {
+   "value": "2026-08-10",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "resistance_close": {
+   "value": 44928.76,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "resistance_date": {
+   "value": "2026-08-10",
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "latest_close": {
+   "value": 44928.76,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "gap_to_resistance_pct": {
+   "value": 0.0,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
+  },
+  "foreign_futures_oi_change_5d": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "margin_change_2d_100m": {
+   "value": null,
+   "source": "marketflow",
+   "url": "",
+   "as_of": null,
+   "status": "missing",
+   "note": "歷史序列不足"
+  },
+  "window_days": {
+   "value": 2,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-08-10",
+   "status": "ok",
+   "note": "由最近 2 個交易日的序列推導"
   }
  }
 }

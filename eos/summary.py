@@ -16,6 +16,10 @@ from typing import Any
 from eos.engine import EosResult, compare
 from eos.rubric import Rubric
 
+# 分數的名稱依模型而異：00881 算的是 EOS，大盤算的是「外資續買燈號」。
+# 以 rubric 版本字串的前綴對應，新增模型只要加一行。
+SCORE_LABEL = {"market": "燈號"}
+
 DIM_NAME = {
     "A": "價格/折溢價", "B": "含息趨勢/回檔", "C": "成分股廣度",
     "D": "海外科技", "E": "波動/風險", "F": "量價/法人",
@@ -32,7 +36,12 @@ EVIDENCE_FIELDS = {
 }
 
 PCT = {"premium", "wcr", "sox_ret", "ndx_ret", "tsm_ret", "nvda_ret",
-       "twd_change", "drawdown20", "rv20"}
+       "twd_change", "drawdown20", "rv20",
+       "gap_to_resistance_pct", "sox_prev_session_ret"}
+
+# 以「億元」計的欄位，正負號要顯示 —— 淨買賣超看不到方向就沒有意義
+HUNDRED_M = {"institutional_net", "wave_cumulative_100m", "margin_change_2d_100m",
+             "market_foreign_net_100m"}
 
 LABEL = {
     "premium": "折溢價", "rsi14": "RSI14", "drawdown20": "20日回檔",
@@ -40,6 +49,12 @@ LABEL = {
     "sox_ret": "SOX", "ndx_ret": "Nasdaq", "tsm_ret": "TSM ADR", "nvda_ret": "NVDA",
     "vix": "VIX", "us10y": "US10Y", "twd_change": "台幣日變動",
     "volume_ratio": "量比", "institutional_net": "三大法人",
+    # 大盤燈號（market_rubric_v1.0）的七個輸入
+    "wave_days": "本波連買天數", "wave_cumulative_100m": "本波累計",
+    "foreign_futures_oi_change_5d": "外資期貨5日變化",
+    "gap_to_resistance_pct": "距前高", "margin_change_2d_100m": "融資2日變化",
+    "sox_prev_session_ret": "費半（前一時段）",
+    "market_foreign_net_100m": "外資現貨",
 }
 
 
@@ -54,8 +69,12 @@ def _fmt(name: str, v: Any) -> str:
         return f"{int(v)}/10 檔"
     if name == "volume_ratio":
         return f"{v:.2f}x"
-    if name == "institutional_net":
+    if name in HUNDRED_M:
         return f"{v:+.1f} 億元"
+    if name == "foreign_futures_oi_change_5d":
+        return f"{v:+,.0f} 口"
+    if name == "wave_days":
+        return f"{int(v)} 天"
     if isinstance(v, float):
         return f"{v:.2f}"
     return str(v)
@@ -69,6 +88,33 @@ def _evidence(dim: str, fields: dict[str, Any]) -> str:
             continue
         parts.append(f"{LABEL.get(name, name)} {_fmt(name, f['value'])}")
     return "、".join(parts)
+
+
+def _display_names(rubric: Rubric, single: bool) -> dict[str, str]:
+    """結論裡每一項的顯示名稱。
+
+    單構面模型拆到子項，多構面模型仍以構面為單位。名稱一律取自 rubric，
+    DIM_NAME 只是 00881 既有的簡稱 —— 新標的不必改這支程式就能有正確標題。
+    """
+    if single:
+        dim = next(iter(rubric.dimensions.values()))
+        return {it.id: it.name for it in dim.items}
+    return {k: DIM_NAME.get(k) or d.name for k, d in rubric.dimensions.items()}
+
+
+def _item_evidence(rubric: Rubric, item_id: str, fields: dict[str, Any]) -> str:
+    """子項的佐證＝它自己的 input 當日值，不必另外維護一張對照表。"""
+    for d in rubric.dimensions.values():
+        for it in d.items:
+            if it.id != item_id:
+                continue
+            if not it.input:
+                return ""
+            f = fields.get(it.input)
+            if not f or f.get("value") is None:
+                return ""
+            return f"{LABEL.get(it.input, it.input)} {_fmt(it.input, f['value'])}"
+    return ""
 
 
 def _holdings_extremes(fields: dict[str, Any]) -> str:
@@ -134,15 +180,31 @@ def build(rubric: Rubric, result: EosResult, previous: EosResult | None,
           prev_date: str | None = None) -> dict[str, Any]:
     """產生結構化結論。text 為給人讀的完整段落。"""
     if result.eos is None:
-        headline = (f"當日可計分構面僅 {result.available:g}/100，依規則不計算 EOS；"
-                    f"已取得的構面仍列於下方")
+        what = SCORE_LABEL.get(rubric.version.split("-")[0], "EOS")
+        headline = (f"當日可計分項目僅 {result.available:g}/100，依規則不計算 {what}；"
+                    f"已取得的項目仍列於下方")
         quality = _quality(result, fields)
         return {"headline": headline, "drivers": [], "drags": [],
                 "evidence": [], "quality": quality,
                 "watch": _watch(rubric, result, fields, meta),
                 "text": "　".join([headline] + quality)}
 
-    headline = f"EOS {result.eos}/100，屬「{result.rating}」"
+    # 單構面模型（大盤燈號）以子項為拆解單位；多構面模型（00881 EOS）以構面為單位。
+    single = len(rubric.dimensions) == 1
+    names = _display_names(rubric, single)
+    delta_key = "item_delta" if single else "dimension_delta"
+    if single:
+        def ev_of(k: str) -> str:
+            return _item_evidence(rubric, k, fields)
+        fallback = list(names)[:3]
+        label = SCORE_LABEL.get(rubric.version.split("-")[0], "EOS")
+    else:
+        def ev_of(k: str) -> str:
+            return _evidence(k, fields)
+        fallback = ["D", "C", "F"]
+        label = "EOS"
+
+    headline = f"{label} {result.eos}/100，屬「{result.rating}」"
     cmp = compare(result, previous)
     drivers: list[str] = []
     drags: list[str] = []
@@ -155,21 +217,21 @@ def build(rubric: Rubric, result: EosResult, previous: EosResult | None,
         when = f"較 {short} " if short else "較前一交易日 "
         headline += (f"，{when}{'上升' if d > 0 else '下降'} {abs(d)} 分"
                      if d else f"，{when}持平")
-        deltas = {k: v for k, v in cmp["dimension_delta"].items() if v}
+        deltas = {k: v for k, v in (cmp.get(delta_key) or {}).items() if v}
         for k, v in sorted(deltas.items(), key=lambda kv: -kv[1]):
-            line = f"{k} {DIM_NAME[k]} {v:+.1f}"
+            line = f"{k} {names.get(k, k)} {v:+.1f}"
             (drivers if v > 0 else drags).append(line)
-        # 只為變化最大的兩個構面附證據，避免結論變成欄位傾倒
+        # 只為變化最大的兩項附證據，避免結論變成欄位傾倒
         for k, _ in sorted(deltas.items(), key=lambda kv: -abs(kv[1]))[:2]:
-            ev = _evidence(k, fields)
+            ev = ev_of(k)
             if ev:
-                evidence.append(f"{k} {DIM_NAME[k]}：{ev}")
+                evidence.append(f"{k} {names.get(k, k)}：{ev}")
     else:
         headline += f"（{cmp.get('reason', '無法與前一交易日比較')}）"
-        for k in ("D", "C", "F"):
-            ev = _evidence(k, fields)
+        for k in fallback:
+            ev = ev_of(k)
             if ev:
-                evidence.append(f"{k} {DIM_NAME[k]}：{ev}")
+                evidence.append(f"{k} {names.get(k, k)}：{ev}")
 
     hx = _holdings_extremes(fields)
     if hx:

@@ -92,7 +92,7 @@ def save(instrument: str, day: date, *, fields: dict[str, Any],
     return p
 
 
-def recent_days(instrument: str, limit: int) -> list[date]:
+def all_days(instrument: str) -> list[date]:
     """已存在的快照日期，由新到舊。"""
     d = DAILY / instrument
     if not d.exists():
@@ -103,7 +103,20 @@ def recent_days(instrument: str, limit: int) -> list[date]:
             days.append(date.fromisoformat(p.stem))
         except ValueError:
             continue
-    return sorted(days, reverse=True)[:limit]
+    return sorted(days, reverse=True)
+
+
+def recent_days(instrument: str, limit: int) -> list[date]:
+    return all_days(instrument)[:limit]
+
+
+def days_before(instrument: str, day: date, limit: int) -> list[date]:
+    """指定日之前的快照日期，由新到舊。
+
+    重算舊的日子時不能用 recent_days —— 它給的是「整體最新的 N 天」，
+    全都在目標日之後，篩掉後一天不剩，結論會變成「前一交易日無已發布分數」。
+    """
+    return [d for d in all_days(instrument) if d < day][:limit]
 
 
 def write_instrument_meta(cfg: dict[str, Any]) -> Path:
