@@ -32,6 +32,34 @@ class Band:
     score: float              # bands 為絕對分數；bands_pct 為滿分比例
 
 
+# 線性正規化：把指標值映射到 0–1，再乘以該因子的權重。
+# 大盤資金流向模型用的是公式而非查表，例如「0.5 + 5日期貨淨OI變化/(2×10,000口)」。
+# 每個轉換都夾在 0–1：模型定義明文要求（F1「夾在0–1」），
+# 而且不夾的話單一極端值會讓總分超出 0–100。
+LINEAR_TRANSFORMS = {
+    # 1 − 值/參數1：用量越少，餘裕越大（本波天數、本波累計）
+    "one_minus_ratio": lambda v, p1, p2: 1 - v / p1,
+    # 值/參數1：距離越遠，空間越大（距前高壓力）
+    "ratio": lambda v, p1, p2: v / p1,
+    # 0.5 為中性，正向偏離加分（期貨回補、費半上漲）
+    "centered": lambda v, p1, p2: 0.5 + v / (2 * p1),
+    # 0.5 為中性，正向偏離扣分（融資增加＝散戶追價）
+    "centered_inv": lambda v, p1, p2: 0.5 - v / (2 * p1),
+    # 以參數1 為中性水準，高於中性扣分（10 年債殖利率）
+    "centered_offset_inv": lambda v, p1, p2: 0.5 - (v - p1) / (2 * p2),
+}
+
+
+def apply_linear(value: float, transform: str, p1: float, p2: float | None) -> float:
+    fn = LINEAR_TRANSFORMS.get(transform)
+    if fn is None:
+        raise RubricError(f"未知的線性轉換：{transform}")
+    if not p1:
+        raise RubricError(f"{transform} 的參數1 不可為 0 或缺值")
+    raw = fn(float(value), float(p1), None if p2 is None else float(p2))
+    return max(0.0, min(1.0, raw))
+
+
 def pick_band(value: float, bands: list[Band]) -> float:
     for b in bands:
         if b.lt is None or value < b.lt:
@@ -58,10 +86,17 @@ class Item:
     conditional_on: str | None = None
     bands_by_condition: dict[str, list[Band]] | None = None
     transform: str | None = None
+    # 線性正規化（大盤燈號模型）：分數 = clamp(公式(值), 0, 1) × max
+    linear: str | None = None
+    param1: float | None = None
+    param2: float | None = None
+    param1_input: str | None = None      # 參數本身來自資料時（如期間最長買波天數）
     missing_policy: str = "exclude"
 
     def score(self, inputs: dict[str, Any]) -> tuple[float | None, float, str]:
         """回傳 (earned, available, detail)。earned 為 None 代表此項缺值不計分。"""
+        if self.linear is not None:
+            return self._score_linear(inputs)
         if self.checks is not None:
             return self._score_checklist(inputs)
         if self.bands_by_condition is not None:
@@ -81,6 +116,19 @@ class Item:
             raise RubricError(f"{self.id} 既無 bands 也無 bands_pct")
         s = pick_band(v, self.bands)
         return s, self.max, f"{v:.4g} -> {s:g}"
+
+    # -- 線性正規化（大盤燈號 F1–F7）---------------------------------------
+    def _score_linear(self, inputs: dict[str, Any]) -> tuple[float | None, float, str]:
+        raw = inputs.get(self.input) if self.input else None
+        if raw is None:
+            return None, 0.0, "缺值"
+        p1 = self.param1
+        if self.param1_input:
+            p1 = inputs.get(self.param1_input)
+            if p1 in (None, 0):
+                return None, 0.0, f"參數 {self.param1_input} 缺值或為 0"
+        norm = apply_linear(float(raw), self.linear, float(p1), self.param2)
+        return norm * self.max, self.max, f"{float(raw):.6g} -> {norm:.4f} x {self.max:g}"
 
     # -- 檢核清單（B1 趨勢）------------------------------------------------
     def _score_checklist(self, inputs: dict[str, Any]) -> tuple[float | None, float, str]:
@@ -202,6 +250,10 @@ class Rubric:
                     max=float(it["max"]), input=it.get("input"),
                     transform=it.get("transform"),
                     conditional_on=it.get("conditional_on"),
+                    linear=it.get("linear"),
+                    param1=(None if it.get("param1") is None else float(it["param1"])),
+                    param2=(None if it.get("param2") is None else float(it["param2"])),
+                    param1_input=it.get("param1_input"),
                     missing_policy=str(it.get("missing_policy", "exclude")))
         if "bands" in it:
             item.bands = cls._parse_bands(it["bands"], "score")
@@ -215,7 +267,8 @@ class Rubric:
                 str(k): cls._parse_bands(v, "score")
                 for k, v in it["bands_by_condition"].items()
             }
-        if not any((item.bands, item.pct_bands, item.checks, item.bands_by_condition)):
+        if not any((item.bands, item.pct_bands, item.checks,
+                    item.bands_by_condition, item.linear)):
             raise RubricError(f"{item.id} 沒有任何計分規則")
         return item
 
@@ -241,6 +294,8 @@ class Rubric:
                     names.add(it.input)
                 if it.conditional_on:
                     names.add(it.conditional_on)
+                if it.param1_input:
+                    names.add(it.param1_input)
                 for c in it.checks or []:
                     names.add(c.input)
         return names

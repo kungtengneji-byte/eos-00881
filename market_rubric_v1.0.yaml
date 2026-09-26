@@ -1,0 +1,128 @@
+# 外資續買燈號 v1.0 — 草案，待審
+#
+# 完全依據既有工作表「台股資金流向_期間彙整分析」的〈模型與定義〉分頁。
+# 與 00881 的 EOS 不同，這份的七個因子在工作表裡**已有明確公式與參數**，
+# 我沒有自行推定任何門檻 —— 唯一由我提出的是 coverage_gate（見下方註記）。
+#
+# 驗證基準：2026-09-18 應得 60.209（工作表 Dashboard 顯示 60.2）
+
+version: "market-1.0-draft"
+based_on: "台股資金流向_期間彙整分析_20260902-20260918_v1_0〈模型與定義〉"
+scale: 100
+
+# 【我提出的部分，需要你確認】
+# 工作表沒有定義「某個因子缺值時怎麼辦」。沿用 00881 的做法：
+# 以可得權重標準化，而非把缺值當 0 分 —— 期貨資料晚發布不該讓燈號憑空掉 20 分。
+# 門檻取 85/60：七因子中最大的單一權重是 20（F3），
+# 缺一個 15 分因子仍達 85，缺 F3 則落到 80 而標為暫定。
+coverage_gate:
+  tiers:
+    - min_available: 85
+      status: "confirmed"
+      publish_eos: true
+    - min_available: 60
+      status: "provisional"
+      publish_eos: true
+      ui_badge: "暫定"
+      ui_message: "當日 {available}/100 權重可計分，燈號為暫定值"
+    - min_available: 0
+      status: "insufficient"
+      publish_eos: false
+      ui_message: "可計分權重僅 {available}/100，依規則不計算燈號"
+  always_publish: [dimension_scores, raw_metrics, sources]
+
+# 工作表〈模型與定義〉：總分≥65 續買動能明確；45–64 可續買但進入賣壓測試區；<45 賣壓風險升高
+rating_bands:
+  - { min: 65, max: 100, label: "續買動能明確" }
+  - { min: 45, max: 64,  label: "可續買但進入賣壓測試區" }
+  - { min: 0,  max: 44,  label: "賣壓風險升高" }
+
+dimensions:
+  LIGHT:
+    name: "外資續買燈號"
+    max: 100
+    note: |
+      七因子加權，每個因子先正規化到 0–1 再乘以權重。
+      所有正規化值一律夾在 0–1：〈模型與定義〉對 F1 明文要求「夾在0–1」，
+      且不夾的話單一極端值會讓總分超出 0–100。
+    items:
+      - id: F1
+        name: "本波連買天數餘裕"
+        max: 15
+        linear: one_minus_ratio          # 1 − 本波天數 / 期間最長買波天數
+        input: wave_days
+        param1_input: max_buy_wave_days  # 參數來自波段統計，非固定值
+        note: "天數越短→餘裕越大。限制：歷史樣本少（期間僅 5 個已完成買波）"
+        missing_policy: exclude
+
+      - id: F2
+        name: "本波累計規模餘裕"
+        max: 15
+        linear: one_minus_ratio          # 1 − 本波累計 / 期間最大買波累計
+        input: wave_cumulative_100m
+        param1_input: max_buy_wave_cumulative_100m
+        note: "本波累計 vs 期間最大買波累計"
+        missing_policy: exclude
+
+      - id: F3
+        name: "外資期貨 5 日回補"
+        max: 20
+        linear: centered                 # 0.5 + 5日淨OI變化 / (2 × 10,000口)
+        input: foreign_futures_oi_change_5d
+        param1: 10000
+        note: |
+          0.5 為不變；回補空單（正值）→ 分數上升。
+          限制：結算日會扭曲，工作表註明 9/16 含結算效應。
+        missing_policy: exclude
+
+      - id: F4
+        name: "距前高壓力空間"
+        max: 15
+        linear: ratio                    # (前高 − 收盤)/收盤 ÷ 3%
+        input: gap_to_resistance_pct
+        param1: 0.03
+        note: "距前高越近→上檔空間越小。3% 視為空間充足。前高為研究點位"
+        missing_policy: exclude
+
+      - id: F5
+        name: "融資熱度（反向）"
+        max: 10
+        linear: centered_inv             # 0.5 − 2日融資增減 / (2 × 100億)
+        input: margin_change_2d_100m
+        param1: 100
+        note: "2 日融資增越多→散戶追價越熱→分數下降。限制：融資僅為散戶代理指標"
+        missing_policy: exclude
+
+      - id: F6
+        name: "前一美股費半"
+        max: 15
+        linear: centered                 # 0.5 + 費半漲跌 / (2 × 3%)
+        input: sox_prev_session_ret
+        param1: 0.03
+        note: "映射至下一個台股交易日。限制：時差與四巫日會扭曲"
+        missing_policy: exclude
+
+      - id: F7
+        name: "美 10 年期公債殖利率"
+        max: 10
+        linear: centered_offset_inv      # 0.5 − (10Y − 4.75%) / (2 × 0.5%)
+        input: us10y
+        param1: 4.75                     # 中性水準（%）
+        param2: 0.5                      # 每 ±0.5% 為滿分幅度
+        note: "高於中性→評價壓力。輸入為百分比數值（5.006 表示 5.006%）。限制：利率影響具遞延"
+        missing_policy: exclude
+
+# ─────────────────────────────────────────────────────────────
+open_questions:
+  - id: Q1
+    text: |
+      F1/F2 的參數（期間最長買波天數、最大買波累計）取自「期間」統計，
+      但期間會隨時間滾動。要固定回看視窗（例如近 60 個交易日）還是自上市以來？
+      工作表的期間是 2026-08-07 起，屬一次性彙整，每日自動化必須明確定義。
+  - id: Q2
+    text: |
+      F4 的「前高」在工作表是寫死的 47,578.24（09-08 盤中高）。
+      自動化需要規則：近 N 日最高收盤？近 N 日盤中最高？N 是多少？
+  - id: Q3
+    text: |
+      coverage_gate 的 85/60 是我提的，工作表沒有定義。缺值時要標準化還是不出分？
