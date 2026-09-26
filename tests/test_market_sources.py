@@ -141,3 +141,49 @@ def test_taifex_missing_becomes_missing_field():
     f = taifex.oi_fields({}, SEP18, url="x")
     assert f["foreign_futures_net_oi"].status is Status.MISSING
     assert f["foreign_futures_net_oi"].value is None
+
+
+# ---------------------------------------------------------------- 大盤開高低
+
+@pytest.fixture(scope="module")
+def ohlc_history():
+    url = twse.taiex_ohlc_url("202609")
+    payload = json.loads((FIXTURES / "twse_taiex_ohlc_202609.json").read_text(encoding="utf-8"))
+    return twse.parse_taiex_ohlc(payload, url=url)
+
+
+def test_ohlc_matches_workbook_resistance_and_support(ohlc_history):
+    """工作表〈外資波段與壓力點〉那幾個點位就是這幾根 K 的高低收。"""
+    assert ohlc_history[date(2026, 9, 8)]["high"] == pytest.approx(47578.24)   # 壓力2
+    assert ohlc_history[date(2026, 9, 9)]["high"] == pytest.approx(47548.26)   # 壓力1
+    assert ohlc_history[date(2026, 9, 17)]["high"] == pytest.approx(46874.84)  # 工作表支撐1
+    assert ohlc_history[date(2026, 9, 17)]["close"] == pytest.approx(46288.00)  # 支撐2
+    assert ohlc_history[date(2026, 9, 15)]["close"] == pytest.approx(45511.49)  # 支撐3
+
+
+def test_ohlc_close_agrees_with_fmtqik(ohlc_history, index_history):
+    """兩支端點的收盤必須一致，否則不能混用。
+
+    實測 2026-08/09 共 31 個交易日完全相同。任何一天對不起來都代表
+    其中一支改了口徑（例如含不含盤後定價），那時混用會算出錯誤的壓力點。
+    """
+    shared = set(ohlc_history) & set(index_history)
+    assert len(shared) >= 18
+    for d in shared:
+        assert ohlc_history[d]["close"] == pytest.approx(index_history[d]["index"]), d
+
+
+def test_ohlc_high_is_never_below_close(ohlc_history):
+    """盤中高 >= 收盤是恆等關係 —— 這也是舊版 F4 系統性偏低的原因。"""
+    for d, rec in ohlc_history.items():
+        assert rec["high"] >= rec["close"], d
+        assert rec["low"] <= rec["close"], d
+
+
+def test_ohlc_fields_are_missing_not_zero_on_a_non_trading_day(ohlc_history):
+    url = twse.taiex_ohlc_url("202609")
+    fields = twse.taiex_ohlc_fields(ohlc_history, date(2026, 9, 26), url=url)
+    assert set(fields) == {"taiex_open", "taiex_high", "taiex_low"}
+    for f in fields.values():
+        assert f.value is None
+        assert f.status is Status.MISSING

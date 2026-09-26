@@ -275,6 +275,82 @@ def rubric_inputs(rows: list[dict[str, Any]], as_of: date, *,
     }
 
 
+# ---------------------------------------------------------------- 壓力／支撐
+
+def latest_buy_wave(waves: list[Wave]) -> Wave | None:
+    """目前這一段買波；若現在是賣波，則取上一段已完成的買波。
+
+    「外資轉買首日」指的是那一段的起始日 —— 外資由賣轉買的那一天，
+    通常是籌碼換手的位置，回檔測到那裡才算破壞這一波的結構。
+    """
+    buys = [w for w in waves if w.direction == "buy"]
+    return buys[-1] if buys else None
+
+
+def levels(rows: list[dict[str, Any]], as_of: date,
+           *, lookback: int = DEFAULT_LOOKBACK) -> dict[str, Any]:
+    """視窗內的壓力與支撐點位，由高到低排序。
+
+    對齊工作表〈外資波段與壓力點〉，但**只收錄有明確規則的點位**。
+    工作表的支撐1（09-17 盤中高，註明「跳空缺口上緣概念」）是人工挑的 ——
+    那天並沒有跳空，硬湊一條規則去對上單一數字，換個期間就會亂掉。
+    改為提供定義明確的跳空缺口區間。
+    """
+    win = window(rows, as_of, lookback)
+    if not win:
+        return {"as_of": as_of.isoformat(), "rows": []}
+
+    close = next((r["close"] for r in reversed(win) if r.get("close") is not None), None)
+    waves = segment_waves(win)
+    buy = latest_buy_wave(waves)
+    cost = wave_cost(win, buy)
+
+    hc_date, hc = highest_close(win)
+    hh_date, hh = highest_high(win)
+    h2_date, h2 = second_highest_high(win)
+    lc_date, lc = lowest_close(win)
+    gap_date, gap_up, gap_low = gap_up_edge(win)
+
+    band_low = None
+    band_date = None
+    if hc is not None:
+        band_low, band_date = (hc, hc_date.isoformat() if hc_date else None)
+        if cost is not None and cost > hc:
+            band_low, band_date = cost, None
+
+    by_close = {r["date"]: r.get("close") for r in win}
+    turn_close = by_close.get(buy.start.isoformat()) if buy else None
+
+    out = [
+        ("resistance_2", "壓力2", hh, hh_date, "期間最高盤中價"),
+        ("resistance_1", "壓力1", h2, h2_date, "次高盤中價，與壓力2 構成前高壓力帶"),
+        ("band_low", "壓力區下緣", band_low, band_date,
+         "期間最高收盤與前波外資成本取高者"),
+        ("foreign_cost", "前波外資成本", cost, None,
+         f"{buy.start}~{buy.end} 買超金額加權的指數平均" if buy else "無買波"),
+        ("gap_upper", "跳空缺口上緣", gap_up, gap_date, "最近一次向上跳空日的最低"),
+        ("gap_lower", "跳空缺口下緣", gap_low, gap_date, "該次跳空的前一日最高"),
+        ("turn_close", "外資轉買首日收盤", turn_close,
+         buy.start if buy else None, "最近一段買波的起始日收盤"),
+        ("support_low", "期間最低收盤", lc, lc_date, "視窗內最低收盤"),
+    ]
+
+    rows_out = []
+    for key, label, value, when, basis in out:
+        if value is None:
+            continue
+        when_s = when.isoformat() if isinstance(when, date) else when
+        rows_out.append({
+            "key": key, "label": label, "value": round(float(value), 2),
+            "date": when_s, "basis": basis,
+            "gap_pct": (float(value) / float(close) - 1) if close else None,
+        })
+    # 由高到低排序，最新收盤插在中間 —— 表格本身就是一把「價格的尺」
+    rows_out.sort(key=lambda r: -r["value"])
+    return {"as_of": as_of.isoformat(), "latest_close": close,
+            "window_days": len(win), "rows": rows_out}
+
+
 # ---------------------------------------------------------------- 快照 -> 序列
 
 # 快照欄位名 -> 波段計算需要的鍵。兩邊刻意用不同名字：

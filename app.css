@@ -94,6 +94,10 @@ body {
   color: #fff; font-weight: 600;
 }
 
+/* 壓力支撐表裡標示現價的那一列 */
+td.now { font-weight: 650; color: var(--series-1); }
+#levels tr:has(td.now) { background: color-mix(in srgb, var(--series-1) 9%, transparent); }
+
 /* 勾選式篩選（排除 ETF） */
 .toggle {
   display: inline-flex; align-items: center; gap: 7px;

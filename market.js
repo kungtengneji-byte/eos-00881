@@ -262,6 +262,63 @@
     box.append(n);
   }
 
+  /* ---------------------------------------------------------- 壓力與支撐 */
+  /* 點位由 eos/marketflow.py 算好存進快照（eos.levels），由高到低排序。
+     這裡把「最新收盤」插進它該在的位置 —— 一張由高到低的表加上一條
+     標示現價的線，比「壓力區／支撐區」兩個分開的清單更快看懂距離。 */
+  function renderLevels(snap) {
+    const card = $("#levels-card");
+    const L = ((snap || {}).eos || {}).levels;
+    if (!L || !(L.rows || []).length) { card.hidden = true; return; }
+    card.hidden = false;
+
+    $("#levels-window").textContent = L.window_days
+      ? "視窗 " + L.window_days + " 個交易日" : "";
+
+    const close = L.latest_close;
+    const box = $("#levels");
+    box.textContent = "";
+
+    const rows = [];
+    let placed = false;
+    for (const r of L.rows) {
+      if (!placed && close != null && r.value < close) {
+        rows.push(closeRow(close));
+        placed = true;
+      }
+      rows.push(levelRow(r, close));
+    }
+    if (!placed && close != null) rows.push(closeRow(close));
+
+    box.append(table(["點位", "指數", "距現價"], rows));
+  }
+
+  function levelRow(r, close) {
+    const left = el("div");
+    const t = el("div", "fld-label");
+    t.textContent = r.label;
+    const sub = el("div", "fld-sub subtle");
+    sub.textContent = (r.date ? r.date + "　" : "") + r.basis;
+    left.append(t, sub);
+    return [
+      { node: left },
+      { node: textNode(price(r.value)), cls: "num" },
+      { node: textNode(r.gap_pct == null ? "—" : spct(r.gap_pct)), cls: "num" },
+    ];
+  }
+
+  function closeRow(close) {
+    const left = el("div");
+    const t = el("div", "fld-label");
+    t.textContent = "▶ 最新收盤";
+    left.append(t);
+    return [
+      { node: left, cls: "now" },
+      { node: textNode(price(close)), cls: "num now" },
+      { node: textNode("—"), cls: "num now" },
+    ];
+  }
+
   /* ---------------------------------------------------------- 資金指標 */
   function renderKeys(snap) {
     const f = (snap || {}).fields || {};
@@ -271,10 +328,12 @@
 
     const gap = v("gap_to_resistance_pct");
     const rows = [
-      ["前高（視窗內最高收盤）",
-       v("resistance_close") == null ? "—" : price(v("resistance_close")) +
-         (v("resistance_date") ? "　" + v("resistance_date") : "")],
-      ["目前距前高", gap == null ? "—" : pct(gap, 3)],
+      // F4 的分母是盤中高，不是最高收盤 —— 這裡要顯示同一個數字，
+      // 否則「前高」與「距前高」在同一張表上會對不起來
+      ["前高（期間最高盤中價）",
+       v("resistance_high") == null ? "—" : price(v("resistance_high")) +
+         (v("resistance_high_date") ? "　" + v("resistance_high_date") : "")],
+      ["目前距前高　→ F4", gap == null ? "—" : pct(gap, 3)],
       ["加權指數", v("taiex") == null ? "—" : price(v("taiex")) +
         (v("taiex_change_pct") == null ? "" : "　" + spct(v("taiex_change_pct")))],
       ["成交值", money100m(v("market_turnover_100m"))],
@@ -409,6 +468,7 @@
     EOSUI.renderSummary($("#summary-card"), $("#summary"),
                         ((snap || {}).eos || {}).summary);
     renderWaves(snap);
+    renderLevels(snap);
     renderKeys(snap);
 
     const fields = snap.fields || {};

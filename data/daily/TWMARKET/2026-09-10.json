@@ -2,15 +2,15 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-09-10",
  "first_collected_at": "2026-09-26T15:30:53",
- "updated_at": "2026-09-26T16:21:47",
+ "updated_at": "2026-09-26T21:06:47",
  "windows": [
   "backfill"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
-  "eos": 54,
-  "raw_eos": 53.99464175724251,
-  "earned": 53.9946,
+  "eos": 57,
+  "raw_eos": 56.67857198464322,
+  "earned": 56.6786,
   "available": 100.0,
   "coverage_status": "confirmed",
   "published": true,
@@ -20,7 +20,7 @@
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 53.99464175724251,
+    "earned": 56.67857198464322,
     "available": 100.0,
     "max": 100.0,
     "complete": true,
@@ -55,11 +55,11 @@
      {
       "id": "F4",
       "name": "距前高壓力空間",
-      "earned": 4.109245557513341,
+      "earned": 6.793175784914049,
       "available": 15.0,
       "max": 15.0,
       "scored": true,
-      "detail": "0.00821849 -> 0.2739 x 15"
+      "detail": "0.0135864 -> 0.4529 x 15"
      },
      {
       "id": "F5",
@@ -92,7 +92,7 @@
    }
   },
   "summary": {
-   "headline": "燈號 54/100，屬「可續買但進入賣壓測試區」，較 09-09 上升 8 分",
+   "headline": "燈號 57/100，屬「可續買但進入賣壓測試區」，較 09-09 上升 8 分",
    "drivers": [
     "F2 本波累計規模餘裕 +10.7",
     "F1 本波連買天數餘裕 +7.5",
@@ -110,9 +110,80 @@
    ],
    "quality": [],
    "watch": [
-    "距「續買動能明確」（65 分）尚差 11 分"
+    "距「續買動能明確」（65 分）尚差 8 分"
    ],
-   "text": "燈號 54/100，屬「可續買但進入賣壓測試區」，較 09-09 上升 8 分　改善：F2 本波累計規模餘裕 +10.7、F1 本波連買天數餘裕 +7.5、F4 距前高壓力空間 +2.6　拖累：F7 美 10 年期公債殖利率 -0.3、F6 前一美股費半 -2.3、F5 融資熱度（反向） -3.4、F3 外資期貨 5 日回補 -6.6　F2 本波累計規模餘裕：本波累計 -383.3 億元　F1 本波連買天數餘裕：本波連買天數 1 天　待觀察：距「續買動能明確」（65 分）尚差 11 分"
+   "text": "燈號 57/100，屬「可續買但進入賣壓測試區」，較 09-09 上升 8 分　改善：F2 本波累計規模餘裕 +10.7、F1 本波連買天數餘裕 +7.5、F4 距前高壓力空間 +2.6　拖累：F7 美 10 年期公債殖利率 -0.3、F6 前一美股費半 -2.3、F5 融資熱度（反向） -3.4、F3 外資期貨 5 日回補 -6.6　F2 本波累計規模餘裕：本波累計 -383.3 億元　F1 本波連買天數餘裕：本波連買天數 1 天　待觀察：距「續買動能明確」（65 分）尚差 8 分"
+  },
+  "levels": {
+   "as_of": "2026-09-10",
+   "latest_close": 46940.49,
+   "window_days": 25,
+   "rows": [
+    {
+     "key": "resistance_2",
+     "label": "壓力2",
+     "value": 47578.24,
+     "date": "2026-09-08",
+     "basis": "期間最高盤中價",
+     "gap_pct": 0.013586351569828015
+    },
+    {
+     "key": "resistance_1",
+     "label": "壓力1",
+     "value": 47548.26,
+     "date": "2026-09-09",
+     "basis": "次高盤中價，與壓力2 構成前高壓力帶",
+     "gap_pct": 0.012947670550520485
+    },
+    {
+     "key": "band_low",
+     "label": "壓力區下緣",
+     "value": 47326.27,
+     "date": "2026-09-07",
+     "basis": "期間最高收盤與前波外資成本取高者",
+     "gap_pct": 0.008218491115026705
+    },
+    {
+     "key": "foreign_cost",
+     "label": "前波外資成本",
+     "value": 47049.35,
+     "date": null,
+     "basis": "2026-09-04~2026-09-09 買超金額加權的指數平均",
+     "gap_pct": 0.002319178764247143
+    },
+    {
+     "key": "gap_upper",
+     "label": "跳空缺口上緣",
+     "value": 46724.0,
+     "date": "2026-09-07",
+     "basis": "最近一次向上跳空日的最低",
+     "gap_pct": -0.004612009802198447
+    },
+    {
+     "key": "gap_lower",
+     "label": "跳空缺口下緣",
+     "value": 46620.96,
+     "date": "2026-09-07",
+     "basis": "該次跳空的前一日最高",
+     "gap_pct": -0.006807129623060959
+    },
+    {
+     "key": "turn_close",
+     "label": "外資轉買首日收盤",
+     "value": 46551.13,
+     "date": "2026-09-04",
+     "basis": "最近一段買波的起始日收盤",
+     "gap_pct": -0.008294757894517057
+    },
+    {
+     "key": "support_low",
+     "label": "期間最低收盤",
+     "value": 44225.91,
+     "date": "2026-08-07",
+     "basis": "視窗內最低收盤",
+     "gap_pct": -0.057830244209210346
+    }
+   ]
   }
  },
  "fields": {
@@ -373,7 +444,7 @@
    "note": "由最近 25 個交易日的序列推導"
   },
   "gap_to_resistance_pct": {
-   "value": 0.008218491115026682,
+   "value": 0.013586351569828096,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-09-10",
@@ -398,6 +469,46 @@
   },
   "window_days": {
    "value": 25,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-09-10",
+   "status": "ok",
+   "note": "由最近 25 個交易日的序列推導"
+  },
+  "taiex_open": {
+   "value": 47130.96,
+   "source": "TWSE MI_5MINS_HIST",
+   "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20260901&response=json",
+   "as_of": "2026-09-10",
+   "status": "ok",
+   "note": ""
+  },
+  "taiex_high": {
+   "value": 47130.96,
+   "source": "TWSE MI_5MINS_HIST",
+   "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20260901&response=json",
+   "as_of": "2026-09-10",
+   "status": "ok",
+   "note": ""
+  },
+  "taiex_low": {
+   "value": 46573.47,
+   "source": "TWSE MI_5MINS_HIST",
+   "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20260901&response=json",
+   "as_of": "2026-09-10",
+   "status": "ok",
+   "note": ""
+  },
+  "resistance_high": {
+   "value": 47578.24,
+   "source": "marketflow",
+   "url": "",
+   "as_of": "2026-09-10",
+   "status": "ok",
+   "note": "由最近 25 個交易日的序列推導"
+  },
+  "resistance_high_date": {
+   "value": "2026-09-08",
    "source": "marketflow",
    "url": "",
    "as_of": "2026-09-10",

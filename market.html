@@ -113,13 +113,28 @@
     <div id="wave" class="table-wrap"></div>
   </section>
 
-  <!-- 八、壓力點與資金指標 -->
+  <!-- 八、壓力與支撐 -->
+  <section class="card" id="levels-card" hidden>
+    <div class="card-head">
+      <h2>壓力與支撐</h2>
+      <span id="levels-window" class="subtle"></span>
+    </div>
+    <div id="levels" class="table-wrap"></div>
+    <p class="legend-note subtle">
+      由高到低排成一把尺，最新收盤插在它該在的位置。
+      壓力2（期間最高盤中價）同時是 F4 的分母 —— 用的是盤中高，不是最高收盤。
+      工作表的「支撐1」是人工挑的點位（該日並沒有跳空），平台不重現它，
+      改列定義明確的跳空缺口區間。
+    </p>
+  </section>
+
+  <!-- 九、資金指標 -->
   <section class="card">
-    <div class="card-head"><h2>壓力點與資金指標</h2></div>
+    <div class="card-head"><h2>資金指標</h2></div>
     <div id="keys" class="table-wrap"></div>
   </section>
 
-  <!-- 九、連續買賣超 Top5 -->
+  <!-- 十、連續買賣超 Top5 -->
   <section class="card" id="streaks-card" hidden>
     <div class="card-head">
       <h2>連續買賣超 Top5</h2>
@@ -143,7 +158,7 @@
     </p>
   </section>
 
-  <!-- 十、當日明細 -->
+  <!-- 十一、當日明細 -->
   <section class="card">
     <div class="card-head">
       <h2>當日資料明細</h2>
@@ -152,7 +167,7 @@
     <div id="detail" class="table-wrap"></div>
   </section>
 
-  <!-- 十、00881 摘要 -->
+  <!-- 十二、00881 摘要 -->
   <section class="card crosslink" id="cross-card" hidden>
     <div class="card-head">
       <h2>00881 EOS</h2>

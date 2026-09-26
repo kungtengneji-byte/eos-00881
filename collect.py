@@ -347,9 +347,22 @@ def _safe_yahoo(name: str, day: date, *, as_change: bool) -> Field:
 # ---------------------------------------------------------------- 大盤部件
 
 def part_market_index(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
-    """加權指數、漲跌與成交值。TWSE 不提供漲跌幅，由指數與漲跌點數回推。"""
+    """加權指數、漲跌、成交值與開高低。TWSE 不提供漲跌幅，由指數與漲跌點數回推。
+
+    盤中高低來自另一支端點（MI_5MINS_HIST）。兩支都是整月回傳，
+    收盤欄位在 31 個交易日上實測完全一致，可以混用。
+    盤中高是 F4 的分母與壓力2，缺了它 F4 就不計分。
+    """
     _throttle_twse()
-    return twse.fetch_market_index(day)
+    out = twse.fetch_market_index(day)
+    _throttle_twse()
+    try:
+        out.update(twse.fetch_taiex_ohlc(day))
+    except SourceError as exc:
+        url = twse.taiex_ohlc_url(f"{day:%Y%m}")
+        for n in ("taiex_open", "taiex_high", "taiex_low"):
+            out[n] = Field.unavailable(n, "TWSE MI_5MINS_HIST", url, str(exc))
+    return out
 
 
 def part_market_institutional(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
@@ -459,13 +472,15 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
 
     # 大盤的 F1/F2/F4 不是抓得到的欄位，要由歷史序列推導。
     # 必須在計分前做，而且要把當日快照一起納入 —— 只讀已存檔的歷史會少一天。
+    market_rows: list[dict[str, Any]] | None = None
+    lookback = int(cfg.get("lookback_days", marketflow.DEFAULT_LOOKBACK))
     if cfg.get("kind") == "market":
         history = [store.load(inst, d) for d in sorted(store.recent_days(inst, 9999))]
         history = [h for h in history if h]
         merged = {"trade_date": day.isoformat(), "fields": fields}
         history = [h for h in history if h["trade_date"] != day.isoformat()] + [merged]
         rows = marketflow.rows_from_snapshots(history)
-        lookback = int(cfg.get("lookback_days", marketflow.DEFAULT_LOOKBACK))
+        market_rows = rows
         derived = marketflow.rubric_inputs(rows, day, lookback=lookback)
         inputs.update({k: v for k, v in derived.items() if v is not None})
 
@@ -518,6 +533,11 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
                                        meta=meta, prev_date=prev_date)
     if outlook is not None:
         payload["outlook"] = outlook
+
+    # 壓力／支撐點位。放在 eos payload 裡而不是 fields：它是一張有順序的表，
+    # 拆成十幾個扁平欄位會失去「由高到低排成一把尺」這件事。
+    if market_rows is not None:
+        payload["levels"] = marketflow.levels(market_rows, day, lookback=lookback)
 
     store.save(inst, day, fields=fields, eos=payload,
                windows=[window] if window else [])
