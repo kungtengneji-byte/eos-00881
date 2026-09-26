@@ -294,10 +294,48 @@ def fetch_market_index(day: date) -> dict[str, Field]:
     return market_index_fields(parse_market_index(fetch_json(url), url=url), day, url=url)
 
 
+# ---------------------------------------------------------------- 產業別
+
+# 上市公司基本資料的「產業別」是代碼，對照表抽樣逐碼驗過
+# （12 是汽車工業含零組件廠、91 是存託憑證，不是直覺會猜到的那幾個）。
+INDUSTRY_NAME = {
+    "01": "水泥工業", "02": "食品工業", "03": "塑膠工業", "04": "紡織纖維",
+    "05": "電機機械", "06": "電器電纜", "08": "玻璃陶瓷", "09": "造紙工業",
+    "10": "鋼鐵工業", "11": "橡膠工業", "12": "汽車工業", "14": "建材營造",
+    "15": "航運業", "16": "觀光餐旅", "17": "金融保險", "18": "貿易百貨",
+    "19": "綜合", "20": "其他", "21": "化學工業", "22": "生技醫療",
+    "23": "油電燃氣", "24": "半導體", "25": "電腦及週邊", "26": "光電",
+    "27": "通信網路", "28": "電子零組件", "29": "電子通路", "30": "資訊服務",
+    "31": "其他電子", "32": "文化創意", "33": "農業科技", "34": "電子商務",
+    "35": "綠能環保", "36": "數位雲端", "37": "運動休閒", "38": "居家生活",
+    "91": "存託憑證",
+}
+
+INDUSTRY_URL = "https://openapi.twse.com.tw/v1/opendata/t187ap03_L"
+
+
+def parse_industries(payload: Any) -> dict[str, str]:
+    """回傳 {公司代號: 產業別代碼}。
+
+    只涵蓋上市**公司**；ETF、ETN 不在這份名單裡，由呼叫端另外歸類。
+    """
+    out: dict[str, str] = {}
+    for row in payload or []:
+        code = str(row.get("公司代號", "")).strip()
+        ind = str(row.get("產業別", "")).strip()
+        if code and ind:
+            out[code] = ind
+    return out
+
+
+def fetch_industries() -> tuple[dict[str, str], str]:
+    return parse_industries(fetch_json(INDUSTRY_URL)), INDUSTRY_URL
+
+
 # ---------------------------------------------------------------- 個股收盤價
 
 _PRICE_TABLE_HINT = "每日收盤行情"
-_PRICE_CODE, _PRICE_CLOSE = 0, 8
+_PRICE_CODE, _PRICE_CLOSE, _PRICE_UPDOWN, _PRICE_DIFF = 0, 8, 9, 10
 
 
 def stock_prices_url(day: date) -> str:
@@ -309,13 +347,32 @@ def stock_prices_url(day: date) -> str:
     return f"{BASE}/afterTrading/MI_INDEX?date={day:%Y%m%d}&type=ALLBUT0999&response=json"
 
 
-def parse_stock_prices(payload: dict[str, Any], *, url: str = "") -> dict[str, float]:
-    """回傳 {證券代號: 收盤價}。
+def _signed_diff(updown: Any, diff: Any) -> float | None:
+    """漲跌方向與價差是分開的兩欄，方向那欄是一段帶顏色的 HTML。
+
+    TWSE 回的是 `<p style= color:green>-</p>` 這種東西（台股綠跌紅漲）。
+    只看價差欄會把跌 25 元當成漲 25 元 —— 方向必須從這一欄取。
+    除權息那天是 `X`，方向不明，回 None 而不是猜一個。
+    """
+    d = to_float(diff)
+    if d is None:
+        return None
+    text = str(updown)
+    if "-" in text:
+        return -abs(d)
+    if "+" in text:
+        return abs(d)
+    return 0.0 if d == 0 else None
+
+
+def parse_stock_prices(payload: dict[str, Any], *,
+                       url: str = "") -> dict[str, tuple[float, float | None]]:
+    """回傳 {證券代號: (收盤價, 漲跌幅)}；漲跌幅不可得時為 None。
 
     MI_INDEX 一次回傳十幾張表（各類指數、大盤統計、漲跌家數…），
     以標題挑出「每日收盤行情」那一張，不靠索引 —— 表的順序會隨改版變動。
     """
-    out: dict[str, float] = {}
+    out: dict[str, tuple[float, float | None]] = {}
     for table in payload.get("tables") or []:
         if _PRICE_TABLE_HINT not in str(table.get("title", "")):
             continue
@@ -324,13 +381,20 @@ def parse_stock_prices(payload: dict[str, Any], *, url: str = "") -> dict[str, f
                 continue
             code = str(row[_PRICE_CODE]).strip()
             close = to_float(row[_PRICE_CLOSE])
-            if code and close is not None:
-                out[code] = close
+            if not code or close is None:
+                continue
+            pct = None
+            if len(row) > _PRICE_DIFF:
+                d = _signed_diff(row[_PRICE_UPDOWN], row[_PRICE_DIFF])
+                prev = None if d is None else close - d
+                if d is not None and prev:
+                    pct = d / prev
+            out[code] = (close, pct)
         break
     return out
 
 
-def fetch_stock_prices(day: date) -> tuple[dict[str, float], str]:
+def fetch_stock_prices(day: date) -> tuple[dict[str, tuple[float, float | None]], str]:
     url = stock_prices_url(day)
     return parse_stock_prices(fetch_json(url), url=url), url
 

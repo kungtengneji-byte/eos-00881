@@ -641,6 +641,68 @@
     renderStreaks();
   }
 
+  /* ---------------------------------------------------------- 產業資金輪動 */
+  /* 報表由 eos/sectorflow.py 算好（data/sector_flow.json）。
+     最新一日攤開成表，前幾日只列一行判讀 —— 整段期間全部攤開的話，
+     手機上要捲十幾個螢幕才看得完，而舊日子的細節多半不需要。 */
+  async function loadSectors() {
+    const card = $("#sector-card");
+    let rep;
+    try {
+      rep = await EOSUI.loadJSON("data/sector_flow.json");
+    } catch {
+      card.hidden = true;
+      return;
+    }
+    const rows = (rep && rep.rows) || [];
+    if (!rows.length) { card.hidden = true; return; }
+
+    const last = rows[rows.length - 1];
+    $("#sector-asof").textContent =
+      last.date + "　主導法人 " + (last.leading_label || "—");
+
+    const box = $("#sector");
+    box.textContent = "";
+    const body = [];
+    for (const [side, mark] of [["inflow", "流入"], ["outflow", "流出"]]) {
+      for (const s of last[side] || []) {
+        const left = el("div");
+        const t = el("div", "fld-label");
+        t.textContent = s.label;
+        const tag = el("span", "tag");
+        tag.textContent = mark;
+        t.append(" ", tag);
+        const sub = el("div", "fld-sub subtle");
+        sub.textContent = (s.top || [])
+          .map((x) => x.name + " " + (x.lots >= 0 ? "+" : "") +
+                      Math.round(x.lots).toLocaleString("en-US") + "張")
+          .join("、");
+        left.append(t, sub);
+        body.push([
+          { node: left },
+          { node: textNode(signed100m(s.amount_100m)), cls: "num" },
+          { node: textNode(s.confirm_ratio == null ? "—"
+              : Math.round(s.confirm_ratio * 100) + "%"), cls: "num" },
+        ]);
+      }
+    }
+    box.append(table(["產業（代表股）", "金額", "同向"], body));
+
+    const daysBox = $("#sector-days");
+    daysBox.textContent = "";
+    // 由新到舊，最新那天已經攤開在上面，這裡從前一天開始
+    for (const r of [...rows].reverse().slice(1, 8)) {
+      const line = el("div", "sum-block");
+      const t = el("div", "sum-title");
+      t.textContent = r.date + "　" + (r.leading_label || "");
+      const p = el("p", "note");
+      p.textContent = r.read;
+      line.append(t, p);
+      daysBox.append(line);
+    }
+    card.hidden = false;
+  }
+
   /* ---------------------------------------------------------- 歷史表格 */
   function renderHistTable(rows) {
     const box = $("#hist-table");
@@ -710,8 +772,10 @@
     $("#app").hidden = false;
 
     EOSUI.renderExports($("#export-card"), $("#exports"), $("#export-at"));
+    EOSUI.initSectionNav("#jumpnav", "#app");
     // 不 await：逐檔報表比較大，抓不到也不該卡住主要內容
     loadStreaks();
+    loadSectors();
 
     EOSUI.crossSummary($("#cross-card"), $("#cross-body"), "00881", {
       rankOf: (r) => ({ "高風險區": 1, "偏不利": 2, "中性等待": 3,

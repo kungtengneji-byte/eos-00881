@@ -27,6 +27,8 @@
   <p id="asof" class="subtle">載入中…</p>
 </header>
 
+<nav id="jumpnav" class="jumpnav" aria-label="區塊快速跳轉" hidden></nav>
+
 <main id="app" hidden>
 
   <!-- 一、今日燈號 -->
@@ -133,6 +135,27 @@
   <section class="card">
     <div class="card-head"><h2>資金指標</h2></div>
     <div id="keys" class="table-wrap"></div>
+  </section>
+
+  <!-- 產業資金輪動 -->
+  <section class="card" id="sector-card" hidden>
+    <div class="card-head">
+      <h2>產業資金輪動</h2>
+      <span id="sector-asof" class="subtle"></span>
+    </div>
+    <div id="sector" class="table-wrap"></div>
+    <div class="card-head" style="margin-top:18px">
+      <h3 class="grp" style="margin:0">近期每日判讀</h3>
+    </div>
+    <div id="sector-days"></div>
+    <p class="legend-note subtle">
+      以全市場逐檔三大法人買賣超 × 當日收盤換算金額，再依上市公司產業別彙總。
+      「同向」＝該產業買超（或賣超）的金額中，個股當日同時上漲（或下跌）的比例，
+      比例高代表資金真的推動了價格，而不是被動承接。ETF 與受益憑證另列 ——
+      自營商的避險部位幾乎都在那裡，混進產業合計只會變成造市行為的雜訊。
+      <br>與工作表的兩個差異：這裡算的是<b>真正的產業合計</b>（工作表標「非官方類股總額」，
+      是從法人前十大榜單湊的）；判讀<b>只寫資料支持的話</b>，工作表會交叉新聞，平台沒有新聞面。
+    </p>
   </section>
 
   <!-- 十、連續買賣超 Top5 -->

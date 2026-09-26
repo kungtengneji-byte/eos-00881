@@ -391,14 +391,28 @@ def test_report_keeps_spare_candidates_for_client_side_filtering():
     assert any(not r["etf"] for r in rows)
 
 
-def test_prices_are_not_rolled_back_by_a_backfill(tmp_path, monkeypatch):
-    """W4 回補舊日子時不能把參考價倒退，否則約當金額跟著一起退。"""
+def test_prices_are_kept_per_day_so_a_backfill_cannot_roll_them_back(tmp_path, monkeypatch):
+    """回補舊日子不該讓 Top5 的參考價倒退。
+
+    原本只存一份最新的，回補 09-18 就會把 09-24 的價格蓋掉。
+    改成一天一個檔之後，「最新是哪一天」由檔名決定，不是由寫入順序決定。
+    """
     monkeypatch.setattr(stockflow, "STOCKS", tmp_path)
-    monkeypatch.setattr(stockflow, "PRICES_PATH", tmp_path / "prices.json")
-    stockflow.save_prices(date(2026, 9, 24), {"2330": 1000.0})
-    assert stockflow.save_prices(date(2026, 9, 18), {"2330": 900.0}) is None
-    as_of, px = stockflow.load_prices()
+    monkeypatch.setattr(stockflow, "PRICES", tmp_path / "px")
+    stockflow.save_prices(date(2026, 9, 24), {"2330": (1000.0, 0.01)})
+    stockflow.save_prices(date(2026, 9, 18), {"2330": (900.0, -0.02)})
+
+    as_of, px = stockflow.latest_prices()
     assert as_of == "2026-09-24" and px["2330"] == 1000.0
-    # 較新的日子照常覆蓋
-    stockflow.save_prices(date(2026, 9, 25), {"2330": 1100.0})
-    assert stockflow.load_prices()[0] == "2026-09-25"
+    # 兩天的資料都在，指定日期可以取到當天的
+    assert stockflow.latest_prices(date(2026, 9, 18))[0] == "2026-09-18"
+    assert stockflow.price_days() == [date(2026, 9, 18), date(2026, 9, 24)]
+
+
+def test_price_day_keeps_the_daily_change(tmp_path, monkeypatch):
+    """產業資金輪動要用每一天每一檔的漲跌做價格同向確認。"""
+    monkeypatch.setattr(stockflow, "STOCKS", tmp_path)
+    monkeypatch.setattr(stockflow, "PRICES", tmp_path / "px")
+    stockflow.save_prices(date(2026, 9, 24), {"2330": (1000.0, -0.01)})
+    assert stockflow.load_price_day(date(2026, 9, 24)) == {"2330": [1000.0, -0.01]}
+    assert stockflow.load_price_day(date(2026, 9, 23)) is None

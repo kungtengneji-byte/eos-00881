@@ -387,6 +387,88 @@ window.EOSUI = (() => {
     card.hidden = false;
   }
 
+  /* ---------------------------------------------------------- 區塊快捷列 */
+  /* 頁面很長（大盤頁十二個區塊、捲完要好幾螢幕），在頂部放一排可橫向滑動的
+     按鈕直接跳到各區塊。標題直接從每個 section 的 h2 取，新增區塊不必改這裡。
+
+     隱藏中的區塊（明日展望、備份、Top5 在資料還沒載入前是 hidden）不列入，
+     所以資料載完要重建一次 —— 用 MutationObserver 監看 hidden 屬性，
+     比在每個非同步載入後手動呼叫可靠。 */
+  const NAV_OFFSET = 56;          // 與 app.css 的 scroll-margin-top 一致
+
+  function buildSectionNav(nav, main) {
+    if (!nav || !main) return;
+    const secs = [...main.querySelectorAll(":scope > section")]
+      .filter((s) => !s.hidden && s.querySelector("h2"));
+
+    nav.textContent = "";
+    if (nav._off) {
+      document.removeEventListener("scroll", nav._off, { capture: true });
+      nav._off = null;
+    }
+    if (secs.length < 3) { nav.hidden = true; return; }
+    nav.hidden = false;
+
+    const links = secs.map((s, i) => {
+      if (!s.id) s.id = "sec-" + i;
+      const a = el("a", "jump");
+      a.href = "#" + s.id;
+      // 「壓力2　期間最高盤中價」那種長標題，按鈕上只取全形空白前的那一段
+      a.textContent = s.querySelector("h2").textContent.split("　")[0];
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        // 明確指定 instant。實測這個引擎的平滑捲動是壞的：不論用
+        // scrollIntoView({behavior:"smooth"})、scrollTo({behavior:"smooth"})
+        // 還是 CSS 的 scroll-behavior，畫面都完全不動。
+        // 捲不動比沒有動畫嚴重得多，所以不賭它在別的瀏覽器上會不會好。
+        s.scrollIntoView({ block: "start", behavior: "instant" });
+        history.replaceState(null, "", "#" + s.id);
+        sync();                       // 捲動事件可能沒送到，按了就直接標亮
+      });
+      nav.append(a);
+      return a;
+    });
+
+    /* 捲到哪一區就標亮哪一顆。
+       原本用 IntersectionObserver 加一條很窄的 rootMargin 判定，
+       區塊比那條帶還短時會整個漏掉，結果是一顆都不亮。
+       改成直接算「最後一個已經捲過導覽列下緣的區塊」，結果唯一且好推理。 */
+    function sync() {
+      const line = NAV_OFFSET + 8;
+      let active = 0;
+      secs.forEach((s, i) => {
+        if (s.getBoundingClientRect().top <= line) active = i;
+      });
+      links.forEach((a, i) => a.classList.toggle("is-on", i === active));
+      const on = links[active];
+      if (on) on.scrollIntoView({ block: "nearest", inline: "nearest",
+                                  behavior: "instant" });
+    }
+
+    let ticking = false;
+    nav._off = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; sync(); });
+    };
+    // 捲動事件不會冒泡。實際捲的是哪一個元素依瀏覽器與 CSS 而異
+    // （這裡 body 帶 overflow:auto），掛在 window 上收不到，
+    // 所以用 capture 掛在 document 上，不管誰在捲都攔得到。
+    document.addEventListener("scroll", nav._off, { passive: true, capture: true });
+    sync();
+  }
+
+  function initSectionNav(navSel, mainSel) {
+    const nav = $(navSel), main = $(mainSel);
+    if (!nav || !main) return;
+    const rebuild = () => buildSectionNav(nav, main);
+    rebuild();
+    // 非同步載入的卡片（明日展望、Top5、產業輪動、備份）出現後要補進來
+    new MutationObserver(rebuild).observe(main, {
+      subtree: true, attributes: true, attributeFilter: ["hidden"],
+    });
+  }
+
   /* ---------------------------------------------------------- 備份下載 */
   /* CSV 由 eos/export.py 在收集完之後產生，這裡只把清單列出來。
      兩頁共用同一份 —— 備份的是整個平台，不是某一頁。 */
@@ -443,6 +525,6 @@ window.EOSUI = (() => {
   }
 
   return { $, el, rect, fmt, pct, signed, smart, table, initTheme, barList,
-           scoreChart, renderSummary, crossSummary, renderExports, syncRangeButtons,
+           scoreChart, renderSummary, crossSummary, renderExports, initSectionNav, syncRangeButtons,
            initRangeControls, initTableToggles, loadJSON, registerSW };
 })();

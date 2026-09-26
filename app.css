@@ -72,7 +72,10 @@ body {
   font: 15px/1.6 system-ui, -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
   max-width: 680px;
   margin-inline: auto;
-  overflow-x: hidden;            /* 不允許整頁橫向捲動 */
+  /* clip 而不是 hidden：hidden 會讓 body 變成捲動容器，
+     連帶讓 position:sticky 的快捷列定位錯亂、window 也收不到捲動事件。
+     clip 一樣不給橫向捲動，但不建立捲動容器。 */
+  overflow-x: clip;
 }
 
 .subtle { color: var(--muted); }
@@ -97,6 +100,28 @@ body {
 /* 壓力支撐表裡標示現價的那一列 */
 td.now { font-weight: 650; color: var(--series-1); }
 #levels tr:has(td.now) { background: color-mix(in srgb, var(--series-1) 9%, transparent); }
+
+/* 區塊快捷列：貼在頂部，可橫向滑動 */
+.jumpnav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 6px; overflow-x: auto; overscroll-behavior-x: contain;
+  padding: 8px 0 10px; margin-bottom: 4px;
+  background: var(--plane);
+  scrollbar-width: none;            /* 手機上那條捲軸只會擋到按鈕 */
+  -webkit-overflow-scrolling: touch;
+}
+.jumpnav::-webkit-scrollbar { display: none; }
+.jumpnav a.jump {
+  flex: none; padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface-1);
+  color: var(--ink-2); font-size: .8rem; text-decoration: none; white-space: nowrap;
+}
+.jumpnav a.jump.is-on {
+  background: var(--series-1); border-color: var(--series-1);
+  color: #fff; font-weight: 600;
+}
+/* 捲到定位時別被黏住的快捷列蓋住標題 */
+main > section { scroll-margin-top: 56px; }
 
 /* 備份下載連結 */
 a.dl { color: var(--series-1); text-decoration: none; word-break: break-all; }

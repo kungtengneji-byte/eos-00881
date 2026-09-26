@@ -559,6 +559,7 @@
     $("#app").hidden = false;
 
     EOSUI.renderExports($("#export-card"), $("#exports"), $("#export-at"));
+    EOSUI.initSectionNav("#jumpnav", "#app");
     // 放在最後且不 await：大盤資料抓不到也不該讓 00881 這頁卡住
     EOSUI.crossSummary($("#cross-card"), $("#cross-body"), "TWMARKET", {
       rankOf: (r) => MARKET_RANK[r] || 2,

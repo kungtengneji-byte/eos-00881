@@ -141,6 +141,28 @@ def export_streaks() -> Path | None:
                       "參考價", "約當金額(億)", "分數", "起始日", "迄日", "ETF"], out)
 
 
+def export_sectors() -> Path | None:
+    """產業資金輪動：每日 × 每個上榜產業一列。"""
+    rep = _load(ROOT / "data" / "sector_flow.json")
+    if not rep or not rep.get("rows"):
+        return None
+    out: list[list[Any]] = []
+    for row in rep["rows"]:
+        for side, label in (("inflow", "流入"), ("outflow", "流出")):
+            for rank, s in enumerate(row.get(side) or [], start=1):
+                top = "、".join(f"{t['name']}({t['lots']:+,.0f}張)"
+                                for t in s.get("top") or [])
+                out.append([row["date"], row.get("leading_label"), label, rank,
+                            s.get("label"), s.get("amount_100m"), s.get("lots"),
+                            s.get("stocks"), s.get("confirm_ratio"), top,
+                            row.get("read")])
+    if not out:
+        return None
+    return write_csv(EXPORTS / "產業資金輪動.csv",
+                     ["資料日", "主導法人", "方向", "名次", "產業", "金額(億)",
+                      "淨額(張)", "檔數", "價格同向比例", "代表股", "判讀"], out)
+
+
 # ---------------------------------------------------------------- 總入口
 
 DIMS_00881 = [("A", "A 價格/折溢價"), ("B", "B 含息趨勢/回檔"), ("C", "C 成分股廣度"),
@@ -162,7 +184,8 @@ def export_all() -> list[Path]:
               export_history("TWMARKET", DIMS_MARKET, EXTRA_MARKET, "燈號"),
               export_fields("TWMARKET"),
               export_levels("TWMARKET"),
-              export_streaks()):
+              export_streaks(),
+              export_sectors()):
         if p is not None:
             made.append(p)
 

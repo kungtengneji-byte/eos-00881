@@ -31,7 +31,8 @@ from typing import Any, Callable
 
 import yaml
 
-from eos import engine, export, marketflow, series as series_mod, stockflow, store, summary
+from eos import (engine, export, marketflow, sectorflow,
+                 series as series_mod, stockflow, store, summary)
 from eos.models import Field, Status
 from eos.rubric import Rubric
 from sources import cathay, taifex, twse, yahoo
@@ -205,7 +206,8 @@ def part_market_stocks(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
             note="回傳空資料（休市或被限流）")}
     stockflow.save_day(day, nets, names)
 
-    # 參考價：張數在不同價位的股票之間不可比，約當金額才讀得出規模。
+    # 參考價與漲跌：張數在不同價位之間不可比，金額才讀得出規模；
+    # 漲跌則是產業資金輪動做「價格同向」確認用的。
     # 失敗不影響連續天數的計算，只是報表少一欄金額。
     try:
         _throttle_twse()
@@ -214,6 +216,17 @@ def part_market_stocks(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
             stockflow.save_prices(day, prices)
     except SourceError as exc:
         print(f"  [market_stocks] 參考價取得失敗（不影響連續判定）：{exc}")
+
+    # 產業別對照幾乎不變，七天抓一次就夠 —— 每天抓是白費一個請求
+    age = stockflow.industries_age_days(day)
+    if age is None or age >= 7:
+        try:
+            industries, _ = twse.fetch_industries()
+            if industries:
+                stockflow.save_industries(day, industries)
+                print(f"  [market_stocks] 更新產業別對照 {len(industries)} 家")
+        except SourceError as exc:
+            print(f"  [market_stocks] 產業別對照取得失敗：{exc}")
 
     return {"stock_flow_count": Field(
         name="stock_flow_count", value=len(nets), source="TWSE T86", url=url,
@@ -584,7 +597,35 @@ def write_index(cfg: dict) -> None:
         lookback=int(st.get("lookback_days", stockflow.DEFAULT_WINDOW)),
         params=stockflow.ScoreParams.from_config(st),
     )
+    _sector_report(st)
     _export()
+
+
+def _sector_report(st: dict) -> None:
+    """產業資金輪動。缺產業對照或價格就不出報表，不以張數混充金額。"""
+    industries = stockflow.load_industries()
+    if not industries:
+        print("  尚無產業別對照，略過產業資金輪動")
+        return
+    names = stockflow.load_names()
+
+    def loader(day):
+        nets = stockflow.load_day(day)
+        prices = stockflow.load_price_day(day)
+        if not nets or not prices:
+            return None
+        return nets, prices, industries, names
+
+    try:
+        rep = sectorflow.build_report(
+            stockflow.available_days(), loader,
+            limit=int(st.get("sector_days", 20)))
+    except Exception as exc:                      # noqa: BLE001
+        print(f"  產業資金輪動計算失敗：{type(exc).__name__}: {exc}")
+        return
+    out = ROOT / "data" / "sector_flow.json"
+    out.write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"  產業資金輪動 {rep['days']} 天")
 
 
 def _export() -> None:
