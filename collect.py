@@ -354,14 +354,36 @@ def part_market_futures(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
 
 
 def part_market_overseas(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
-    """F6 費半、F7 美 10 年債。與 00881 共用 Yahoo adapter 與 T-1 時段規則。"""
+    """F6 費半、F7 美 10 年債，兩個時點各收一份。
+
+    「當日」用 T-1 美股時段：那是台股 T 日收盤前唯一已知的海外資訊，
+    符合 00881 的防前視偏誤規則，可以誠實回測。
+
+    「明日展望」用 T 美股時段：它在台股 T 日收盤之後才結束，
+    因此只有隔日清晨的 W3（或 W4 回補）跑過才拿得到 ——
+    在 T 日當晚收集時，這兩組值會相同，並由 STALE 標記說明原因。
+    這是既有工作表的框架：9/19 早上建檔、指向 9/21。
+    """
     out: dict[str, Field] = {}
+
     sox = _safe_yahoo("sox_ret", day, as_change=True)
     out["sox_prev_session_ret"] = Field(
         name="sox_prev_session_ret", value=sox.value, source=sox.source, url=sox.url,
         as_of=sox.as_of, status=sox.status,
-        note="前一完整美股時段的費半漲跌，映射至當日台股")
+        note="前一完整美股時段（T-1）的費半漲跌，對應當日燈號")
     out["us10y"] = _safe_yahoo("us10y", day, as_change=False)
+
+    # target_day 往後推一天 -> cutoff 變成 day 本身 -> 取 T 日的美股時段
+    nxt = day + timedelta(days=1)
+    sox_l = _safe_yahoo("sox_ret", nxt, as_change=True)
+    out["sox_latest_session_ret"] = Field(
+        name="sox_latest_session_ret", value=sox_l.value, source=sox_l.source,
+        url=sox_l.url, as_of=sox_l.as_of, status=sox_l.status,
+        note="最新已收完的美股時段，對應明日展望燈號")
+    u10 = _safe_yahoo("us10y", nxt, as_change=False)
+    out["us10y_latest"] = Field(
+        name="us10y_latest", value=u10.value, source=u10.source, url=u10.url,
+        as_of=u10.as_of, status=u10.status, note="最新已收完的美股時段")
     return out
 
 
@@ -432,6 +454,21 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
 
     result = engine.compute(rubric, inputs)
 
+    # 大盤同時產出「明日展望」：同一份 rubric，只把 F6/F7 換成最新已收完的
+    # 美股時段。兩者差距本身就是資訊 —— 差很多代表隔夜美股帶來重大變化。
+    outlook = None
+    if cfg.get("kind") == "market":
+        swap = {"sox_prev_session_ret": fields.get("sox_latest_session_ret"),
+                "us10y": fields.get("us10y_latest")}
+        overrides = {k: f.get("value") for k, f in swap.items()
+                     if f and f.get("status") in ("ok", "stale")}
+        if overrides:
+            o = engine.compute(rubric, {**inputs, **overrides})
+            outlook = o.to_dict()
+            src = fields.get("sox_latest_session_ret") or {}
+            outlook["us_session"] = src.get("as_of")
+            outlook["same_as_today"] = (o.eos == result.eos)
+
     # 與前一個「有發布分數」的交易日比較，不是單純的前一天 ——
     # 前一天可能因覆蓋率不足而未出分，拿它比會得到假的變化
     prev_result = prev_date = None
@@ -452,6 +489,8 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
     payload = result.to_dict()
     payload["summary"] = summary.build(rubric, result, prev_result, fields,
                                        meta=meta, prev_date=prev_date)
+    if outlook is not None:
+        payload["outlook"] = outlook
 
     store.save(inst, day, fields=fields, eos=payload, windows=[window])
     print(f"  更新 {len(changed)} 個欄位" + (f"：{', '.join(changed[:6])}" if changed else ""))
