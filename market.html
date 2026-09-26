@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>00881 EOS 追蹤</title>
-<meta name="description" content="國泰台灣科技龍頭 ETF（00881）Entry Opportunity Score 每日追蹤">
+<title>台股大盤 外資續買燈號</title>
+<meta name="description" content="台股大盤資金流向：外資現貨買波、期貨未平倉、融資與前高壓力的每日燈號">
 <meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
@@ -16,11 +16,11 @@
 
 <header class="topbar">
   <nav class="pagenav" aria-label="頁面">
-    <a href="index.html" class="is-on" aria-current="page">00881</a>
-    <a href="market.html">台股大盤</a>
+    <a href="index.html">00881</a>
+    <a href="market.html" class="is-on" aria-current="page">台股大盤</a>
   </nav>
   <div class="topbar-main">
-    <h1>00881 <span class="subtle">國泰台灣科技龍頭</span></h1>
+    <h1>台股大盤 <span class="subtle">外資續買燈號</span></h1>
     <button id="theme-toggle" class="icon-btn" type="button"
             aria-label="切換深淺色" title="切換深淺色">◐</button>
   </div>
@@ -29,11 +29,11 @@
 
 <main id="app" hidden>
 
-  <!-- 一、今日分數：這是一個數字的故事，用 stat tile 而不是圖表 -->
+  <!-- 一、今日燈號 -->
   <section class="card hero">
     <div class="hero-row">
       <div>
-        <div class="hero-label">Entry Opportunity Score</div>
+        <div class="hero-label">外資續買燈號</div>
         <div id="hero-eos" class="hero-figure">--</div>
       </div>
       <div class="hero-side">
@@ -45,58 +45,81 @@
     <p id="hero-note" class="note"></p>
   </section>
 
-  <!-- 二、今日結論 -->
+  <!-- 二、明日展望：同一份規則，把美股時段換成最新已收完的那一場 -->
+  <section class="card" id="outlook-card" hidden>
+    <div class="card-head"><h2>明日展望</h2></div>
+    <div id="outlook"></div>
+    <p class="legend-note subtle">
+      當日燈號用的是台股當天對應的美股時段（T−1），避免用到收盤後才發生的資訊。
+      明日展望改用最新一場已收完的美股，其餘七項輸入完全相同 ——
+      兩者的差距就是隔夜美股帶來的變化。
+    </p>
+  </section>
+
+  <!-- 三、今日結論 -->
   <section class="card" id="summary-card" hidden>
     <div class="card-head"><h2>今日結論</h2></div>
     <div id="summary"></div>
   </section>
 
-  <!-- 三、六構面 -->
+  <!-- 四、七因子 -->
   <section class="card">
-    <div class="card-head"><h2>EOS 六構面評分</h2></div>
+    <div class="card-head"><h2>七因子評分</h2></div>
     <div id="dims" class="dims"></div>
     <p class="legend-note subtle">
-      實心為已得分，淡色軌道為該構面滿分。構面有缺值時，以短豎線標出當日實際可計分上限。
+      實心為已得分，淡色軌道為該因子滿分。每個因子都是線性正規化後夾在 0–1 再乘權重。
     </p>
   </section>
 
-  <!-- 三、EOS 走勢。篩選列在圖表上方，一列統管 -->
+  <!-- 五、燈號走勢 -->
   <section class="card">
     <div class="card-head">
-      <h2>EOS 走勢</h2>
+      <h2>燈號走勢</h2>
       <button class="link-btn" type="button" data-table="hist">表格</button>
     </div>
     <div class="filters" role="group" aria-label="期間">
       <button type="button" data-range="30" class="seg is-on">30 日</button>
-      <button type="button" data-range="90" class="seg">90 日</button>
+      <button type="button" data-range="60" class="seg">60 日</button>
       <button type="button" data-range="all" class="seg">全部</button>
       <span id="chart-count" class="subtle count"></span>
     </div>
     <figure class="chart-figure">
       <div id="chart-wrap" class="chart-wrap"></div>
       <figcaption class="subtle">
-        實心點為資料完整（確定）；空心點為部分缺值（暫定）。橫線為評級門檻。
+        橫線為 45／65 兩個評級門檻。實心點為資料完整，空心點為部分缺值。
       </figcaption>
     </figure>
     <div id="hist-table" class="table-wrap" hidden></div>
   </section>
 
-  <!-- 四、前十大持股 -->
+  <!-- 六、外資現貨買賣超：燈號的主角，單獨一張圖 -->
   <section class="card">
-    <div class="card-head">
-      <h2>前十大持股</h2>
-      <span id="holdings-asof" class="subtle"></span>
-    </div>
+    <div class="card-head"><h2>外資現貨買賣超</h2></div>
     <figure class="chart-figure">
-      <div id="holdings-chart" class="chart-wrap"></div>
+      <div id="flow-chart" class="chart-wrap"></div>
       <figcaption class="subtle">
-        權重 × 當日漲跌幅。長度為貢獻大小，方向即正負；合計即 Top10 加權貢獻。
+        每日淨買賣超（億元）。連續同方向的日子構成一個「波段」，
+        F1／F2 就是拿本波已走的天數與規模，去比視窗內最長的買波。
       </figcaption>
     </figure>
-    <div id="holdings" class="table-wrap"></div>
   </section>
 
-  <!-- 五、當日明細：每個數字的來源與時間戳 -->
+  <!-- 七、本波與視窗內的波段統計 -->
+  <section class="card">
+    <div class="card-head">
+      <h2>波段統計</h2>
+      <span id="wave-window" class="subtle"></span>
+    </div>
+    <div id="wave" class="table-wrap"></div>
+  </section>
+
+  <!-- 八、壓力點與資金指標 -->
+  <section class="card">
+    <div class="card-head"><h2>壓力點與資金指標</h2></div>
+    <div id="keys" class="table-wrap"></div>
+  </section>
+
+  <!-- 九、當日明細 -->
   <section class="card">
     <div class="card-head">
       <h2>當日資料明細</h2>
@@ -105,26 +128,26 @@
     <div id="detail" class="table-wrap"></div>
   </section>
 
-  <!-- 六、大盤摘要：00881 的漲跌有一半是大盤的事，兩頁互相帶一張小卡 -->
+  <!-- 十、00881 摘要 -->
   <section class="card crosslink" id="cross-card" hidden>
     <div class="card-head">
-      <h2>台股大盤 外資續買燈號</h2>
-      <a class="link-btn" href="market.html">完整頁面 →</a>
+      <h2>00881 EOS</h2>
+      <a class="link-btn" href="index.html">完整頁面 →</a>
     </div>
     <div id="cross-body"></div>
   </section>
 
   <footer class="disclaimer">
-    <p><strong>EOS 不是上漲機率。</strong>80 分不代表「80% 會漲」。
+    <p><strong>燈號不是上漲機率。</strong>65 分不代表「65% 會漲」。
        本頁為研究型決策支援，不構成投資建議、報酬保證或價格承諾。</p>
-    <p class="subtle">資料來源：臺灣證券交易所、國泰投信、Yahoo Finance。
-       成交量與成交值以 TWSE 為準。</p>
+    <p class="subtle">資料來源：臺灣證券交易所（大盤成交、三大法人、融資餘額）、
+       臺灣期貨交易所（三大法人期貨未平倉）、Yahoo Finance（費半、美 10 年期公債）。</p>
   </footer>
 </main>
 
 <p id="fallback" class="card">載入資料中…</p>
 
 <script src="common.js"></script>
-<script src="app.js"></script>
+<script src="market.js"></script>
 </body>
 </html>

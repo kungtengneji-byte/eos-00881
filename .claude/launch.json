@@ -2,9 +2,13 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "pwa",
+      "name": "eos",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8811"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8811"
+      ],
       "port": 8811
     }
   ]

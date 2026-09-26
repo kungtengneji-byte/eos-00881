@@ -79,6 +79,30 @@ body {
 
 /* ---------------------------------------------------------------- 頁首 */
 .topbar { padding: 20px 0 8px; }
+
+/* 兩頁導覽。兩個標的是互為背景的關係（00881 的漲跌有一半是大盤的事），
+   所以放在最上面一直看得到，而不是藏在頁尾連結。 */
+.pagenav { display: flex; gap: 6px; margin: 0 0 12px; }
+.pagenav a {
+  flex: 1; text-align: center; padding: 7px 10px;
+  border: 1px solid var(--border); border-radius: 999px;
+  font-size: .84rem; color: var(--ink-2); text-decoration: none;
+  background: var(--surface-1);
+}
+.pagenav a.is-on {
+  background: var(--series-1); border-color: var(--series-1);
+  color: #fff; font-weight: 600;
+}
+
+/* 另一個標的的摘要卡 */
+.crosslink .cross-row {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.cross-figure {
+  font-size: 2.4rem; line-height: 1; font-weight: 600; letter-spacing: -.02em;
+}
+.cross-side { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.cross-side .subtle { font-size: .82rem; }
 .topbar-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .topbar h1 { margin: 0; font-size: 1.05rem; font-weight: 650; letter-spacing: .01em; }
 .topbar h1 .subtle { font-weight: 400; font-size: .85em; }

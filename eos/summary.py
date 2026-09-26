@@ -181,7 +181,9 @@ def build(rubric: Rubric, result: EosResult, previous: EosResult | None,
     """產生結構化結論。text 為給人讀的完整段落。"""
     if result.eos is None:
         what = SCORE_LABEL.get(rubric.version.split("-")[0], "EOS")
-        headline = (f"當日可計分項目僅 {result.available:g}/100，依規則不計算 {what}；"
+        # 中文與西文之間空一格，中文與中文之間不空 ——「不計算 燈號」讀起來是斷的
+        gap = " " if what[:1].isascii() else ""
+        headline = (f"當日可計分項目僅 {result.available:g}/100，依規則不計算{gap}{what}；"
                     f"已取得的項目仍列於下方")
         quality = _quality(result, fields)
         return {"headline": headline, "drivers": [], "drags": [],

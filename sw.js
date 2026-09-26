@@ -11,14 +11,17 @@
    延遲可以忽略，卻換掉一整類「為什麼我看到的是舊版」的問題。
    快取因此退居單純的離線備援。 */
 
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE = `eos-${VERSION}`;
 
 const SHELL = [
   "./",
   "index.html",
+  "market.html",
   "app.css",
+  "common.js",
   "app.js",
+  "market.js",
   "manifest.webmanifest",
   "icon.svg",
 ];
@@ -63,7 +66,8 @@ async function networkFirst(req) {
     if (hit) return hit;
     // 導覽請求離線時退回外殼，至少讓已快取的資料看得到
     if (req.mode === "navigate") {
-      const shell = await caches.match("index.html");
+      const page = new URL(req.url).pathname.split("/").pop() || "index.html";
+      const shell = await caches.match(page) || await caches.match("index.html");
       if (shell) return shell;
     }
     return new Response(

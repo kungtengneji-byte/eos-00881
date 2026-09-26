@@ -192,3 +192,11 @@ def test_market_watch_points_at_the_next_rating_band(market_rubric):
     r = engine.compute(market_rubric, MARKET_INPUTS)
     s = summary.build(market_rubric, r, None, _market_fields())
     assert any("續買動能明確" in w and "65" in w for w in s["watch"])
+
+
+def test_withheld_market_score_reads_as_chinese(market_rubric):
+    """中文與中文之間不空格。「不計算 燈號」是斷的。"""
+    r = engine.compute(market_rubric, {"us10y": 4.5})
+    s = summary.build(market_rubric, r, None, _market_fields())
+    assert "不計算燈號" in s["headline"]
+    assert r.eos is None, "只給一個輸入不該出分"
