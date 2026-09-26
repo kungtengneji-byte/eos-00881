@@ -183,3 +183,121 @@ def parse_stock_institutional(payload: dict[str, Any], stock_no: str, day: date,
 def fetch_stock_institutional(stock_no: str, day: date) -> dict[str, Field]:
     url = stock_institutional_url(day)
     return parse_stock_institutional(fetch_json(url), stock_no, day, url=url)
+
+
+# ================================================================ 大盤
+
+# FMTQIK 欄位位置（日期 成交股數 成交金額 成交筆數 發行量加權股價指數 漲跌點數）
+_MK_DATE, _MK_SHARES, _MK_TURNOVER, _MK_TRADES, _MK_INDEX, _MK_CHANGE = 0, 1, 2, 3, 4, 5
+
+BILLION = 1e8          # 億元
+THOUSAND = 1e3         # 仟元
+
+
+def market_index_url(yyyymm: str) -> str:
+    """大盤每日成交資訊（含發行量加權股價指數），一次回傳整月。"""
+    return f"{BASE}/afterTrading/FMTQIK?date={yyyymm}01&response=json"
+
+
+def parse_market_index(payload: dict[str, Any], *, url: str = "") -> dict[date, dict[str, float | None]]:
+    """回傳 {交易日: {index, change, turnover_100m, shares, trades}}。"""
+    out: dict[date, dict[str, float | None]] = {}
+    for row in rows_of(payload, url=url):
+        if len(row) <= _MK_CHANGE:
+            continue
+        turnover = to_float(row[_MK_TURNOVER])
+        out[roc_to_date(row[_MK_DATE])] = {
+            "index": to_float(row[_MK_INDEX]),
+            "change": to_float(row[_MK_CHANGE]),
+            "turnover_100m": None if turnover is None else turnover / BILLION,
+            "shares": to_float(row[_MK_SHARES]),
+            "trades": to_float(row[_MK_TRADES]),
+        }
+    return out
+
+
+def market_index_fields(history: dict[date, dict[str, float | None]], day: date,
+                        *, url: str) -> dict[str, Field]:
+    src = "TWSE FMTQIK"
+    rec = history.get(day)
+    names = ("taiex", "taiex_change", "taiex_change_pct", "market_turnover_100m")
+    if not rec:
+        return {n: Field.missing(n, source=src, url=url, note="當日無大盤成交資訊（休市或尚未發布）")
+                for n in names}
+
+    idx, chg = rec["index"], rec["change"]
+    # 漲跌幅由指數與漲跌點數回推前日收盤，TWSE 本身不提供百分比欄位
+    pct = None
+    if idx is not None and chg is not None and (idx - chg) != 0:
+        pct = chg / (idx - chg)
+
+    def mk(name: str, value: float | None) -> Field:
+        if value is None:
+            return Field.missing(name, source=src, url=url, note="該欄位為空")
+        return Field(name=name, value=value, source=src, url=url,
+                     as_of=day.isoformat(), status=Status.OK)
+
+    return {
+        "taiex": mk("taiex", idx),
+        "taiex_change": mk("taiex_change", chg),
+        "taiex_change_pct": mk("taiex_change_pct", pct),
+        "market_turnover_100m": mk("market_turnover_100m", rec["turnover_100m"]),
+    }
+
+
+def fetch_market_index(day: date) -> dict[str, Field]:
+    url = market_index_url(f"{day:%Y%m}")
+    return market_index_fields(parse_market_index(fetch_json(url), url=url), day, url=url)
+
+
+# ---------------------------------------------------------------- 融資餘額
+
+def margin_url(day: date) -> str:
+    return f"{BASE}/marginTrading/MI_MARGN?date={day:%Y%m%d}&selectType=MS&response=json"
+
+
+def parse_margin(payload: dict[str, Any], day: date, *, url: str = "") -> dict[str, Field]:
+    """融資餘額。TWSE 以仟元計，模型用億元。
+
+    注意這個端點回的是 tables 陣列而不是單一 data，而且第二個表可能是空殼
+    （fields 為 null）—— 直接索引 tables[0] 以外的位置會炸。
+    """
+    src, u = "TWSE MI_MARGN", url or margin_url(day)
+    today = prev = None
+
+    tables = payload.get("tables") if isinstance(payload, dict) else None
+    for t in tables or []:
+        if not isinstance(t, dict):
+            continue
+        for row in t.get("data") or []:
+            if len(row) < 6:
+                continue
+            # 只取金額列；「融資(交易單位)」是張數，不是金額
+            if "融資金額" in str(row[0]):
+                prev = to_float(row[4])
+                today = to_float(row[5])
+                break
+
+    def mk(name: str, val_k: float | None, note: str = "") -> Field:
+        if val_k is None:
+            return Field.missing(name, source=src, url=u, note="當日尚未發布或休市")
+        return Field(name=name, value=val_k * THOUSAND / BILLION, source=src, url=u,
+                     as_of=day.isoformat(), status=Status.OK, note=note)
+
+    out = {
+        "margin_balance_100m": mk("margin_balance_100m", today,
+                                  "融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號"),
+        "margin_prev_100m": mk("margin_prev_100m", prev),
+    }
+    if today is not None and prev is not None:
+        out["margin_change_100m"] = Field(
+            name="margin_change_100m", value=(today - prev) * THOUSAND / BILLION,
+            source=src, url=u, as_of=day.isoformat(), status=Status.OK)
+    else:
+        out["margin_change_100m"] = Field.missing("margin_change_100m", source=src, url=u)
+    return out
+
+
+def fetch_margin(day: date) -> dict[str, Field]:
+    url = margin_url(day)
+    return parse_margin(fetch_json(url), day, url=url)

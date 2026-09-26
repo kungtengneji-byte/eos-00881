@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import date, datetime
 from typing import Any
@@ -56,15 +57,24 @@ def _looks_like_challenge(text: str) -> bool:
 
 
 def fetch_text(url: str, *, timeout: int = DEFAULT_TIMEOUT, retries: int = 2,
-               backoff: float = 3.0) -> str:
-    """取回文字內容。遇到機器人驗證直接放棄，不重試也不繞過。"""
+               backoff: float = 3.0, data: dict[str, str] | None = None,
+               encoding: str = "utf-8") -> str:
+    """取回文字內容。遇到機器人驗證直接放棄，不重試也不繞過。
+
+    data 不為 None 時改走 POST（期交所的下載端點只接受 POST）。
+    encoding 供非 UTF-8 來源使用 —— 期交所的 CSV 是 Big5。
+    """
+    body = urllib.parse.urlencode(data).encode("ascii") if data is not None else None
     last_err: Exception | None = None
     for attempt in range(retries + 1):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            headers = {"User-Agent": USER_AGENT}
+            if body is not None:
+                headers["Content-Type"] = "application/x-www-form-urlencoded"
+            req = urllib.request.Request(url, data=body, headers=headers)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 raw = resp.read()
-            text = raw.decode("utf-8", errors="replace")
+            text = raw.decode(encoding, errors="replace")
             if _looks_like_challenge(text):
                 raise BotChallengeDetected(
                     f"{url} 回應為機器人驗證頁，此來源已不可自動取得，需改用替代來源"
