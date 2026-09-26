@@ -2,15 +2,16 @@
  "instrument": "00881",
  "trade_date": "2026-09-26",
  "first_collected_at": "2026-09-26T00:26:03",
- "updated_at": "2026-09-26T00:26:03",
+ "updated_at": "2026-09-26T09:14:31",
  "windows": [
-  "all"
+  "all",
+  "w4"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
   "eos": null,
-  "raw_eos": 52.33333333333333,
-  "earned": 15.7,
+  "raw_eos": 67.33333333333333,
+  "earned": 20.2,
   "available": 30.0,
   "coverage_status": "insufficient",
   "published": false,
@@ -123,7 +124,7 @@
    "D": {
     "key": "D",
     "name": "海外科技領先因子",
-    "earned": 8.7,
+    "earned": 10.2,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -131,11 +132,11 @@
      {
       "id": "D1",
       "name": "SOX",
-      "earned": 2.5,
+      "earned": 4.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "-0.00333 -> 50% x 5"
+      "detail": "0.01412 -> 80% x 5"
      },
      {
       "id": "D2",
@@ -153,7 +154,7 @@
       "available": 3.0,
       "max": 3.0,
       "scored": true,
-      "detail": "0.0001236 -> 50% x 3"
+      "detail": "0.004801 -> 50% x 3"
      },
      {
       "id": "D4",
@@ -169,7 +170,7 @@
    "E": {
     "key": "E",
     "name": "波動與總經風險",
-    "earned": 7.0,
+    "earned": 10.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -177,11 +178,11 @@
      {
       "id": "E1",
       "name": "VIX 水準",
-      "earned": 5.0,
+      "earned": 6.0,
       "available": 6.0,
       "max": 6.0,
       "scored": true,
-      "detail": "15.67 -> 5"
+      "detail": "14.87 -> 6"
      },
      {
       "id": "E2",
@@ -195,11 +196,11 @@
      {
       "id": "E3",
       "name": "USD/TWD 日變動",
-      "earned": 1.0,
+      "earned": 3.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "0.003472 -> 1"
+      "detail": "-0.002973 -> 3"
      }
     ]
    },
@@ -239,12 +240,12 @@
    "evidence": [],
    "quality": [
     "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
-    "Nasdaq、NVDA、SOX、TSM ADR、台幣日變動、US10Y、VIX 為較舊時點資料"
+    "NVDA、TSM ADR、US10Y 為較舊時點資料"
    ],
    "watch": [
     "當日正式 NAV 尚未發布，折溢價待回補"
    ],
-   "text": "當日可計分構面僅 30/100，依規則不計算 EOS；已取得的構面仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　Nasdaq、NVDA、SOX、TSM ADR、台幣日變動、US10Y、VIX 為較舊時點資料"
+   "text": "當日可計分構面僅 30/100，依規則不計算 EOS；已取得的構面仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　NVDA、TSM ADR、US10Y 為較舊時點資料"
   }
  },
  "fields": {
@@ -417,20 +418,20 @@
    "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
   },
   "sox_ret": {
-   "value": -0.003330086248626185,
+   "value": 0.014119520235553074,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
-   "status": "stale",
-   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
+   "as_of": "2026-09-25",
+   "status": "ok",
+   "note": ""
   },
   "ndx_ret": {
-   "value": 0.00012362909473329076,
+   "value": 0.004801435979246538,
    "source": "Yahoo Finance ^IXIC",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
-   "status": "stale",
-   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
+   "as_of": "2026-09-25",
+   "status": "ok",
+   "note": ""
   },
   "tsm_ret": {
    "value": 0.01025592067794312,
@@ -449,12 +450,12 @@
    "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
   },
   "vix": {
-   "value": 15.670000076293945,
+   "value": 14.869999885559082,
    "source": "Yahoo Finance ^VIX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
-   "status": "stale",
-   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
+   "as_of": "2026-09-25",
+   "status": "ok",
+   "note": ""
   },
   "us10y": {
    "value": 5.1620001792907715,
@@ -465,20 +466,20 @@
    "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
   },
   "usdtwd": {
-   "value": 31.789499282836914,
+   "value": 31.69499969482422,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
-   "status": "stale",
-   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
+   "as_of": "2026-09-25",
+   "status": "ok",
+   "note": ""
   },
   "twd_change": {
-   "value": 0.00347223601981117,
+   "value": -0.0029726667655856076,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
-   "status": "stale",
-   "note": "美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）"
+   "as_of": "2026-09-25",
+   "status": "ok",
+   "note": ""
   }
  }
 }
