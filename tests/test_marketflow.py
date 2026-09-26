@@ -171,20 +171,104 @@ def test_short_window_can_leave_no_usable_buy_wave(rows):
 
 # ------------------------------------------------------------ 壓力點
 
-def test_resistance_uses_highest_close_not_intraday(rows):
-    """工作表用 09-08 盤中高 47,578.24；改用收盤後是 09-07 的 47,326.27。
-
-    收盤是唯一有官方定版、可重現的價格。
-    """
+def test_highest_close_matches_workbook_pressure_band(rows):
+    """工作表「壓力區下緣」＝期間最高收盤(09-07) 47,326.27 與前波外資成本取高者。"""
     d, v = mf.highest_close(mf.window(rows, SEP18, 60))
     assert d == date(2026, 9, 7)
     assert v == pytest.approx(47326.27)
 
 
-def test_gap_to_resistance_matches_workbook_pressure_band(rows):
-    """工作表 C 區「壓力區下緣 47326.27」列的距離為 0.003084308749。"""
+def test_highest_high_matches_workbook_resistance_2(rows):
+    """工作表「壓力2」＝期間最高盤中價，09-08 的 47,578.24。"""
+    d, v = mf.highest_high(mf.window(rows, SEP18, 60))
+    assert d == date(2026, 9, 8)
+    assert v == pytest.approx(47578.24)
+
+
+def test_second_highest_high_matches_workbook_resistance_1(rows):
+    """工作表「壓力1」＝次高盤中價，09-09 的 47,548.26，與壓力2 構成前高壓力帶。"""
+    d, v = mf.second_highest_high(mf.window(rows, SEP18, 60))
+    assert d == date(2026, 9, 9)
+    assert v == pytest.approx(47548.26)
+
+
+def test_lowest_close_matches_workbook_support_3(rows):
+    """工作表「支撐3」＝本期間最低收盤 09-15 的 45,511.49。
+
+    工作表的期間是 09-02 起；這裡的視窗從 08-07 起，所以要限定同一段區間
+    才能比對 —— 不限定的話最低收盤會落在 08-07。
+    """
+    win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
+    d, v = mf.lowest_close(win)
+    assert d == date(2026, 9, 15)
+    assert v == pytest.approx(45511.49)
+
+
+def test_gap_to_resistance_matches_workbook_f4(rows):
+    """工作表 D 區 F4「距前高壓力空間」指標值 0.84%。
+
+    這是距**壓力2（盤中高 47,578.24）**，不是距壓力區下緣。
+    先前這裡錯抓成壓力區下緣的 0.3084%，F4 因此從 4.2 分掉到 1.5 分。
+    """
     inp = mf.rubric_inputs(rows, SEP18)
-    assert inp["gap_to_resistance_pct"] == pytest.approx(0.003084308749, abs=1e-11)
+    assert inp["gap_to_resistance_pct"] == pytest.approx(0.008425, abs=5e-6)
+    # 正規化後要能還原工作表的 0.281 與加權得分 4.2（參數1 = 3%）
+    norm = min(1.0, inp["gap_to_resistance_pct"] / 0.03)
+    assert norm == pytest.approx(0.281, abs=5e-4)
+    assert norm * 15 == pytest.approx(4.2, abs=0.02)
+
+
+def test_f4_is_withheld_when_intraday_high_is_missing(rows):
+    """盤中高缺值時 F4 不計分，不退回用收盤。
+
+    退回去會算出一個看起來合理、但系統性偏低的分數（盤中高永遠 >= 最高收盤），
+    那比少一個因子更難發現。
+    """
+    stripped = [{k: v for k, v in r.items() if k != "high"} for r in rows]
+    assert mf.rubric_inputs(stripped, SEP18)["gap_to_resistance_pct"] is None
+
+
+def test_foreign_cost_of_previous_buy_wave_matches_workbook(rows):
+    """工作表「前波外資成本」47,049.35＝9/4–9/9 買超金額加權的指數平均。"""
+    win = mf.window(rows, SEP18, 60)
+    buys = [w for w in mf.segment_waves(win) if w.direction == "buy" and w.completed]
+    wave = next(w for w in buys if w.start == date(2026, 9, 4))
+    assert wave.end == date(2026, 9, 9)
+    assert mf.wave_cost(win, wave) == pytest.approx(47049.35, abs=0.005)
+
+
+def test_wave_cost_is_undefined_for_sell_waves(rows):
+    """賣波的權重是負的，加權平均會失去「成本」的語意。"""
+    win = mf.window(rows, SEP18, 60)
+    sell = next(w for w in mf.segment_waves(win) if w.direction == "sell")
+    assert mf.wave_cost(win, sell) is None
+
+
+def test_gap_up_edge_finds_the_only_real_gap_in_the_period(rows):
+    """09-02~09-18 只有一次向上跳空：09-07 開 46,724.00 > 09-04 最高 46,620.96。"""
+    win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
+    d, upper, lower = mf.gap_up_edge(win)
+    assert d == date(2026, 9, 7)
+    assert upper == pytest.approx(46724.00)     # 跳空日最低
+    assert lower == pytest.approx(46620.96)     # 前一日最高
+
+
+def test_workbook_support_1_is_not_reproducible_by_the_gap_rule(rows):
+    """工作表支撐1 取 09-17 盤中高並註明「跳空缺口上緣概念」，但那天沒有跳空。
+
+    09-18 開盤 46,449.56 低於 09-17 最高 46,874.84。這是人工挑的點位，
+    平台不假裝能重現它 —— 硬湊一條規則去對上單一數字，換到別的期間就會亂掉。
+    """
+    win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
+    by_date = {r["date"]: r for r in win}
+    assert by_date["2026-09-18"]["open"] < by_date["2026-09-17"]["high"]
+    assert mf.gap_up_edge(win)[0] != date(2026, 9, 17)
+
+
+def test_gap_up_edge_is_empty_without_intraday_data(rows):
+    stripped = [{k: v for k, v in r.items() if k not in ("high", "open", "low")}
+                for r in rows]
+    assert mf.gap_up_edge(stripped) == (None, None, None)
 
 
 # ------------------------------------------------------------ N 日差分

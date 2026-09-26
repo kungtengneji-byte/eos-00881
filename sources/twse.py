@@ -294,6 +294,67 @@ def fetch_market_index(day: date) -> dict[str, Field]:
     return market_index_fields(parse_market_index(fetch_json(url), url=url), day, url=url)
 
 
+# ---------------------------------------------------------------- 大盤開高低收
+
+# MI_5MINS_HIST 的欄位：日期、開盤指數、最高指數、最低指數、收盤指數
+_OHLC_DATE, _OHLC_OPEN, _OHLC_HIGH, _OHLC_LOW, _OHLC_CLOSE = 0, 1, 2, 3, 4
+
+
+def taiex_ohlc_url(yyyymm: str) -> str:
+    """大盤發行量加權股價指數的開高低收，一次回傳整月。
+
+    FMTQIK 只有收盤指數。壓力／支撐用的是**盤中**高低
+    （工作表的壓力2 = 期間最高盤中價，不是最高收盤），非得另外抓這一支。
+    """
+    return f"{BASE}/TAIEX/MI_5MINS_HIST?date={yyyymm}01&response=json"
+
+
+def parse_taiex_ohlc(payload: dict[str, Any], *,
+                     url: str = "") -> dict[date, dict[str, float | None]]:
+    """回傳 {交易日: {open, high, low, close}}。"""
+    out: dict[date, dict[str, float | None]] = {}
+    for row in rows_of(payload, url=url):
+        if len(row) <= _OHLC_CLOSE:
+            continue
+        try:
+            day = roc_to_date(row[_OHLC_DATE])
+        except (ValueError, AttributeError):
+            continue                      # 月報表尾端偶有統計列
+        out[day] = {
+            "open": to_float(row[_OHLC_OPEN]),
+            "high": to_float(row[_OHLC_HIGH]),
+            "low": to_float(row[_OHLC_LOW]),
+            "close": to_float(row[_OHLC_CLOSE]),
+        }
+    return out
+
+
+def taiex_ohlc_fields(history: dict[date, dict[str, float | None]], day: date,
+                      *, url: str) -> dict[str, Field]:
+    src = "TWSE MI_5MINS_HIST"
+    rec = history.get(day)
+    names = ("taiex_open", "taiex_high", "taiex_low")
+    if not rec:
+        return {n: Field.missing(n, source=src, url=url,
+                                 note="當日無大盤開高低收（休市或尚未發布）")
+                for n in names}
+
+    def mk(name: str, value: float | None) -> Field:
+        if value is None:
+            return Field.missing(name, source=src, url=url, note="該欄位為空")
+        return Field(name=name, value=value, source=src, url=url,
+                     as_of=day.isoformat(), status=Status.OK)
+
+    return {"taiex_open": mk("taiex_open", rec["open"]),
+            "taiex_high": mk("taiex_high", rec["high"]),
+            "taiex_low": mk("taiex_low", rec["low"])}
+
+
+def fetch_taiex_ohlc(day: date) -> dict[str, Field]:
+    url = taiex_ohlc_url(f"{day:%Y%m}")
+    return taiex_ohlc_fields(parse_taiex_ohlc(fetch_json(url), url=url), day, url=url)
+
+
 # ---------------------------------------------------------------- 融資餘額
 
 def margin_url(day: date) -> str:

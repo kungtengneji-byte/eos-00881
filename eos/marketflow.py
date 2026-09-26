@@ -125,21 +125,103 @@ def wave_stats(waves: list[Wave]) -> dict[str, Any]:
     }
 
 
-def highest_close(rows: list[dict[str, Any]], *, key: str = "close") -> tuple[date | None, float | None]:
-    """視窗內最高收盤。
+def _as_date(v: Any) -> date:
+    return v if isinstance(v, date) else date.fromisoformat(v)
 
-    刻意用收盤而非盤中高：收盤是唯一有官方定版、可重現的價格。
-    盤中高會因資料來源與是否含試撮而異，每日自動重算會飄。
+
+def _ranked(rows: list[dict[str, Any]], key: str,
+            *, reverse: bool = True) -> list[tuple[date, float]]:
+    """視窗內某個欄位的逐日值，由大到小（或由小到大）排序。"""
+    vals = [(_as_date(r["date"]), float(r[key])) for r in rows if r.get(key) is not None]
+    return sorted(vals, key=lambda x: x[1], reverse=reverse)
+
+
+def _extreme(rows: list[dict[str, Any]], key: str,
+             *, reverse: bool = True) -> tuple[date | None, float | None]:
+    ranked = _ranked(rows, key, reverse=reverse)
+    return ranked[0] if ranked else (None, None)
+
+
+def highest_close(rows: list[dict[str, Any]], *, key: str = "close") -> tuple[date | None, float | None]:
+    """視窗內最高收盤。壓力區下緣用得到（與前波外資成本取高者）。"""
+    return _extreme(rows, key)
+
+
+def lowest_close(rows: list[dict[str, Any]]) -> tuple[date | None, float | None]:
+    """視窗內最低收盤 —— 工作表的支撐3。"""
+    return _extreme(rows, "close", reverse=False)
+
+
+def highest_high(rows: list[dict[str, Any]]) -> tuple[date | None, float | None]:
+    """視窗內最高**盤中**價 —— 工作表的壓力2，也是 F4 的分母。
+
+    原本這裡用最高收盤，理由是「收盤才有官方定版」。那個理由本身沒錯，
+    但與工作表不符：工作表 2026-09-18 的 F4 指標值是 0.84%（距 47,578.24，
+    09-08 的盤中高），用最高收盤只會得到 0.31%，F4 從 4.2 分掉到 1.5 分。
+    而且盤中高永遠 >= 最高收盤，用收盤會**系統性低估**壓力空間。
+    TWSE MI_5MINS_HIST 提供定版的開高低收，重現性的疑慮不成立。
     """
-    best_d = best_v = None
+    return _extreme(rows, "high")
+
+
+def second_highest_high(rows: list[dict[str, Any]]) -> tuple[date | None, float | None]:
+    """次高盤中價 —— 工作表的壓力1，與壓力2 構成「前高壓力帶」。
+
+    取不同日的第二高，不是同一天的第二筆：同一天只有一個盤中高。
+    """
+    ranked = highest_highs_ranked(rows)
+    return ranked[1] if len(ranked) > 1 else (None, None)
+
+
+def highest_highs_ranked(rows: list[dict[str, Any]]) -> list[tuple[date, float]]:
+    return _ranked(rows, "high")
+
+
+def gap_up_edge(rows: list[dict[str, Any]]
+                ) -> tuple[date | None, float | None, float | None]:
+    """最近一次向上跳空的缺口區間，回傳 (跳空日, 上緣, 下緣)。
+
+    判定：某日開盤高於前一日盤中高。缺口區間是「前一日最高」到「跳空日最低」，
+    上緣＝跳空日最低（回檔先測這裡），下緣＝前一日最高（跌破代表缺口補滿）。
+
+    **這不是工作表的支撐1。** 工作表支撐1 取 09-17 的盤中高 46,874.84 並註明
+    「跳空缺口上緣概念」，但 09-18 開盤 46,449.56 低於 09-17 最高，那天根本
+    沒有跳空 —— 那是人工挑的點位，沒有可複製的規則，因此平台不宣稱能重現它，
+    改為提供這個定義明確的缺口區間。
+    """
+    best: tuple[date | None, float | None, float | None] = (None, None, None)
+    prev = None
     for r in rows:
-        v = r.get(key)
-        if v is None:
+        if prev is not None:
+            o, lo, ph = r.get("open"), r.get("low"), prev.get("high")
+            if o is not None and ph is not None and float(o) > float(ph):
+                upper = float(lo) if lo is not None else float(o)
+                best = (_as_date(r["date"]), upper, float(ph))
+        prev = r
+    return best
+
+
+def wave_cost(rows: list[dict[str, Any]], wave: "Wave | None") -> float | None:
+    """某一段買波的「外資成本」：以每日買超金額為權重的指數加權平均。
+
+    實測 2026-09-04~09-09 這一段算出 47,049.35，與工作表的
+    〈外資波段與壓力點〉「前波外資成本」完全相同（到小數第二位）。
+
+    只對買波有意義 —— 賣波的權重是負的，加權平均會失去「成本」的語意。
+    """
+    if wave is None or wave.direction != "buy":
+        return None
+    num = den = 0.0
+    for r in rows:
+        d = _as_date(r["date"])
+        if not (wave.start <= d <= wave.end):
             continue
-        if best_v is None or float(v) > best_v:
-            best_v = float(v)
-            best_d = r["date"] if isinstance(r["date"], date) else date.fromisoformat(r["date"])
-    return best_d, best_v
+        w, c = r.get("foreign_net_100m"), r.get("close")
+        if w is None or c is None:
+            return None               # 缺一天就不算，不用剩下的硬湊一個成本
+        num += float(w) * float(c)
+        den += float(w)
+    return num / den if den else None
 
 
 def _lookback_delta(rows: list[dict[str, Any]], key: str, n: int) -> float | None:
@@ -167,16 +249,22 @@ def rubric_inputs(rows: list[dict[str, Any]], as_of: date, *,
 
     stats = wave_stats(segment_waves(win))
     peak_date, peak = highest_close(win)
+    hi_date, hi = highest_high(win)
     latest_close = next((r["close"] for r in reversed(win) if r.get("close") is not None), None)
 
+    # F4 的分母是期間最高**盤中**價（工作表的壓力2），不是最高收盤。
+    # 盤中高缺值時 F4 就不計分 —— 退而用收盤會算出一個看起來合理、
+    # 但系統性偏低的分數，那比少一個因子更糟。
     gap = None
-    if peak is not None and latest_close:
-        gap = (peak - float(latest_close)) / float(latest_close)
+    if hi is not None and latest_close:
+        gap = (hi - float(latest_close)) / float(latest_close)
 
     return {
         **stats,
         "resistance_close": peak,
         "resistance_date": peak_date.isoformat() if peak_date else None,
+        "resistance_high": hi,
+        "resistance_high_date": hi_date.isoformat() if hi_date else None,
         "latest_close": latest_close,
         "gap_to_resistance_pct": gap,
         "foreign_futures_oi_change_5d": _lookback_delta(
@@ -194,6 +282,9 @@ def rubric_inputs(rows: list[dict[str, Any]], as_of: date, *,
 # 但分屬兩個模型，混用會讓其中一邊的改動意外影響另一邊。
 SNAPSHOT_KEYS = {
     "close": "taiex",
+    "open": "taiex_open",
+    "high": "taiex_high",
+    "low": "taiex_low",
     "foreign_net_100m": "market_foreign_net_100m",
     "foreign_futures_net_oi": "foreign_futures_net_oi",
     "margin_balance_100m": "margin_balance_100m",

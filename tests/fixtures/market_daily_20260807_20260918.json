@@ -7,7 +7,10 @@
   "dealer_net_100m": -9.68,
   "total_net_100m": -428.68,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 44450.19,
+  "high": 44827.13,
+  "low": 43941.56
  },
  {
   "date": "2026-08-10",
@@ -17,7 +20,10 @@
   "dealer_net_100m": 185.0,
   "total_net_100m": 736.0,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 44540.71,
+  "high": 45219.4,
+  "low": 44540.71
  },
  {
   "date": "2026-08-11",
@@ -27,7 +33,10 @@
   "dealer_net_100m": 24.6,
   "total_net_100m": 279.8,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 44883.9,
+  "high": 45195.41,
+  "low": 44652.06
  },
  {
   "date": "2026-08-12",
@@ -37,7 +46,10 @@
   "dealer_net_100m": 87.0,
   "total_net_100m": 219.8,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45175.7,
+  "high": 45529.48,
+  "low": 45175.7
  },
  {
   "date": "2026-08-13",
@@ -47,7 +59,10 @@
   "dealer_net_100m": 151.0,
   "total_net_100m": 893.0,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45676.54,
+  "high": 46216.41,
+  "low": 45676.54
  },
  {
   "date": "2026-08-14",
@@ -57,7 +72,10 @@
   "dealer_net_100m": -16.6,
   "total_net_100m": 517.1,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 46103.81,
+  "high": 46402.6,
+  "low": 45798.31
  },
  {
   "date": "2026-08-17",
@@ -67,7 +85,10 @@
   "dealer_net_100m": 14.0,
   "total_net_100m": 290.0,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45841.17,
+  "high": 46189.3,
+  "low": 45765.07
  },
  {
   "date": "2026-08-18",
@@ -77,7 +98,10 @@
   "dealer_net_100m": -176.0,
   "total_net_100m": -257.7,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45922.4,
+  "high": 46064.09,
+  "low": 45225.42
  },
  {
   "date": "2026-08-19",
@@ -87,7 +111,10 @@
   "dealer_net_100m": -171.0,
   "total_net_100m": -753.0,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45071.34,
+  "high": 45071.34,
+  "low": 44308.71
  },
  {
   "date": "2026-08-20",
@@ -97,7 +124,10 @@
   "dealer_net_100m": -61.08,
   "total_net_100m": 0.01,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 44942.01,
+  "high": 45160.05,
+  "low": 44446.36
  },
  {
   "date": "2026-08-21",
@@ -107,7 +137,10 @@
   "dealer_net_100m": 29.2,
   "total_net_100m": 333.2,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 44923.34,
+  "high": 45254.84,
+  "low": 44583.87
  },
  {
   "date": "2026-08-24",
@@ -117,7 +150,10 @@
   "dealer_net_100m": -43.3,
   "total_net_100m": -169.7,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45240.3,
+  "high": 45362.3,
+  "low": 44761.88
  },
  {
   "date": "2026-08-25",
@@ -127,7 +163,10 @@
   "dealer_net_100m": 0.6,
   "total_net_100m": -47.07,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 44728.36,
+  "high": 45169.46,
+  "low": 44210.31
  },
  {
   "date": "2026-08-26",
@@ -137,7 +176,10 @@
   "dealer_net_100m": 179.0,
   "total_net_100m": 578.7,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45157.64,
+  "high": 45878.39,
+  "low": 44925.84
  },
  {
   "date": "2026-08-27",
@@ -147,7 +189,10 @@
   "dealer_net_100m": 150.0,
   "total_net_100m": 626.5,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45890.18,
+  "high": 46401.78,
+  "low": 45890.18
  },
  {
   "date": "2026-08-28",
@@ -157,7 +202,10 @@
   "dealer_net_100m": 42.7,
   "total_net_100m": 458.73,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 46070.83,
+  "high": 46574.52,
+  "low": 46070.83
  },
  {
   "date": "2026-08-31",
@@ -167,7 +215,10 @@
   "dealer_net_100m": -74.53,
   "total_net_100m": -258.45,
   "foreign_futures_net_oi": null,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 46224.69,
+  "high": 46224.69,
+  "low": 45450.21
  },
  {
   "date": "2026-09-01",
@@ -177,7 +228,10 @@
   "dealer_net_100m": 163.3,
   "total_net_100m": 566.38,
   "foreign_futures_net_oi": -78706.0,
-  "margin_balance_100m": 5781.15
+  "margin_balance_100m": 5781.15,
+  "open": 46177.11,
+  "high": 46948.72,
+  "low": 46081.11
  },
  {
   "date": "2026-09-02",
@@ -187,7 +241,10 @@
   "dealer_net_100m": -203.62,
   "total_net_100m": -1152.45,
   "foreign_futures_net_oi": -85329.0,
-  "margin_balance_100m": 5856.75
+  "margin_balance_100m": 5856.75,
+  "open": 46901.32,
+  "high": 46946.6,
+  "low": 46164.72
  },
  {
   "date": "2026-09-03",
@@ -197,7 +254,10 @@
   "dealer_net_100m": -167.07,
   "total_net_100m": -637.11,
   "foreign_futures_net_oi": -81575.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 46325.48,
+  "high": 46517.45,
+  "low": 45839.36
  },
  {
   "date": "2026-09-04",
@@ -207,7 +267,10 @@
   "dealer_net_100m": 63.7,
   "total_net_100m": 628.72,
   "foreign_futures_net_oi": -82389.0,
-  "margin_balance_100m": 5818.95
+  "margin_balance_100m": 5818.95,
+  "open": 45991.28,
+  "high": 46620.96,
+  "low": 45966.86
  },
  {
   "date": "2026-09-07",
@@ -217,7 +280,10 @@
   "dealer_net_100m": 156.87,
   "total_net_100m": 1138.65,
   "foreign_futures_net_oi": -79399.0,
-  "margin_balance_100m": 5882.72
+  "margin_balance_100m": 5882.72,
+  "open": 46724.0,
+  "high": 47429.58,
+  "low": 46724.0
  },
  {
   "date": "2026-09-08",
@@ -227,7 +293,10 @@
   "dealer_net_100m": -185.4,
   "total_net_100m": -99.87,
   "foreign_futures_net_oi": -82262.0,
-  "margin_balance_100m": 5862.67
+  "margin_balance_100m": 5862.67,
+  "open": 47335.24,
+  "high": 47578.24,
+  "low": 47023.73
  },
  {
   "date": "2026-09-09",
@@ -237,7 +306,10 @@
   "dealer_net_100m": -18.84,
   "total_net_100m": 211.25,
   "foreign_futures_net_oi": -81066.0,
-  "margin_balance_100m": 5871.67
+  "margin_balance_100m": 5871.67,
+  "open": 47142.74,
+  "high": 47548.26,
+  "low": 47060.78
  },
  {
   "date": "2026-09-10",
@@ -247,7 +319,10 @@
   "dealer_net_100m": -137.64,
   "total_net_100m": -487.47,
   "foreign_futures_net_oi": -83918.0,
-  "margin_balance_100m": 5918.98
+  "margin_balance_100m": 5918.98,
+  "open": 47130.96,
+  "high": 47130.96,
+  "low": 46573.47
  },
  {
   "date": "2026-09-11",
@@ -257,7 +332,10 @@
   "dealer_net_100m": -302.02,
   "total_net_100m": -1112.59,
   "foreign_futures_net_oi": -85067.0,
-  "margin_balance_100m": 5878.71
+  "margin_balance_100m": 5878.71,
+  "open": 46651.21,
+  "high": 46651.21,
+  "low": 45942.44
  },
  {
   "date": "2026-09-14",
@@ -267,7 +345,10 @@
   "dealer_net_100m": -150.93,
   "total_net_100m": -483.61,
   "foreign_futures_net_oi": -82658.0,
-  "margin_balance_100m": 5838.78
+  "margin_balance_100m": 5838.78,
+  "open": 46010.74,
+  "high": 46050.24,
+  "low": 45398.43
  },
  {
   "date": "2026-09-15",
@@ -277,7 +358,10 @@
   "dealer_net_100m": -142.06,
   "total_net_100m": -791.24,
   "foreign_futures_net_oi": -83223.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": null,
+  "open": 45847.27,
+  "high": 46009.85,
+  "low": 45491.97
  },
  {
   "date": "2026-09-16",
@@ -287,7 +371,10 @@
   "dealer_net_100m": -129.74,
   "total_net_100m": -213.8,
   "foreign_futures_net_oi": -76351.0,
-  "margin_balance_100m": 5861.69
+  "margin_balance_100m": 5861.69,
+  "open": 45546.56,
+  "high": 46077.82,
+  "low": 45546.56
  },
  {
   "date": "2026-09-17",
@@ -297,7 +384,10 @@
   "dealer_net_100m": 15.78,
   "total_net_100m": 214.77,
   "foreign_futures_net_oi": -78674.0,
-  "margin_balance_100m": 5893.97
+  "margin_balance_100m": 5893.97,
+  "open": 45936.11,
+  "high": 46874.84,
+  "low": 45936.11
  },
  {
   "date": "2026-09-18",
@@ -307,6 +397,9 @@
   "dealer_net_100m": 243.03,
   "total_net_100m": 1165.87,
   "foreign_futures_net_oi": -76110.0,
-  "margin_balance_100m": 5940.39
+  "margin_balance_100m": 5940.39,
+  "open": 46449.56,
+  "high": 47180.75,
+  "low": 46449.56
  }
 ]
