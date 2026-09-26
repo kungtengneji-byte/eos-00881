@@ -394,7 +394,17 @@ window.EOSUI = (() => {
      隱藏中的區塊（明日展望、備份、Top5 在資料還沒載入前是 hidden）不列入，
      所以資料載完要重建一次 —— 用 MutationObserver 監看 hidden 屬性，
      比在每個非同步載入後手動呼叫可靠。 */
-  const NAV_OFFSET = 56;          // 與 app.css 的 scroll-margin-top 一致
+  /* 導覽列換行後高度會變（一到三排都可能），所以量出來寫進 CSS 變數，
+     讓 scroll-margin-top 跟著走，而不是兩邊各寫一個會對不起來的常數。 */
+  function measureNav(nav) {
+    // 太高就別黏著。手機上十二顆按鈕會排到四排、佔掉將近四分之一個螢幕，
+    // 一路跟著捲比它省下的捲動還討厭。超過視窗三成就讓它跟著頁面捲走。
+    nav.classList.toggle("is-tall", nav.scrollHeight > innerHeight * 0.3);
+    const h = Math.round(nav.getBoundingClientRect().height);
+    document.documentElement.style.setProperty(
+      "--nav-h", (nav.classList.contains("is-tall") ? 0 : h) + "px");
+    return h;
+  }
 
   function buildSectionNav(nav, main) {
     if (!nav || !main) return;
@@ -404,6 +414,7 @@ window.EOSUI = (() => {
     nav.textContent = "";
     if (nav._off) {
       document.removeEventListener("scroll", nav._off, { capture: true });
+      removeEventListener("resize", nav._off);
       nav._off = null;
     }
     if (secs.length < 3) { nav.hidden = true; return; }
@@ -413,8 +424,10 @@ window.EOSUI = (() => {
       if (!s.id) s.id = "sec-" + i;
       const a = el("a", "jump");
       a.href = "#" + s.id;
-      // 「壓力2　期間最高盤中價」那種長標題，按鈕上只取全形空白前的那一段
-      a.textContent = s.querySelector("h2").textContent.split("　")[0];
+      // 按鈕上的字以 data-nav 為準，沒寫才退回 h2（全形空白前那一段）。
+      // 「台股大盤 外資續買燈號」當按鈕太長，但當標題又不能縮。
+      a.textContent = s.dataset.nav
+        || s.querySelector("h2").textContent.split("　")[0];
       a.addEventListener("click", (e) => {
         e.preventDefault();
         // 明確指定 instant。實測這個引擎的平滑捲動是壞的：不論用
@@ -434,15 +447,12 @@ window.EOSUI = (() => {
        區塊比那條帶還短時會整個漏掉，結果是一顆都不亮。
        改成直接算「最後一個已經捲過導覽列下緣的區塊」，結果唯一且好推理。 */
     function sync() {
-      const line = NAV_OFFSET + 8;
+      const line = (nav.classList.contains("is-tall") ? 0 : measureNav(nav)) + 12;
       let active = 0;
       secs.forEach((s, i) => {
         if (s.getBoundingClientRect().top <= line) active = i;
       });
       links.forEach((a, i) => a.classList.toggle("is-on", i === active));
-      const on = links[active];
-      if (on) on.scrollIntoView({ block: "nearest", inline: "nearest",
-                                  behavior: "instant" });
     }
 
     let ticking = false;
@@ -455,6 +465,9 @@ window.EOSUI = (() => {
     // （這裡 body 帶 overflow:auto），掛在 window 上收不到，
     // 所以用 capture 掛在 document 上，不管誰在捲都攔得到。
     document.addEventListener("scroll", nav._off, { passive: true, capture: true });
+    // 轉向或改變視窗寬度會讓換行結果不同，高度跟著變
+    addEventListener("resize", nav._off, { passive: true });
+    measureNav(nav);
     sync();
   }
 

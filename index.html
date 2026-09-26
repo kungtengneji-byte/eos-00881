@@ -54,7 +54,7 @@
   </section>
 
   <!-- 三、六構面 -->
-  <section class="card">
+  <section class="card" data-nav="六構面">
     <div class="card-head"><h2>EOS 六構面評分</h2></div>
     <div id="dims" class="dims"></div>
     <p class="legend-note subtle">
@@ -63,7 +63,7 @@
   </section>
 
   <!-- 三、EOS 走勢。篩選列在圖表上方，一列統管 -->
-  <section class="card">
+  <section class="card" data-nav="走勢">
     <div class="card-head">
       <h2>EOS 走勢</h2>
       <button class="link-btn" type="button" data-table="hist">表格</button>
@@ -84,7 +84,7 @@
   </section>
 
   <!-- 四、前十大持股 -->
-  <section class="card">
+  <section class="card" data-nav="持股">
     <div class="card-head">
       <h2>前十大持股</h2>
       <span id="holdings-asof" class="subtle"></span>
@@ -99,7 +99,7 @@
   </section>
 
   <!-- 五、當日明細：每個數字的來源與時間戳 -->
-  <section class="card">
+  <section class="card" data-nav="明細">
     <div class="card-head">
       <h2>當日資料明細</h2>
       <select id="day-picker" aria-label="選擇日期"></select>
@@ -122,7 +122,7 @@
   </section>
 
   <!-- 六、大盤摘要：00881 的漲跌有一半是大盤的事，兩頁互相帶一張小卡 -->
-  <section class="card crosslink" id="cross-card" hidden>
+  <section class="card crosslink" id="cross-card" hidden data-nav="看大盤">
     <div class="card-head">
       <h2>台股大盤 外資續買燈號</h2>
       <a class="link-btn" href="market.html">完整頁面 →</a>

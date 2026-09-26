@@ -104,15 +104,16 @@ td.now { font-weight: 650; color: var(--series-1); }
 /* 區塊快捷列：貼在頂部，可橫向滑動 */
 .jumpnav {
   position: sticky; top: 0; z-index: 20;
-  display: flex; gap: 6px; overflow-x: auto; overscroll-behavior-x: contain;
+  /* 換行而不是橫向捲動：捲動時最後一顆會被切掉一半，
+     看起來像壞掉，而且不滑到底根本不知道後面還有東西。 */
+  display: flex; flex-wrap: wrap; gap: 6px;
   padding: 8px 0 10px; margin-bottom: 4px;
   background: var(--plane);
-  scrollbar-width: none;            /* 手機上那條捲軸只會擋到按鈕 */
-  -webkit-overflow-scrolling: touch;
 }
-.jumpnav::-webkit-scrollbar { display: none; }
+/* 排得太高時不黏在頂部，改成跟著頁面捲走（由 common.js 加上這個 class） */
+.jumpnav.is-tall { position: static; }
 .jumpnav a.jump {
-  flex: none; padding: 6px 12px; border-radius: 999px;
+  padding: 6px 12px; border-radius: 999px;
   border: 1px solid var(--border); background: var(--surface-1);
   color: var(--ink-2); font-size: .8rem; text-decoration: none; white-space: nowrap;
 }
@@ -120,8 +121,16 @@ td.now { font-weight: 650; color: var(--series-1); }
   background: var(--series-1); border-color: var(--series-1);
   color: #fff; font-weight: 600;
 }
-/* 捲到定位時別被黏住的快捷列蓋住標題 */
-main > section { scroll-margin-top: 56px; }
+/* 捲到定位時別被黏住的快捷列蓋住標題。
+   --nav-h 由 common.js 依實際高度設定 —— 換行之後導覽列可能是兩三排，
+   寫死一個高度在窄畫面上就會把標題壓在底下。 */
+main > section { scroll-margin-top: calc(var(--nav-h, 56px) + 8px); }
+
+/* 窄畫面把按鈕縮一點：十二顆排三排會佔掉太多黏在頂部的空間 */
+@media (max-width: 480px) {
+  .jumpnav { gap: 5px; padding: 7px 0 8px; }
+  .jumpnav a.jump { padding: 5px 9px; font-size: .74rem; }
+}
 
 /* 備份下載連結 */
 a.dl { color: var(--series-1); text-decoration: none; word-break: break-all; }
