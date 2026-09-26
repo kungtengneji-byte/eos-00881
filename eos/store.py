@@ -133,7 +133,8 @@ def write_instrument_meta(cfg: dict[str, Any]) -> Path:
     return out
 
 
-def write_series_index(instrument: str) -> Path:
+def write_series_index(instrument: str, *, presence_field: str = "close",
+                       extra_fields: Iterable[str] = ("close", "premium", "rsi14", "volume_ratio")) -> Path:
     """把所有每日快照壓成一份給前端用的精簡時間序列。
 
     PWA 只需要分數與少數指標，不需要每天的完整來源資訊，
@@ -143,11 +144,12 @@ def write_series_index(instrument: str) -> Path:
     rows = []
     for p in sorted(d.glob("*.json")) if d.exists() else []:
         snap = json.loads(p.read_text(encoding="utf-8"))
-        # 沒有 TWSE 收盤價就不是這檔標的的交易日。
+        # 沒有 TWSE 當日價格就不是交易日。判斷欄位依標的而異：
+        # ETF 用自身收盤價，大盤用加權指數。
         # 排程上線後，W3（早上 05:35）會在台股開盤前先收海外資料，
         # 若當天適逢休市就只會留下一份幾乎全空的快照 —— 不該出現在歷史裡。
-        close = (snap.get("fields") or {}).get("close") or {}
-        if close.get("value") is None:
+        presence = (snap.get("fields") or {}).get(presence_field) or {}
+        if presence.get("value") is None:
             continue
         eos = snap.get("eos") or {}
         row = {
@@ -161,7 +163,7 @@ def write_series_index(instrument: str) -> Path:
             row[k] = dim.get("earned")
             # 前端用它畫出「該構面當日實際可計分上限」，與滿分區隔開
             row[f"{k}_avail"] = dim.get("available")
-        for name in ("close", "premium", "rsi14", "volume_ratio"):
+        for name in extra_fields:
             f = (snap.get("fields") or {}).get(name)
             if f:
                 row[name] = f.get("value")

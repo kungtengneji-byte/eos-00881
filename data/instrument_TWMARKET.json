@@ -1,0 +1,12 @@
+{
+ "instrument": "TWMARKET",
+ "name": "台股大盤資金流向",
+ "issuer": "",
+ "top_n": 10,
+ "ex_dividend": {
+  "date": null,
+  "cash": null,
+  "reference_price": null,
+  "full_recovery": null
+ }
+}

@@ -185,3 +185,35 @@ def rubric_inputs(rows: list[dict[str, Any]], as_of: date, *,
             win, "margin_balance_100m", MARGIN_LOOKBACK),
         "window_days": len(win),
     }
+
+
+# ---------------------------------------------------------------- 快照 -> 序列
+
+# 快照欄位名 -> 波段計算需要的鍵。兩邊刻意用不同名字：
+# market_foreign_net_100m 與 00881 的 foreign_net_100m 是同一筆 TWSE 資料，
+# 但分屬兩個模型，混用會讓其中一邊的改動意外影響另一邊。
+SNAPSHOT_KEYS = {
+    "close": "taiex",
+    "foreign_net_100m": "market_foreign_net_100m",
+    "foreign_futures_net_oi": "foreign_futures_net_oi",
+    "margin_balance_100m": "margin_balance_100m",
+}
+
+
+def rows_from_snapshots(snapshots: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
+    """把每日快照轉成波段計算用的序列，依日期排序。
+
+    只取 status 為 ok/stale 的值 —— missing 與 unavailable 一律視為缺值，
+    由 segment_waves 與 _lookback_delta 各自處理，不在這裡填補。
+    """
+    rows: list[dict[str, Any]] = []
+    for snap in snapshots:
+        fields = snap.get("fields") or {}
+        row: dict[str, Any] = {"date": snap["trade_date"]}
+        for out_key, field_name in SNAPSHOT_KEYS.items():
+            f = fields.get(field_name)
+            row[out_key] = (f.get("value")
+                            if f and f.get("status") in ("ok", "stale") else None)
+        rows.append(row)
+    rows.sort(key=lambda r: r["date"])
+    return rows

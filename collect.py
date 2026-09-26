@@ -31,10 +31,10 @@ from typing import Any, Callable
 
 import yaml
 
-from eos import engine, series as series_mod, store, summary
+from eos import engine, marketflow, series as series_mod, store, summary
 from eos.models import Field, Status
 from eos.rubric import Rubric
-from sources import cathay, twse, yahoo
+from sources import cathay, taifex, twse, yahoo
 from sources.base import SourceError, fetch_json
 
 ROOT = Path(__file__).resolve().parent
@@ -50,6 +50,24 @@ PARTS_BY_WINDOW = {
     "w2": ("nav", "constituents"),
     "w3": ("overseas",),
 }
+
+# 大盤沒有 NAV 與成分股，改收大盤指數、融資餘額與期貨未平倉。
+# 期貨同時排在 W1 與 W2：期交所 15:00 後先出次級值，定版較晚，
+# W2 再抓一次讓合併規則以較新的覆蓋。
+PARTS_BY_WINDOW_MARKET = {
+    "w1": ("market_index", "market_institutional", "market_margin", "market_futures"),
+    "w2": ("market_futures",),
+    "w3": ("market_overseas",),
+}
+
+
+def windows_for(cfg: dict) -> dict[str, tuple[str, ...]]:
+    return PARTS_BY_WINDOW_MARKET if cfg.get("kind") == "market" else PARTS_BY_WINDOW
+
+
+def rubric_for(cfg: dict) -> Rubric:
+    path = cfg.get("rubric")
+    return Rubric.load(ROOT / path) if path else Rubric.load()
 
 
 # ---------------------------------------------------------------- 設定
@@ -303,12 +321,61 @@ def _safe_yahoo(name: str, day: date, *, as_change: bool) -> Field:
         return Field.unavailable(name, f"Yahoo Finance {symbol}", url, str(exc))
 
 
+# ---------------------------------------------------------------- 大盤部件
+
+def part_market_index(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """加權指數、漲跌與成交值。TWSE 不提供漲跌幅，由指數與漲跌點數回推。"""
+    _throttle_twse()
+    return twse.fetch_market_index(day)
+
+
+def part_market_institutional(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """三大法人買賣超。外資現貨逐日淨額是波段切分的唯一輸入。"""
+    _throttle_twse()
+    out = twse.fetch_institutional(day)
+    foreign = out["foreign_net_100m"]
+    # 波段切分讀這個名字；與 00881 的欄位分開命名，避免兩個模型互相污染
+    out["market_foreign_net_100m"] = Field(
+        name="market_foreign_net_100m", value=foreign.value, source=foreign.source,
+        url=foreign.url, as_of=foreign.as_of, status=foreign.status,
+        note="上市外資及陸資（不含外資自營商）現貨買賣超")
+    return out
+
+
+def part_market_margin(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """融資餘額。F5 讀 2 日增減，散戶槓桿的代理指標。"""
+    _throttle_twse()
+    return twse.fetch_margin(day)
+
+
+def part_market_futures(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """外資台指期未平倉。F3 讀 5 日淨額變化。"""
+    return taifex.fetch_futures_oi(day)
+
+
+def part_market_overseas(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """F6 費半、F7 美 10 年債。與 00881 共用 Yahoo adapter 與 T-1 時段規則。"""
+    out: dict[str, Field] = {}
+    sox = _safe_yahoo("sox_ret", day, as_change=True)
+    out["sox_prev_session_ret"] = Field(
+        name="sox_prev_session_ret", value=sox.value, source=sox.source, url=sox.url,
+        as_of=sox.as_of, status=sox.status,
+        note="前一完整美股時段的費半漲跌，映射至當日台股")
+    out["us10y"] = _safe_yahoo("us10y", day, as_change=False)
+    return out
+
+
 PARTS: dict[str, Callable[..., dict[str, Field]]] = {
     "prices": part_prices,
     "institutional": part_institutional,
     "nav": part_nav,
     "constituents": part_constituents,
     "overseas": part_overseas,
+    "market_index": part_market_index,
+    "market_institutional": part_market_institutional,
+    "market_margin": part_market_margin,
+    "market_futures": part_market_futures,
+    "market_overseas": part_market_overseas,
 }
 
 
@@ -338,6 +405,31 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
 
     inputs = {name: f.get("value") for name, f in fields.items()
               if f.get("status") in ("ok", "stale")}
+
+    # 大盤的 F1/F2/F4 不是抓得到的欄位，要由歷史序列推導。
+    # 必須在計分前做，而且要把當日快照一起納入 —— 只讀已存檔的歷史會少一天。
+    if cfg.get("kind") == "market":
+        history = [store.load(inst, d) for d in sorted(store.recent_days(inst, 9999))]
+        history = [h for h in history if h]
+        merged = {"trade_date": day.isoformat(), "fields": fields}
+        history = [h for h in history if h["trade_date"] != day.isoformat()] + [merged]
+        rows = marketflow.rows_from_snapshots(history)
+        lookback = int(cfg.get("lookback_days", marketflow.DEFAULT_LOOKBACK))
+        derived = marketflow.rubric_inputs(rows, day, lookback=lookback)
+        inputs.update({k: v for k, v in derived.items() if v is not None})
+
+        # 推導值也要存成欄位：否則它們永遠不在 fields 裡，
+        # 缺值盤點會把每個推導輸入都報成「仍缺」，而且前端看不到來源。
+        note = f"由最近 {derived.get('window_days', lookback)} 個交易日的序列推導"
+        for name, value in derived.items():
+            if value is None:
+                fields.setdefault(name, Field.missing(
+                    name, source="marketflow", url="", note="歷史序列不足").to_dict())
+                continue
+            fields[name] = Field(name=name, value=value, source="marketflow",
+                                 url="", as_of=day.isoformat(),
+                                 status=Status.OK, note=note).to_dict()
+
     result = engine.compute(rubric, inputs)
 
     # 與前一個「有發布分數」的交易日比較，不是單純的前一天 ——
@@ -371,6 +463,17 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
     return result.to_dict()
 
 
+def write_index(cfg: dict) -> None:
+    """產生前端用的精簡時間序列。判斷交易日的欄位與摘要欄位依標的而異。"""
+    if cfg.get("kind") == "market":
+        store.write_series_index(
+            cfg["instrument"], presence_field="taiex",
+            extra_fields=("taiex", "taiex_change_pct", "market_foreign_net_100m",
+                          "foreign_futures_net_oi", "margin_balance_100m"))
+    else:
+        store.write_series_index(cfg["instrument"])
+
+
 def backfill(cfg: dict, rubric: Rubric, days: int, *, force: bool) -> None:
     """回補過去 N 天仍有缺值的快照。
 
@@ -389,8 +492,8 @@ def backfill(cfg: dict, rubric: Rubric, days: int, *, force: bool) -> None:
         if not missing:
             continue
         print(f"\n回補 {day}（缺 {len(missing)} 欄：{', '.join(missing[:5])}）")
-        parts = tuple(dict.fromkeys(
-            p for w in ("w1", "w2", "w3") for p in PARTS_BY_WINDOW[w]))
+        wins = windows_for(cfg)
+        parts = tuple(dict.fromkeys(p for w in ("w1", "w2", "w3") for p in wins[w]))
         collected = run_parts(cfg, day, parts, force=force)
         score_and_save(cfg, day, rubric, collected, "w4")
 
@@ -405,7 +508,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     cfg = load_config(args.instrument)
-    rubric = Rubric.load()
+    rubric = rubric_for(cfg)
     day = date.fromisoformat(args.date) if args.date else date.today()
     force = args.force_refetch or args.window in ("w1", "all")
 
@@ -414,17 +517,18 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.window == "w4":
         backfill(cfg, rubric, int(cfg.get("backfill_days", 7)), force=force)
-        store.write_series_index(cfg["instrument"])
+        write_index(cfg)
         return 0
 
     windows = ("w1", "w2", "w3") if args.window == "all" else (args.window,)
-    parts = tuple(dict.fromkeys(p for w in windows for p in PARTS_BY_WINDOW[w]))
+    wins = windows_for(cfg)
+    parts = tuple(dict.fromkeys(p for w in windows for p in wins[w]))
     collected = run_parts(cfg, day, parts, force=force)
     if not collected:
         print("  沒有取得任何欄位，不寫入快照")
         return 1
     score_and_save(cfg, day, rubric, collected, args.window)
-    store.write_series_index(cfg["instrument"])
+    write_index(cfg)
     return 0
 
 

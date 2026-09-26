@@ -1,0 +1,244 @@
+{
+ "instrument": "TWMARKET",
+ "trade_date": "2026-08-28",
+ "first_collected_at": "2026-09-26T15:29:31",
+ "updated_at": "2026-09-26T15:29:31",
+ "windows": [
+  "backfill"
+ ],
+ "eos": {
+  "rubric_version": "market-1.0-draft",
+  "eos": 43,
+  "raw_eos": 42.952840632330826,
+  "earned": 42.9528,
+  "available": 100.0,
+  "coverage_status": "confirmed",
+  "published": true,
+  "rating": "賣壓風險升高",
+  "missing": [],
+  "dimensions": {
+   "LIGHT": {
+    "key": "LIGHT",
+    "name": "外資續買燈號",
+    "earned": 42.952840632330826,
+    "available": 100.0,
+    "max": 100.0,
+    "complete": true,
+    "items": [
+     {
+      "id": "F1",
+      "name": "本波連買天數餘裕",
+      "earned": 7.5,
+      "available": 15.0,
+      "max": 15.0,
+      "scored": true,
+      "detail": "3 -> 0.5000 x 15"
+     },
+     {
+      "id": "F2",
+      "name": "本波累計規模餘裕",
+      "earned": 7.400490492241161,
+      "available": 15.0,
+      "max": 15.0,
+      "scored": true,
+      "detail": "1274.61 -> 0.4934 x 15"
+     },
+     {
+      "id": "F3",
+      "name": "外資期貨 5 日回補",
+      "earned": 8.939,
+      "available": 20.0,
+      "max": 20.0,
+      "scored": true,
+      "detail": "-1061 -> 0.4470 x 20"
+     },
+     {
+      "id": "F4",
+      "name": "距前高壓力空間",
+      "earned": 0.0,
+      "available": 15.0,
+      "max": 15.0,
+      "scored": true,
+      "detail": "0 -> 0.0000 x 15"
+     },
+     {
+      "id": "F5",
+      "name": "融資熱度（反向）",
+      "earned": 0.0,
+      "available": 10.0,
+      "max": 10.0,
+      "scored": true,
+      "detail": "123.75 -> 0.0000 x 10"
+     },
+     {
+      "id": "F6",
+      "name": "前一美股費半",
+      "earned": 13.333349453444159,
+      "available": 15.0,
+      "max": 15.0,
+      "scored": true,
+      "detail": "0.0233334 -> 0.8889 x 15"
+     },
+     {
+      "id": "F7",
+      "name": "美 10 年期公債殖利率",
+      "earned": 5.780000686645508,
+      "available": 10.0,
+      "max": 10.0,
+      "scored": true,
+      "detail": "4.672 -> 0.5780 x 10"
+     }
+    ]
+   }
+  },
+  "summary": {
+   "headline": "EOS 43/100，屬「賣壓風險升高」（前一交易日無已發布分數，或當日未達發布門檻）",
+   "drivers": [],
+   "drags": [],
+   "evidence": [],
+   "quality": [],
+   "watch": [
+    "距「可續買但進入賣壓測試區」（45 分）尚差 2 分"
+   ],
+   "text": "EOS 43/100，屬「賣壓風險升高」（前一交易日無已發布分數，或當日未達發布門檻）　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 2 分"
+  }
+ },
+ "fields": {
+  "taiex": {
+   "value": 46331.45,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20260801&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "taiex_change": {
+   "value": 356.23,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20260801&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "taiex_change_pct": {
+   "value": 0.007748304412681441,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20260801&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "market_turnover_100m": {
+   "value": 10689.85392591,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20260801&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "foreign_net_100m": {
+   "value": 417.54,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260828&type=day&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "institutional_net_100m": {
+   "value": 458.28,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260828&type=day&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "market_foreign_net_100m": {
+   "value": 417.54,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260828&type=day&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "上市外資及陸資（不含外資自營商）現貨買賣超"
+  },
+  "margin_balance_100m": {
+   "value": 5671.77536,
+   "source": "TWSE MI_MARGN",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260828&selectType=MS&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號"
+  },
+  "margin_prev_100m": {
+   "value": 5599.18784,
+   "source": "TWSE MI_MARGN",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260828&selectType=MS&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "margin_change_100m": {
+   "value": 72.58752,
+   "source": "TWSE MI_MARGN",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260828&selectType=MS&response=json",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "foreign_futures_net_oi": {
+   "value": -83655.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": "負值為淨空單；淨空擴大代表外資對後市偏空避險"
+  },
+  "foreign_futures_long_oi": {
+   "value": 8732.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "foreign_futures_short_oi": {
+   "value": 92387.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "dealer_futures_net_oi": {
+   "value": 657.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "trust_futures_net_oi": {
+   "value": 76752.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-08-28",
+   "status": "ok",
+   "note": ""
+  },
+  "sox_prev_session_ret": {
+   "value": 0.023333397813776635,
+   "source": "Yahoo Finance ^SOX",
+   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
+   "as_of": "2026-08-27",
+   "status": "ok",
+   "note": "前一完整美股時段的費半漲跌，映射至當日台股"
+  },
+  "us10y": {
+   "value": 4.671999931335449,
+   "source": "Yahoo Finance ^TNX",
+   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
+   "as_of": "2026-08-27",
+   "status": "ok",
+   "note": ""
+  }
+ }
+}

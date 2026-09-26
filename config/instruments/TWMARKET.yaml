@@ -1,0 +1,12 @@
+# 台股大盤資金流向。與 00881 不同，這不是一檔基金 ——
+# 沒有 NAV、沒有成分股，模型輸出是「外資續買燈號」而非 EOS。
+instrument: "TWMARKET"
+kind: "market"
+name: "台股大盤資金流向"
+rubric: "market_rubric_v1.0.yaml"
+
+# F1/F2 的分母與 F4 的前高都取自這個滾動視窗（見 market_rubric_v1.0.yaml 的 windowing）
+lookback_days: 60
+
+# W4 回補窗往回掃幾天。期交所的定版資料偶爾隔日才更新，7 天足夠。
+backfill_days: 7
