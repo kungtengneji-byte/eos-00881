@@ -204,6 +204,17 @@ def part_market_stocks(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
             "stock_flow_count", source="TWSE T86", url=url,
             note="回傳空資料（休市或被限流）")}
     stockflow.save_day(day, nets, names)
+
+    # 參考價：張數在不同價位的股票之間不可比，約當金額才讀得出規模。
+    # 失敗不影響連續天數的計算，只是報表少一欄金額。
+    try:
+        _throttle_twse()
+        prices, _ = twse.fetch_stock_prices(day)
+        if prices:
+            stockflow.save_prices(day, prices)
+    except SourceError as exc:
+        print(f"  [market_stocks] 參考價取得失敗（不影響連續判定）：{exc}")
+
     return {"stock_flow_count": Field(
         name="stock_flow_count", value=len(nets), source="TWSE T86", url=url,
         as_of=day.isoformat(), status=Status.OK,
@@ -570,8 +581,7 @@ def write_index(cfg: dict) -> None:
     stockflow.write_report(
         days[-1],
         lookback=int(st.get("lookback_days", stockflow.DEFAULT_WINDOW)),
-        min_days=int(st.get("min_days", stockflow.DEFAULT_MIN_DAYS)),
-        n=int(st.get("top_n", stockflow.DEFAULT_TOP_N)),
+        params=stockflow.ScoreParams.from_config(st),
     )
 
 

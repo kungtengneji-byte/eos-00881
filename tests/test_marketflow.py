@@ -244,6 +244,50 @@ def test_wave_cost_is_undefined_for_sell_waves(rows):
     assert mf.wave_cost(win, sell) is None
 
 
+def test_resistance_turned_support_matches_workbook_support_1(rows):
+    """工作表「支撐1」46,874.84 就是壓力轉支撐，不是跳空缺口。
+
+    09-18 收盤 47,180.75 站上 09-17 的盤中高 46,874.84，那個高點從壓力
+    變成支撐。工作表把它註記成「跳空缺口上緣概念」，但那天沒有跳空。
+    """
+    win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
+    d, v = mf.resistance_turned_support(win)
+    assert d == date(2026, 9, 17)
+    assert v == pytest.approx(46874.84)
+
+
+def test_resistance_turned_support_needs_a_close_above_not_an_open_above(rows):
+    """用收盤而不是開盤：盤中衝上去又收回來不算站穩。"""
+    bars = [
+        {"date": "2026-01-02", "open": 100, "high": 110, "low": 95, "close": 105},
+        # 開盤 115 高於前日高 110，但收盤 108 退回去了 -> 不成立
+        {"date": "2026-01-03", "open": 115, "high": 118, "low": 105, "close": 108},
+    ]
+    assert mf.resistance_turned_support(bars) == (None, None)
+    bars[1]["close"] = 112
+    d, v = mf.resistance_turned_support(bars)
+    assert d == date(2026, 1, 2) and v == pytest.approx(110)
+
+
+def test_swing_low_needs_both_sides_confirmed(rows):
+    """右側還沒走完的低點不算 —— 現在看起來的低點明天可能就破了。"""
+    win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
+    lows = dict(mf.swing_lows(win))
+    assert date(2026, 9, 14) in lows
+    assert lows[date(2026, 9, 14)] == pytest.approx(45398.43)
+    # 最後兩根（09-17、09-18）右側不足 span，不得入選
+    assert date(2026, 9, 17) not in lows
+    assert date(2026, 9, 18) not in lows
+
+
+def test_nearest_swing_low_is_the_highest_one_below_price(rows):
+    win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
+    d, v = mf.nearest_swing_low(win, 47180.75)
+    assert (d, v) == (date(2026, 9, 14), pytest.approx(45398.43))
+    # 現價低於所有波段低點時沒有支撐可報，不能硬給一個
+    assert mf.nearest_swing_low(win, 40000) == (None, None)
+
+
 def test_gap_up_edge_finds_the_only_real_gap_in_the_period(rows):
     """09-02~09-18 只有一次向上跳空：09-07 開 46,724.00 > 09-04 最高 46,620.96。"""
     win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
@@ -253,11 +297,11 @@ def test_gap_up_edge_finds_the_only_real_gap_in_the_period(rows):
     assert lower == pytest.approx(46620.96)     # 前一日最高
 
 
-def test_workbook_support_1_is_not_reproducible_by_the_gap_rule(rows):
-    """工作表支撐1 取 09-17 盤中高並註明「跳空缺口上緣概念」，但那天沒有跳空。
+def test_workbook_support_1_label_says_gap_but_no_gap_happened(rows):
+    """工作表把支撐1 註記成「跳空缺口上緣概念」，但 09-17 前後都沒有跳空。
 
-    09-18 開盤 46,449.56 低於 09-17 最高 46,874.84。這是人工挑的點位，
-    平台不假裝能重現它 —— 硬湊一條規則去對上單一數字，換到別的期間就會亂掉。
+    09-18 開盤 46,449.56 低於 09-17 最高 46,874.84。值是對的、標籤是錯的 ——
+    那個點位真正的成因是壓力轉支撐（見上一個測試）。
     """
     win = [r for r in mf.window(rows, SEP18, 60) if r["date"] >= "2026-09-02"]
     by_date = {r["date"]: r for r in win}

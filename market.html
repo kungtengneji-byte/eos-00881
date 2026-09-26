@@ -123,8 +123,9 @@
     <p class="legend-note subtle">
       由高到低排成一把尺，最新收盤插在它該在的位置。
       壓力2（期間最高盤中價）同時是 F4 的分母 —— 用的是盤中高，不是最高收盤。
-      工作表的「支撐1」是人工挑的點位（該日並沒有跳空），平台不重現它，
-      改列定義明確的跳空缺口區間。
+      支撐由 K 線推出：<b>壓力轉支撐</b>＝被收盤站上的前高（回檔第一個測的位置），
+      <b>波段低點</b>＝前後各兩日都不低於它的轉折低。
+      另外標「資金」的兩列來自外資買賣超，「區間」則是視窗端點。
     </p>
   </section>
 
@@ -141,7 +142,8 @@
       <span id="streaks-asof" class="subtle"></span>
     </div>
     <div class="filters" role="group" aria-label="法人別">
-      <button type="button" data-inst="foreign" class="seg is-on">外資</button>
+      <button type="button" data-inst="leading" class="seg is-on">主導法人</button>
+      <button type="button" data-inst="foreign" class="seg">外資</button>
       <button type="button" data-inst="trust" class="seg">投信</button>
       <button type="button" data-inst="dealer" class="seg">自營商</button>
       <button type="button" data-inst="total" class="seg">三大法人</button>
@@ -151,7 +153,9 @@
     </label>
     <div id="streaks" class="table-wrap"></div>
     <p class="legend-note subtle">
-      同一類法人連續同方向買（或賣）的天數，先比天數、同天數再比累計張數。
+      計分式取自工作表：<b>分數 = 天數 × 權重 + 狀態加分 + 兩類以上法人同向加分</b>
+      （持續中 +10、待確認 +5、兩類同向 +3，門檻 3 日）。
+      「主導法人」是每一檔取分數最高的那一類，其餘分頁是單一法人別的排行。
       當日淨額為 0 視為中斷 —— 沒有方向就不是「繼續」。
       標「≥」者連到視窗最舊一天，實際天數可能更長。
       自營商榜幾乎都是 ETF，那是造市與申購贖回避險的結果，不是看多看空。

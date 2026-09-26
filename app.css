@@ -98,6 +98,13 @@ body {
 td.now { font-weight: 650; color: var(--series-1); }
 #levels tr:has(td.now) { background: color-mix(in srgb, var(--series-1) 9%, transparent); }
 
+/* 點位成因的小標籤（K線／資金／區間） */
+.tag {
+  display: inline-block; padding: 1px 6px; border-radius: 999px;
+  border: 1px solid var(--border); font-size: .68rem; font-weight: 400;
+  color: var(--ink-2); vertical-align: 1px;
+}
+
 /* 勾選式篩選（排除 ETF） */
 .toggle {
   display: inline-flex; align-items: center; gap: 7px;

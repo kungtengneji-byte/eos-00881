@@ -201,6 +201,141 @@ def gap_up_edge(rows: list[dict[str, Any]]
     return best
 
 
+SWING_SPAN = 2
+
+
+def resistance_turned_support(rows: list[dict[str, Any]]
+                              ) -> tuple[date | None, float | None]:
+    """最近一次被收盤站上的前一日盤中高 —— 壓力轉支撐。
+
+    K 線上最常用的支撐概念：某日收盤突破前一日的高點，那個高點就從壓力
+    變成支撐，回檔第一個測的就是它。
+
+    實測工作表 2026-09-18 的「支撐1」46,874.84：09-18 收盤 47,180.75
+    站上 09-17 的盤中高 46,874.84。工作表把它註記成「跳空缺口上緣概念」，
+    但那天並沒有跳空 —— 真正成立的是壓力轉支撐。
+    """
+    found: tuple[date | None, float | None] = (None, None)
+    prev = None
+    for r in rows:
+        if prev is not None:
+            c, ph = r.get("close"), prev.get("high")
+            if c is not None and ph is not None and float(c) > float(ph):
+                found = (_as_date(prev["date"]), float(ph))
+        prev = r
+    return found
+
+
+def swing_lows(rows: list[dict[str, Any]], *, span: int = SWING_SPAN
+               ) -> list[tuple[date, float]]:
+    """波段低點：左右各 span 根 K 棒都不低於它的那一根的最低價。
+
+    span 太小會把每一根小回檔都當成波段低點，太大則在短視窗裡一個都找不到。
+    2 是短線分析的慣用值（前後各兩天），在 35 個交易日的視窗裡挑得出 3–5 個。
+    最前與最後 span 根不判定：右側還沒走完，現在看起來的低點可能明天就破。
+    """
+    out: list[tuple[date, float]] = []
+    lows = [r.get("low") for r in rows]
+    for i in range(span, len(rows) - span):
+        v = lows[i]
+        if v is None:
+            continue
+        window_vals = [x for x in lows[i - span:i + span + 1] if x is not None]
+        if len(window_vals) < 2 * span + 1:
+            continue
+        if float(v) <= min(float(x) for x in window_vals):
+            out.append((_as_date(rows[i]["date"]), float(v)))
+    return out
+
+
+def swing_highs(rows: list[dict[str, Any]], *, span: int = SWING_SPAN
+                ) -> list[tuple[date, float]]:
+    """波段高點：左右各 span 根 K 棒都不高於它的那一根的最高價。"""
+    out: list[tuple[date, float]] = []
+    highs = [r.get("high") for r in rows]
+    for i in range(span, len(rows) - span):
+        v = highs[i]
+        if v is None:
+            continue
+        vals = [x for x in highs[i - span:i + span + 1] if x is not None]
+        if len(vals) < 2 * span + 1:
+            continue
+        if float(v) >= max(float(x) for x in vals):
+            out.append((_as_date(rows[i]["date"]), float(v)))
+    return out
+
+
+def nearest_swing_low(rows: list[dict[str, Any]], below: float | None,
+                      *, span: int = SWING_SPAN) -> tuple[date | None, float | None]:
+    """現價下方最近的一個波段低點。"""
+    if below is None:
+        return None, None
+    lows = [(d, v) for d, v in swing_lows(rows, span=span) if v < float(below)]
+    return max(lows, key=lambda x: x[1]) if lows else (None, None)
+
+
+def broken_highs(rows: list[dict[str, Any]]) -> list[tuple[date, float]]:
+    """所有「被後來某一天收盤站上」的盤中高點，由舊到新。
+
+    壓力轉支撐的完整清單。resistance_turned_support() 只回最近的一個；
+    要排出一整組階梯狀的支撐就需要全部。
+    """
+    out: list[tuple[date, float]] = []
+    prev = None
+    for r in rows:
+        if prev is not None:
+            c, ph = r.get("close"), prev.get("high")
+            if c is not None and ph is not None and float(c) > float(ph):
+                out.append((_as_date(prev["date"]), float(ph)))
+        prev = r
+    return out
+
+
+def support_ladder(rows: list[dict[str, Any]], close: float | None,
+                   *, span: int = SWING_SPAN, limit: int = 4, per_kind: int = 2
+                   ) -> list[tuple[str, date, float]]:
+    """現價下方的 K 線支撐階梯，由近到遠。
+
+    兩種來源混在一起排：
+      * 壓力轉支撐 —— 被收盤站上的前高，回檔第一個測的位置
+      * 波段低點 —— 左右都確認過的轉折低，跌破才算破壞結構
+
+    同一個價位可能兩種都成立（前高剛好也是波段低點），去重時保留
+    壓力轉支撐 —— 它的成因比較明確。
+    """
+    if close is None:
+        return []
+    # 兩種來源各自取最近的幾個再合併，不是把全部倒在一起排序 ——
+    # 壓力轉支撐通常比較密集，混在一起排會把波段低點整個擠掉，
+    # 結果就是一張只有一種成因的支撐表。
+    broken = sorted((v, d) for d, v in broken_highs(rows) if v < float(close))
+    lows = sorted((v, d) for d, v in swing_lows(rows, span=span) if v < float(close))
+    cands: list[tuple[str, date, float]] = []
+    cands += [("壓力轉支撐", d, v) for v, d in broken[-per_kind:]]
+    cands += [("波段低點", d, v) for v, d in lows[-per_kind:]]
+
+    cands.sort(key=lambda x: -x[2])
+    out: list[tuple[str, date, float]] = []
+    for kind, d, v in cands:
+        if any(abs(v - prev) < 0.005 for _, _, prev in out):
+            continue                       # 同一個價位不重複列
+        out.append((kind, d, v))
+        if len(out) >= limit:
+            break
+    return out
+
+
+def resistance_ladder(rows: list[dict[str, Any]], close: float | None,
+                      *, span: int = SWING_SPAN, limit: int = 1
+                      ) -> list[tuple[str, date, float]]:
+    """現價上方最近的波段高點。期間最高／次高盤中價另外單獨列。"""
+    if close is None:
+        return []
+    highs = [(d, v) for d, v in swing_highs(rows, span=span) if v > float(close)]
+    highs.sort(key=lambda x: x[1])
+    return [("波段高點", d, v) for d, v in highs[:limit]]
+
+
 def wave_cost(rows: list[dict[str, Any]], wave: "Wave | None") -> float | None:
     """某一段買波的「外資成本」：以每日買超金額為權重的指數加權平均。
 
@@ -309,7 +444,8 @@ def levels(rows: list[dict[str, Any]], as_of: date,
     hh_date, hh = highest_high(win)
     h2_date, h2 = second_highest_high(win)
     lc_date, lc = lowest_close(win)
-    gap_date, gap_up, gap_low = gap_up_edge(win)
+    sup = support_ladder(win, close, limit=4, per_kind=2)
+    res = resistance_ladder(win, close, limit=2)
 
     band_low = None
     band_date = None
@@ -321,27 +457,50 @@ def levels(rows: list[dict[str, Any]], as_of: date,
     by_close = {r["date"]: r.get("close") for r in win}
     turn_close = by_close.get(buy.start.isoformat()) if buy else None
 
-    out = [
-        ("resistance_2", "壓力2", hh, hh_date, "期間最高盤中價"),
-        ("resistance_1", "壓力1", h2, h2_date, "次高盤中價，與壓力2 構成前高壓力帶"),
-        ("band_low", "壓力區下緣", band_low, band_date,
+    # kind 讓前端看得出這個價位是怎麼來的：
+    #   K線 —— 純粹由開高低收推出來，與籌碼無關
+    #   資金 —— 由外資買賣超推出來的成本／轉折
+    #   區間 —— 視窗端點，本質是「這段期間走過的極值」
+    out: list[tuple[str, str, Any, Any, str, str]] = [
+        ("resistance_2", "壓力2　期間最高盤中價", hh, hh_date, "區間",
+         "視窗內最高盤中價，也是 F4 的分母"),
+        ("resistance_1", "壓力1　次高盤中價", h2, h2_date, "區間",
+         "與壓力2 構成前高壓力帶"),
+        ("band_low", "壓力區下緣", band_low, band_date, "區間",
          "期間最高收盤與前波外資成本取高者"),
-        ("foreign_cost", "前波外資成本", cost, None,
+        ("foreign_cost", "前波外資成本", cost, None, "資金",
          f"{buy.start}~{buy.end} 買超金額加權的指數平均" if buy else "無買波"),
-        ("gap_upper", "跳空缺口上緣", gap_up, gap_date, "最近一次向上跳空日的最低"),
-        ("gap_lower", "跳空缺口下緣", gap_low, gap_date, "該次跳空的前一日最高"),
         ("turn_close", "外資轉買首日收盤", turn_close,
-         buy.start if buy else None, "最近一段買波的起始日收盤"),
-        ("support_low", "期間最低收盤", lc, lc_date, "視窗內最低收盤"),
+         buy.start if buy else None, "資金", "最近一段買波的起始日收盤"),
+        ("range_low", "期間最低收盤", lc, lc_date, "區間", "視窗內最低收盤"),
     ]
 
+    # K 線支撐階梯：壓力轉支撐與波段低點，由近到遠編號 支撐1/2/3
+    for i, (kind, when, value) in enumerate(sup, start=1):
+        if kind == "壓力轉支撐":
+            basis = ("最近被收盤站上的前一日盤中高" if i == 1
+                     else "曾被收盤站上的前高，跌破代表這一段漲勢的結構被破壞")
+        else:
+            basis = f"前後各 {SWING_SPAN} 日皆不低於它的轉折低"
+        out.append((f"support_{i}", f"支撐{i}　{kind}", value, when, "K線", basis))
+
+    for i, (kind, when, value) in enumerate(res, start=1):
+        out.append((f"res_swing_{i}", f"{kind}", value, when, "K線",
+                    f"前後各 {SWING_SPAN} 日皆不高於它的轉折高"))
+
     rows_out = []
-    for key, label, value, when, basis in out:
+    seen: list[float] = []
+    for key, label, value, when, kind, basis in out:
         if value is None:
             continue
+        v = round(float(value), 2)
+        # 同一個價位只列一次：期間最低收盤有時正好就是某個波段低點
+        if any(abs(v - x) < 0.005 for x in seen):
+            continue
+        seen.append(v)
         when_s = when.isoformat() if isinstance(when, date) else when
         rows_out.append({
-            "key": key, "label": label, "value": round(float(value), 2),
+            "key": key, "label": label, "value": v, "kind": kind,
             "date": when_s, "basis": basis,
             "gap_pct": (float(value) / float(close) - 1) if close else None,
         })

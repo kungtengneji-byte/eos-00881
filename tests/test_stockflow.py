@@ -106,17 +106,114 @@ def test_a_missing_day_breaks_the_streak():
 
 
 def test_direction_change_breaks_the_streak():
+    """兩段同長度時取累計量大的那一段（|−110| > |200|？不，買方 200 較大）。"""
     w = _window({"A": [100, 100, -50, -60]})
     s = stockflow.streaks(w, "foreign", min_days=1)
-    assert s[0].direction == "sell"
-    assert s[0].days == 2
-    assert s[0].shares == -110
+    assert s[0].days == 2, "四天被切成兩段各兩天"
+    assert s[0].direction == "buy"
+    assert s[0].shares == 200
+    assert s[0].status == "broken", "最新日是賣超，買波已中斷"
 
 
-def test_only_streaks_still_running_on_the_last_day_count():
-    """兩週前結束的連買對今天沒有意義，不該出現在榜上。"""
-    w = _window({"A": [100, 100, 100, 100, 0]})
-    assert stockflow.streaks(w, "foreign", min_days=1) == []
+def test_a_broken_streak_still_counts_and_is_labelled_broken():
+    """工作表 2026-09-18 的連買第一名（第一金）早在 09-14 就中斷，仍排第一。
+
+    原本這裡只收「仍在進行」的連續，把剛結束的長連買整個丟掉 ——
+    一段剛結束的 25 日連買本身就是資訊，該由狀態欄說明，不是刪掉。
+    """
+    w = _window({"A": [100, 100, 100, 100, -5]})
+    s = stockflow.streaks(w, "foreign", min_days=1)
+    assert len(s) == 1
+    assert s[0].days == 4 and s[0].direction == "buy"
+    assert s[0].status == "broken"
+
+
+def test_missing_on_the_last_day_is_pending_not_broken():
+    """最新日該檔完全沒有法人紀錄 -> 無從確認是否延續，記「待確認」。"""
+    w = _window({"A": [100, 100, 100, None], "B": [1, 1, 1, 1]})
+    a = next(x for x in stockflow.streaks(w, "foreign", min_days=1) if x.code == "A")
+    assert a.status == "pending"
+
+
+def test_running_streak_is_labelled_running():
+    w = _window({"A": [100, 100, 100]})
+    assert stockflow.streaks(w, "foreign", min_days=1)[0].status == "running"
+
+
+# ---------------------------------------------------------------- 計分
+
+P = stockflow.ScoreParams()
+
+
+def _streak(**kw):
+    base = dict(code="2330", name="台積電", institution="foreign", direction="buy",
+                days=10, shares=1000, start=D0, end=D0, truncated=False,
+                status="broken", peers=1, price=None)
+    base.update(kw)
+    return stockflow.Streak(**base)
+
+
+@pytest.mark.parametrize("days,status,peers,expected", [
+    # 工作表 2026-09-18 版的七筆實例（天數／狀態／兩類以上同向／分數）
+    (25, "broken", 2, 28.25),
+    (11, "running", 2, 24.11),
+    (19, "broken", 1, 19.19),
+    (18, "broken", 1, 18.18),
+    (13, "pending", 1, 18.13),
+    (5, "broken", 2, 8.05),
+])
+def test_score_matches_workbook_formula(days, status, peers, expected):
+    """分數 = 天數 × 權重 + 狀態加分 + 兩類同向加分 + 天數/100。
+
+    最後那一項工作表的規則②沒寫出來，但七筆實例裡六筆只有加上它才對得起來。
+    """
+    assert _streak(days=days, status=status, peers=peers).score(P) == pytest.approx(expected)
+
+
+def test_status_bonuses_come_from_the_sheet_parameters():
+    base = _streak(days=10, peers=0)
+    assert base.score(P) == pytest.approx(10.10)
+    assert _streak(days=10, peers=0, status="running").score(P) == pytest.approx(20.10)
+    assert _streak(days=10, peers=0, status="pending").score(P) == pytest.approx(15.10)
+
+
+def test_peer_bonus_needs_two_or_more_institutions():
+    assert _streak(peers=1).score(P) == pytest.approx(10.10)
+    assert _streak(peers=2).score(P) == pytest.approx(13.10)
+    assert _streak(peers=3).score(P) == pytest.approx(13.10), "三類同向不再加倍"
+
+
+def test_params_come_from_config_not_hardcoded():
+    p = stockflow.ScoreParams.from_config(
+        {"min_days": 5, "day_weight": 2, "bonus_running": 1,
+         "bonus_pending": 0, "bonus_multi_institution": 7, "top_n": 3})
+    assert p.min_days == 5 and p.top_n == 3
+    assert _streak(days=10, status="running", peers=2).score(p) == pytest.approx(
+        10 * 2 + 1 + 7 + 0.10)
+
+
+def test_amount_uses_price_and_matches_workbook():
+    """工作表：聯電 100,630 張 × 141.50 元 = 142.39 億。"""
+    s = _streak(shares=100_630 * 1000, price=141.50)
+    assert s.lots == pytest.approx(100_630)
+    assert s.amount_100m == pytest.approx(142.39, abs=0.01)
+
+
+def test_amount_is_none_without_a_price():
+    """沒有參考價就不報金額，不拿別天的價格頂替。"""
+    assert _streak(price=None).amount_100m is None
+
+
+def test_foreign_includes_the_foreign_dealer_leg():
+    """外資＝外陸資＋外資自營商，與 TWSE 三大法人的口徑一致。"""
+    w = [(D0, {"A": [10, 5, 0, 0]}), (D0 + timedelta(days=1), {"A": [10, 5, 0, 0]})]
+    assert stockflow.streaks(w, "foreign", min_days=1)[0].shares == 30
+
+
+def test_peers_does_not_double_count_the_foreign_dealer_leg():
+    """外資買、外資自營商也買，只算一類同向。"""
+    w = [(D0, {"A": [10, 5, 0, 0]}), (D0 + timedelta(days=1), {"A": [10, 5, 0, 0]})]
+    assert stockflow.streaks(w, "foreign", min_days=1)[0].peers == 1
 
 
 def test_streak_reaching_the_window_edge_is_marked_truncated():
@@ -160,20 +257,31 @@ def test_unknown_institution_is_rejected_loudly():
 
 # ---------------------------------------------------------------- 排序
 
-def test_top_ranks_by_days_then_by_size():
+def test_top_ranks_by_score_then_by_size():
     w = _window({
         "LONG":  [10, 10, 10, 10],
         "BIG":   [None, 900, 900, 900],
         "SMALL": [None, 1, 1, 1],
     })
-    picked = stockflow.top(w, "foreign", min_days=3, n=5)
+    picked = stockflow.top(w, "foreign", n=5)
     assert [s.code for s in picked["buy"]] == ["LONG", "BIG", "SMALL"]
     assert picked["sell"] == []
 
 
 def test_top_limits_each_side_to_n():
     w = _window({c: [10, 10, 10] for c in "ABCDEFG"})
-    assert len(stockflow.top(w, "foreign", min_days=3, n=5)["buy"]) == 5
+    assert len(stockflow.top(w, "foreign", n=5)["buy"]) == 5
+
+
+def test_leading_picks_the_best_institution_per_stock():
+    """工作表的主表混著不同法人別：每一檔只留分數最高的那一類。"""
+    # A：投信連 4 天，外資只有 3 天 -> 主導法人應為投信
+    w = [(D0 + timedelta(days=i),
+          {"A": [(5 if i >= 1 else 0), 0, 7, 0]}) for i in range(4)]
+    lead = stockflow.leading(w, institutions=("foreign", "trust"))
+    assert [s.code for s in lead["buy"]] == ["A"]
+    assert lead["buy"][0].institution == "trust"
+    assert lead["buy"][0].days == 4
 
 
 def test_lots_are_shares_divided_by_one_thousand():
@@ -243,7 +351,7 @@ def test_report_has_both_sides_for_every_institution(tmp_path, monkeypatch):
         stockflow.save_day(D0 + timedelta(days=i),
                            {"UP": [10, 0, 0, 0], "DN": [-10, 0, 0, 0]},
                            {"UP": "漲", "DN": "跌"})
-    rep = stockflow.build_report(D0 + timedelta(days=3), lookback=10, min_days=3)
+    rep = stockflow.build_report(D0 + timedelta(days=3), lookback=10)
     assert rep["window_days"] == 4
     assert rep["institutions"]["foreign"]["buy"][0]["code"] == "UP"
     assert rep["institutions"]["foreign"]["sell"][0]["code"] == "DN"
@@ -266,7 +374,7 @@ def test_report_marks_etf_entries():
     """自營商榜幾乎全是 ETF 避險部位，前端要能把它們分出來。"""
     w = [(D0 + timedelta(days=i),
           {"00940": [0, 0, 0, 500], "2330": [0, 0, 0, 500]}) for i in range(3)]
-    picked = stockflow.top(w, "dealer", min_days=3, n=5)
+    picked = stockflow.top(w, "dealer", n=5)
     flags = {s.code: s.etf for s in picked["buy"]}
     assert flags == {"00940": True, "2330": False}
 
@@ -276,7 +384,7 @@ def test_report_keeps_spare_candidates_for_client_side_filtering():
     codes = {f"00{i:03d}": [10, 0, 0, 0] for i in range(9)}
     codes["2330"] = [10, 0, 0, 0]
     w = [(D0 + timedelta(days=i), codes) for i in range(3)]
-    rep = stockflow.build_report(D0 + timedelta(days=2), lookback=10, min_days=3, n=5)
+    rep = stockflow.build_report(D0 + timedelta(days=2), lookback=10)
     rows = rep["institutions"]["foreign"]["buy"]
     assert rep["top_n"] == 5
     assert len(rows) > 5, "只存 5 筆的話，濾掉 ETF 就湊不滿"

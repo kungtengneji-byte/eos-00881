@@ -294,6 +294,47 @@ def fetch_market_index(day: date) -> dict[str, Field]:
     return market_index_fields(parse_market_index(fetch_json(url), url=url), day, url=url)
 
 
+# ---------------------------------------------------------------- 個股收盤價
+
+_PRICE_TABLE_HINT = "每日收盤行情"
+_PRICE_CODE, _PRICE_CLOSE = 0, 8
+
+
+def stock_prices_url(day: date) -> str:
+    """全市場個股當日收盤行情（MI_INDEX 的其中一張表）。
+
+    連續買賣超的張數在不同價位的股票之間不可比 —— 00919 賣超 79.8 萬張
+    看起來驚人，換算成金額只有 259 億。要算約當金額就需要每一檔的價格。
+    """
+    return f"{BASE}/afterTrading/MI_INDEX?date={day:%Y%m%d}&type=ALLBUT0999&response=json"
+
+
+def parse_stock_prices(payload: dict[str, Any], *, url: str = "") -> dict[str, float]:
+    """回傳 {證券代號: 收盤價}。
+
+    MI_INDEX 一次回傳十幾張表（各類指數、大盤統計、漲跌家數…），
+    以標題挑出「每日收盤行情」那一張，不靠索引 —— 表的順序會隨改版變動。
+    """
+    out: dict[str, float] = {}
+    for table in payload.get("tables") or []:
+        if _PRICE_TABLE_HINT not in str(table.get("title", "")):
+            continue
+        for row in table.get("data") or []:
+            if len(row) <= _PRICE_CLOSE:
+                continue
+            code = str(row[_PRICE_CODE]).strip()
+            close = to_float(row[_PRICE_CLOSE])
+            if code and close is not None:
+                out[code] = close
+        break
+    return out
+
+
+def fetch_stock_prices(day: date) -> tuple[dict[str, float], str]:
+    url = stock_prices_url(day)
+    return parse_stock_prices(fetch_json(url), url=url), url
+
+
 # ---------------------------------------------------------------- 大盤開高低收
 
 # MI_5MINS_HIST 的欄位：日期、開盤指數、最高指數、最低指數、收盤指數

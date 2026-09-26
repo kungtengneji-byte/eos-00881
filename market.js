@@ -297,6 +297,12 @@
     const left = el("div");
     const t = el("div", "fld-label");
     t.textContent = r.label;
+    if (r.kind) {
+      // 同一張表混著三種成因，不標出來會讓人以為它們是同一種東西
+      const tag = el("span", "tag");
+      tag.textContent = r.kind;
+      t.append(" ", tag);
+    }
     const sub = el("div", "fld-sub subtle");
     sub.textContent = (r.date ? r.date + "　" : "") + r.basis;
     left.append(t, sub);
@@ -521,7 +527,7 @@
      這裡只負責挑法人別、濾 ETF、排版。連續天數不在前端算：
      那需要載入整個視窗的逐檔明細，手機上是幾 MB 的下載量。 */
   let streaksData = null;
-  let institution = "foreign";
+  let institution = "leading";
   let hideEtf = false;
 
   function renderStreaks() {
@@ -553,20 +559,44 @@
         continue;
       }
 
-      box.append(table(["代號／名稱", "天數", "累計", "起始"], rows.map((r) => {
+      box.append(table(["代號／名稱", "天數", "累計", "分數"], rows.map((r) => {
         const left = el("div");
         const t = el("div", "fld-label");
         t.textContent = r.name || r.code;
         const sub = el("div", "fld-sub subtle");
-        sub.textContent = r.code + (r.etf ? "　ETF" : "");
+        // 主導法人分頁混著不同法人別，不標出來就看不懂這一列是誰買的
+        sub.textContent = [r.code, r.institution_label, r.etf ? "ETF" : null]
+          .filter(Boolean).join("　");
         left.append(t, sub);
-        return [
-          { node: left },
-          // ≥ 表示連到視窗最舊一天，真正天數可能更長，不能當成確定值
-          { node: textNode((r.truncated ? "≥" : "") + r.days + " 天"), cls: "num" },
-          { node: textNode(lotsOf(r)), cls: "num" },
-          { node: textNode(r.start.slice(5)), cls: "num" },
-        ];
+
+        const days = el("div");
+        const dv = el("div");
+        // ≥ 表示連到視窗最舊一天，真正天數可能更長，不能當成確定值
+        dv.textContent = (r.truncated ? "≥" : "") + r.days + " 天";
+        const st = el("div", "fld-sub subtle");
+        st.textContent = r.status_label || "";
+        days.append(dv, st);
+
+        const amt = el("div");
+        const av = el("div");
+        av.textContent = lotsOf(r);
+        amt.append(av);
+        if (r.amount_100m != null) {
+          const a2 = el("div", "fld-sub subtle");
+          a2.textContent = signed100m(r.amount_100m);
+          amt.append(a2);
+        }
+
+        const sc = el("div");
+        const sv = el("div", "fld-label");
+        sv.textContent = r.score == null ? "—" : r.score.toFixed(2);
+        const sd = el("div", "fld-sub subtle");
+        // 只放起始日：窄畫面放不下「08-07~09-24」，而迄日已經由狀態欄表達
+        sd.textContent = "起 " + r.start.slice(5);
+        sc.append(sv, sd);
+
+        return [{ node: left }, { node: days, cls: "num" },
+                { node: amt, cls: "num" }, { node: sc, cls: "num" }];
       })));
     }
   }
