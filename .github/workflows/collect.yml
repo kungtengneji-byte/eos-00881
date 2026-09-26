@@ -19,6 +19,12 @@ on:
     - cron: "5 1 * * 2-6"
   workflow_dispatch:
     inputs:
+      instrument:
+        description: "要收集的標的"
+        required: true
+        default: "all"
+        type: choice
+        options: [all, "00881", TWMARKET]
       window:
         description: "要執行的收集窗"
         required: true
@@ -70,10 +76,26 @@ jobs:
           echo "今天（台北）：$(date '+%Y-%m-%d %H:%M %Z')　收集窗：$W"
 
       - name: 收集
+        id: collect
         run: |
           ARGS="--window ${{ steps.pick.outputs.window }}"
           if [ -n "${{ inputs.date }}" ]; then ARGS="$ARGS --date ${{ inputs.date }}"; fi
-          python collect.py $ARGS
+
+          case "${{ inputs.instrument || 'all' }}" in
+            all) TARGETS="00881 TWMARKET" ;;
+            *)   TARGETS="${{ inputs.instrument }}" ;;
+          esac
+
+          # 兩個標的在同一個 job 裡依序跑，不用 matrix：matrix 會有兩個 runner
+          # 同時 commit 同一個 repo，即使有 rebase 重試也是在製造衝突。
+          # 一個標的失敗不中止另一個 —— 期交所掛掉不該讓 00881 當天沒有資料。
+          FAILED=""
+          for T in $TARGETS; do
+            echo "::group::$T"
+            python collect.py --instrument "$T" $ARGS || FAILED="$FAILED $T"
+            echo "::endgroup::"
+          done
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
 
       - name: 提交資料
         run: |
@@ -100,22 +122,45 @@ jobs:
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json, pathlib
-          p = pathlib.Path("data/eos_history_00881.json")
-          if not p.exists():
-              print("尚無歷史資料"); raise SystemExit
-          rows = json.loads(p.read_text(encoding="utf-8"))
-          last = rows[-1]
-          print(f"## 最新交易日 {last['date']}\n")
-          print(f"- EOS **{last['eos'] if last['eos'] is not None else '未出分'}**"
-                f"（{last['rating'] or last['status']}）")
-          print(f"- 覆蓋率 {last['coverage']}/100　狀態 {last['status']}")
-          print(f"- 累積 {len(rows)} 個交易日")
-          snap = json.loads(pathlib.Path(
-              f"data/daily/00881/{last['date']}.json").read_text(encoding="utf-8"))
-          s = (snap.get("eos") or {}).get("summary") or {}
-          if s.get("headline"):
-              print(f"\n### 今日結論\n\n{s['headline']}\n")
-              for k, t in (("drivers", "改善"), ("drags", "拖累"), ("watch", "待觀察")):
-                  if s.get(k):
-                      print(f"- **{t}**：{'、'.join(s[k])}")
+
+          TITLE = {"00881": "00881 EOS", "TWMARKET": "台股大盤 外資續買燈號"}
+          for inst, title in TITLE.items():
+              hist = pathlib.Path(f"data/eos_history_{inst}.json")
+              if not hist.exists():
+                  continue
+              rows = json.loads(hist.read_text(encoding="utf-8"))
+              if not rows:
+                  continue
+              last = rows[-1]
+              score = last["eos"] if last["eos"] is not None else "未出分"
+              print(f"## {title}　{last['date']}")
+              print()
+              print(f"- **{score}**/100（{last['rating'] or last['status']}）")
+              print(f"- 覆蓋率 {last['coverage']}/100　狀態 {last['status']}")
+              print(f"- 累積 {len(rows)} 個交易日")
+
+              snap = json.loads(pathlib.Path(
+                  f"data/daily/{inst}/{last['date']}.json").read_text(encoding="utf-8"))
+              eos = snap.get("eos") or {}
+              conc = eos.get("summary") or {}
+              if conc.get("headline"):
+                  print()
+                  print(conc["headline"])
+                  print()
+                  for key, name in (("drivers", "改善"), ("drags", "拖累"),
+                                    ("watch", "待觀察")):
+                      if conc.get(key):
+                          print(f"- **{name}**：" + "、".join(conc[key]))
+              out = eos.get("outlook")
+              if out and not out.get("same_as_today"):
+                  print(f"- **明日展望**：{out.get('eos')}/100"
+                        f"（{out.get('rating')}），採用美股 {out.get('us_session')} 時段")
+              print()
           PY
+
+      # 失敗要等資料提交完才報，否則 00881 收到的東西會因為大盤掛掉而沒進 repo
+      - name: 回報失敗的標的
+        if: always() && steps.collect.outputs.failed != ''
+        run: |
+          echo "以下標的收集失敗：${{ steps.collect.outputs.failed }}"
+          exit 1
