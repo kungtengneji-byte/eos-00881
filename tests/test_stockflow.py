@@ -389,3 +389,16 @@ def test_report_keeps_spare_candidates_for_client_side_filtering():
     assert rep["top_n"] == 5
     assert len(rows) > 5, "只存 5 筆的話，濾掉 ETF 就湊不滿"
     assert any(not r["etf"] for r in rows)
+
+
+def test_prices_are_not_rolled_back_by_a_backfill(tmp_path, monkeypatch):
+    """W4 回補舊日子時不能把參考價倒退，否則約當金額跟著一起退。"""
+    monkeypatch.setattr(stockflow, "STOCKS", tmp_path)
+    monkeypatch.setattr(stockflow, "PRICES_PATH", tmp_path / "prices.json")
+    stockflow.save_prices(date(2026, 9, 24), {"2330": 1000.0})
+    assert stockflow.save_prices(date(2026, 9, 18), {"2330": 900.0}) is None
+    as_of, px = stockflow.load_prices()
+    assert as_of == "2026-09-24" and px["2330"] == 1000.0
+    # 較新的日子照常覆蓋
+    stockflow.save_prices(date(2026, 9, 25), {"2330": 1100.0})
+    assert stockflow.load_prices()[0] == "2026-09-25"

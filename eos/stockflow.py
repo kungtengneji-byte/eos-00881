@@ -85,9 +85,16 @@ def load_names() -> dict[str, str]:
     return _read_json(NAMES_PATH)
 
 
-def save_prices(day: date, prices: dict[str, float]) -> Path:
+def save_prices(day: date, prices: dict[str, float]) -> Path | None:
     """個股參考價。只留最新一份 —— 約當金額是「估」，用當日收盤即可；
-    存整段歷史只為了算一個乘數，不值得每天多 30KB。"""
+    存整段歷史只為了算一個乘數，不值得每天多 30KB。
+
+    比現存的更舊就不寫：W4 回補窗會去補前幾天的缺口，若照寫不誤，
+    報表的參考價會被倒退成回補那天的收盤，約當金額跟著一起退。
+    """
+    have, _ = load_prices()
+    if have and have > day.isoformat():
+        return None
     STOCKS.mkdir(parents=True, exist_ok=True)
     PRICES_PATH.write_text(
         json.dumps({"as_of": day.isoformat(), "close": prices},
