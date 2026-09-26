@@ -641,6 +641,93 @@
     renderStreaks();
   }
 
+  /* ---------------------------------------------------------- 個股法人明細 */
+  /* 對齊工作表〈個股法人明細〉：候選標的的逐日三大法人買賣超與連續天數。
+     一次只畫一檔 —— 三十幾檔 × 三十五天全部攤開是一千多列，手機上沒人看得完。 */
+  let detailData = null;
+
+  async function loadStockDetail() {
+    const card = $("#detail-card");
+    try {
+      detailData = await EOSUI.loadJSON("data/stock_detail.json");
+    } catch {
+      card.hidden = true;
+      return;
+    }
+    const stocks = (detailData && detailData.stocks) || [];
+    if (!stocks.length) { card.hidden = true; return; }
+
+    const picker = $("#stock-picker");
+    picker.textContent = "";
+    stocks.forEach((s, i) => {
+      const o = el("option");
+      o.value = String(i);
+      o.textContent = s.code + "　" + s.name + (s.etf ? "（ETF）" : "");
+      picker.append(o);
+    });
+    picker.addEventListener("change", () => renderStockDetail(Number(picker.value)));
+    card.hidden = false;
+    renderStockDetail(0);
+  }
+
+  function renderStockDetail(i) {
+    const s = ((detailData || {}).stocks || [])[i];
+    if (!s) return;
+
+    $("#stock-caption").textContent =
+      (detailData.window_start || "") + " 起 " + (detailData.window_days || 0) +
+      " 個交易日　來源 " + (detailData.source || "");
+
+    const box = $("#stock-detail");
+    box.textContent = "";
+    // 由新到舊：最近幾天才是要看的，翻到最舊的反而少見
+    const body = [...(s.rows || [])].reverse().map((r) => {
+      if (r.missing) {
+        return [r.date.slice(5), { node: textNode("當日無法人交易紀錄"), cls: "num" },
+                "", "", "", ""];
+      }
+      return [
+        r.date.slice(5),
+        { node: lotsCell(r.foreign, r.run_foreign), cls: "num" },
+        { node: lotsCell(r.trust, r.run_trust), cls: "num" },
+        { node: lotsCell(r.dealer, r.run_dealer), cls: "num" },
+        { node: lotsCell(r.total, r.run_total), cls: "num" },
+        { node: checkCell(r), cls: "num" },
+      ];
+    });
+    box.append(table(["日期", "外資", "投信", "自營商", "合計", "檢核"], body));
+  }
+
+  /* 每一格是「張數 + 連續天數」兩行：分成兩欄會變成十欄，窄畫面放不下 */
+  function lotsCell(lots, run) {
+    const d = el("div");
+    const v = el("div");
+    const n = lots == null ? null : Math.round(lots);
+    // 0 不加正號：「+0」看起來像買了一點點，實際是沒動
+    v.textContent = n == null ? "—"
+      : (n > 0 ? "+" : "") + n.toLocaleString("en-US");
+    d.append(v);
+    if (run != null) {
+      const r = el("div", "fld-sub subtle");
+      r.textContent = (run > 0 ? "連買 " : "連賣 ") + Math.abs(run) + " 天";
+      d.append(r);
+    }
+    return d;
+  }
+
+  function checkCell(r) {
+    const d = el("div");
+    const v = el("div");
+    v.textContent = r.check_diff === 0 ? "—" : (r.check_diff > 0 ? "+" : "") + r.check_diff;
+    d.append(v);
+    if (r.check_diff !== 0) {
+      const n = el("div", "fld-sub subtle");
+      n.textContent = "公式 " + r.sum_lots.toLocaleString("en-US");
+      d.append(n);
+    }
+    return d;
+  }
+
   /* ---------------------------------------------------------- 產業資金輪動 */
   /* 報表由 eos/sectorflow.py 算好（data/sector_flow.json）。
      最新一日攤開成表，前幾日只列一行判讀 —— 整段期間全部攤開的話，
@@ -776,6 +863,7 @@
     // 不 await：逐檔報表比較大，抓不到也不該卡住主要內容
     loadStreaks();
     loadSectors();
+    loadStockDetail();
 
     EOSUI.crossSummary($("#cross-card"), $("#cross-body"), "00881", {
       rankOf: (r) => ({ "高風險區": 1, "偏不利": 2, "中性等待": 3,

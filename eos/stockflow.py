@@ -28,7 +28,8 @@ from typing import Any, Iterable
 
 from eos.streaks_core import (DEFAULT_MIN_DAYS, DEFAULT_TOP_N, INSTITUTION_LABEL,
                               SHARES_PER_LOT, STATUS_LABEL, ScoreParams, Streak,
-                              is_etf, leading, streaks, top)
+                              candidate_codes, detail_rows, is_etf,
+                              leading, streaks, top)
 
 __all__ = ["DEFAULT_MIN_DAYS", "DEFAULT_TOP_N", "DEFAULT_WINDOW", "CANDIDATE_FACTOR",
            "INSTITUTION_LABEL", "SHARES_PER_LOT", "STATUS_LABEL", "ScoreParams",
@@ -36,6 +37,7 @@ __all__ = ["DEFAULT_MIN_DAYS", "DEFAULT_TOP_N", "DEFAULT_WINDOW", "CANDIDATE_FAC
            "save_day", "load_day", "load_names", "available_days", "missing_days",
            "load_window", "save_prices", "load_price_day", "price_days",
            "latest_prices", "save_industries", "load_industries",
+           "candidate_codes", "detail_rows", "build_detail", "write_detail",
            "industries_age_days", "build_report", "write_report"]
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -243,4 +245,29 @@ def write_report(end: date, **kw: Any) -> Path:
     out = ROOT / "data" / "top5_streaks.json"
     out.write_text(json.dumps(build_report(end, **kw), ensure_ascii=False, indent=1),
                    encoding="utf-8")
+    return out
+
+
+def build_detail(end: date, report: dict[str, Any], *,
+                 lookback: int = DEFAULT_WINDOW) -> dict[str, Any]:
+    """候選標的的逐日三大法人明細，對齊工作表〈個股法人明細〉。"""
+    window = load_window(end, lookback)
+    names = load_names()
+    codes = candidate_codes(report)
+    return {
+        "as_of": end.isoformat(),
+        "window_start": window[0][0].isoformat() if window else None,
+        "window_days": len(window),
+        "source": "TWSE T86",
+        "stocks": [{"code": c, "name": names.get(c, c),
+                    "etf": is_etf(c),
+                    "rows": detail_rows(window, c, name=names.get(c, c))}
+                   for c in codes],
+    }
+
+
+def write_detail(end: date, report: dict[str, Any], **kw: Any) -> Path:
+    out = ROOT / "data" / "stock_detail.json"
+    out.write_text(json.dumps(build_detail(end, report, **kw),
+                              ensure_ascii=False, indent=1), encoding="utf-8")
     return out

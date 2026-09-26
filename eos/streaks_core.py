@@ -293,3 +293,85 @@ def _split(rows: list[Streak], p: ScoreParams, limit: int) -> dict[str, list[Str
         side.sort(key=lambda s: (-s.score(p), -abs(s.shares)))
         out[direction] = side[:limit]
     return out
+
+
+# ---------------------------------------------------------------- 逐日明細
+
+# 逐日明細裡的法人欄位順序，對齊工作表〈個股法人明細〉
+DETAIL_COLUMNS = ("foreign", "trust", "dealer", "total")
+
+
+def _step(prev: int | None, value: int) -> int | None:
+    """連續天數的累加。方向改變或當日為 0 就重置。
+
+    工作表的定義：「同代號、同方向則累加（+買／−賣），方向改變或缺值即重置。
+    缺值留白不填 0。」0 沒有方向，與缺值同樣處理 —— 填 0 會讓它看起來像
+    「連續 0 天」，但那其實是「這一天不算數」。
+    """
+    sign = _sign(value)
+    if sign == 0:
+        return None
+    if prev is not None and _sign(prev) == sign:
+        return prev + sign
+    return sign
+
+
+def detail_rows(window: list[tuple[date, dict[str, list[int]]]], code: str,
+                *, name: str = "") -> list[dict[str, Any]]:
+    """單一個股的逐日三大法人買賣超與連續天數。
+
+    兩個合計欄都給：
+      total_lots   由**股**直接加總再換算成張，等同來源自己的合計
+      sum_lots     把各法人四捨五入後的張數相加，也就是「公式」欄
+      check_diff   兩者之差
+
+    工作表那一欄的 ±1 就是四捨五入造成的（實測第一金 08-26 是 9,965 vs 9,966）。
+    平台全程用股的整數，只在顯示時換算，所以 total_lots 才是準的；
+    仍然把 sum_lots 與差額列出來，是為了讓這張表能與工作表逐格對帳。
+    """
+    out: list[dict[str, Any]] = []
+    run: dict[str, int | None] = {k: None for k in DETAIL_COLUMNS}
+
+    for day, nets in window:
+        row = nets.get(code)
+        if row is None:
+            # 當天完全沒有法人紀錄：留白，連續天數一併重置
+            run = {k: None for k in DETAIL_COLUMNS}
+            out.append({"date": day.isoformat(), "code": code, "name": name,
+                        "missing": True})
+            continue
+
+        shares = {k: _net(row, k) for k in DETAIL_COLUMNS}
+        lots = {k: shares[k] / SHARES_PER_LOT for k in DETAIL_COLUMNS}
+        run = {k: _step(run[k], shares[k]) for k in DETAIL_COLUMNS}
+
+        sum_lots = sum(round(lots[k]) for k in ("foreign", "trust", "dealer"))
+        out.append({
+            "date": day.isoformat(), "code": code, "name": name, "missing": False,
+            "foreign": round(lots["foreign"], 1),
+            "trust": round(lots["trust"], 1),
+            "dealer": round(lots["dealer"], 1),
+            "total": round(lots["total"], 1),
+            "sum_lots": sum_lots,
+            "check_diff": sum_lots - round(lots["total"]),
+            "run_foreign": run["foreign"], "run_trust": run["trust"],
+            "run_dealer": run["dealer"], "run_total": run["total"],
+        })
+    return out
+
+
+def candidate_codes(report: dict[str, Any]) -> list[str]:
+    """Top5 報表裡實際被列出來的標的 —— 工作表說的「候選連續買賣標的」。
+
+    只取每個分頁每一側前 top_n 名，不含候補：候補是為了讓前端濾掉 ETF
+    之後還湊得滿五名而存的，不是使用者看得到的名單。
+    """
+    n = int(report.get("top_n") or DEFAULT_TOP_N)
+    seen: list[str] = []
+    for block in (report.get("institutions") or {}).values():
+        for side in ("buy", "sell"):
+            for r in (block.get(side) or [])[:n]:
+                c = r.get("code")
+                if c and c not in seen:
+                    seen.append(c)
+    return seen

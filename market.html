@@ -185,8 +185,24 @@
     </p>
   </section>
 
+  <!-- 個股法人明細 -->
+  <section class="card" id="detail-card" data-nav="個股明細" hidden>
+    <div class="card-head">
+      <h2>個股法人明細</h2>
+      <select id="stock-picker" aria-label="選擇個股"></select>
+    </div>
+    <p id="stock-caption" class="subtle"></p>
+    <div id="stock-detail" class="table-wrap"></div>
+    <p class="legend-note subtle">
+      候選標的取自上方連續買賣超 Top5 的名單。連續天數為帶正負號的累計
+      （＋買／−賣），方向改變或當日淨額為 0 即重置，0 不填也不算一天。
+      「公式」欄是各法人四捨五入成張之後相加，「合計」欄由股直接加總 ——
+      兩者差 ±1 張就是四捨五入造成的，本平台以合計為準。
+    </p>
+  </section>
+
   <!-- 十一、當日明細 -->
-  <section class="card" data-nav="明細">
+  <section class="card" data-nav="欄位明細">
     <div class="card-head">
       <h2>當日資料明細</h2>
       <select id="day-picker" aria-label="選擇日期"></select>

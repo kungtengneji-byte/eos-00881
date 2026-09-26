@@ -416,3 +416,83 @@ def test_price_day_keeps_the_daily_change(tmp_path, monkeypatch):
     stockflow.save_prices(date(2026, 9, 24), {"2330": (1000.0, -0.01)})
     assert stockflow.load_price_day(date(2026, 9, 24)) == {"2330": [1000.0, -0.01]}
     assert stockflow.load_price_day(date(2026, 9, 23)) is None
+
+
+# ---------------------------------------------------------------- 逐日明細
+
+def _detail_window(series):
+    """{代號: [(外資, 投信, 自營), ...]} -> 明細用的視窗。None 代表當日無紀錄。"""
+    n = max(len(v) for v in series.values())
+    out = []
+    for i in range(n):
+        nets = {}
+        for code, vals in series.items():
+            v = vals[i] if i < len(vals) else None
+            if v is None:
+                continue
+            nets[code] = [v[0], 0, v[1], v[2]]
+        out.append((D0 + timedelta(days=i), nets))
+    return out
+
+
+def test_detail_streak_counters_accumulate_and_reset():
+    """工作表的定義：同方向累加（+買／−賣），方向改變即重置。
+
+    實測第一金 09-04 外資連續 +10，09-07 轉賣變成 -1，09-08 再轉買變成 +1。
+    """
+    w = _detail_window({"A": [(10, 0, 0), (20, 0, 0), (-5, 0, 0), (7, 0, 0)]})
+    rows = stockflow.detail_rows(w, "A", name="甲")
+    assert [r["run_foreign"] for r in rows] == [1, 2, -1, 1]
+
+
+def test_detail_zero_breaks_the_streak_and_is_left_blank():
+    """0 不填也不算一天 —— 填 0 看起來像「連續 0 天」，但那是「這天不算數」。"""
+    w = _detail_window({"A": [(10, 0, 0), (0, 0, 0), (10, 0, 0)]})
+    rows = stockflow.detail_rows(w, "A")
+    assert [r["run_foreign"] for r in rows] == [1, None, 1]
+
+
+def test_detail_missing_day_resets_every_counter():
+    w = _detail_window({"A": [(10, 0, 0), None, (10, 0, 0)], "B": [(1, 0, 0)] * 3})
+    rows = stockflow.detail_rows(w, "A")
+    assert rows[1]["missing"] is True
+    assert "foreign" not in rows[1], "缺值列留白，不放數字"
+    assert rows[2]["run_foreign"] == 1
+
+
+def test_detail_total_comes_from_shares_not_rounded_lots():
+    """工作表「檢核差」那欄的 ±1 就是把四捨五入後的張數相加造成的。
+
+    實測第一金 2026-08-26：各法人取整後相加是 9,965，由股直接加總是 9,966。
+    平台全程用股的整數，合計欄才是準的。
+    """
+    # 第一金 2026-08-26 的實際股數（TWSE T86）
+    w = [(D0, {"A": [11_221_436, 0, -1_669_154, 413_307]})]
+    r = stockflow.detail_rows(w, "A")[0]
+    assert r["total"] == pytest.approx(9965.6)   # 存檔時取到小數一位
+    assert r["sum_lots"] == 11221 - 1669 + 413 == 9965   # 工作表的「公式」欄
+    assert round(r["total"]) == 9966                     # 工作表的「合計(來源)」欄
+    assert r["check_diff"] == -1                         # 工作表的「檢核差」欄
+
+
+def test_detail_check_diff_is_zero_when_rounding_agrees():
+    w = [(D0, {"A": [1_000_000, 0, 2_000_000, 3_000_000]})]
+    r = stockflow.detail_rows(w, "A")[0]
+    assert r["check_diff"] == 0
+
+
+def test_detail_foreign_includes_the_foreign_dealer_leg():
+    w = [(D0, {"A": [10_000, 5_000, 0, 0]})]
+    r = stockflow.detail_rows(w, "A")[0]
+    assert r["foreign"] == pytest.approx(15.0)
+    assert r["total"] == pytest.approx(15.0)
+
+
+def test_candidate_codes_takes_only_the_listed_top_n():
+    """候補是為了讓前端濾掉 ETF 之後湊得滿五名而存的，不是使用者看得到的名單。"""
+    report = {"top_n": 2, "institutions": {
+        "leading": {"buy": [{"code": "A"}, {"code": "B"}, {"code": "SPARE"}],
+                    "sell": [{"code": "C"}]},
+        "foreign": {"buy": [{"code": "A"}, {"code": "D"}], "sell": []},
+    }}
+    assert stockflow.candidate_codes(report) == ["A", "B", "C", "D"]

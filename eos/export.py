@@ -163,6 +163,32 @@ def export_sectors() -> Path | None:
                       "淨額(張)", "檔數", "價格同向比例", "代表股", "判讀"], out)
 
 
+def export_stock_detail() -> Path | None:
+    """候選標的的逐日三大法人明細，對齊工作表〈個股法人明細〉。"""
+    rep = _load(ROOT / "data" / "stock_detail.json")
+    if not rep or not rep.get("stocks"):
+        return None
+    out: list[list[Any]] = []
+    for s in rep["stocks"]:
+        for r in s.get("rows") or []:
+            if r.get("missing"):
+                out.append([r["date"], s["code"], s["name"]] + [""] * 9
+                           + ["當日無法人交易紀錄"])
+                continue
+            out.append([r["date"], s["code"], s["name"],
+                        r["foreign"], r["trust"], r["dealer"],
+                        r["sum_lots"], r["total"], r["check_diff"],
+                        r["run_foreign"], r["run_trust"], r["run_dealer"],
+                        r["run_total"], rep.get("source", "")])
+    if not out:
+        return None
+    return write_csv(EXPORTS / "個股法人明細.csv",
+                     ["日期", "代號", "名稱", "外資(張)", "投信(張)", "自營商(張)",
+                      "三大合計(公式)", "合計(來源)", "檢核差",
+                      "外資連續", "投信連續", "自營連續", "合計連續", "備註／來源"],
+                     out)
+
+
 # ---------------------------------------------------------------- 總入口
 
 DIMS_00881 = [("A", "A 價格/折溢價"), ("B", "B 含息趨勢/回檔"), ("C", "C 成分股廣度"),
@@ -185,7 +211,8 @@ def export_all() -> list[Path]:
               export_fields("TWMARKET"),
               export_levels("TWMARKET"),
               export_streaks(),
-              export_sectors()):
+              export_sectors(),
+              export_stock_detail()):
         if p is not None:
             made.append(p)
 

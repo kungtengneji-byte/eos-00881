@@ -592,11 +592,13 @@ def write_index(cfg: dict) -> None:
     if not days:
         return
     st = cfg.get("streaks") or {}
-    stockflow.write_report(
-        days[-1],
-        lookback=int(st.get("lookback_days", stockflow.DEFAULT_WINDOW)),
-        params=stockflow.ScoreParams.from_config(st),
-    )
+    lookback = int(st.get("lookback_days", stockflow.DEFAULT_WINDOW))
+    path = stockflow.write_report(
+        days[-1], lookback=lookback,
+        params=stockflow.ScoreParams.from_config(st))
+    # 候選標的的逐日明細要用上面那份報表決定名單，所以讀回來而不是重算一次
+    report = json.loads(path.read_text(encoding="utf-8"))
+    stockflow.write_detail(days[-1], report, lookback=lookback)
     _sector_report(st)
     _export()
 
