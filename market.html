@@ -119,7 +119,31 @@
     <div id="keys" class="table-wrap"></div>
   </section>
 
-  <!-- 九、當日明細 -->
+  <!-- 九、連續買賣超 Top5 -->
+  <section class="card" id="streaks-card" hidden>
+    <div class="card-head">
+      <h2>連續買賣超 Top5</h2>
+      <span id="streaks-asof" class="subtle"></span>
+    </div>
+    <div class="filters" role="group" aria-label="法人別">
+      <button type="button" data-inst="foreign" class="seg is-on">外資</button>
+      <button type="button" data-inst="trust" class="seg">投信</button>
+      <button type="button" data-inst="dealer" class="seg">自營商</button>
+      <button type="button" data-inst="total" class="seg">三大法人</button>
+    </div>
+    <label class="toggle">
+      <input type="checkbox" id="streaks-no-etf"> 排除 ETF
+    </label>
+    <div id="streaks" class="table-wrap"></div>
+    <p class="legend-note subtle">
+      同一類法人連續同方向買（或賣）的天數，先比天數、同天數再比累計張數。
+      當日淨額為 0 視為中斷 —— 沒有方向就不是「繼續」。
+      標「≥」者連到視窗最舊一天，實際天數可能更長。
+      自營商榜幾乎都是 ETF，那是造市與申購贖回避險的結果，不是看多看空。
+    </p>
+  </section>
+
+  <!-- 十、當日明細 -->
   <section class="card">
     <div class="card-head">
       <h2>當日資料明細</h2>

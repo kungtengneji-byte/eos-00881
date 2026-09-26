@@ -2,10 +2,11 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-09-24",
  "first_collected_at": "2026-09-26T15:26:08",
- "updated_at": "2026-09-26T16:21:47",
+ "updated_at": "2026-09-26T16:34:13",
  "windows": [
   "all",
-  "backfill"
+  "backfill",
+  "w1"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
@@ -404,6 +405,14 @@
    "as_of": "2026-09-24",
    "status": "ok",
    "note": "由最近 35 個交易日的序列推導"
+  },
+  "stock_flow_count": {
+   "value": 1301,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260924&selectType=ALLBUT0999&response=json",
+   "as_of": "2026-09-24",
+   "status": "ok",
+   "note": "當日有法人交易紀錄的檔數，明細存於 data/stocks/"
   }
  }
 }

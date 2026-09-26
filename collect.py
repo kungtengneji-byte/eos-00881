@@ -31,7 +31,7 @@ from typing import Any, Callable
 
 import yaml
 
-from eos import engine, marketflow, series as series_mod, store, summary
+from eos import engine, marketflow, series as series_mod, stockflow, store, summary
 from eos.models import Field, Status
 from eos.rubric import Rubric
 from sources import cathay, taifex, twse, yahoo
@@ -55,7 +55,8 @@ PARTS_BY_WINDOW = {
 # 期貨同時排在 W1 與 W2：期交所 15:00 後先出次級值，定版較晚，
 # W2 再抓一次讓合併規則以較新的覆蓋。
 PARTS_BY_WINDOW_MARKET = {
-    "w1": ("market_index", "market_institutional", "market_margin", "market_futures"),
+    "w1": ("market_index", "market_institutional", "market_margin",
+           "market_futures", "market_stocks"),
     "w2": ("market_futures",),
     "w3": ("market_overseas",),
 }
@@ -185,6 +186,28 @@ def part_institutional(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
         for n in ("stock_foreign_net_lots", "stock_institutional_net_lots"):
             out[n] = Field.unavailable(n, "TWSE T86", twse.stock_institutional_url(day), str(exc))
     return out
+
+
+def part_market_stocks(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """整個市場的逐檔法人買賣超，供〈連續買賣Top5〉使用。
+
+    T86 一次就回傳全市場 1,300 餘檔，不需要逐檔打 API。
+    結果存成獨立的逐日檔（data/stocks/）而不是塞進快照 ——
+    1,300 筆明細塞進每日快照會讓快照從 30KB 變成 60KB，
+    而且燈號模型完全用不到它們。
+    """
+    _throttle_twse()
+    nets, names, url = twse.fetch_stock_institutional_all(day)
+    if not nets:
+        # TWSE 被限流時回空資料而不是錯誤；空的當天不該覆蓋掉已存的檔
+        return {"stock_flow_count": Field.missing(
+            "stock_flow_count", source="TWSE T86", url=url,
+            note="回傳空資料（休市或被限流）")}
+    stockflow.save_day(day, nets, names)
+    return {"stock_flow_count": Field(
+        name="stock_flow_count", value=len(nets), source="TWSE T86", url=url,
+        as_of=day.isoformat(), status=Status.OK,
+        note="當日有法人交易紀錄的檔數，明細存於 data/stocks/")}
 
 
 def part_nav(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
@@ -398,6 +421,7 @@ PARTS: dict[str, Callable[..., dict[str, Field]]] = {
     "market_margin": part_market_margin,
     "market_futures": part_market_futures,
     "market_overseas": part_market_overseas,
+    "market_stocks": part_market_stocks,
 }
 
 
@@ -508,13 +532,27 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
 
 def write_index(cfg: dict) -> None:
     """產生前端用的精簡時間序列。判斷交易日的欄位與摘要欄位依標的而異。"""
-    if cfg.get("kind") == "market":
-        store.write_series_index(
-            cfg["instrument"], presence_field="taiex",
-            extra_fields=("taiex", "taiex_change_pct", "market_foreign_net_100m",
-                          "foreign_futures_net_oi", "margin_balance_100m"))
-    else:
+    if cfg.get("kind") != "market":
         store.write_series_index(cfg["instrument"])
+        return
+
+    store.write_series_index(
+        cfg["instrument"], presence_field="taiex",
+        extra_fields=("taiex", "taiex_change_pct", "market_foreign_net_100m",
+                      "foreign_futures_net_oi", "margin_balance_100m"))
+
+    # 連續買賣 Top5 每次都整份重算，不做增量更新：
+    # 增量的滾動狀態一旦漏掉一天就會安靜地算錯，而且無法從檔案看出來。
+    days = stockflow.available_days()
+    if not days:
+        return
+    st = cfg.get("streaks") or {}
+    stockflow.write_report(
+        days[-1],
+        lookback=int(st.get("lookback_days", stockflow.DEFAULT_WINDOW)),
+        min_days=int(st.get("min_days", stockflow.DEFAULT_MIN_DAYS)),
+        n=int(st.get("top_n", stockflow.DEFAULT_TOP_N)),
+    )
 
 
 def backfill(cfg: dict, rubric: Rubric, days: int, *, force: bool) -> None:
@@ -528,6 +566,15 @@ def backfill(cfg: dict, rubric: Rubric, days: int, *, force: bool) -> None:
     if not targets:
         print("  沒有既有快照可回補")
         return
+    # 逐檔法人明細不在 rubric 的輸入裡，缺值盤點看不到它 ——
+    # 不在這裡單獨補，漏掉的那天會永遠是個洞，連續天數就會被硬生生切斷
+    if cfg.get("kind") == "market":
+        for day in sorted(stockflow.missing_days(targets)):
+            print(f"\n回補 {day} 的逐檔法人明細")
+            collected = run_parts(cfg, day, ("market_stocks",), force=force)
+            if collected:
+                score_and_save(cfg, day, rubric, collected, "w4")
+
     required = rubric.required_inputs()
     for day in targets:
         snap = store.load(inst, day) or {}

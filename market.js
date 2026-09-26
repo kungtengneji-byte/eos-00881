@@ -456,6 +456,101 @@
     }
   }
 
+  /* ---------------------------------------------------------- 連續買賣 Top5 */
+  /* 報表由 eos/stockflow.py 在收集時算好（data/top5_streaks.json），
+     這裡只負責挑法人別、濾 ETF、排版。連續天數不在前端算：
+     那需要載入整個視窗的逐檔明細，手機上是幾 MB 的下載量。 */
+  let streaksData = null;
+  let institution = "foreign";
+  let hideEtf = false;
+
+  function renderStreaks() {
+    const card = $("#streaks-card");
+    const block = ((streaksData || {}).institutions || {})[institution];
+    if (!block) { card.hidden = true; return; }
+    card.hidden = false;
+
+    const n = streaksData.top_n || 5;
+    const box = $("#streaks");
+    box.textContent = "";
+
+    for (const [side, title] of [["buy", "連續買超"], ["sell", "連續賣超"]]) {
+      const all = block[side] || [];
+      const rows = all.filter((r) => !(hideEtf && r.etf)).slice(0, n);
+
+      const h = el("h3", "grp");
+      h.textContent = title;
+      box.append(h);
+
+      if (!rows.length) {
+        const p = el("p", "note");
+        // 兩種空的原因完全不同，講錯會讓人以為市場上沒有連續買賣超
+        p.textContent = all.length
+          ? "達到門檻的" + title.slice(2) + "標的全是 ETF，已被「排除 ETF」濾掉。"
+          : "視窗內沒有達到 " + (streaksData.min_days || 3) +
+            " 日門檻的" + title.slice(2) + "標的。";
+        box.append(p);
+        continue;
+      }
+
+      box.append(table(["代號／名稱", "天數", "累計", "起始"], rows.map((r) => {
+        const left = el("div");
+        const t = el("div", "fld-label");
+        t.textContent = r.name || r.code;
+        const sub = el("div", "fld-sub subtle");
+        sub.textContent = r.code + (r.etf ? "　ETF" : "");
+        left.append(t, sub);
+        return [
+          { node: left },
+          // ≥ 表示連到視窗最舊一天，真正天數可能更長，不能當成確定值
+          { node: textNode((r.truncated ? "≥" : "") + r.days + " 天"), cls: "num" },
+          { node: textNode(lotsOf(r)), cls: "num" },
+          { node: textNode(r.start.slice(5)), cls: "num" },
+        ];
+      })));
+    }
+  }
+
+  const textNode = (s) => { const d = el("div"); d.textContent = s; return d; };
+
+  const lotsOf = (r) => {
+    const v = r.lots;
+    if (v === null || v === undefined) return "—";
+    const sign = v < 0 ? "-" : "+";
+    return sign + Math.abs(Math.round(v)).toLocaleString("en-US") + " 張";
+  };
+
+  function initStreakControls() {
+    document.querySelectorAll("[data-inst]").forEach((b) => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll("[data-inst]").forEach((x) => x.classList.remove("is-on"));
+        b.classList.add("is-on");
+        institution = b.dataset.inst;
+        renderStreaks();
+      });
+    });
+    const cb = $("#streaks-no-etf");
+    if (cb) {
+      cb.addEventListener("change", () => { hideEtf = cb.checked; renderStreaks(); });
+    }
+  }
+
+  async function loadStreaks() {
+    try {
+      streaksData = await EOSUI.loadJSON("data/top5_streaks.json");
+    } catch {
+      $("#streaks-card").hidden = true;     // 還沒回填逐檔資料時整張不顯示
+      return;
+    }
+    const bits = [streaksData.as_of];
+    if (streaksData.window_start) {
+      bits.push("視窗 " + streaksData.window_start + " 起 " +
+                streaksData.window_days + " 個交易日");
+    }
+    $("#streaks-asof").textContent = bits.join("　");
+    renderStreaks();
+  }
+
   /* ---------------------------------------------------------- 歷史表格 */
   function renderHistTable(rows) {
     const box = $("#hist-table");
@@ -513,6 +608,7 @@
 
     EOSUI.initRangeControls((r) => { range = r; render(); });
     EOSUI.initTableToggles();
+    initStreakControls();
     render();
 
     const latest = history[history.length - 1];
@@ -522,6 +618,9 @@
 
     $("#fallback").hidden = true;
     $("#app").hidden = false;
+
+    // 不 await：逐檔報表比較大，抓不到也不該卡住主要內容
+    loadStreaks();
 
     EOSUI.crossSummary($("#cross-card"), $("#cross-body"), "00881", {
       rankOf: (r) => ({ "高風險區": 1, "偏不利": 2, "中性等待": 3,

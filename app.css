@@ -94,6 +94,13 @@ body {
   color: #fff; font-weight: 600;
 }
 
+/* 勾選式篩選（排除 ETF） */
+.toggle {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin: 0 0 12px; font-size: .84rem; color: var(--ink-2); cursor: pointer;
+}
+.toggle input { width: 16px; height: 16px; accent-color: var(--series-1); }
+
 /* 另一個標的的摘要卡 */
 .crosslink .cross-row {
   display: flex; align-items: center; gap: 16px; flex-wrap: wrap;

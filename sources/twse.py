@@ -31,8 +31,19 @@ _EX_DATE, _EX_CODE, _EX_PRE, _EX_REF, _EX_CASH, _EX_KIND = 0, 1, 3, 4, 5, 6
 
 # T86 欄位位置
 _T86_CODE = 0
+_T86_NAME = 1
 _T86_FOREIGN_NET = 4        # 外陸資買賣超股數(不含外資自營商)
+_T86_FOREIGN_DEALER_NET = 7  # 外資自營商買賣超股數
+_T86_TRUST_NET = 10         # 投信買賣超股數
+_T86_DEALER_NET = 11        # 自營商買賣超股數（自行買賣＋避險）
 _T86_TOTAL_NET = 18         # 三大法人買賣超股數
+
+# 逐檔存檔時的欄位順序。三大法人合計＝這四項之和
+# （實測 2026-09-24 00403A：64,496,136 + 0 + 0 + 127,820,386 = 192,316,522 ✓），
+# 所以合計不另外存，避免同一個數字有兩份可能不一致的來源。
+INSTITUTION_COLUMNS = (_T86_FOREIGN_NET, _T86_FOREIGN_DEALER_NET,
+                       _T86_TRUST_NET, _T86_DEALER_NET)
+INSTITUTIONS = ("foreign", "foreign_dealer", "trust", "dealer")
 
 
 # ---------------------------------------------------------------- 日線
@@ -178,6 +189,39 @@ def parse_stock_institutional(payload: dict[str, Any], stock_no: str, day: date,
         "stock_foreign_net_lots": mk("stock_foreign_net_lots", foreign),
         "stock_institutional_net_lots": mk("stock_institutional_net_lots", total),
     }
+
+
+def parse_stock_institutional_all(payload: dict[str, Any], *,
+                                  url: str = "") -> tuple[dict[str, list[int]], dict[str, str]]:
+    """整份 T86 拆成「代號 -> 四類法人買賣超股數」與「代號 -> 名稱」。
+
+    單位保留**股**而不換成張：零股交易會讓 股/1000 出現小數，
+    存成浮點數之後連續加總會累積誤差，而連續買賣超的判定只看正負號與
+    累計量，用整數股最乾淨，要顯示成張時再除。
+
+    四項全為 0 的檔不存 —— 當天沒有任何法人動作，對連續判定而言
+    與「沒有這一檔」等價，卻佔掉四分之一的檔數。
+    """
+    nets: dict[str, list[int]] = {}
+    names: dict[str, str] = {}
+    for row in rows_of(payload, url=url):
+        if len(row) <= _T86_TOTAL_NET:
+            continue
+        code = str(row[_T86_CODE]).strip()
+        if not code:
+            continue
+        vals = [int(to_float(row[c]) or 0) for c in INSTITUTION_COLUMNS]
+        if not any(vals):
+            continue
+        nets[code] = vals
+        names[code] = str(row[_T86_NAME]).strip()
+    return nets, names
+
+
+def fetch_stock_institutional_all(day: date) -> tuple[dict[str, list[int]], dict[str, str], str]:
+    url = stock_institutional_url(day)
+    nets, names = parse_stock_institutional_all(fetch_json(url), url=url)
+    return nets, names, url
 
 
 def fetch_stock_institutional(stock_no: str, day: date) -> dict[str, Field]:
