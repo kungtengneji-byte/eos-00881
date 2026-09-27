@@ -5,6 +5,10 @@ kind: "market"
 name: "台股大盤資金流向"
 rubric: "market_rubric_v1.0.yaml"
 
+# 洗盤假說是掛在大盤上的第二份 rubric，共用同一份每日快照。
+# 對齊工作表〈動能與洗盤〉的「大盤洗盤構面」；門檻與殘差見該 YAML 檔頭。
+washout_rubric: "washout_rubric_v0.2.yaml"
+
 # F1/F2 的分母與 F4 的前高都取自這個滾動視窗（見 market_rubric_v1.0.yaml 的 windowing）
 lookback_days: 60
 

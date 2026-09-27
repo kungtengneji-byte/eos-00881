@@ -7,6 +7,7 @@
 
 from __future__ import annotations
 
+import re
 from datetime import date
 from typing import Any
 
@@ -118,15 +119,23 @@ def institutional_url(day: date) -> str:
 
 
 def parse_institutional(payload: dict[str, Any], day: date, *, url: str = "") -> dict[str, Field]:
-    """回傳外資與三大法人合計買賣超，單位為億元。
+    """回傳三大法人各自與合計的買賣超，單位為億元。
 
     對應既有工作表：
       外資     = 「外資及陸資(不含外資自營商)」列（9/9 實測 209.24 億）
+      投信     = 「投信」列
+      自營商   = 「自營商(自行買賣)」＋「自營商(避險)」（工作表的「自營商合計」）
       三大法人 = 「合計」列（9/9 實測 211.25 億）
+
+    自營商一定要自行加總，不能找「自營商」單列 —— BFI82U 只給拆分的兩列，
+    避險部位又常常是自營商買賣超的主體（9/23 避險 35.99 億占合計 58.25 億的 62%）。
+    漏掉任一列，洗盤模型的「三大法人同向家數」就會判錯方向。
     """
     rows = rows_of(payload, url=url)
     foreign_net: float | None = None
+    trust_net: float | None = None
     total_net: float | None = None
+    dealer_parts: list[float] = []
     for row in rows:
         if len(row) < 4:
             continue
@@ -136,8 +145,14 @@ def parse_institutional(payload: dict[str, Any], day: date, *, url: str = "") ->
             continue
         if label.startswith("外資及陸資"):
             foreign_net = net / 1e8
+        elif label == "投信":
+            trust_net = net / 1e8
+        elif label.startswith("自營商"):
+            dealer_parts.append(net / 1e8)
         elif label == "合計":
             total_net = net / 1e8
+
+    dealer_net = sum(dealer_parts) if dealer_parts else None
 
     as_of = day.isoformat()
     src, u = "TWSE BFI82U", url or institutional_url(day)
@@ -150,6 +165,8 @@ def parse_institutional(payload: dict[str, Any], day: date, *, url: str = "") ->
 
     return {
         "foreign_net_100m": mk("foreign_net_100m", foreign_net),
+        "trust_net_100m": mk("trust_net_100m", trust_net),
+        "dealer_net_100m": mk("dealer_net_100m", dealer_net),
         "institutional_net_100m": mk("institutional_net_100m", total_net),
     }
 
@@ -511,3 +528,80 @@ def parse_margin(payload: dict[str, Any], day: date, *, url: str = "") -> dict[s
 def fetch_margin(day: date) -> dict[str, Field]:
     url = margin_url(day)
     return parse_margin(fetch_json(url), day, url=url)
+
+
+# ---------------------------------------------------------------- 市場廣度
+
+_BREADTH_TABLE_HINT = "漲跌證券數合計"
+# 三欄：[類型, 整體市場, 股票]。取「股票」那一欄 ——
+# 「整體市場」把 ETF、權證、受益憑證全算進去（9/23 是 5,575 漲對 388 漲），
+# 權證數量遠多於股票，拿它當市場廣度會被造市商的報價淹沒。
+_BREADTH_LABEL, _BREADTH_STOCK = 0, 2
+
+# 「上漲(漲停)」這種格式：括號內是漲停／跌停家數
+_BREADTH_PAIR = re.compile(r"([\d,]+)\s*(?:\(\s*([\d,]+)\s*\))?")
+
+
+def breadth_url(day: date) -> str:
+    return stock_prices_url(day)
+
+
+def _breadth_pair(raw: Any) -> tuple[float | None, float | None]:
+    m = _BREADTH_PAIR.search(str(raw or ""))
+    if not m:
+        return None, None
+    return to_float(m.group(1)), to_float(m.group(2))
+
+
+def parse_breadth(payload: dict[str, Any], *, url: str = "") -> dict[str, float | None]:
+    """上漲／下跌／持平家數與漲停／跌停家數（上市股票口徑）。
+
+    工作表用的是新聞的家數（9/23 記 397 漲 / 571 跌），與官方股票口徑
+    （388 漲 / 562 跌）有出入 —— 新聞各家統計範圍不一。這裡一律用官方，
+    差幾家不影響「漲跌比」落在哪一段，但可稽核。
+    """
+    out: dict[str, float | None] = {"advancing": None, "declining": None,
+                                    "unchanged": None, "limit_up": None,
+                                    "limit_down": None}
+    for table in payload.get("tables") or []:
+        if _BREADTH_TABLE_HINT not in str(table.get("title", "")):
+            continue
+        for row in table.get("data") or []:
+            if len(row) <= _BREADTH_STOCK:
+                continue
+            label = str(row[_BREADTH_LABEL]).strip()
+            n, limit = _breadth_pair(row[_BREADTH_STOCK])
+            if label.startswith("上漲"):
+                out["advancing"], out["limit_up"] = n, limit
+            elif label.startswith("下跌"):
+                out["declining"], out["limit_down"] = n, limit
+            elif label.startswith("持平"):
+                out["unchanged"] = n
+        break
+    return out
+
+
+def breadth_fields(parsed: dict[str, float | None], day: date, *, url: str) -> dict[str, Field]:
+    src = "TWSE MI_INDEX 漲跌證券數合計"
+    as_of = day.isoformat()
+
+    def mk(name: str, val: float | None) -> Field:
+        if val is None:
+            return Field.missing(name, source=src, url=url, note="當日無此列或尚未發布")
+        return Field(name=name, value=val, source=src, url=url,
+                     as_of=as_of, status=Status.OK)
+
+    out = {n: mk(n, v) for n, v in parsed.items()}
+
+    # 上漲佔比用「漲/(漲+跌)」而不是除以全部家數：持平家數受面額與流動性影響大，
+    # 把它放進分母會讓所有日子的比例一起被壓低，門檻就失去分辨力。
+    adv, dec = parsed.get("advancing"), parsed.get("declining")
+    ratio = None if not adv or dec is None or (adv + dec) == 0 else adv / (adv + dec) * 100
+    out["advance_ratio_pct"] = mk("advance_ratio_pct",
+                                  None if ratio is None else round(ratio, 2))
+    return out
+
+
+def fetch_breadth(day: date) -> dict[str, Field]:
+    url = breadth_url(day)
+    return breadth_fields(parse_breadth(fetch_json(url), url=url), day, url=url)

@@ -227,6 +227,39 @@ EXTRA_MARKET = [("taiex", "加權指數"), ("taiex_change_pct", "漲跌幅"),
                 ("margin_balance_100m", "融資餘額(億)")]
 
 
+def export_washout(instrument: str = "TWMARKET") -> Path | None:
+    """洗盤假說的逐日總分與七個構面得分。
+
+    每天一列、構面各一欄。缺值構面留空而不是 0 —— 匯出檔要能直接看出
+    「這一天這個構面沒有資料」，填 0 會在 Excel 裡變成「拿了 0 分」。
+    """
+    daily = ROOT / "data" / "daily" / instrument
+    if not daily.exists():
+        return None
+    keys = ["W1", "W2", "W3", "W4", "W5", "W6", "W7"]
+    names: dict[str, str] = {}
+    rows: list[list[Any]] = []
+    for p in sorted(daily.glob("*.json")):
+        snap = _load(p) or {}
+        w = ((snap.get("eos") or {}).get("washout")) or {}
+        if not w:
+            continue
+        dims = w.get("dimensions") or {}
+        for k in keys:
+            if k in dims and k not in names:
+                names[k] = dims[k].get("name") or k
+        rows.append([snap.get("trade_date"),
+                     w.get("eos") if w.get("published") else None,
+                     w.get("rating") if w.get("published") else "未出分",
+                     w.get("available"), w.get("coverage_status")]
+                    + [(dims.get(k) or {}).get("earned") for k in keys])
+    if not rows:
+        return None
+    head = (["資料日", "洗盤支持度", "分類", "可得滿分", "覆蓋率狀態"]
+            + [f"{k} {names.get(k, k)}" for k in keys])
+    return write_csv(EXPORTS / f"{instrument}_洗盤假說.csv", head, rows)
+
+
 def export_all() -> list[Path]:
     """輸出全部 CSV，回傳實際產生的檔案清單。"""
     made: list[Path] = []
@@ -235,6 +268,7 @@ def export_all() -> list[Path]:
               export_history("TWMARKET", DIMS_MARKET, EXTRA_MARKET, "燈號"),
               export_fields("TWMARKET"),
               export_levels("TWMARKET"),
+              export_washout("TWMARKET"),
               export_streaks(),
               export_sectors(),
               export_stock_detail(),

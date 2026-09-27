@@ -475,6 +475,7 @@
                         ((snap || {}).eos || {}).summary);
     renderWaves(snap);
     renderLevels(snap);
+    renderWashout(snap);
     renderKeys(snap);
 
     const fields = snap.fields || {};
@@ -520,6 +521,85 @@
         });
       box.append(table(["項目", "數值"], rows));
     }
+  }
+
+  /* ---------------------------------------------------------- 洗盤假說 */
+  /* 分數由 washout_rubric_v0.2.yaml 在收集時算好（快照的 eos.washout），
+     這裡只排版。門檻與構面名稱都跟著 YAML 走，前端不重算分數 ——
+     否則調整 YAML 之後網頁會顯示另一個總分。 */
+  const WASHOUT_DIMS = [
+    ["W1", "三日法人累計", 20],
+    ["W2", "回檔量與市場廣度", 20],
+    ["W3", "K線與支撐結構", 15],
+    ["W4", "融資籌碼清洗", 15],
+    ["W5", "期貨與選擇權", 10],
+    ["W6", "法人別一致性", 10],
+    ["W7", "近一至三日重新站回", 10],
+  ];
+
+  const WASHOUT_RANK = { "偏派發／風險釋放": 1, "中性待確認": 3, "偏洗盤": 5 };
+
+  // 推導輸入的顯示名稱與格式。fmt 走 display()，這裡只給單位與小數位。
+  const WASHOUT_INPUTS = [
+    ["institutional_net_3d_100m", "三大法人三日累計", (v) => signed100m(v)],
+    ["institutions_buying_3d", "三日累計買超家數", (v) => v + " / 3"],
+    ["institutions_buying", "當日買超家數", (v) => v + " / 3"],
+    ["taiex_direction", "量價判讀", (v) => (v === "down" ? "回檔日" : "推升日")],
+    ["turnover_change_pct", "成交額日變化", (v) => fmt(v, 2) + "%"],
+    ["advance_ratio_pct", "上漲佔比（官方股票口徑）", (v) => fmt(v, 2) + "%"],
+    ["close_position", "收盤在當日區間", (v) => fmt(v * 100, 1) + "%"],
+    ["taiex_ma5", "5 日均線", (v) => fmt(v, 2)],
+    ["taiex_ma10", "10 日均線", (v) => fmt(v, 2)],
+    ["taiex_ma20", "20 日均線", (v) => fmt(v, 2)],
+    ["foreign_futures_oi_change_1d", "外資台指期日變化", (v) => lots(v, true)],
+    ["recovered_days_3", "站上前三日收盤", (v) => v + " / 3"],
+    ["margin_change_100m", "融資餘額日變化", (v) => signed100m(v)],
+    ["txo_pc_oi_pct", "選擇權未平倉 P/C 比", (v) => fmt(v, 2) + "%"],
+  ];
+
+  function renderWashout(snap) {
+    const card = $("#washout-card");
+    const W = ((snap || {}).eos || {}).washout;
+    if (!W) { card.hidden = true; return; }
+    card.hidden = false;
+
+    const published = W.published !== false && W.eos !== null && W.eos !== undefined;
+    $("#washout-score").textContent = published ? W.eos : "--";
+
+    const rating = $("#washout-rating");
+    rating.textContent = published ? (W.rating || "—") : "未分級";
+    rating.dataset.rank = published ? (WASHOUT_RANK[W.rating] || 3) : "";
+
+    const badge = $("#washout-badge");
+    badge.textContent = STATUS_LABEL[W.coverage_status] || "—";
+
+    // 可得滿分不到 100 就要講清楚，否則「55 分」看起來像滿分 100 的 55
+    const avail = W.available;
+    $("#washout-note").textContent = published
+      ? (avail !== null && avail !== undefined && avail < 99.5
+          ? "可得滿分 " + fmt(avail, 0) + "，缺值構面不計分；分數已標準化回 100。"
+          : "七個構面全部可得。")
+      : "可計分構面不足，本日不出分。";
+
+    const byId = new Map(Object.entries(W.dimensions || {}));
+    EOSUI.barList($("#washout-dims"), WASHOUT_DIMS.map(([key, name, max]) => {
+      const d = byId.get(key);
+      return { key, name, max, earned: d ? d.earned : null,
+               avail: d && d.earned !== null ? d.available : 0 };
+    }));
+
+    const inputs = W.inputs || {};
+    const rows = WASHOUT_INPUTS
+      .filter(([k]) => inputs[k] !== null && inputs[k] !== undefined)
+      .map(([k, label, f]) => {
+        // table() 的儲存格只吃字串或 {node, cls}，給它 {text} 會印出 [object Object]
+        const v = el("span");
+        v.textContent = f(inputs[k]);
+        return [label, { node: v, cls: "num" }];
+      });
+    const box = $("#washout-inputs");
+    box.textContent = "";
+    if (rows.length) box.append(table(["輸入", "值"], rows));
   }
 
   /* ---------------------------------------------------------- 連續買賣 Top5 */

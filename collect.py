@@ -32,7 +32,7 @@ from typing import Any, Callable
 import yaml
 
 from eos import (engine, export, marketflow, sectorflow,
-                 series as series_mod, stockflow, store, summary, usmap)
+                 series as series_mod, stockflow, store, summary, usmap, washout)
 from eos.models import Field, Status
 from eos.rubric import Rubric
 from sources import cathay, taifex, twse, yahoo
@@ -57,8 +57,8 @@ PARTS_BY_WINDOW = {
 # W2 再抓一次讓合併規則以較新的覆蓋。
 PARTS_BY_WINDOW_MARKET = {
     "w1": ("market_index", "market_institutional", "market_margin",
-           "market_futures", "market_stocks"),
-    "w2": ("market_futures",),
+           "market_futures", "market_stocks", "market_breadth", "market_pcratio"),
+    "w2": ("market_futures", "market_pcratio"),
     "w3": ("market_overseas",),
 }
 
@@ -70,6 +70,16 @@ def windows_for(cfg: dict) -> dict[str, tuple[str, ...]]:
 def rubric_for(cfg: dict) -> Rubric:
     path = cfg.get("rubric")
     return Rubric.load(ROOT / path) if path else Rubric.load()
+
+
+def washout_rubric_for(cfg: dict) -> Rubric | None:
+    """洗盤假說是掛在大盤上的第二份 rubric，不是另一個標的。
+
+    它跟燈號共用同一份每日快照（法人、融資、期貨、指數全部重疊），
+    分成兩個 instrument 只會讓同一天的資料抓兩次、存兩份。
+    """
+    path = cfg.get("washout_rubric")
+    return Rubric.load(ROOT / path) if path else None
 
 
 # ---------------------------------------------------------------- 設定
@@ -413,6 +423,17 @@ def part_market_futures(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
     return taifex.fetch_futures_oi(day)
 
 
+def part_market_breadth(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """上漲／下跌家數與漲停／跌停（官方股票口徑）。洗盤模型的 W2b 與 W7b。"""
+    _throttle_twse()
+    return twse.fetch_breadth(day)
+
+
+def part_market_pcratio(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
+    """臺指選擇權買賣權比。洗盤模型的 W5b 讀未平倉比。"""
+    return taifex.fetch_pc_ratio(day)
+
+
 def part_market_overseas(cfg: dict, day: date, **_: Any) -> dict[str, Field]:
     """F6 費半、F7 美 10 年債，兩個時點各收一份。
 
@@ -459,6 +480,8 @@ PARTS: dict[str, Callable[..., dict[str, Field]]] = {
     "market_futures": part_market_futures,
     "market_overseas": part_market_overseas,
     "market_stocks": part_market_stocks,
+    "market_breadth": part_market_breadth,
+    "market_pcratio": part_market_pcratio,
 }
 
 
@@ -497,6 +520,7 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
     # 大盤的 F1/F2/F4 不是抓得到的欄位，要由歷史序列推導。
     # 必須在計分前做，而且要把當日快照一起納入 —— 只讀已存檔的歷史會少一天。
     market_rows: list[dict[str, Any]] | None = None
+    snapshots: list[dict[str, Any]] | None = None
     lookback = int(cfg.get("lookback_days", marketflow.DEFAULT_LOOKBACK))
     if cfg.get("kind") == "market":
         history = [store.load(inst, d) for d in sorted(store.recent_days(inst, 9999))]
@@ -505,6 +529,7 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
         history = [h for h in history if h["trade_date"] != day.isoformat()] + [merged]
         rows = marketflow.rows_from_snapshots(history)
         market_rows = rows
+        snapshots = history
         derived = marketflow.rubric_inputs(rows, day, lookback=lookback)
         inputs.update({k: v for k, v in derived.items() if v is not None})
 
@@ -562,6 +587,28 @@ def score_and_save(cfg: dict, day: date, rubric: Rubric,
     # 拆成十幾個扁平欄位會失去「由高到低排成一把尺」這件事。
     if market_rows is not None:
         payload["levels"] = marketflow.levels(market_rows, day, lookback=lookback)
+
+    # 洗盤假說：同一份快照、第二份 rubric。推導輸入另外算（看的是三日累計、
+    # 均線、收盤位置這些序列衍生值，跟燈號的波段輸入沒有交集）。
+    wr = washout_rubric_for(cfg)
+    if wr is not None and snapshots is not None:
+        wrows = washout.rows_from_snapshots(snapshots)
+        winputs = dict(inputs)
+        derived_w = washout.rubric_inputs(wrows, day)
+        winputs.update({k: v for k, v in derived_w.items() if v is not None})
+        wres = engine.compute(wr, winputs)
+        wpayload = wres.to_dict()
+        wpayload["summary"] = summary.build(wr, wres, None, fields, meta=meta)
+        # 存「實際餵進 rubric 的所有輸入」，不只推導值 —— 融資、廣度、P/C 比
+        # 是快照欄位，只存推導值的話網頁上那三個構面會看不到自己的輸入。
+        # 均線水準本身不是 rubric 輸入（rubric 讀的是布林的 taiex_gt_maN），
+        # 但要讓人看得到「守的是哪一條線」，所以一併帶上。
+        shown = set(wr.required_inputs()) | {"taiex_ma5", "taiex_ma10", "taiex_ma20"}
+        wpayload["inputs"] = {k: v for k, v in winputs.items()
+                              if k in shown and v is not None}
+        payload["washout"] = wpayload
+        print(f"  洗盤 {wres.eos if wres.published else '--'}"
+              f"（可得 {wres.available:.0f}）{wres.rating if wres.published else '資料不足'}")
 
     store.save(inst, day, fields=fields, eos=payload,
                windows=[window] if window else [])

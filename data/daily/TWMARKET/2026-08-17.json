@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-08-17",
  "first_collected_at": "2026-09-26T15:28:09",
- "updated_at": "2026-09-26T21:53:25",
+ "updated_at": "2026-09-27T20:35:39",
  "windows": [
   "backfill"
  ],
@@ -197,6 +197,226 @@
      "gap_pct": -0.035574730026449286
     }
    ]
+  },
+  "washout": {
+   "rubric_version": "washout-0.2",
+   "eos": 61,
+   "raw_eos": 61.0,
+   "earned": 61.0,
+   "available": 100.0,
+   "coverage_status": "confirmed",
+   "published": true,
+   "rating": "中性待確認",
+   "missing": [],
+   "dimensions": {
+    "W1": {
+     "key": "W1",
+     "name": "三日法人累計",
+     "earned": 15.0,
+     "available": 20.0,
+     "max": 20.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W1a",
+       "name": "三大法人三日累計",
+       "earned": 11.0,
+       "available": 14.0,
+       "max": 14.0,
+       "scored": true,
+       "detail": "1700 -> 11"
+      },
+      {
+       "id": "W1b",
+       "name": "三日累計買超的法人家數",
+       "earned": 4.0,
+       "available": 6.0,
+       "max": 6.0,
+       "scored": true,
+       "detail": "2 -> 4"
+      }
+     ]
+    },
+    "W2": {
+     "key": "W2",
+     "name": "回檔量與市場廣度",
+     "earned": 17.0,
+     "available": 20.0,
+     "max": 20.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W2a",
+       "name": "量價配合",
+       "earned": 12.0,
+       "available": 14.0,
+       "max": 14.0,
+       "scored": true,
+       "detail": "down 日 量比 -11.6 -> 12"
+      },
+      {
+       "id": "W2b",
+       "name": "市場廣度（上漲佔比）",
+       "earned": 5.0,
+       "available": 6.0,
+       "max": 6.0,
+       "scored": true,
+       "detail": "54.48 -> 5"
+      }
+     ]
+    },
+    "W3": {
+     "key": "W3",
+     "name": "K線與支撐結構",
+     "earned": 7.0,
+     "available": 15.0,
+     "max": 15.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W3a",
+       "name": "均線結構",
+       "earned": 5.0,
+       "available": 5.0,
+       "max": 5.0,
+       "scored": true,
+       "detail": "2/2 成立(收盤站上5日線)"
+      },
+      {
+       "id": "W3b",
+       "name": "收盤在當日區間的位置",
+       "earned": 2.0,
+       "available": 10.0,
+       "max": 10.0,
+       "scored": true,
+       "detail": "0.2173 -> 2"
+      }
+     ]
+    },
+    "W4": {
+     "key": "W4",
+     "name": "融資籌碼清洗",
+     "earned": 2.0,
+     "available": 15.0,
+     "max": 15.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W4a",
+       "name": "融資餘額日變化",
+       "earned": 2.0,
+       "available": 15.0,
+       "max": 15.0,
+       "scored": true,
+       "detail": "30.42 -> 2"
+      }
+     ]
+    },
+    "W5": {
+     "key": "W5",
+     "name": "期貨與選擇權",
+     "earned": 7.0,
+     "available": 10.0,
+     "max": 10.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W5a",
+       "name": "外資台指期淨未平倉日變化",
+       "earned": 4.0,
+       "available": 7.0,
+       "max": 7.0,
+       "scored": true,
+       "detail": "1705 -> 4"
+      },
+      {
+       "id": "W5b",
+       "name": "臺指選擇權未平倉 P/C 比",
+       "earned": 3.0,
+       "available": 3.0,
+       "max": 3.0,
+       "scored": true,
+       "detail": "117.2 -> 3"
+      }
+     ]
+    },
+    "W6": {
+     "key": "W6",
+     "name": "法人別一致性",
+     "earned": 5.0,
+     "available": 10.0,
+     "max": 10.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W6a",
+       "name": "三大法人當日同向家數",
+       "earned": 5.0,
+       "available": 10.0,
+       "max": 10.0,
+       "scored": true,
+       "detail": "2 -> 5"
+      }
+     ]
+    },
+    "W7": {
+     "key": "W7",
+     "name": "近一至三日重新站回",
+     "earned": 8.0,
+     "available": 10.0,
+     "max": 10.0,
+     "complete": true,
+     "items": [
+      {
+       "id": "W7a",
+       "name": "站上前三個交易日收盤的日數",
+       "earned": 6.0,
+       "available": 8.0,
+       "max": 8.0,
+       "scored": true,
+       "detail": "2 -> 6"
+      },
+      {
+       "id": "W7b",
+       "name": "廣度是否同步",
+       "earned": 2.0,
+       "available": 2.0,
+       "max": 2.0,
+       "scored": true,
+       "detail": "1/1 成立(上漲家數多於下跌家數)"
+      }
+     ]
+    }
+   },
+   "summary": {
+    "headline": "EOS 61/100，屬「中性待確認」（前一交易日無已發布分數，或當日未達發布門檻）",
+    "drivers": [],
+    "drags": [],
+    "evidence": [],
+    "quality": [
+     "費半（前一時段）、US10Y 為較舊時點資料"
+    ],
+    "watch": [
+     "距「偏洗盤」（65 分）尚差 4 分"
+    ],
+    "text": "EOS 61/100，屬「中性待確認」（前一交易日無已發布分數，或當日未達發布門檻）　資料品質：費半（前一時段）、US10Y 為較舊時點資料　待觀察：距「偏洗盤」（65 分）尚差 4 分"
+   },
+   "inputs": {
+    "margin_change_100m": 30.42354,
+    "advance_ratio_pct": 54.48,
+    "txo_pc_oi_pct": 117.16,
+    "institutional_net_3d_100m": 1699.9299999999998,
+    "institutions_buying_3d": 2,
+    "close_position": 0.21733493623740988,
+    "taiex_direction": "down",
+    "turnover_change_pct": -11.596481154517015,
+    "breadth_positive": true,
+    "taiex_gt_ma5": true,
+    "taiex_ma5": 45665.71,
+    "foreign_futures_oi_change_1d": 1705.0,
+    "institutions_buying": 2,
+    "recovered_days_3": 2
+   }
   }
  },
  "fields": {
@@ -527,6 +747,86 @@
    "as_of": "2026-08-17",
    "status": "ok",
    "note": "由最近 7 個交易日的序列推導"
+  },
+  "trust_net_100m": {
+   "value": -177.77,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260817&type=day&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "dealer_net_100m": {
+   "value": 14.05,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260817&type=day&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "advancing": {
+   "value": 541.0,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260817&type=ALLBUT0999&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "declining": {
+   "value": 452.0,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260817&type=ALLBUT0999&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "unchanged": {
+   "value": 82.0,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260817&type=ALLBUT0999&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "limit_up": {
+   "value": 16.0,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260817&type=ALLBUT0999&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "limit_down": {
+   "value": 2.0,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260817&type=ALLBUT0999&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "advance_ratio_pct": {
+   "value": 54.48,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260817&type=ALLBUT0999&response=json",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "txo_pc_volume_pct": {
+   "value": 126.34,
+   "source": "TAIFEX 選擇權買賣權比",
+   "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
+  },
+  "txo_pc_oi_pct": {
+   "value": 117.16,
+   "source": "TAIFEX 選擇權買賣權比",
+   "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
+   "as_of": "2026-08-17",
+   "status": "ok",
+   "note": ""
   }
  }
 }

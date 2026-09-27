@@ -110,3 +110,53 @@ def fetch_futures_oi(day: date, *, commodity: str = "TXF") -> dict[str, Field]:
     if text.lstrip().startswith("<"):
         raise UnexpectedPayload(f"{DOWNLOAD_URL} 回傳 HTML 而非 CSV，端點可能已改版")
     return oi_fields(parse_futures_oi(text, day), day, url=DOWNLOAD_URL)
+
+
+# ---------------------------------------------------------------- 選擇權 P/C 比
+
+PC_RATIO_URL = "https://www.taifex.com.tw/cht/3/pcRatioDown"
+
+# 欄位：日期, 賣權成交量, 買權成交量, 買賣權成交量比率%, 賣權未平倉, 買權未平倉, 買賣權未平倉比率%
+_PC_DATE, _PC_VOL_PCT, _PC_OI_PCT = 0, 3, 6
+_PC_EXPECTED_COLS = 7
+
+
+def pc_ratio_url() -> str:
+    return PC_RATIO_URL
+
+
+def parse_pc_ratio(csv_text: str, day: date, *, url: str = "") -> dict[str, float | None]:
+    """臺指選擇權買賣權比率。只取指定日那一列。
+
+    **未平倉比才是部位訊號，成交量比不是。** 成交量比一天之內就會被當沖
+    與價差單洗掉；未平倉比反映的是留倉的方向。兩個都存，但模型只用未平倉比。
+    """
+    want = f"{day:%Y/%m/%d}"
+    for line in csv_text.splitlines():
+        cells = [c.strip().strip('"') for c in line.split(",")]
+        if len(cells) < _PC_EXPECTED_COLS or cells[_PC_DATE] != want:
+            continue
+        return {"txo_pc_volume_pct": to_float(cells[_PC_VOL_PCT]),
+                "txo_pc_oi_pct": to_float(cells[_PC_OI_PCT])}
+    return {"txo_pc_volume_pct": None, "txo_pc_oi_pct": None}
+
+
+def pc_ratio_fields(parsed: dict[str, float | None], day: date, *, url: str) -> dict[str, Field]:
+    src, as_of = "TAIFEX 選擇權買賣權比", day.isoformat()
+
+    def mk(name: str, val: float | None) -> Field:
+        if val is None:
+            return Field.missing(name, source=src, url=url, note="當日尚未發布或查無該日")
+        return Field(name=name, value=val, source=src, url=url,
+                     as_of=as_of, status=Status.OK)
+
+    return {n: mk(n, v) for n, v in parsed.items()}
+
+
+def fetch_pc_ratio(day: date) -> dict[str, Field]:
+    d = f"{day:%Y/%m/%d}"
+    text = fetch_text(PC_RATIO_URL, data={"queryStartDate": d, "queryEndDate": d},
+                      encoding="big5")
+    if text.lstrip().startswith("<"):
+        raise UnexpectedPayload(f"{PC_RATIO_URL} 回傳 HTML 而非 CSV，端點可能已改版")
+    return pc_ratio_fields(parse_pc_ratio(text, day, url=PC_RATIO_URL), day, url=PC_RATIO_URL)
