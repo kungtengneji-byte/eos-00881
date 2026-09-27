@@ -360,8 +360,11 @@
   const SIGNED_PCT = new Set(["taiex_change_pct", "sox_prev_session_ret",
                               "sox_latest_session_ret"]);
   const PLAIN_PCT = new Set(["gap_to_resistance_pct"]);
+  const PCT_POINTS = new Set(["advance_ratio_pct", "txo_pc_oi_pct",
+                              "txo_pc_volume_pct"]);
   const M100_SIGNED = new Set([
     "foreign_net_100m", "institutional_net_100m", "market_foreign_net_100m",
+    "trust_net_100m", "dealer_net_100m",
     "margin_change_100m", "margin_change_2d_100m", "wave_cumulative_100m",
     "avg_buy_wave_cumulative_100m", "max_buy_wave_cumulative_100m",
     "avg_sell_wave_cumulative_100m",
@@ -372,9 +375,12 @@
                              "trust_futures_net_oi", "foreign_futures_oi_change_5d"]);
   const OI_PLAIN = new Set(["foreign_futures_long_oi", "foreign_futures_short_oi"]);
   const PRICE_FIELDS = new Set(["taiex", "taiex_change", "resistance_close",
-                                "latest_close"]);
+                                "latest_close", "taiex_open", "taiex_high",
+                                "taiex_low", "resistance_high"]);
   // 沒有單位的裸數字讀起來像代碼。天數、段數、日數都補上量詞。
   const UNIT = {
+    advancing: "家", declining: "家", unchanged: "家",
+    limit_up: "家", limit_down: "家", stock_flow_count: "檔",
     wave_days: "天", max_buy_wave_days: "天", avg_buy_wave_days: "天",
     avg_sell_wave_days: "天",
     completed_buy_waves: "段", completed_sell_waves: "段",
@@ -387,10 +393,15 @@
     taiex_change: { g: "大盤行情", o: 2, label: "漲跌點數" },
     taiex_change_pct: { g: "大盤行情", o: 3, label: "漲跌幅" },
     market_turnover_100m: { g: "大盤行情", o: 4, label: "成交值" },
+    taiex_open: { g: "大盤行情", o: 5, label: "開盤" },
+    taiex_high: { g: "大盤行情", o: 6, label: "盤中最高", f: "壓力2／F4 分母" },
+    taiex_low: { g: "大盤行情", o: 7, label: "盤中最低", f: "W3b" },
 
     market_foreign_net_100m: { g: "法人資金", o: 1, label: "外資現貨買賣超", f: "F1/F2" },
     foreign_net_100m: { g: "法人資金", o: 2, label: "外資買賣超（同上，供 00881 模型使用）" },
-    institutional_net_100m: { g: "法人資金", o: 3, label: "三大法人合計" },
+    trust_net_100m: { g: "法人資金", o: 3, label: "投信買賣超", f: "W1b/W6" },
+    dealer_net_100m: { g: "法人資金", o: 4, label: "自營商買賣超（自行＋避險）", f: "W1b/W6" },
+    institutional_net_100m: { g: "法人資金", o: 5, label: "三大法人合計", f: "W1a" },
 
     foreign_futures_net_oi: { g: "期貨未平倉", o: 1, label: "外資淨未平倉", f: "F3" },
     foreign_futures_oi_change_5d: { g: "期貨未平倉", o: 2, label: "外資 5 日變化", f: "F3" },
@@ -398,10 +409,12 @@
     foreign_futures_short_oi: { g: "期貨未平倉", o: 4, label: "外資空方未平倉" },
     dealer_futures_net_oi: { g: "期貨未平倉", o: 5, label: "自營商淨未平倉" },
     trust_futures_net_oi: { g: "期貨未平倉", o: 6, label: "投信淨未平倉" },
+    txo_pc_oi_pct: { g: "期貨未平倉", o: 7, label: "選擇權未平倉 P/C 比", f: "W5b" },
+    txo_pc_volume_pct: { g: "期貨未平倉", o: 8, label: "選擇權成交量 P/C 比" },
 
     margin_balance_100m: { g: "融資", o: 1, label: "融資餘額" },
     margin_prev_100m: { g: "融資", o: 2, label: "前一日融資餘額" },
-    margin_change_100m: { g: "融資", o: 3, label: "融資單日變化" },
+    margin_change_100m: { g: "融資", o: 3, label: "融資單日變化", f: "W4a" },
     margin_change_2d_100m: { g: "融資", o: 4, label: "融資 2 日變化", f: "F5" },
 
     wave_direction: { g: "波段", o: 1, label: "本波方向" },
@@ -417,11 +430,22 @@
     avg_sell_wave_days: { g: "波段", o: 11, label: "賣波平均天數" },
     avg_sell_wave_cumulative_100m: { g: "波段", o: 12, label: "賣波平均累計" },
 
+    advancing: { g: "市場廣度", o: 1, label: "上漲家數" },
+    declining: { g: "市場廣度", o: 2, label: "下跌家數" },
+    unchanged: { g: "市場廣度", o: 3, label: "持平家數" },
+    advance_ratio_pct: { g: "市場廣度", o: 4, label: "上漲佔比", f: "W2b" },
+    limit_up: { g: "市場廣度", o: 5, label: "漲停家數" },
+    limit_down: { g: "市場廣度", o: 6, label: "跌停家數" },
+
     resistance_close: { g: "壓力與視窗", o: 1, label: "視窗內最高收盤" },
-    resistance_date: { g: "壓力與視窗", o: 2, label: "前高日期" },
-    latest_close: { g: "壓力與視窗", o: 3, label: "最新收盤" },
-    gap_to_resistance_pct: { g: "壓力與視窗", o: 4, label: "距前高", f: "F4" },
-    window_days: { g: "壓力與視窗", o: 5, label: "視窗交易日數" },
+    resistance_date: { g: "壓力與視窗", o: 2, label: "前高日期（收盤）" },
+    resistance_high: { g: "壓力與視窗", o: 3, label: "視窗內最高盤中價", f: "F4 分母" },
+    resistance_high_date: { g: "壓力與視窗", o: 4, label: "前高日期（盤中）" },
+    latest_close: { g: "壓力與視窗", o: 5, label: "最新收盤" },
+    gap_to_resistance_pct: { g: "壓力與視窗", o: 6, label: "距前高", f: "F4" },
+    window_days: { g: "壓力與視窗", o: 7, label: "視窗交易日數" },
+
+    stock_flow_count: { g: "逐檔統計", o: 1, label: "當日有法人進出的個股檔數" },
 
     sox_prev_session_ret: { g: "海外", o: 1, label: "費半（T−1 時段）", f: "F6" },
     us10y: { g: "海外", o: 2, label: "美 10 年期公債殖利率", f: "F7" },
@@ -429,8 +453,8 @@
     us10y_latest: { g: "海外", o: 4, label: "美 10 年期（最新）", f: "明日展望" },
   };
 
-  const GROUP_ORDER = ["大盤行情", "法人資金", "期貨未平倉", "融資",
-                       "波段", "壓力與視窗", "海外", "其他"];
+  const GROUP_ORDER = ["大盤行情", "法人資金", "期貨未平倉", "融資", "市場廣度",
+                       "波段", "壓力與視窗", "逐檔統計", "海外", "其他"];
 
   const STATUS_MARK = {
     ok: "", stale: "較舊時點", missing: "缺值",
@@ -449,9 +473,13 @@
       return (name === "taiex_change" && value >= 0 ? "+" : "") + price(value);
     }
     if (name === "us10y" || name === "us10y_latest") return fmt(value, 3) + "%";
+    // 這幾個在快照裡已經是 0–100 的數（不是小數），直接補 % 不再乘 100
+    if (PCT_POINTS.has(name)) return fmt(value, 2) + "%";
     if (name === "wave_direction") return WAVE_DIR[value] || String(value);
     if (UNIT[name]) {
-      const n = Number.isInteger(value) ? String(value) : value.toFixed(1);
+      // 整數也要千分位：家數動輒三四位數，1301 讀起來比 1,301 慢
+      const n = Number.isInteger(value)
+        ? value.toLocaleString("en-US") : value.toFixed(1);
       return n + " " + UNIT[name];
     }
     return smart(value);
