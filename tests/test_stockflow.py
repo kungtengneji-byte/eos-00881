@@ -496,3 +496,55 @@ def test_candidate_codes_takes_only_the_listed_top_n():
         "foreign": {"buy": [{"code": "A"}, {"code": "D"}], "sell": []},
     }}
     assert stockflow.candidate_codes(report) == ["A", "B", "C", "D"]
+
+
+# ------------------------------------------------ 明細顯示天數與計算視窗拆開
+
+def _seed_days(tmp_path, monkeypatch, n: int, net: int = 1000) -> date:
+    """寫 n 個交易日的逐日檔，同一檔股票每天同方向買超。"""
+    monkeypatch.setattr(stockflow, "STOCKS", tmp_path)
+    monkeypatch.setattr(stockflow, "NAMES_PATH", tmp_path / "names.json")
+    for i in range(n):
+        stockflow.save_day(D0 + timedelta(days=i), {"2884": [net, 0, 0, 0]},
+                           {"2884": "玉山金"})
+    return D0 + timedelta(days=n - 1)
+
+
+REPORT = {"top_n": 5, "institutions": {"leading": {"buy": [{"code": "2884"}],
+                                                   "sell": []}}}
+
+
+def test_detail_streaks_use_the_full_window_not_the_shown_rows(tmp_path, monkeypatch):
+    """連買 100 天、表上只列 40 列 —— 最後一列的連續天數必須仍是 100。
+
+    這是把兩個參數拆開的全部理由。若改成只拿最近 40 天去算，
+    截斷處會從 1 重新起算，這一頁就會跟〈連續買賣 Top5〉互相矛盾。
+    """
+    end = _seed_days(tmp_path, monkeypatch, 100)
+    d = stockflow.build_detail(end, REPORT, lookback=128, detail_days=40)
+
+    assert d["window_days"] == 100          # 計算範圍
+    assert d["shown_days"] == 40            # 顯示範圍
+    assert d["truncated"] is True
+
+    rows = d["stocks"][0]["rows"]
+    assert len(rows) == 40
+    assert rows[-1]["run_foreign"] == 100   # 最新一天：完整視窗的天數
+    assert rows[0]["run_foreign"] == 61     # 表上最舊一列也承接了前面的累計
+
+
+def test_detail_not_marked_truncated_when_everything_fits(tmp_path, monkeypatch):
+    """視窗比顯示上限短時不標截斷，說明文字才不會講一句多餘的話。"""
+    end = _seed_days(tmp_path, monkeypatch, 12)
+    d = stockflow.build_detail(end, REPORT, lookback=128, detail_days=40)
+    assert d["window_days"] == d["shown_days"] == 12
+    assert d["truncated"] is False
+    assert len(d["stocks"][0]["rows"]) == 12
+
+
+def test_detail_days_none_shows_everything(tmp_path, monkeypatch):
+    """detail_days 留空＝不截尾，維持拆開之前的行為。"""
+    end = _seed_days(tmp_path, monkeypatch, 50)
+    d = stockflow.build_detail(end, REPORT, lookback=128, detail_days=None)
+    assert d["shown_days"] == d["window_days"] == 50
+    assert d["truncated"] is False

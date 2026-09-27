@@ -28,12 +28,18 @@ BACKFILL_INTERVAL = 5.0
 
 
 def trading_days(start: date, end: date) -> list[date]:
-    """先用已有的大盤快照；不足時再向 TWSE 問大盤成交資訊補足日曆。"""
-    known = [d for d in store.all_days("TWMARKET") if start <= d <= end]
-    if known:
-        return sorted(known)
+    """區間內的交易日：已有的大盤快照，加上向 TWSE 問到的月曆。
 
-    days: set[date] = set()
+    **不能「只要有已知的就不問 TWSE」**：大盤快照只從 2026-08-07 開始，
+    問半年會拿到那 35 天就收手，然後回報「已經齊全」—— 靜默地什麼都不補。
+    月曆一個月一次請求，補半年只多七次，不值得為此冒失敗無聲的風險。
+    """
+    days = {d for d in store.all_days("TWMARKET") if start <= d <= end}
+
+    # 已有快照完整覆蓋到區間起點就不必再問（日常回補七天走的是這條）
+    if days and min(days) <= start:
+        return sorted(days)
+
     cur = date(start.year, start.month, 1)
     while cur <= end:
         url = twse.market_index_url(f"{cur:%Y%m}")

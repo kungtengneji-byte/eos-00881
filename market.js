@@ -856,9 +856,16 @@
     const s = ((detailData || {}).stocks || [])[i];
     if (!s) return;
 
-    $("#stock-caption").textContent =
-      (detailData.window_start || "") + " 起 " + (detailData.window_days || 0) +
-      " 個交易日　來源 " + (detailData.source || "");
+    // 表格只列最近幾天，連續天數卻是用完整視窗算的 —— 兩個數字不一樣，
+    // 說明文字就得把兩個都講出來，否則「連買 87 天」配上一張 40 列的表會像算錯。
+    const shown = detailData.shown_days || detailData.window_days || 0;
+    const full = detailData.window_days || 0;
+    $("#stock-caption").textContent = detailData.truncated
+      ? "表列最近 " + shown + " 個交易日；連續天數以 " +
+        (detailData.window_start || "") + " 起 " + full +
+        " 個交易日計算　來源 " + (detailData.source || "")
+      : (detailData.window_start || "") + " 起 " + full +
+        " 個交易日　來源 " + (detailData.source || "");
 
     const box = $("#stock-detail");
     box.textContent = "";

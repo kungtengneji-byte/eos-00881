@@ -34,6 +34,7 @@ from eos.streaks_core import (DEFAULT_MIN_DAYS, DEFAULT_TOP_N, INSTITUTION_LABEL
 __all__ = ["DEFAULT_MIN_DAYS", "DEFAULT_TOP_N", "DEFAULT_WINDOW", "CANDIDATE_FACTOR",
            "INSTITUTION_LABEL", "SHARES_PER_LOT", "STATUS_LABEL", "ScoreParams",
            "Streak", "is_etf", "leading", "streaks", "top",
+           "DEFAULT_DETAIL_DAYS",
            "save_day", "load_day", "load_names", "available_days", "missing_days",
            "load_window", "save_prices", "load_price_day", "price_days",
            "latest_prices", "save_industries", "load_industries",
@@ -47,6 +48,10 @@ PRICES = STOCKS / "px"
 INDUSTRIES_PATH = STOCKS / "industries.json"
 
 DEFAULT_WINDOW = 60
+
+# 〈個股法人明細〉表格預設列出的天數。與 DEFAULT_WINDOW 拆開：
+# 連續天數要看得夠遠，表格要短到手機上滑得完。
+DEFAULT_DETAIL_DAYS = 40
 # 每一側實際存進報表的候補筆數＝top_n × 這個倍數（見 build_report）
 CANDIDATE_FACTOR = 4
 
@@ -249,19 +254,35 @@ def write_report(end: date, **kw: Any) -> Path:
 
 
 def build_detail(end: date, report: dict[str, Any], *,
-                 lookback: int = DEFAULT_WINDOW) -> dict[str, Any]:
-    """候選標的的逐日三大法人明細，對齊工作表〈個股法人明細〉。"""
+                 lookback: int = DEFAULT_WINDOW,
+                 detail_days: int | None = DEFAULT_DETAIL_DAYS) -> dict[str, Any]:
+    """候選標的的逐日三大法人明細，對齊工作表〈個股法人明細〉。
+
+    **連續天數用完整視窗算，只有顯示才截尾。** 兩者拆開是必要的：
+    連買天數算到一百多天很正常（玉山金投信在補半年之前就已經頂到視窗上緣），
+    但手機上沒有人要滑一張一百多列的表。如果改成只拿最近 N 天去算連續，
+    截斷處的天數會從 1 重新起算，這一頁就會跟〈連續買賣 Top5〉互相矛盾。
+    """
     window = load_window(end, lookback)
     names = load_names()
     codes = candidate_codes(report)
+    shown = len(window) if detail_days is None else min(detail_days, len(window))
+
+    def rows_for(code: str) -> list[dict[str, Any]]:
+        full = detail_rows(window, code, name=names.get(code, code))
+        return full[-shown:] if shown else full
+
     return {
         "as_of": end.isoformat(),
+        # window_* 是連續天數的計算範圍；shown_* 是這張表實際列出來的範圍
         "window_start": window[0][0].isoformat() if window else None,
         "window_days": len(window),
+        "shown_days": shown,
+        "truncated": shown < len(window),
         "source": "TWSE T86",
         "stocks": [{"code": c, "name": names.get(c, c),
                     "etf": is_etf(c),
-                    "rows": detail_rows(window, c, name=names.get(c, c))}
+                    "rows": rows_for(c)}
                    for c in codes],
     }
 

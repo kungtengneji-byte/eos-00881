@@ -645,7 +645,9 @@ def write_index(cfg: dict) -> None:
         params=stockflow.ScoreParams.from_config(st))
     # 候選標的的逐日明細要用上面那份報表決定名單，所以讀回來而不是重算一次
     report = json.loads(path.read_text(encoding="utf-8"))
-    stockflow.write_detail(days[-1], report, lookback=lookback)
+    stockflow.write_detail(days[-1], report, lookback=lookback,
+                           detail_days=int(st.get("detail_days",
+                                                  stockflow.DEFAULT_DETAIL_DAYS)))
     _sector_report(st)
     _us_map_report(cfg)
     _export()
