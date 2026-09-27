@@ -32,7 +32,7 @@ from typing import Any, Callable
 import yaml
 
 from eos import (engine, export, marketflow, sectorflow,
-                 series as series_mod, stockflow, store, summary)
+                 series as series_mod, stockflow, store, summary, usmap)
 from eos.models import Field, Status
 from eos.rubric import Rubric
 from sources import cathay, taifex, twse, yahoo
@@ -600,7 +600,27 @@ def write_index(cfg: dict) -> None:
     report = json.loads(path.read_text(encoding="utf-8"))
     stockflow.write_detail(days[-1], report, lookback=lookback)
     _sector_report(st)
+    _us_map_report(cfg)
     _export()
+
+
+def _us_map_report(cfg: dict) -> None:
+    """美股映射。美股指標存在 00881 的快照裡（D 構面用），
+    台股結果在大盤快照裡，這裡把兩邊依台股交易日接起來。"""
+    def loader(day):
+        us = store.load("00881", day)
+        tw = store.load(cfg["instrument"], day)
+        return (us, tw) if (us or tw) else None
+
+    try:
+        rep = usmap.build_report(store.all_days(cfg["instrument"]), loader,
+                                 limit=int((cfg.get("streaks") or {}).get("usmap_days", 30)))
+    except Exception as exc:                      # noqa: BLE001
+        print(f"  美股映射計算失敗：{type(exc).__name__}: {exc}")
+        return
+    out = ROOT / "data" / "us_map.json"
+    out.write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"  美股映射 {rep['days']} 天")
 
 
 def _sector_report(st: dict) -> None:

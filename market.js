@@ -641,6 +641,80 @@
     renderStreaks();
   }
 
+  /* ---------------------------------------------------------- 美股映射 */
+  /* 報表由 eos/usmap.py 算好（data/us_map.json）：每個台股日配上它實際
+     對應的美股時段，以及兩邊的結果。美股時段日直接取欄位的 as_of，
+     不在這裡重推 —— 收資料時就是照 T−1 抓的，重推只會多一個會走歪的地方。 */
+  async function loadUsMap() {
+    const card = $("#usmap-card");
+    let rep;
+    try {
+      rep = await EOSUI.loadJSON("data/us_map.json");
+    } catch {
+      card.hidden = true;
+      return;
+    }
+    const rows = (rep && rep.rows) || [];
+    if (!rows.length) { card.hidden = true; return; }
+
+    $("#usmap-rule").textContent = rep.rule || "";
+
+    const st = rep.stats || {};
+    const pct1 = (v) => (v == null ? "—" : (v >= 0 ? "+" : "") + (v * 100).toFixed(2) + "%");
+    $("#usmap-stats").textContent = "";
+    $("#usmap-stats").append(table(["統計（僅供事後描述）", "數值"], [
+      ["費半與加權指數同向",
+       st.agree_ratio == null ? "—"
+         : Math.round(st.agree_ratio * 100) + "%　（" + st.agree + "/" + st.usable +
+           " 天，持平不計；共 " + st.days + " 天）"],
+      ["費半上漲後的台股平均",
+       pct1(st.taiex_avg_after_sox_up) + "　（" + (st.sox_up_days || 0) + " 天）"],
+      ["費半下跌後的台股平均",
+       pct1(st.taiex_avg_after_sox_down) + "　（" + (st.sox_down_days || 0) + " 天）"],
+    ]));
+
+    const shared = rep.shared_us_sessions || [];
+    const box = $("#usmap");
+    box.textContent = "";
+    const body = [...rows].reverse().map((r) => {
+      const left = el("div");
+      const t = el("div", "fld-label");
+      t.textContent = r.tw_date.slice(5);
+      const sub = el("div", "fld-sub subtle");
+      // 同一個美股時段被兩天共用 = 期間內美股休市，標出來免得被當成資料錯誤
+      sub.textContent = "← 美股 " + (r.us_date ? r.us_date.slice(5) : "—")
+        + (r.us_date && shared.includes(r.us_date) ? "（休市順延）" : "");
+      left.append(t, sub);
+      return [
+        { node: left },
+        { node: textNode(pct1(r.us.sox_ret)), cls: "num" },
+        { node: textNode(pct1(r.us.ndx_ret)), cls: "num" },
+        { node: usCell(r, "vix", r.us.vix == null ? "—" : r.us.vix.toFixed(1)),
+          cls: "num" },
+        { node: textNode(pct1(r.tw.taiex_change_pct)), cls: "num" },
+        { node: textNode(r.agree === true ? "✓" : r.agree === false ? "✗" : "—"),
+          cls: "num" },
+      ];
+    });
+    box.append(table(["台股日 ← 美股時段", "費半", "Nasdaq", "VIX", "加權", "同向"], body));
+    card.hidden = false;
+  }
+
+  /* as_of 與該列時段不同的欄位要標出來，不要安靜地把兩個時段並排在同一列。
+     實測台股 09-08：費半等四項順延回 09-04（美股勞動節休市），VIX 卻是 09-07。 */
+  function usCell(r, key, text) {
+    const d = el("div");
+    const v = el("div");
+    v.textContent = text;
+    d.append(v);
+    if ((r.off_session || []).includes(key)) {
+      const n = el("div", "fld-sub subtle");
+      n.textContent = (r.us_as_of || {})[key] ? (r.us_as_of[key] || "").slice(5) : "";
+      d.append(n);
+    }
+    return d;
+  }
+
   /* ---------------------------------------------------------- 個股法人明細 */
   /* 對齊工作表〈個股法人明細〉：候選標的的逐日三大法人買賣超與連續天數。
      一次只畫一檔 —— 三十幾檔 × 三十五天全部攤開是一千多列，手機上沒人看得完。 */
@@ -864,6 +938,7 @@
     loadStreaks();
     loadSectors();
     loadStockDetail();
+    loadUsMap();
 
     EOSUI.crossSummary($("#cross-card"), $("#cross-body"), "00881", {
       rankOf: (r) => ({ "高風險區": 1, "偏不利": 2, "中性等待": 3,

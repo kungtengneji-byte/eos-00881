@@ -189,6 +189,31 @@ def export_stock_detail() -> Path | None:
                      out)
 
 
+def export_us_map() -> Path | None:
+    """美股映射：每個台股日配上它實際對應的美股時段與兩邊結果。"""
+    rep = _load(ROOT / "data" / "us_map.json")
+    if not rep or not rep.get("rows"):
+        return None
+    shared = set(rep.get("shared_us_sessions") or [])
+    us_cols = [c[0] for c in (rep.get("fields") or {}).get("us", [])]
+    tw_cols = [c[0] for c in (rep.get("fields") or {}).get("tw", [])]
+    head = (["台股日", "美股時段", "美股休市順延", "跨時段欄位"]
+            + [c[1] for c in (rep.get("fields") or {}).get("us", [])]
+            + [c[1] for c in (rep.get("fields") or {}).get("tw", [])]
+            + ["費半方向", "加權方向", "同向"])
+    out: list[list[Any]] = []
+    for r in rep["rows"]:
+        off = r.get("off_session") or []
+        out.append([r["tw_date"], r.get("us_date"),
+                    "是" if r.get("us_date") in shared else "",
+                    "、".join(f"{k}={(r.get('us_as_of') or {}).get(k)}" for k in off)]
+                   + [(r.get("us") or {}).get(c) for c in us_cols]
+                   + [(r.get("tw") or {}).get(c) for c in tw_cols]
+                   + [r.get("sox_dir"), r.get("taiex_dir"),
+                      "" if r.get("agree") is None else ("是" if r["agree"] else "否")])
+    return write_csv(EXPORTS / "美股映射.csv", head, out)
+
+
 # ---------------------------------------------------------------- 總入口
 
 DIMS_00881 = [("A", "A 價格/折溢價"), ("B", "B 含息趨勢/回檔"), ("C", "C 成分股廣度"),
@@ -212,7 +237,8 @@ def export_all() -> list[Path]:
               export_levels("TWMARKET"),
               export_streaks(),
               export_sectors(),
-              export_stock_detail()):
+              export_stock_detail(),
+              export_us_map()):
         if p is not None:
             made.append(p)
 
