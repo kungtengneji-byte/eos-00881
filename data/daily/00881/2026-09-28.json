@@ -2,9 +2,10 @@
  "instrument": "00881",
  "trade_date": "2026-09-28",
  "first_collected_at": "2026-09-28T05:43:32",
- "updated_at": "2026-09-28T15:32:46",
+ "updated_at": "2026-09-28T19:47:14",
  "windows": [
   "w1",
+  "w2",
   "w3"
  ],
  "eos": {
@@ -242,7 +243,9 @@
     "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
     "Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX 為較舊時點資料"
    ],
-   "watch": [],
+   "watch": [
+    "當日正式 NAV 尚未發布，折溢價待回補"
+   ],
    "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX 為較舊時點資料"
   }
  },
@@ -478,6 +481,22 @@
    "as_of": null,
    "status": "missing",
    "note": "僅 0/10 檔取得報酬：2383 無 2026-09-28 收盤；3017 無 2026-09-28 收盤；3008 無 2026-09-28 收盤"
+  },
+  "nav": {
+   "value": null,
+   "source": "國泰投信 cwapi",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+  },
+  "premium": {
+   "value": null,
+   "source": "國泰投信 cwapi",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
   }
  }
 }
