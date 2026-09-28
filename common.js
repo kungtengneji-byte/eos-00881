@@ -328,6 +328,14 @@ window.EOSUI = (() => {
 
   function initTableToggles() {
     document.querySelectorAll("[data-table]").forEach((b) => {
+      // 約定：data-table="X" 對應 id="X-table"。對不上就把按鈕藏起來，
+      // 不要留一顆按了沒反應的按鈕 —— 那比沒有按鈕更難查。
+      if (!$("#" + b.dataset.table + "-table")) {
+        console.warn("data-table=" + b.dataset.table + " 找不到對應的 #" +
+                     b.dataset.table + "-table，按鈕已隱藏");
+        b.hidden = true;
+        return;
+      }
       b.addEventListener("click", () => {
         const box = $("#" + b.dataset.table + "-table");
         if (!box) return;
@@ -430,6 +438,7 @@ window.EOSUI = (() => {
         || s.querySelector("h2").textContent.split("　")[0];
       a.addEventListener("click", (e) => {
         e.preventDefault();
+        expandSection(s);             // 收合中的卡片先展開再捲過去
         // 明確指定 instant。實測這個引擎的平滑捲動是壞的：不論用
         // scrollIntoView({behavior:"smooth"})、scrollTo({behavior:"smooth"})
         // 還是 CSS 的 scroll-behavior，畫面都完全不動。
@@ -480,6 +489,81 @@ window.EOSUI = (() => {
     new MutationObserver(rebuild).observe(main, {
       subtree: true, attributes: true, attributeFilter: ["hidden"],
     });
+  }
+
+  /* ---------------------------------------------------------- 卡片摺疊 */
+  /* 在 <section> 上加 data-collapse 就能摺；data-collapsed="true" 為預設收合。
+     摺的是卡片的內容，不是 section 本身 —— section 一旦 hidden，
+     快捷列的 buildSectionNav 會把它整個濾掉，按鈕就消失了。
+
+     狀態記在 localStorage：純粹是這台裝置的閱讀偏好，不是資料。
+     讀寫都包 try/catch —— 無痕視窗與封鎖站台資料時存取會直接丟例外。 */
+  const COLLAPSE_KEY = "eos.collapsed";
+
+  function readCollapsed() {
+    try { return JSON.parse(localStorage.getItem(COLLAPSE_KEY) || "{}") || {}; }
+    catch { return {}; }
+  }
+
+  function writeCollapsed(state) {
+    try { localStorage.setItem(COLLAPSE_KEY, JSON.stringify(state)); } catch { /* 無妨 */ }
+  }
+
+  function setCollapsed(sec, on) {
+    // 只切 class，藏東西交給 CSS。**不可以逐一設子元素的 hidden**：
+    // 展開時會把本來就該隱藏的子元素（燈號走勢的表格、備份卡）一起打開，
+    // 而且每次摺疊都會觸發 initSectionNav 監看 hidden 的 MutationObserver。
+    sec.classList.toggle("is-collapsed", on);
+    const btn = sec._collapseBtn;
+    if (btn) {
+      btn.setAttribute("aria-expanded", String(!on));
+      btn.title = on ? "展開" : "收合";
+    }
+  }
+
+  function initCollapsibles(mainSel) {
+    const main = $(mainSel);
+    if (!main) return;
+    const state = readCollapsed();
+
+    main.querySelectorAll("section[data-collapse]").forEach((sec) => {
+      const head = sec.querySelector(".card-head");
+      if (!head || sec._collapseHead) return;
+      const key = sec.id || sec.dataset.nav || sec.dataset.collapse;
+
+      const btn = el("button", "collapse-btn");
+      btn.type = "button";
+      btn.setAttribute("aria-label", "收合或展開這張卡片");
+      btn.textContent = "▾";
+      head.append(btn);
+      sec._collapseHead = head;
+      sec._collapseBtn = btn;
+
+      const toggle = () => {
+        const next = !sec.classList.contains("is-collapsed");
+        setCollapsed(sec, next);
+        const st = readCollapsed();
+        st[key] = next;
+        writeCollapsed(st);
+      };
+      btn.addEventListener("click", toggle);
+      // 標題本身也能點；但 head 裡的下拉、按鈕要照常用，不可攔截
+      head.addEventListener("click", (e) => {
+        if (e.target.closest("select, button, a, input, label")) return;
+        toggle();
+      });
+
+      const want = key in state ? !!state[key] : sec.dataset.collapsed === "true";
+      setCollapsed(sec, want);
+    });
+  }
+
+  /* 快捷列跳過去時要自動展開 —— 跳到一張收合的卡片只看到標題，
+     會讓人以為那一區壞了。 */
+  function expandSection(sec) {
+    if (sec && sec.classList.contains("is-collapsed") && sec._collapseBtn) {
+      sec._collapseBtn.click();
+    }
   }
 
   /* ---------------------------------------------------------- 備份下載 */
@@ -539,5 +623,6 @@ window.EOSUI = (() => {
 
   return { $, el, rect, fmt, pct, signed, smart, table, initTheme, barList,
            scoreChart, renderSummary, crossSummary, renderExports, initSectionNav, syncRangeButtons,
-           initRangeControls, initTableToggles, loadJSON, registerSW };
+           initRangeControls, initTableToggles, initCollapsibles,
+           loadJSON, registerSW };
 })();

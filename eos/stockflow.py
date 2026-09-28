@@ -34,7 +34,7 @@ from eos.streaks_core import (DEFAULT_MIN_DAYS, DEFAULT_TOP_N, INSTITUTION_LABEL
 __all__ = ["DEFAULT_MIN_DAYS", "DEFAULT_TOP_N", "DEFAULT_WINDOW", "CANDIDATE_FACTOR",
            "INSTITUTION_LABEL", "SHARES_PER_LOT", "STATUS_LABEL", "ScoreParams",
            "Streak", "is_etf", "leading", "streaks", "top",
-           "DEFAULT_DETAIL_DAYS",
+           "DEFAULT_DETAIL_DAYS", "EXTEND_LIMIT", "load_before",
            "save_day", "load_day", "load_names", "available_days", "missing_days",
            "load_window", "save_prices", "load_price_day", "price_days",
            "latest_prices", "save_industries", "load_industries",
@@ -52,6 +52,10 @@ DEFAULT_WINDOW = 60
 # 〈個股法人明細〉表格預設列出的天數。與 DEFAULT_WINDOW 拆開：
 # 連續天數要看得夠遠，表格要短到手機上滑得完。
 DEFAULT_DETAIL_DAYS = 40
+
+# 連續天數往視窗之前最多續數幾天。設上限是因為這只影響「天數」這個數字，
+# 不影響排名，沒必要為了一個數字把全部歷史都載進記憶體。
+EXTEND_LIMIT = 400
 # 每一側實際存進報表的候補筆數＝top_n × 這個倍數（見 build_report）
 CANDIDATE_FACTOR = 4
 
@@ -189,6 +193,21 @@ def missing_days(wanted: Iterable[date]) -> list[date]:
     return [d for d in sorted(wanted) if d not in have]
 
 
+def load_before(start: date, *, limit: int = EXTEND_LIMIT
+                ) -> list[tuple[date, dict[str, list[int]]]]:
+    """start 之前最多 limit 個已存在的交易日，由舊到新。
+
+    只給 streaks 續數連續天數用，不參與排名 —— 見 streaks_core._extend_back。
+    """
+    days = [d for d in available_days() if d < start][-limit:]
+    out = []
+    for d in days:
+        nets = load_day(d)
+        if nets is not None:
+            out.append((d, nets))
+    return out
+
+
 def load_window(end: date, lookback: int = DEFAULT_WINDOW
                 ) -> list[tuple[date, dict[str, list[int]]]]:
     """end 當日（含）往前最多 lookback 個已存在的交易日，由舊到新。"""
@@ -209,6 +228,9 @@ def build_report(end: date, *, lookback: int = DEFAULT_WINDOW,
                  ) -> dict[str, Any]:
     p = params or ScoreParams()
     window = load_window(end, lookback)
+    # 排名只看 window，但連續天數頂到視窗第一天時要往更早的資料續數。
+    # 兩者分開：排名要看近期，天數要看真相。
+    earlier = load_before(window[0][0], limit=EXTEND_LIMIT) if window else []
     names = load_names()
     price_date, prices = latest_prices(end)
 
@@ -216,6 +238,9 @@ def build_report(end: date, *, lookback: int = DEFAULT_WINDOW,
         "as_of": end.isoformat(),
         "window_days": len(window),
         "window_start": window[0][0].isoformat() if window else None,
+        # 排名視窗之外還能往回數幾天（天數續數用，不參與排名）
+        "extend_days": len(earlier),
+        "extend_start": earlier[0][0].isoformat() if earlier else None,
         "params": p.to_dict(),
         "min_days": p.min_days,
         "top_n": p.top_n,
@@ -230,14 +255,15 @@ def build_report(end: date, *, lookback: int = DEFAULT_WINDOW,
     spare = p.top_n * CANDIDATE_FACTOR
 
     lead = leading(window, params=p, n=spare, names=names, prices=prices,
-                   institutions=institutions)
+                   earlier=earlier, institutions=institutions)
     payload["institutions"]["leading"] = {
         "label": "主導法人",
         "buy": [s.to_dict(p) for s in lead["buy"]],
         "sell": [s.to_dict(p) for s in lead["sell"]],
     }
     for inst in institutions:
-        picked = top(window, inst, params=p, n=spare, names=names, prices=prices)
+        picked = top(window, inst, params=p, n=spare, names=names, prices=prices,
+                     earlier=earlier)
         payload["institutions"][inst] = {
             "label": INSTITUTION_LABEL.get(inst, inst),
             "buy": [s.to_dict(p) for s in picked["buy"]],

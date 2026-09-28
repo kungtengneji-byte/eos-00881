@@ -625,7 +625,7 @@
         v.textContent = f(inputs[k]);
         return [label, { node: v, cls: "num" }];
       });
-    const box = $("#washout-inputs");
+    const box = $("#washout-inputs-table");
     box.textContent = "";
     if (rows.length) box.append(table(["輸入", "值"], rows));
   }
@@ -1048,6 +1048,7 @@
     $("#app").hidden = false;
 
     EOSUI.renderExports($("#export-card"), $("#exports"), $("#export-at"));
+    EOSUI.initCollapsibles("#app");
     EOSUI.initSectionNav("#jumpnav", "#app");
     // 不 await：逐檔報表比較大，抓不到也不該卡住主要內容
     loadStreaks();

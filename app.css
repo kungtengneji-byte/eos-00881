@@ -181,8 +181,31 @@ a.dl:hover { text-decoration: underline; }
 .card-head {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; margin-bottom: 12px;
+  /* 真的擠不下時讓右側控制項換行，而不是把標題壓成一字一行 */
+  flex-wrap: wrap;
 }
-.card h2 { margin: 0; font-size: .95rem; font-weight: 600; }
+/* 標題不參與壓縮。手機 375px 寬時，標題列若含下拉選單，
+   flex 預設會先犧牲標題 ——〈個股法人明細〉六個字曾被擠成六行。 */
+.card h2 { margin: 0; font-size: .95rem; font-weight: 600; flex: 0 0 auto; }
+/* 反過來，下拉選單要能縮：min-width 不設 0 的話它守著內容寬度不讓步 */
+.card-head select { flex: 0 1 auto; min-width: 0; }
+
+/* 收合鈕。卡片標題列整條都可點，這顆只是看得見的把手。 */
+.collapse-btn {
+  border: 0; background: none; color: var(--muted);
+  font: inherit; font-size: .9rem; line-height: 1; cursor: pointer;
+  padding: 6px 4px; margin-left: -4px;
+  transform: rotate(0deg); transition: transform .15s, color .15s;
+}
+.collapse-btn:hover { color: var(--fg); }
+.is-collapsed .collapse-btn { transform: rotate(-90deg); }
+/* 收合：藏掉標題列以外的一切。用 CSS 而不是逐一設 hidden ——
+   後者展開時會把本來就該隱藏的子元素一起打開。 */
+.card.is-collapsed > *:not(.card-head) { display: none; }
+/* 收合時標題列的下緣留白沒有意義，收掉才不會看起來像破圖 */
+.is-collapsed .card-head { margin-bottom: 0; }
+.card-head { cursor: default; }
+section[data-collapse] .card-head { cursor: pointer; }
 
 .link-btn {
   border: 0; background: none; color: var(--series-1);

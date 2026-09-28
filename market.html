@@ -152,7 +152,7 @@
       <h3 class="grp" style="margin:0">構面輸入</h3>
       <button class="link-btn" type="button" data-table="washout-inputs">表格</button>
     </div>
-    <div id="washout-inputs" class="table-wrap" hidden></div>
+    <div id="washout-inputs-table" class="table-wrap" hidden></div>
     <p class="legend-note subtle">
       這張表回答的是「今天的價格與籌碼行為，比較像洗盤還是像派發」。
       <b>它只評估行為相似度，不證明任何人的操縱意圖</b> —— 這是工作表的原話，這裡不放寬。
@@ -240,7 +240,7 @@
   </section>
 
   <!-- 個股法人明細 -->
-  <section class="card" id="detail-card" data-nav="個股" hidden>
+  <section class="card" id="detail-card" data-nav="個股" data-collapse hidden>
     <div class="card-head">
       <h2>個股法人明細</h2>
       <select id="stock-picker" aria-label="選擇個股"></select>

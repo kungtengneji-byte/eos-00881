@@ -548,3 +548,56 @@ def test_detail_days_none_shows_everything(tmp_path, monkeypatch):
     d = stockflow.build_detail(end, REPORT, lookback=128, detail_days=None)
     assert d["shown_days"] == d["window_days"] == 50
     assert d["truncated"] is False
+
+
+# ------------------------------------------------ 連續天數往視窗之前續數
+
+def test_streak_extends_past_the_window_edge():
+    """頂到視窗第一天的連續段，要用視窗之前的資料把天數續完。
+
+    排名視窗故意不拉長：分數是天數乘權重，一段去年結束的長連買會壓過
+    今天還在跑的短連買，看板就被舊資料洗版。排名看近期，天數看真相。
+    """
+    window = _window({"A": [100] * 10})          # 視窗內連買 10 天，頂到第一天
+    earlier = [(D0 - timedelta(days=i), {"A": [100, 0, 0, 0]})
+               for i in range(6, 0, -1)]         # 更早還有 6 天同向
+
+    plain = stockflow.streaks(window, "foreign", min_days=3)[0]
+    assert plain.days == 10 and plain.truncated is True
+
+    ext = stockflow.streaks(window, "foreign", min_days=3, earlier=earlier)[0]
+    assert ext.days == 16                        # 10 + 6
+    assert ext.start == earlier[0][0]
+    assert ext.truncated is True                 # 續完仍吃到 earlier 最舊一天
+
+
+def test_extension_stops_at_the_first_opposite_day():
+    """更早那段方向一轉就停，而且不再標截斷 —— 這時天數是確定的。"""
+    window = _window({"A": [100] * 10})
+    earlier = [(D0 - timedelta(days=4), {"A": [100, 0, 0, 0]}),
+               (D0 - timedelta(days=3), {"A": [-50, 0, 0, 0]}),   # 反向，到此為止
+               (D0 - timedelta(days=2), {"A": [100, 0, 0, 0]}),
+               (D0 - timedelta(days=1), {"A": [100, 0, 0, 0]})]
+
+    ext = stockflow.streaks(window, "foreign", min_days=3, earlier=earlier)[0]
+    assert ext.days == 12                        # 10 + 最後兩天
+    assert ext.truncated is False                # 看得到頭了
+    assert ext.start == earlier[2][0]
+
+
+def test_extension_does_not_touch_runs_inside_the_window():
+    """沒頂到邊緣的連續段不受影響 —— 續數只處理「看不到頭」那一種。"""
+    window = _window({"A": [0, 0, 100, 100, 100, 100]})
+    earlier = [(D0 - timedelta(days=1), {"A": [100, 0, 0, 0]})]
+    ext = stockflow.streaks(window, "foreign", min_days=3, earlier=earlier)[0]
+    assert ext.days == 4 and ext.truncated is False
+
+
+def test_extension_stops_at_a_day_with_no_record():
+    """更早那天完全沒有法人紀錄＝中斷，與 0 同樣處理。"""
+    window = _window({"A": [100] * 10})
+    earlier = [(D0 - timedelta(days=3), {"A": [100, 0, 0, 0]}),
+               (D0 - timedelta(days=2), {"B": [100, 0, 0, 0]}),   # A 當天沒紀錄
+               (D0 - timedelta(days=1), {"A": [100, 0, 0, 0]})]
+    ext = stockflow.streaks(window, "foreign", min_days=3, earlier=earlier)[0]
+    assert ext.days == 11 and ext.truncated is False

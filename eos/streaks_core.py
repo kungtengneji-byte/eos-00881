@@ -193,19 +193,48 @@ def _runs(series: list[tuple[date, int]]) -> list[tuple[int, int, int]]:
     return out
 
 
+def _extend_back(earlier: list[tuple[date, dict[str, list[int]]]], code: str,
+                 institution: str, sign: int) -> tuple[int, int, date | None]:
+    """一段連續頂到視窗第一天時，往視窗之前的資料續數。
+
+    回傳 (多出來的天數, 多出來的累計股數, 真正的起始日)。
+
+    **為什麼不是直接把排名視窗拉長。** 排名視窗一拉長，看板就會被幾個月前
+    早就中斷的舊連續洗版 —— 分數是天數乘權重，一段去年結束的 150 天連買
+    會壓過今天still在跑的 40 天。排名要看近期，天數要看真相，兩件事分開。
+    """
+    extra_days = 0
+    extra_shares = 0
+    start: date | None = None
+    for day, nets in reversed(earlier):
+        if _sign(_net(nets.get(code), institution)) != sign:
+            break
+        extra_days += 1
+        extra_shares += _net(nets.get(code), institution)
+        start = day
+    return extra_days, extra_shares, start
+
+
 def streaks(window: list[tuple[date, dict[str, list[int]]]], institution: str,
             *, min_days: int = DEFAULT_MIN_DAYS,
             names: dict[str, str] | None = None,
-            prices: dict[str, float] | None = None) -> list[Streak]:
+            prices: dict[str, float] | None = None,
+            earlier: list[tuple[date, dict[str, list[int]]]] | None = None,
+            ) -> list[Streak]:
     """視窗內每一檔**最長**的一段同向連續，不論是否仍在進行中。
 
     原本只收「到最後一天仍在進行」的連續，那與工作表不符：
     工作表 2026-09-18 版的連續買超第一名是第一金，連買到 09-14 就中斷了，
     仍然排第一。一段剛結束的長連買本身就是資訊，狀態欄負責說明它還在不在，
     而不是直接把它從榜上刪掉。
+
+    earlier 是排名視窗**之前**還留著的逐日資料。連續段頂到視窗第一天時，
+    用它把天數續完 —— 排名仍只看視窗內，但天數是真的。續完之後仍碰到
+    最舊一天才標 truncated。
     """
     if not window:
         return []
+    earlier = earlier or []
     names = names or {}
     prices = prices or {}
     last_date, last_nets = window[-1]
@@ -238,10 +267,21 @@ def streaks(window: list[tuple[date, dict[str, list[int]]]], institution: str,
             status = "broken"
 
         sign = _sign(total)
+        start, truncated = dates[i], (i == 0)
+        if truncated and earlier:
+            more_days, more_shares, real_start = _extend_back(
+                earlier, code, institution, sign)
+            days += more_days
+            total += more_shares
+            if real_start is not None:
+                start = real_start
+            # 續完之後仍吃到最舊一天，才是真的還看不到頭
+            truncated = more_days == len(earlier)
+
         out.append(Streak(
             code=code, name=names.get(code, code), institution=institution,
             direction="buy" if sign > 0 else "sell", days=days, shares=total,
-            start=dates[i], end=end, truncated=(i == 0), status=status,
+            start=start, end=end, truncated=truncated, status=status,
             peers=_peers_on(window[j][1], code, sign), price=prices.get(code),
         ))
     return out
@@ -252,12 +292,14 @@ def streaks(window: list[tuple[date, dict[str, list[int]]]], institution: str,
 def top(window: list[tuple[date, dict[str, list[int]]]], institution: str,
         *, params: ScoreParams | None = None, n: int | None = None,
         names: dict[str, str] | None = None,
-        prices: dict[str, float] | None = None) -> dict[str, list[Streak]]:
+        prices: dict[str, float] | None = None,
+        earlier: list[tuple[date, dict[str, list[int]]]] | None = None,
+        ) -> dict[str, list[Streak]]:
     """單一法人別的買方／賣方排行，依工作表的分數排序。"""
     p = params or ScoreParams()
     limit = p.top_n if n is None else n
     rows = streaks(window, institution, min_days=p.min_days,
-                   names=names, prices=prices)
+                   names=names, prices=prices, earlier=earlier)
     return _split(rows, p, limit)
 
 
@@ -265,6 +307,7 @@ def leading(window: list[tuple[date, dict[str, list[int]]]],
             *, params: ScoreParams | None = None, n: int | None = None,
             names: dict[str, str] | None = None,
             prices: dict[str, float] | None = None,
+            earlier: list[tuple[date, dict[str, list[int]]]] | None = None,
             institutions: Iterable[str] = ("foreign", "trust", "dealer", "total"),
             ) -> dict[str, list[Streak]]:
     """工作表的主表：每一檔只留分數最高的那一類法人，再跨檔排名。
@@ -277,7 +320,7 @@ def leading(window: list[tuple[date, dict[str, list[int]]]],
     best: dict[tuple[str, str], Streak] = {}
     for inst in institutions:
         for s in streaks(window, inst, min_days=p.min_days,
-                         names=names, prices=prices):
+                         names=names, prices=prices, earlier=earlier):
             key = (s.code, s.direction)
             cur = best.get(key)
             if cur is None or s.score(p) > cur.score(p):
