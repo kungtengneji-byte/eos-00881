@@ -2,11 +2,12 @@
  "instrument": "00881",
  "trade_date": "2026-09-28",
  "first_collected_at": "2026-09-28T05:43:32",
- "updated_at": "2026-09-28T21:45:12",
+ "updated_at": "2026-09-29T09:16:51",
  "windows": [
   "w1",
   "w2",
-  "w3"
+  "w3",
+  "w4"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
@@ -192,7 +193,7 @@
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "5.162 -> 1"
+      "detail": "5.184 -> 1"
      },
      {
       "id": "E3",
@@ -291,12 +292,12 @@
    "note": "美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）"
   },
   "us10y": {
-   "value": 5.1620001792907715,
+   "value": 5.184000015258789,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-09-24",
+   "as_of": "2026-09-25",
    "status": "stale",
-   "note": "美股資料為 2026-09-24，較預期的 2026-09-27 舊 3 天（休市或缺值）"
+   "note": "美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）"
   },
   "usdtwd": {
    "value": 31.69700050354004,

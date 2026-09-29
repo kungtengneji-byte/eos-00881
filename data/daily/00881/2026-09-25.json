@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-09-25",
  "first_collected_at": "2026-09-26T00:15:48",
- "updated_at": "2026-09-26T16:03:42",
+ "updated_at": "2026-09-29T09:16:57",
  "windows": [
   "all",
   "w4"
@@ -479,6 +479,22 @@
    "as_of": "2026-09-24",
    "status": "ok",
    "note": ""
+  },
+  "trust_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260925&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "dealer_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260925&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
   }
  }
 }
