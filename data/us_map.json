@@ -897,8 +897,8 @@
     "us10y": 5.255000114440918
    },
    "tw": {
-    "taiex_change_pct": null,
-    "market_foreign_net_100m": null
+    "taiex_change_pct": 0.008622421340951725,
+    "market_foreign_net_100m": 219.37
    },
    "us_as_of": {
     "sox_ret": "2026-09-30",
@@ -912,7 +912,7 @@
     "us10y"
    ],
    "sox_dir": "flat",
-   "taiex_dir": null,
+   "taiex_dir": "up",
    "agree": null
   }
  ]
