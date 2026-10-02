@@ -2,41 +2,40 @@
  "instrument": "00881",
  "trade_date": "2026-10-02",
  "first_collected_at": "2026-10-02T05:48:10",
- "updated_at": "2026-10-02T15:33:23",
+ "updated_at": "2026-10-02T19:46:21",
  "windows": [
   "w1",
+  "w2",
   "w3",
   "w4"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 66,
-  "raw_eos": 66.0,
-  "earned": 56.1,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 69,
+  "raw_eos": 69.1,
+  "earned": 69.1,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "偏有利",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 13.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 13.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-0.004 -> 13"
      }
     ]
    },
@@ -101,7 +100,7 @@
       "available": 12.0,
       "max": 12.0,
       "scored": true,
-      "detail": "0.0007168 -> 8"
+      "detail": "0.001006 -> 8"
      },
      {
       "id": "C2",
@@ -227,7 +226,7 @@
    }
   },
   "summary": {
-   "headline": "EOS 66/100，屬「偏有利」，較 10-01 下降 10 分",
+   "headline": "EOS 69/100，屬「偏有利」，較 10-01 下降 7 分",
    "drivers": [
     "D 海外科技 +3.7"
    ],
@@ -236,22 +235,18 @@
     "C 成分股廣度 -10.0"
    ],
    "evidence": [
-    "C 成分股廣度：Top10加權貢獻 +0.07%、Top10上漲家數 4/10 檔",
+    "C 成分股廣度：Top10加權貢獻 +0.10%、Top10上漲家數 4/10 檔",
     "D 海外科技：SOX +1.59%、Nasdaq +0.04%、TSM ADR +0.66%、NVDA +1.09%",
-    "Top10 最大貢獻 欣興 +7.41%（+0.259%）；最大拖累 台積電 -0.40%（-0.154%）"
+    "Top10 最大貢獻 欣興 +7.41%（+0.277%）；最大拖累 台積電 -0.40%（-0.152%）"
    ],
    "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "Top10上漲家數、US10Y、Top10加權貢獻 為較舊時點資料",
-    "成分股權重基準日為 2026-10-01，非當日權重，加權貢獻為估計值",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
+    "US10Y 為較舊時點資料"
    ],
    "watch": [
-    "距「高機會區」（80 分）尚差 14 分",
-    "距完整填息 55.15 元尚需 4.55%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距「高機會區」（80 分）尚差 11 分",
+    "距完整填息 55.15 元尚需 4.55%"
    ],
-   "text": "EOS 66/100，屬「偏有利」，較 10-01 下降 10 分　改善：D 海外科技 +3.7　拖累：F 量價/法人 -1.0、C 成分股廣度 -10.0　C 成分股廣度：Top10加權貢獻 +0.07%、Top10上漲家數 4/10 檔　D 海外科技：SOX +1.59%、Nasdaq +0.04%、TSM ADR +0.66%、NVDA +1.09%　Top10 最大貢獻 欣興 +7.41%（+0.259%）；最大拖累 台積電 -0.40%（-0.154%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；Top10上漲家數、US10Y、Top10加權貢獻 為較舊時點資料；成分股權重基準日為 2026-10-01，非當日權重，加權貢獻為估計值；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「高機會區」（80 分）尚差 14 分；距完整填息 55.15 元尚需 4.55%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 69/100，屬「偏有利」，較 10-01 下降 7 分　改善：D 海外科技 +3.7　拖累：F 量價/法人 -1.0、C 成分股廣度 -10.0　C 成分股廣度：Top10加權貢獻 +0.10%、Top10上漲家數 4/10 檔　D 海外科技：SOX +1.59%、Nasdaq +0.04%、TSM ADR +0.66%、NVDA +1.09%　Top10 最大貢獻 欣興 +7.41%（+0.277%）；最大拖累 台積電 -0.40%（-0.152%）　資料品質：US10Y 為較舊時點資料　待觀察：距「高機會區」（80 分）尚差 11 分；距完整填息 55.15 元尚需 4.55%"
   }
  },
  "fields": {
@@ -472,36 +467,36 @@
    "note": "00881 當日無法人交易紀錄"
   },
   "wcr": {
-   "value": 0.0007167610401829867,
+   "value": 0.001005674273010689,
    "source": "國泰投信權重 + TWSE 個股收盤",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
-   "as_of": "2026-10-01",
-   "status": "stale",
-   "note": "權重基準日 2026-10-01，非 2026-10-02 當日權重；歷史日的加權貢獻為估計值"
+   "as_of": "2026-10-02",
+   "status": "ok",
+   "note": "權重基準日 2026-10-02"
   },
   "breadth_count": {
    "value": 4,
    "source": "國泰投信權重 + TWSE 個股收盤",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
-   "as_of": "2026-10-01",
-   "status": "stale",
-   "note": "權重基準日 2026-10-01，非 2026-10-02 當日權重；歷史日的加權貢獻為估計值"
+   "as_of": "2026-10-02",
+   "status": "ok",
+   "note": "權重基準日 2026-10-02"
   },
   "nav": {
-   "value": null,
+   "value": 52.96,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-02",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": -0.004,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-02",
+   "status": "ok",
+   "note": ""
   },
   "open": {
    "value": 52.6,
@@ -604,99 +599,99 @@
     {
      "code": "2330",
      "name": "台積電",
-     "weight": 0.38530000000000003,
+     "weight": 0.38170000000000004,
      "close": 2500.0,
      "prev_close": 2510.0,
      "ret": -0.003984063745019917,
-     "contrib": -0.001535059760956174
+     "contrib": -0.0015207171314741024
     },
     {
      "code": "2454",
      "name": "聯發科",
-     "weight": 0.11460000000000001,
+     "weight": 0.11320000000000001,
      "close": 4950.0,
      "prev_close": 4980.0,
      "ret": -0.0060240963855421326,
-     "contrib": -0.0006903614457831284
+     "contrib": -0.0006819277108433694
     },
     {
      "code": "2308",
      "name": "台達電",
-     "weight": 0.060599999999999994,
+     "weight": 0.0596,
      "close": 1885.0,
      "prev_close": 1905.0,
      "ret": -0.01049868766404205,
-     "contrib": -0.0006362204724409482
+     "contrib": -0.0006257217847769062
     },
     {
      "code": "2317",
      "name": "鴻海",
-     "weight": 0.0466,
+     "weight": 0.0458,
      "close": 251.0,
      "prev_close": 254.0,
      "ret": -0.011811023622047223,
-     "contrib": -0.0005503937007874006
+     "contrib": -0.0005409448818897628
+    },
+    {
+     "code": "3037",
+     "name": "欣興",
+     "weight": 0.0374,
+     "close": 1305.0,
+     "prev_close": 1215.0,
+     "ret": 0.07407407407407418,
+     "contrib": 0.0027703703703703744
     },
     {
      "code": "2303",
      "name": "聯電",
-     "weight": 0.0366,
+     "weight": 0.0364,
      "close": 161.5,
      "prev_close": 161.5,
      "ret": 0.0,
      "contrib": 0.0
     },
     {
-     "code": "3037",
-     "name": "欣興",
-     "weight": 0.035,
-     "close": 1305.0,
-     "prev_close": 1215.0,
-     "ret": 0.07407407407407418,
-     "contrib": 0.0025925925925925964
-    },
-    {
      "code": "2059",
      "name": "川湖",
-     "weight": 0.0256,
+     "weight": 0.0262,
      "close": 12145.0,
      "prev_close": 11835.0,
      "ret": 0.02619349387410219,
-     "contrib": 0.0006705534431770162
+     "contrib": 0.0006862695395014774
     },
     {
      "code": "2383",
      "name": "台光電",
-     "weight": 0.0245,
+     "weight": 0.0254,
      "close": 5185.0,
      "prev_close": 4975.0,
      "ret": 0.042211055276381915,
-     "contrib": 0.001034170854271357
+     "contrib": 0.0010721608040201007
     },
     {
      "code": "3017",
      "name": "奇鋐",
-     "weight": 0.0226,
+     "weight": 0.022000000000000002,
      "close": 3440.0,
      "prev_close": 3510.0,
      "ret": -0.019943019943019946,
-     "contrib": -0.00045071225071225074
+     "contrib": -0.00043874643874643887
     },
     {
      "code": "3008",
      "name": "大立光",
-     "weight": 0.0206,
+     "weight": 0.0208,
      "close": 6290.0,
      "prev_close": 6205.0,
      "ret": 0.013698630136986356,
-     "contrib": 0.00028219178082191894
+     "contrib": 0.0002849315068493162
     }
    ],
    "source": "國泰投信權重 + TWSE 個股收盤",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
-   "as_of": "2026-10-01",
-   "status": "stale",
-   "note": "權重基準日 2026-10-01，非 2026-10-02 當日權重；歷史日的加權貢獻為估計值"
+   "as_of": "2026-10-02",
+   "status": "ok",
+   "note": "權重基準日 2026-10-02"
   }
  }
 }
