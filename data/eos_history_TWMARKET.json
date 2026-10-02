@@ -530,5 +530,19 @@
   "market_foreign_net_100m": 219.37,
   "foreign_futures_net_oi": -79554.0,
   "margin_balance_100m": null
+ },
+ {
+  "date": "2026-10-02",
+  "eos": 39,
+  "rating": "賣壓風險升高",
+  "coverage": 100.0,
+  "status": "confirmed",
+  "LIGHT": 38.76000720070221,
+  "LIGHT_avail": 100.0,
+  "taiex": 48475.74,
+  "taiex_change_pct": 0.0025282559749048106,
+  "market_foreign_net_100m": 26.22,
+  "foreign_futures_net_oi": -80304.0,
+  "margin_balance_100m": null
  }
 ]
