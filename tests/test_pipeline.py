@@ -20,12 +20,16 @@ from sources import twse
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "raw" / "twse" / "00881"
 
+# raw/ 會被收集器每天追加，斷言必須鎖在固定區間，否則每多一個交易日就紅一次
+VALIDATED_THROUGH = date(2026, 9, 24)
+
 
 @pytest.fixture(scope="module")
 def rows() -> list[dict]:
     bars = []
     for f in sorted(RAW.glob("STOCK_DAY_*.json")):
         bars.extend(twse.parse_stock_day(json.loads(f.read_text(encoding="utf-8"))))
+    bars = [b for b in bars if b.date <= VALIDATED_THROUGH]
     divs = twse.parse_dividends(
         json.loads((RAW / "EXRIGHT.json").read_text(encoding="utf-8")), "00881")
     return series_mod.build(bars, divs)
