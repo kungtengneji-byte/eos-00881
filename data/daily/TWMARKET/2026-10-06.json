@@ -2,9 +2,10 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-06",
  "first_collected_at": "2026-10-06T05:48:25",
- "updated_at": "2026-10-06T05:48:25",
+ "updated_at": "2026-10-06T09:17:57",
  "windows": [
-  "w3"
+  "w3",
+  "w4"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
@@ -723,6 +724,198 @@
    "as_of": "2026-10-06",
    "status": "ok",
    "note": "由最近 42 個交易日的序列推導"
+  },
+  "stock_flow_count": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261006&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "回傳空資料（休市或被限流）"
+  },
+  "taiex": {
+   "value": null,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤成交資訊（休市或尚未發布）"
+  },
+  "taiex_change": {
+   "value": null,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤成交資訊（休市或尚未發布）"
+  },
+  "taiex_change_pct": {
+   "value": null,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤成交資訊（休市或尚未發布）"
+  },
+  "market_turnover_100m": {
+   "value": null,
+   "source": "TWSE FMTQIK",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤成交資訊（休市或尚未發布）"
+  },
+  "taiex_open": {
+   "value": null,
+   "source": "TWSE MI_5MINS_HIST",
+   "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤開高低收（休市或尚未發布）"
+  },
+  "taiex_high": {
+   "value": null,
+   "source": "TWSE MI_5MINS_HIST",
+   "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤開高低收（休市或尚未發布）"
+  },
+  "taiex_low": {
+   "value": null,
+   "source": "TWSE MI_5MINS_HIST",
+   "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261001&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無大盤開高低收（休市或尚未發布）"
+  },
+  "foreign_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261006&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "trust_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261006&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "dealer_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261006&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "institutional_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261006&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "market_foreign_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261006&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "上市外資及陸資（不含外資自營商）現貨買賣超"
+  },
+  "margin_balance_100m": {
+   "value": null,
+   "source": "TWSE MI_MARGN",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261006&selectType=MS&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或休市"
+  },
+  "margin_prev_100m": {
+   "value": null,
+   "source": "TWSE MI_MARGN",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261006&selectType=MS&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或休市"
+  },
+  "margin_change_100m": {
+   "value": null,
+   "source": "TWSE MI_MARGN",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261006&selectType=MS&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": ""
+  },
+  "advancing": {
+   "value": null,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無此列或尚未發布"
+  },
+  "declining": {
+   "value": null,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無此列或尚未發布"
+  },
+  "unchanged": {
+   "value": null,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無此列或尚未發布"
+  },
+  "limit_up": {
+   "value": null,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無此列或尚未發布"
+  },
+  "limit_down": {
+   "value": null,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無此列或尚未發布"
+  },
+  "advance_ratio_pct": {
+   "value": null,
+   "source": "TWSE MI_INDEX 漲跌證券數合計",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日無此列或尚未發布"
+  },
+  "txo_pc_volume_pct": {
+   "value": null,
+   "source": "TAIFEX 選擇權買賣權比",
+   "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無該日"
+  },
+  "txo_pc_oi_pct": {
+   "value": null,
+   "source": "TAIFEX 選擇權買賣權比",
+   "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無該日"
   }
  }
 }
