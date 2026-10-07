@@ -2,9 +2,10 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-07",
  "first_collected_at": "2026-10-07T05:46:30",
- "updated_at": "2026-10-07T15:35:23",
+ "updated_at": "2026-10-07T19:47:16",
  "windows": [
   "w1",
+  "w2",
   "w3",
   "w4"
  ],
