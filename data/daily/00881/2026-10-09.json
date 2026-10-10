@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-10-09",
  "first_collected_at": "2026-10-09T05:49:42",
- "updated_at": "2026-10-09T21:46:14",
+ "updated_at": "2026-10-10T09:18:13",
  "windows": [
   "w1",
   "w2",
@@ -193,7 +193,7 @@
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "5.277 -> 1"
+      "detail": "5.231 -> 1"
      },
      {
       "id": "E3",
@@ -241,18 +241,17 @@
    "drags": [],
    "evidence": [],
    "quality": [
-    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
-    "US10Y 為較舊時點資料"
+    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
    ],
    "watch": [
     "當日正式 NAV 尚未發布，折溢價待回補"
    ],
-   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　US10Y 為較舊時點資料"
+   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
   }
  },
  "fields": {
   "sox_ret": {
-   "value": -0.03386120116851321,
+   "value": -0.03386157486790853,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
    "as_of": "2026-10-08",
@@ -292,12 +291,12 @@
    "note": ""
   },
   "us10y": {
-   "value": 5.2769999504089355,
+   "value": 5.230999946594238,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-07",
-   "status": "stale",
-   "note": "美股資料為 2026-10-07，較預期的 2026-10-08 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-08",
+   "status": "ok",
+   "note": ""
   },
   "usdtwd": {
    "value": 31.84830093383789,
