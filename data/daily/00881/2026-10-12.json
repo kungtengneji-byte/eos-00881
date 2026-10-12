@@ -2,29 +2,22 @@
  "instrument": "00881",
  "trade_date": "2026-10-12",
  "first_collected_at": "2026-10-12T05:48:22",
- "updated_at": "2026-10-12T05:48:22",
+ "updated_at": "2026-10-12T15:40:51",
  "windows": [
+  "w1",
   "w3"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": null,
-  "raw_eos": 55.49999999999999,
-  "earned": 16.65,
-  "available": 30.0,
-  "coverage_status": "insufficient",
-  "published": false,
-  "rating": null,
+  "eos": 54,
+  "raw_eos": 53.70588235294117,
+  "earned": 45.65,
+  "available": 85.0,
+  "coverage_status": "provisional",
+  "published": true,
+  "rating": "中性等待",
   "missing": [
-   "A1",
-   "B1",
-   "B2",
-   "B3",
-   "B4",
-   "C1",
-   "C2",
-   "F1",
-   "F2"
+   "A1"
   ],
   "dimensions": {
    "A": {
@@ -49,74 +42,74 @@
    "B": {
     "key": "B",
     "name": "含息趨勢與健康回檔",
-    "earned": null,
-    "available": 0.0,
+    "earned": 22.0,
+    "available": 25.0,
     "max": 25.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "B1",
       "name": "趨勢",
-      "earned": null,
-      "available": 0.0,
+      "earned": 10.0,
+      "available": 10.0,
       "max": 10.0,
-      "scored": false,
-      "detail": "四項條件全缺"
+      "scored": true,
+      "detail": "10/10 成立(P > MA20, MA20 > MA60, P > MA120, 60日含息總報酬>0)"
      },
      {
       "id": "B2",
       "name": "距 20 日高點回檔",
-      "earned": null,
-      "available": 0.0,
+      "earned": 5.0,
+      "available": 7.0,
       "max": 7.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.02018 -> 5"
      },
      {
       "id": "B3",
       "name": "RSI14 (Wilder, 含息序列)",
-      "earned": null,
-      "available": 0.0,
+      "earned": 3.0,
+      "available": 4.0,
       "max": 4.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "61.96 -> 3"
      },
      {
       "id": "B4",
       "name": "RV20 實現波動率",
-      "earned": null,
-      "available": 0.0,
+      "earned": 4.0,
+      "available": 4.0,
       "max": 4.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.1906 -> 4"
      }
     ]
    },
    "C": {
     "key": "C",
     "name": "成分股廣度與加權貢獻",
-    "earned": null,
-    "available": 0.0,
+    "earned": 2.0,
+    "available": 20.0,
     "max": 20.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "C1",
       "name": "Top10 加權報酬貢獻 WCR",
-      "earned": null,
-      "available": 0.0,
+      "earned": 2.0,
+      "available": 12.0,
       "max": 12.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-0.004223 -> 2"
      },
      {
       "id": "C2",
       "name": "Top10 上漲家數",
-      "earned": null,
-      "available": 0.0,
+      "earned": 0.0,
+      "available": 8.0,
       "max": 8.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "2 -> 0"
      }
     ]
    },
@@ -206,43 +199,57 @@
    "F": {
     "key": "F",
     "name": "成交量與法人資金流",
-    "earned": null,
-    "available": 0.0,
+    "earned": 5.0,
+    "available": 10.0,
     "max": 10.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "F1",
       "name": "量比（全日量 / 20日均量）",
-      "earned": null,
-      "available": 0.0,
+      "earned": 4.0,
+      "available": 5.0,
       "max": 5.0,
-      "scored": false,
-      "detail": "缺值（量比或漲跌方向）"
+      "scored": true,
+      "detail": "up 日 量比 1.04 -> 4"
      },
      {
       "id": "F2",
       "name": "三大法人買賣超（億元）",
-      "earned": null,
-      "available": 0.0,
+      "earned": 1.0,
+      "available": 5.0,
       "max": 5.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-593.7 -> 1"
      }
     ]
    }
   },
   "summary": {
-   "headline": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方",
-   "drivers": [],
-   "drags": [],
-   "evidence": [],
-   "quality": [
-    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
-    "Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX 為較舊時點資料"
+   "headline": "EOS 54/100，屬「中性等待」，較 10-08 上升 4 分",
+   "drivers": [
+    "D 海外科技 +3.1",
+    "C 成分股廣度 +2.0",
+    "E 波動/風險 +2.0",
+    "F 量價/法人 +1.0"
    ],
-   "watch": [],
-   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX 為較舊時點資料"
+   "drags": [],
+   "evidence": [
+    "D 海外科技：SOX -0.41%、Nasdaq +0.64%、TSM ADR -1.02%、NVDA -0.52%",
+    "C 成分股廣度：Top10加權貢獻 -0.42%、Top10上漲家數 2/10 檔",
+    "Top10 最大貢獻 大立光 +9.98%（+0.219%）；最大拖累 台達電 -3.31%（-0.204%）"
+   ],
+   "quality": [
+    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
+    "Top10上漲家數、Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX、Top10加權貢獻 為較舊時點資料",
+    "成分股權重基準日為 2026-10-08，非當日權重，加權貢獻為估計值",
+    "覆蓋率未達 90，分數為暫定值，回補後會更新"
+   ],
+   "watch": [
+    "距「偏有利」（65 分）尚差 11 分",
+    "距完整填息 55.15 元尚需 3.28%"
+   ],
+   "text": "EOS 54/100，屬「中性等待」，較 10-08 上升 4 分　改善：D 海外科技 +3.1、C 成分股廣度 +2.0、E 波動/風險 +2.0、F 量價/法人 +1.0　D 海外科技：SOX -0.41%、Nasdaq +0.64%、TSM ADR -1.02%、NVDA -0.52%　C 成分股廣度：Top10加權貢獻 -0.42%、Top10上漲家數 2/10 檔　Top10 最大貢獻 大立光 +9.98%（+0.219%）；最大拖累 台達電 -3.31%（-0.204%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；Top10上漲家數、Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX、Top10加權貢獻 為較舊時點資料；成分股權重基準日為 2026-10-08，非當日權重，加權貢獻為估計值；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「偏有利」（65 分）尚差 11 分；距完整填息 55.15 元尚需 3.28%"
   }
  },
  "fields": {
@@ -309,6 +316,369 @@
    "as_of": "2026-10-11",
    "status": "ok",
    "note": ""
+  },
+  "close": {
+   "value": 53.4,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "open": {
+   "value": 53.0,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "high": {
+   "value": 53.45,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "low": {
+   "value": 52.55,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "volume_lots": {
+   "value": 16782,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "turnover_100m": {
+   "value": 8.8937,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "close_adj": {
+   "value": 82.22667325620063,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ma20": {
+   "value": 79.90307681530908,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ma60": {
+   "value": 76.15967959649515,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ma120": {
+   "value": 74.60847858610286,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ret5": {
+   "value": 0.012322274881516604,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ret20": {
+   "value": 0.04808635917566284,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ret60": {
+   "value": 0.09707575324730677,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "drawdown20": {
+   "value": -0.020183486238532056,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "drawdown60": {
+   "value": -0.020183486238532056,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "rsi14": {
+   "value": 61.96218045156177,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "rv20": {
+   "value": 0.190645147426836,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "avg_vol20": {
+   "value": 16156.1359,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "close_adj_gt_ma20": {
+   "value": true,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ma20_gt_ma60": {
+   "value": true,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "close_adj_gt_ma120": {
+   "value": true,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "ret60_positive": {
+   "value": true,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "volume_ratio": {
+   "value": 1.0387407053192714,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "day_direction": {
+   "value": "up",
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "foreign_net_100m": {
+   "value": -521.98,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261012&type=day&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "trust_net_100m": {
+   "value": 71.24,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261012&type=day&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "dealer_net_100m": {
+   "value": -142.94,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261012&type=day&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "institutional_net_100m": {
+   "value": -593.69,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261012&type=day&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "institutional_net": {
+   "value": -593.69,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261012&type=day&response=json",
+   "as_of": "2026-10-12",
+   "status": "ok",
+   "note": ""
+  },
+  "stock_foreign_net_lots": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261012&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "00881 當日無法人交易紀錄"
+  },
+  "stock_institutional_net_lots": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261012&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "00881 當日無法人交易紀錄"
+  },
+  "wcr": {
+   "value": -0.004222554343445712,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": "2026-10-08",
+   "status": "stale",
+   "note": "權重基準日 2026-10-08，非 2026-10-12 當日權重；歷史日的加權貢獻為估計值"
+  },
+  "breadth_count": {
+   "value": 2,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": "2026-10-08",
+   "status": "stale",
+   "note": "權重基準日 2026-10-08，非 2026-10-12 當日權重；歷史日的加權貢獻為估計值"
+  },
+  "top_holdings": {
+   "value": [
+    {
+     "code": "2330",
+     "name": "台積電",
+     "weight": 0.386,
+     "close": 2540.0,
+     "prev_close": 2550.0,
+     "ret": -0.0039215686274509665,
+     "contrib": -0.001513725490196073
+    },
+    {
+     "code": "2454",
+     "name": "聯發科",
+     "weight": 0.1059,
+     "close": 4625.0,
+     "prev_close": 4690.0,
+     "ret": -0.013859275053304865,
+     "contrib": -0.0014676972281449851
+    },
+    {
+     "code": "2308",
+     "name": "台達電",
+     "weight": 0.0617,
+     "close": 1900.0,
+     "prev_close": 1965.0,
+     "ret": -0.0330788804071247,
+     "contrib": -0.0020409669211195938
+    },
+    {
+     "code": "2317",
+     "name": "鴻海",
+     "weight": 0.0452,
+     "close": 244.5,
+     "prev_close": 249.0,
+     "ret": -0.01807228915662651,
+     "contrib": -0.0008168674698795181
+    },
+    {
+     "code": "3037",
+     "name": "欣興",
+     "weight": 0.0362,
+     "close": 1255.0,
+     "prev_close": 1270.0,
+     "ret": -0.011811023622047223,
+     "contrib": -0.0004275590551181095
+    },
+    {
+     "code": "2303",
+     "name": "聯電",
+     "weight": 0.033,
+     "close": 145.5,
+     "prev_close": 147.5,
+     "ret": -0.013559322033898313,
+     "contrib": -0.00044745762711864435
+    },
+    {
+     "code": "2383",
+     "name": "台光電",
+     "weight": 0.0292,
+     "close": 6150.0,
+     "prev_close": 6000.0,
+     "ret": 0.02499999999999991,
+     "contrib": 0.0007299999999999974
+    },
+    {
+     "code": "2059",
+     "name": "川湖",
+     "weight": 0.0227,
+     "close": 10580.0,
+     "prev_close": 10615.0,
+     "ret": -0.0032972209138012465,
+     "contrib": -7.48469147432883e-05
+    },
+    {
+     "code": "3008",
+     "name": "大立光",
+     "weight": 0.0219,
+     "close": 7325.0,
+     "prev_close": 6660.0,
+     "ret": 0.0998498498498499,
+     "contrib": 0.0021867117117117126
+    },
+    {
+     "code": "3017",
+     "name": "奇鋐",
+     "weight": 0.0219,
+     "close": 3385.0,
+     "prev_close": 3440.0,
+     "ret": -0.015988372093023284,
+     "contrib": -0.00035014534883720993
+    }
+   ],
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": "2026-10-08",
+   "status": "stale",
+   "note": "權重基準日 2026-10-08，非 2026-10-12 當日權重；歷史日的加權貢獻為估計值"
   }
  }
 }
