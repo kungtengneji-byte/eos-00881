@@ -990,12 +990,12 @@
  },
  {
   "date": "2026-10-19",
-  "eos": 36,
-  "rating": "偏不利",
-  "coverage": 85.0,
-  "status": "provisional",
-  "A": null,
-  "A_avail": 0.0,
+  "eos": 33,
+  "rating": "高風險區",
+  "coverage": 100.0,
+  "status": "confirmed",
+  "A": 2.0,
+  "A_avail": 15.0,
   "B": 16.0,
   "B_avail": 25.0,
   "C": 6.0,
@@ -1007,6 +1007,7 @@
   "F": 3.0,
   "F_avail": 10.0,
   "close": 49.64,
+  "premium": 0.0698,
   "rsi14": 38.41745355667003,
   "volume_ratio": 1.0954231345770689
  }
