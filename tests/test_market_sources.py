@@ -187,3 +187,39 @@ def test_ohlc_fields_are_missing_not_zero_on_a_non_trading_day(ohlc_history):
     for f in fields.values():
         assert f.value is None
         assert f.status is Status.MISSING
+
+
+# ---------------------------------------------------------------- 市場廣度
+
+def _breadth(adv, dec, **kw):
+    parsed = {"advancing": adv, "declining": dec, "unchanged": 0.0,
+              "limit_up": 0.0, "limit_down": 0.0, **kw}
+    return twse.breadth_fields(parsed, date(2026, 9, 24), url="x")
+
+
+def test_zero_advancing_scores_zero_not_missing():
+    """零家上漲是最強的空方廣度證據，不是缺值。
+
+    寫成 `not adv` 會把 0.0 判成 falsy 而留白，洗盤模型的 W2b 就會被
+    覆蓋率閘門整個排除 —— 剛好把最該計分的那一天的證據丟掉。
+    """
+    f = _breadth(0.0, 900.0)["advance_ratio_pct"]
+    assert f.value == 0.0
+    assert f.status is Status.OK
+
+
+def test_missing_advancing_stays_missing():
+    f = _breadth(None, 900.0)["advance_ratio_pct"]
+    assert f.value is None and f.status is Status.MISSING
+
+
+def test_no_trades_at_all_is_missing_not_a_division_by_zero():
+    """漲跌都是 0（休市或無成交）：沒有比例可言，留白而不是炸掉。"""
+    f = _breadth(0.0, 0.0)["advance_ratio_pct"]
+    assert f.value is None and f.status is Status.MISSING
+
+
+def test_advance_ratio_excludes_unchanged_from_the_denominator():
+    """分母是漲+跌，不含持平 —— 持平家數受面額與流動性影響大。"""
+    f = _breadth(386.0, 546.0, unchanged=140.0)["advance_ratio_pct"]
+    assert f.value == pytest.approx(41.42, abs=0.01)

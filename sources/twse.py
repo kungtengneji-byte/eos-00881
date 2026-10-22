@@ -595,8 +595,13 @@ def breadth_fields(parsed: dict[str, float | None], day: date, *, url: str) -> d
 
     # 上漲佔比用「漲/(漲+跌)」而不是除以全部家數：持平家數受面額與流動性影響大，
     # 把它放進分母會讓所有日子的比例一起被壓低，門檻就失去分辨力。
+    # **要寫 `adv is None` 不能寫 `not adv`。** 零家上漲（全面跌停那種日子）
+    # 在 Python 裡是 falsy，用 `not adv` 會把它判成缺值而留白 ——
+    # 但「零家上漲」正是最強的空方廣度證據，洗盤模型的 W2b 應該給 0 分，
+    # 而不是被覆蓋率閘門整個排除掉。
     adv, dec = parsed.get("advancing"), parsed.get("declining")
-    ratio = None if not adv or dec is None or (adv + dec) == 0 else adv / (adv + dec) * 100
+    ratio = (None if adv is None or dec is None or (adv + dec) == 0
+             else adv / (adv + dec) * 100)
     out["advance_ratio_pct"] = mk("advance_ratio_pct",
                                   None if ratio is None else round(ratio, 2))
     return out
