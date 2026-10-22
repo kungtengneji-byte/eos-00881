@@ -58,9 +58,17 @@ PARTS_BY_WINDOW = {
 PARTS_BY_WINDOW_MARKET = {
     "w1": ("market_index", "market_institutional", "market_margin",
            "market_futures", "market_stocks", "market_breadth", "market_pcratio"),
-    "w2": ("market_futures", "market_pcratio"),
+    # 融資同時排在 W2：MI_MARGN 要當天晚上才發布，W1 的 15:15 一定抓不到。
+    # 2026-09-25 起連續四週的 margin 都是缺值就是因為只排在 W1。
+    "w2": ("market_futures", "market_pcratio", "market_margin"),
     "w3": ("market_overseas",),
 }
+
+
+# 洗盤模型多要、而且是「抓得到的」欄位。其餘輸入（收盤位置、均線、
+# 三日累計、同向家數…）都由既有欄位推導，不是抓來的，**不可以列進回補閘門**：
+# 它們不會被寫成 fields，列進去會讓每一天都判成缺值，天天重抓整個視窗。
+WASHOUT_FETCHED_INPUTS = ("margin_change_100m", "advance_ratio_pct", "txo_pc_oi_pct")
 
 
 def windows_for(cfg: dict) -> dict[str, tuple[str, ...]]:
@@ -728,7 +736,12 @@ def backfill(cfg: dict, rubric: Rubric, days: int, *, force: bool) -> None:
             if collected:
                 score_and_save(cfg, day, rubric, collected, "w4")
 
-    required = rubric.required_inputs()
+    # **回補閘門必須涵蓋洗盤模型多要的欄位。** 原本只看燈號 rubric 的九個輸入，
+    # 只缺洗盤欄位的日子會被判成「不缺」而跳過，永遠補不回來 ——
+    # 融資就是這樣連續四週留白的。
+    required = set(rubric.required_inputs())
+    if washout_rubric_for(cfg) is not None:
+        required |= set(WASHOUT_FETCHED_INPUTS)
     for day in targets:
         snap = store.load(inst, day) or {}
         missing = store.missing_fields(snap, required)

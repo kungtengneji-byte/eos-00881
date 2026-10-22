@@ -1264,6 +1264,7 @@
 2026-09-25,close_adj_gt_ma120,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-25,close_adj_gt_ma20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-25,day_direction,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-25,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-25,drawdown20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-25,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-25,institutional_net,,missing,TWSE BFI82U,,當日尚未發布或查無資料
@@ -1279,6 +1280,7 @@
 2026-09-25,sox_ret,-0.003330086248626185,ok,Yahoo Finance ^SOX,2026-09-24,
 2026-09-25,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
 2026-09-25,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-25,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-25,tsm_ret,0.01025592067794312,ok,Yahoo Finance TSM,2026-09-24,
 2026-09-25,turnover_100m,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-25,twd_change,0.00347223601981117,ok,Yahoo Finance TWD=X,2026-09-24,
@@ -1293,27 +1295,839 @@
 2026-09-26,close_adj_gt_ma120,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,close_adj_gt_ma20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,day_direction,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-26,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-26,drawdown20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-26,institutional_net,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-26,institutional_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
 2026-09-26,ma20_gt_ma60,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,nav,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
-2026-09-26,ndx_ret,0.004801435979246538,ok,Yahoo Finance ^IXIC,2026-09-25,
-2026-09-26,nvda_ret,-0.004123953254555501,stale,Yahoo Finance NVDA,2026-09-24,美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）
+2026-09-26,ndx_ret,0.00480158098078598,ok,Yahoo Finance ^IXIC,2026-09-25,
+2026-09-26,nvda_ret,0.0021818750074313886,ok,Yahoo Finance NVDA,2026-09-25,
 2026-09-26,premium,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
 2026-09-26,ret60_positive,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,rsi14,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,rv20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
-2026-09-26,sox_ret,0.014119520235553074,ok,Yahoo Finance ^SOX,2026-09-25,
+2026-09-26,sox_ret,0.01411959840720578,ok,Yahoo Finance ^SOX,2026-09-25,
 2026-09-26,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
 2026-09-26,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
-2026-09-26,tsm_ret,0.01025592067794312,stale,Yahoo Finance TSM,2026-09-24,美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）
+2026-09-26,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-26,tsm_ret,-0.0011969601068990698,ok,Yahoo Finance TSM,2026-09-25,
 2026-09-26,turnover_100m,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
-2026-09-26,twd_change,-0.0029726667655856076,ok,Yahoo Finance TWD=X,2026-09-25,
-2026-09-26,us10y,5.1620001792907715,stale,Yahoo Finance ^TNX,2026-09-24,美股資料為 2026-09-24，較預期的 2026-09-25 舊 1 天（休市或缺值）
-2026-09-26,usdtwd,31.69499969482422,ok,Yahoo Finance TWD=X,2026-09-25,
+2026-09-26,twd_change,0.0005253541265408668,ok,Yahoo Finance TWD=X,2026-09-25,
+2026-09-26,us10y,5.184000015258789,ok,Yahoo Finance ^TNX,2026-09-25,
+2026-09-26,usdtwd,31.80620002746582,ok,Yahoo Finance TWD=X,2026-09-25,
 2026-09-26,vix,14.869999885559082,ok,Yahoo Finance ^VIX,2026-09-25,
 2026-09-26,volume_lots,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,volume_ratio,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
 2026-09-26,wcr,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：2383 無 2026-09-26 收盤；3017 無 2026-09-26 收盤；3008 無 2026-09-26 收盤
+2026-09-28,breadth_count,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：2383 無 2026-09-28 收盤；3017 無 2026-09-28 收盤；3008 無 2026-09-28 收盤
+2026-09-28,close,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,close_adj_gt_ma120,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,close_adj_gt_ma20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,day_direction,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,drawdown20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,institutional_net,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,institutional_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,ma20_gt_ma60,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,nav,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
+2026-09-28,ndx_ret,0.00480158098078598,stale,Yahoo Finance ^IXIC,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）
+2026-09-28,nvda_ret,0.0021818750074313886,stale,Yahoo Finance NVDA,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）
+2026-09-28,premium,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
+2026-09-28,ret60_positive,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,rsi14,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,rv20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,sox_ret,0.01411959840720578,stale,Yahoo Finance ^SOX,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）
+2026-09-28,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-28,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-28,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,tsm_ret,-0.0011969601068990698,stale,Yahoo Finance TSM,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）
+2026-09-28,turnover_100m,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,twd_change,-0.0034332779090706644,ok,Yahoo Finance TWD=X,2026-09-27,
+2026-09-28,us10y,5.184000015258789,stale,Yahoo Finance ^TNX,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）
+2026-09-28,usdtwd,31.69700050354004,ok,Yahoo Finance TWD=X,2026-09-27,
+2026-09-28,vix,14.869999885559082,stale,Yahoo Finance ^VIX,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-27 舊 2 天（休市或缺值）
+2026-09-28,volume_lots,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,volume_ratio,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-09-28,wcr,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：2383 無 2026-09-28 收盤；3017 無 2026-09-28 收盤；3008 無 2026-09-28 收盤
+2026-09-29,avg_vol20,17757.1662,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,breadth_count,0,ok,國泰投信權重 + TWSE 個股收盤,2026-09-29,權重基準日 2026-09-29
+2026-09-29,close,51.9,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,close_adj,79.91693524338596,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,day_direction,down,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,dealer_net_100m,-164.03,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,drawdown20,-0.013307984790874583,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,drawdown60,-0.013307984790874583,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,foreign_net_100m,-632.01,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,high,52.35,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,institutional_net,-781.87,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,institutional_net_100m,-781.87,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,low,51.65,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ma120,72.96340318294249,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ma20,78.11149003003584,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ma60,75.29768016902614,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,nav,51.81,ok,國泰投信 cwapi,2026-09-29,
+2026-09-29,ndx_ret,-0.00917442115102729,ok,Yahoo Finance ^IXIC,2026-09-28,
+2026-09-29,nvda_ret,0.0168391752023771,ok,Yahoo Finance NVDA,2026-09-28,
+2026-09-29,open,52.3,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,premium,0.0017000000000000001,ok,國泰投信 cwapi,2026-09-29,
+2026-09-29,ret20,0.038000000000000256,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ret5,0.01764705882352957,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ret60,0.01840179155860122,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,ret60_positive,True,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,rsi14,60.26781252780895,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,rv20,0.21296342374803537,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,sox_ret,-0.01607779675053944,ok,Yahoo Finance ^SOX,2026-09-28,
+2026-09-29,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-29,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-29,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3862, ""close"": 2475.0, ""prev_close"": 2475.0, ""ret"": 0.0, ""contrib"": 0.0}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1148, ""close"": 4910.0, ""prev_close"": 5285.0, ""ret"": -0.07095553453169345, ""contrib"": -0.008145695364238408}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0593, ""close"": 1835.0, ""prev_close"": 1910.0, ""ret"": -0.03926701570680624, ""contrib"": -0.00232853403141361}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.046799999999999994, ""close"": 250.5, ""prev_close"": 250.5, ""ret"": 0.0, ""contrib"": 0.0}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0354, ""close"": 153.5, ""prev_close"": 154.0, ""ret"": -0.0032467532467532756, ""contrib"": -0.00011493506493506596}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0341, ""close"": 1165.0, ""prev_close"": 1185.0, ""ret"": -0.016877637130801704, ""contrib"": -0.0005755274261603381}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.026699999999999998, ""close"": 12115.0, ""prev_close"": 12350.0, ""ret"": -0.01902834008097165, ""contrib"": -0.000508056680161943}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.024700000000000003, ""close"": 4920.0, ""prev_close"": 5050.0, ""ret"": -0.025742574257425765, ""contrib"": -0.0006358415841584165}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0223, ""close"": 3400.0, ""prev_close"": 3555.0, ""ret"": -0.043600562587904346, ""contrib"": -0.0009722925457102669}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0204, ""close"": 6020.0, ""prev_close"": 6245.0, ""ret"": -0.03602882305844679, ""contrib"": -0.0007349879903923146}]",ok,國泰投信權重 + TWSE 個股收盤,2026-09-29,權重基準日 2026-09-29
+2026-09-29,trust_net_100m,14.17,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,tsm_ret,0.005037659184314203,ok,Yahoo Finance TSM,2026-09-28,
+2026-09-29,turnover_100m,6.4919,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,twd_change,-0.0008646160988783347,ok,Yahoo Finance TWD=X,2026-09-28,
+2026-09-29,us10y,5.184000015258789,stale,Yahoo Finance ^TNX,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-28 舊 3 天（休市或缺值）
+2026-09-29,usdtwd,31.77869987487793,ok,Yahoo Finance TWD=X,2026-09-28,
+2026-09-29,vix,16.06999969482422,ok,Yahoo Finance ^VIX,2026-09-28,
+2026-09-29,volume_lots,12488,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,volume_ratio,0.7032929049230839,ok,TWSE STOCK_DAY,2026-09-29,
+2026-09-29,wcr,-0.014015870687170364,ok,國泰投信權重 + TWSE 個股收盤,2026-09-29,權重基準日 2026-09-29
+2026-09-30,avg_vol20,17237.3468,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,breadth_count,8,ok,國泰投信權重 + TWSE 個股收盤,2026-09-30,權重基準日 2026-09-30
+2026-09-30,close,52.2,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,close_adj,80.3788828459489,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,day_direction,up,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,dealer_net_100m,12.4,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,drawdown20,-0.0076045627376425395,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,drawdown60,-0.0076045627376425395,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,foreign_net_100m,296.36,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,high,52.8,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,institutional_net,386.57,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,institutional_net_100m,386.57,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,low,52.15,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ma120,73.1745294290176,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ma20,78.31320714982165,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ma60,75.32944665952947,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,nav,52.05,ok,國泰投信 cwapi,2026-09-30,
+2026-09-30,ndx_ret,-0.0008515853622569347,ok,Yahoo Finance ^IXIC,2026-09-29,
+2026-09-30,nvda_ret,-0.007209621131189281,ok,Yahoo Finance NVDA,2026-09-29,
+2026-09-30,open,52.5,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,premium,0.0029,ok,國泰投信 cwapi,2026-09-30,
+2026-09-30,ret20,0.052843888664784844,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ret5,0.007722007722007929,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ret60,0.024288507116743574,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,ret60_positive,True,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,rsi14,61.89088277073522,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,rv20,0.20974579670950505,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,sox_ret,0.013150239815311382,ok,Yahoo Finance ^SOX,2026-09-29,
+2026-09-30,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-30,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-09-30,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.38530000000000003, ""close"": 2480.0, ""prev_close"": 2475.0, ""ret"": 0.002020202020202033, ""contrib"": 0.0007783838383838435}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.11449999999999999, ""close"": 4920.0, ""prev_close"": 4910.0, ""ret"": 0.0020366598778003286, ""contrib"": 0.0002331975560081376}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0608, ""close"": 1890.0, ""prev_close"": 1835.0, ""ret"": 0.02997275204359684, ""contrib"": 0.0018223433242506879}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0467, ""close"": 251.5, ""prev_close"": 250.5, ""ret"": 0.003992015968063978, ""contrib"": 0.00018642714570858774}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0354, ""close"": 154.5, ""prev_close"": 153.5, ""ret"": 0.006514657980456029, ""contrib"": 0.00023061889250814343}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.034300000000000004, ""close"": 1175.0, ""prev_close"": 1165.0, ""ret"": 0.008583690987124415, ""contrib"": 0.00029442060085836745}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0264, ""close"": 12055.0, ""prev_close"": 12115.0, ""ret"": -0.004952538175815091, ""contrib"": -0.0001307470078415184}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0246, ""close"": 4935.0, ""prev_close"": 4920.0, ""ret"": 0.0030487804878047697, ""contrib"": 7.499999999999734e-05}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.022400000000000003, ""close"": 3435.0, ""prev_close"": 3400.0, ""ret"": 0.010294117647058787, ""contrib"": 0.00023058823529411687}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.02, ""close"": 5945.0, ""prev_close"": 6020.0, ""ret"": -0.012458471760797396, ""contrib"": -0.0002491694352159479}]",ok,國泰投信權重 + TWSE 個股收盤,2026-09-30,權重基準日 2026-09-30
+2026-09-30,trust_net_100m,77.81,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,tsm_ret,0.008964841712639338,ok,Yahoo Finance TSM,2026-09-29,
+2026-09-30,turnover_100m,5.2825,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,twd_change,0.00011013618414201787,ok,Yahoo Finance TWD=X,2026-09-29,
+2026-09-30,us10y,5.239999771118164,stale,Yahoo Finance ^TNX,2026-09-28,美股資料為 2026-09-28，較預期的 2026-09-29 舊 1 天（休市或缺值）
+2026-09-30,usdtwd,31.78219985961914,ok,Yahoo Finance TWD=X,2026-09-29,
+2026-09-30,vix,16.040000915527344,ok,Yahoo Finance ^VIX,2026-09-29,
+2026-09-30,volume_lots,10067,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,volume_ratio,0.584022768515628,ok,TWSE STOCK_DAY,2026-09-30,
+2026-09-30,wcr,0.0034710631499544156,ok,國泰投信權重 + TWSE 個股收盤,2026-09-30,權重基準日 2026-09-30
+2026-10-01,avg_vol20,15867.752599999998,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,breadth_count,9,ok,國泰投信權重 + TWSE 個股收盤,2026-10-01,權重基準日 2026-10-01
+2026-10-01,close,52.6,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,close_adj,80.99481298269947,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,day_direction,up,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,dealer_net_100m,16.59,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,drawdown20,0.0,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,drawdown60,0.0,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,foreign_net_100m,219.37,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,high,52.6,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,institutional_net,292.53,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,institutional_net_100m,292.53,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,low,52.0,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ma120,73.39008400169534,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ma20,78.43254361381709,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ma60,75.38087097947125,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,nav,52.67,ok,國泰投信 cwapi,2026-10-01,
+2026-10-01,ndx_ret,0.002370568076301316,ok,Yahoo Finance ^IXIC,2026-09-30,
+2026-10-01,nvda_ret,0.00514941302923666,ok,Yahoo Finance NVDA,2026-09-30,
+2026-10-01,open,52.3,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,premium,-0.0013,ok,國泰投信 cwapi,2026-10-01,
+2026-10-01,ret20,0.030362389813908708,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ret5,0.007662835249042432,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ret60,0.03960319328247164,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,rsi14,64.00238703484442,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,rv20,0.18532137307226454,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,sox_ret,-4.2451976684620973e-05,ok,Yahoo Finance ^SOX,2026-09-30,
+2026-10-01,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-01,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-01,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.38530000000000003, ""close"": 2510.0, ""prev_close"": 2480.0, ""ret"": 0.012096774193548487, ""contrib"": 0.004660887096774233}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.11460000000000001, ""close"": 4980.0, ""prev_close"": 4920.0, ""ret"": 0.012195121951219523, ""contrib"": 0.0013975609756097574}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.060599999999999994, ""close"": 1905.0, ""prev_close"": 1890.0, ""ret"": 0.007936507936507908, ""contrib"": 0.0004809523809523792}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0466, ""close"": 254.0, ""prev_close"": 251.5, ""ret"": 0.00994035785288272, ""contrib"": 0.00046322067594433477}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0366, ""close"": 161.5, ""prev_close"": 154.5, ""ret"": 0.0453074433656957, ""contrib"": 0.0016582524271844625}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.035, ""close"": 1215.0, ""prev_close"": 1175.0, ""ret"": 0.03404255319148941, ""contrib"": 0.0011914893617021294}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0256, ""close"": 11835.0, ""prev_close"": 12055.0, ""ret"": -0.018249688925756957, ""contrib"": -0.00046719203649937813}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0245, ""close"": 4975.0, ""prev_close"": 4935.0, ""ret"": 0.008105369807497542, ""contrib"": 0.00019858156028368978}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0226, ""close"": 3510.0, ""prev_close"": 3435.0, ""ret"": 0.02183406113537112, ""contrib"": 0.0004934497816593873}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0206, ""close"": 6205.0, ""prev_close"": 5945.0, ""ret"": 0.04373423044575264, ""contrib"": 0.0009009251471825045}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-01,權重基準日 2026-10-01
+2026-10-01,trust_net_100m,56.57,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,tsm_ret,-0.0016413533417796167,ok,Yahoo Finance TSM,2026-09-30,
+2026-10-01,turnover_100m,4.6601,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,twd_change,0.0021332859949927396,ok,Yahoo Finance TWD=X,2026-09-30,
+2026-10-01,us10y,5.255000114440918,stale,Yahoo Finance ^TNX,2026-09-29,美股資料為 2026-09-29，較預期的 2026-09-30 舊 1 天（休市或缺值）
+2026-10-01,usdtwd,31.850000381469727,ok,Yahoo Finance TWD=X,2026-09-30,
+2026-10-01,vix,16.34000015258789,ok,Yahoo Finance ^VIX,2026-09-30,
+2026-10-01,volume_lots,8913,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,volume_ratio,0.5617172276810014,ok,TWSE STOCK_DAY,2026-10-01,
+2026-10-01,wcr,0.010978127370793499,ok,國泰投信權重 + TWSE 個股收盤,2026-10-01,權重基準日 2026-10-01
+2026-10-02,avg_vol20,15366.861549999998,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,breadth_count,4,ok,國泰投信權重 + TWSE 個股收盤,2026-10-02,權重基準日 2026-10-02
+2026-10-02,close,52.75,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,close_adj,81.22578678398094,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,day_direction,up,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,dealer_net_100m,20.26,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,drawdown20,0.0,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,drawdown60,0.0,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,foreign_net_100m,26.22,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,high,52.8,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,institutional_net,95.57,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,institutional_net_100m,95.57,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,low,52.45,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ma120,73.59582294710135,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ma20,78.6442695983251,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ma60,75.47371417140485,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,nav,52.96,ok,國泰投信 cwapi,2026-10-02,
+2026-10-02,ndx_ret,0.00039220924399518964,ok,Yahoo Finance ^IXIC,2026-10-01,
+2026-10-02,nvda_ret,0.010859075551783226,ok,Yahoo Finance NVDA,2026-10-01,
+2026-10-02,open,52.6,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,premium,-0.004,ok,國泰投信 cwapi,2026-10-02,
+2026-10-02,ret20,0.05500000000000016,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ret5,0.002851711026615966,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ret60,0.07363131502448605,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,rsi14,64.79023452792958,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,rv20,0.1658532712445292,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,sox_ret,0.015867124115942266,ok,Yahoo Finance ^SOX,2026-10-01,
+2026-10-02,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-02,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-02,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.38170000000000004, ""close"": 2500.0, ""prev_close"": 2510.0, ""ret"": -0.003984063745019917, ""contrib"": -0.0015207171314741024}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.11320000000000001, ""close"": 4950.0, ""prev_close"": 4980.0, ""ret"": -0.0060240963855421326, ""contrib"": -0.0006819277108433694}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0596, ""close"": 1885.0, ""prev_close"": 1905.0, ""ret"": -0.01049868766404205, ""contrib"": -0.0006257217847769062}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0458, ""close"": 251.0, ""prev_close"": 254.0, ""ret"": -0.011811023622047223, ""contrib"": -0.0005409448818897628}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0374, ""close"": 1305.0, ""prev_close"": 1215.0, ""ret"": 0.07407407407407418, ""contrib"": 0.0027703703703703744}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0364, ""close"": 161.5, ""prev_close"": 161.5, ""ret"": 0.0, ""contrib"": 0.0}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0262, ""close"": 12145.0, ""prev_close"": 11835.0, ""ret"": 0.02619349387410219, ""contrib"": 0.0006862695395014774}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0254, ""close"": 5185.0, ""prev_close"": 4975.0, ""ret"": 0.042211055276381915, ""contrib"": 0.0010721608040201007}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.022000000000000002, ""close"": 3440.0, ""prev_close"": 3510.0, ""ret"": -0.019943019943019946, ""contrib"": -0.00043874643874643887}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0208, ""close"": 6290.0, ""prev_close"": 6205.0, ""ret"": 0.013698630136986356, ""contrib"": 0.0002849315068493162}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-02,權重基準日 2026-10-02
+2026-10-02,trust_net_100m,49.1,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,tsm_ret,0.006598149344607007,ok,Yahoo Finance TSM,2026-10-01,
+2026-10-02,turnover_100m,6.4126,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,twd_change,0.0005620240723562819,ok,Yahoo Finance TWD=X,2026-10-01,
+2026-10-02,us10y,5.293000221252441,stale,Yahoo Finance ^TNX,2026-09-30,美股資料為 2026-09-30，較預期的 2026-10-01 舊 1 天（休市或缺值）
+2026-10-02,usdtwd,31.867900848388672,ok,Yahoo Finance TWD=X,2026-10-01,
+2026-10-02,vix,16.389999389648438,ok,Yahoo Finance ^VIX,2026-10-01,
+2026-10-02,volume_lots,12173,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,volume_ratio,0.7921556370109941,ok,TWSE STOCK_DAY,2026-10-02,
+2026-10-02,wcr,0.001005674273010689,ok,國泰投信權重 + TWSE 個股收盤,2026-10-02,權重基準日 2026-10-02
+2026-10-05,avg_vol20,16331.8839,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,breadth_count,9,ok,國泰投信權重 + TWSE 個股收盤,2026-10-05,權重基準日 2026-10-05
+2026-10-05,close,54.45,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,close_adj,83.84348986517085,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,day_direction,up,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,dealer_net_100m,109.48,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,drawdown20,0.0,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,drawdown60,0.0,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,foreign_net_100m,718.97,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,high,54.65,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,institutional_net,764.5,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,institutional_net_100m,764.5,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,low,53.9,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ma120,73.82419791347704,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ma20,79.00227899031135,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ma60,75.61722999339437,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,nav,54.75,ok,國泰投信 cwapi,2026-10-05,
+2026-10-05,ndx_ret,0.01188093638882659,stale,Yahoo Finance ^IXIC,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-04 舊 2 天（休市或缺值）
+2026-10-05,nvda_ret,0.013384719439145876,stale,Yahoo Finance NVDA,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-04 舊 2 天（休市或缺值）
+2026-10-05,open,53.9,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,premium,-0.0055000000000000005,ok,國泰投信 cwapi,2026-10-05,
+2026-10-05,ret20,0.09337349397590478,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ret5,0.037142857142857366,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ret60,0.11445777660705114,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,rsi14,72.21282090337426,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,rv20,0.19384111928435963,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,sox_ret,0.023982377572297153,stale,Yahoo Finance ^SOX,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-04 舊 2 天（休市或缺值）
+2026-10-05,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-05,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-05,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3801, ""close"": 2575.0, ""prev_close"": 2500.0, ""ret"": 0.030000000000000027, ""contrib"": 0.01140300000000001}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1137, ""close"": 5165.0, ""prev_close"": 4950.0, ""ret"": 0.04343434343434338, ""contrib"": 0.004938484848484842}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.061399999999999996, ""close"": 2005.0, ""prev_close"": 1885.0, ""ret"": 0.06366047745358094, ""contrib"": 0.00390875331564987}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0449, ""close"": 254.0, ""prev_close"": 251.0, ""ret"": 0.01195219123505975, ""contrib"": 0.0005366533864541828}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0368, ""close"": 1325.0, ""prev_close"": 1305.0, ""ret"": 0.015325670498084198, ""contrib"": 0.0005639846743294985}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0333, ""close"": 152.5, ""prev_close"": 161.5, ""ret"": -0.05572755417956654, ""contrib"": -0.001855727554179566}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0278, ""close"": 13355.0, ""prev_close"": 12145.0, ""ret"": 0.09962947715109105, ""contrib"": 0.002769699464800331}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.027000000000000003, ""close"": 5700.0, ""prev_close"": 5185.0, ""ret"": 0.09932497589199607, ""contrib"": 0.0026817743490838942}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0222, ""close"": 3585.0, ""prev_close"": 3440.0, ""ret"": 0.04215116279069764, ""contrib"": 0.0009357558139534876}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0216, ""close"": 6730.0, ""prev_close"": 6290.0, ""ret"": 0.06995230524642282, ""contrib"": 0.001510969793322733}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-05,權重基準日 2026-10-05
+2026-10-05,trust_net_100m,-63.95,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,tsm_ret,0.02957314070397521,stale,Yahoo Finance TSM,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-04 舊 2 天（休市或缺值）
+2026-10-05,turnover_100m,18.5464,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,twd_change,-0.002784864839515677,ok,Yahoo Finance TWD=X,2026-10-04,
+2026-10-05,us10y,5.236999988555908,stale,Yahoo Finance ^TNX,2026-10-01,美股資料為 2026-10-01，較預期的 2026-10-04 舊 3 天（休市或缺值）
+2026-10-05,usdtwd,31.79800033569336,ok,Yahoo Finance TWD=X,2026-10-04,
+2026-10-05,vix,15.3100004196167,stale,Yahoo Finance ^VIX,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-04 舊 2 天（休市或缺值）
+2026-10-05,volume_lots,34134,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,volume_ratio,2.0900457172610687,ok,TWSE STOCK_DAY,2026-10-05,
+2026-10-05,wcr,0.027393348091899285,ok,國泰投信權重 + TWSE 個股收盤,2026-10-05,權重基準日 2026-10-05
+2026-10-06,avg_vol20,16374.454499999998,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,breadth_count,6,ok,國泰投信權重 + TWSE 個股收盤,2026-10-06,權重基準日 2026-10-06
+2026-10-06,close,54.5,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,close_adj,83.92048113226468,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,day_direction,up,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,dealer_net_100m,17.21,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,drawdown20,0.0,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,drawdown60,0.0,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,foreign_net_100m,-66.57,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,high,54.75,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,institutional_net,-207.87,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,institutional_net_100m,-207.87,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,low,54.1,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ma120,74.0398304075432,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ma20,79.32179274875071,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ma60,75.76437708495862,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,nav,54.65,ok,國泰投信 cwapi,2026-10-06,
+2026-10-06,ndx_ret,0.010534833339558514,ok,Yahoo Finance ^IXIC,2026-10-05,
+2026-10-06,nvda_ret,0.02115835440398528,ok,Yahoo Finance NVDA,2026-10-05,
+2026-10-06,open,54.6,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,premium,-0.0027,ok,國泰投信 cwapi,2026-10-06,
+2026-10-06,ret20,0.08242303872889867,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ret5,0.05009633911368039,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ret60,0.11757398899777316,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,rsi14,72.3971322612117,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,rv20,0.19266612617914655,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,sox_ret,0.0027454755630225147,ok,Yahoo Finance ^SOX,2026-10-05,
+2026-10-06,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-06,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-06,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3823, ""close"": 2585.0, ""prev_close"": 2575.0, ""ret"": 0.003883495145631022, ""contrib"": 0.0014846601941747395}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1085, ""close"": 4920.0, ""prev_close"": 5165.0, ""ret"": -0.047434656340755055, ""contrib"": -0.005146660212971923}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0629, ""close"": 2050.0, ""prev_close"": 2005.0, ""ret"": 0.02244389027431426, ""contrib"": 0.0014117206982543669}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0454, ""close"": 256.0, ""prev_close"": 254.0, ""ret"": 0.007874015748031482, ""contrib"": 0.0003574803149606293}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0364, ""close"": 1310.0, ""prev_close"": 1325.0, ""ret"": -0.01132075471698113, ""contrib"": -0.00041207547169811316}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0323, ""close"": 147.5, ""prev_close"": 152.5, ""ret"": -0.032786885245901676, ""contrib"": -0.0010590163934426243}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0285, ""close"": 5995.0, ""prev_close"": 5700.0, ""ret"": 0.05175438596491233, ""contrib"": 0.0014750000000000015}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0273, ""close"": 13100.0, ""prev_close"": 13355.0, ""ret"": -0.019093972295020634, ""contrib"": -0.0005212654436540633}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0229, ""close"": 3685.0, ""prev_close"": 3585.0, ""ret"": 0.02789400278940035, ""contrib"": 0.0006387726638772681}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.022000000000000002, ""close"": 6855.0, ""prev_close"": 6730.0, ""ret"": 0.01857355126300142, ""contrib"": 0.0004086181277860313}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-06,權重基準日 2026-10-06
+2026-10-06,trust_net_100m,-158.51,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,tsm_ret,0.02753921284167915,ok,Yahoo Finance TSM,2026-10-05,
+2026-10-06,turnover_100m,9.3371,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,twd_change,-0.001643331652297464,ok,Yahoo Finance TWD=X,2026-10-05,
+2026-10-06,us10y,5.2769999504089355,stale,Yahoo Finance ^TNX,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-05 舊 3 天（休市或缺值）
+2026-10-06,usdtwd,31.834400177001953,ok,Yahoo Finance TWD=X,2026-10-05,
+2026-10-06,vix,15.520000457763672,ok,Yahoo Finance ^VIX,2026-10-05,
+2026-10-06,volume_lots,17166,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,volume_ratio,1.0483499160231569,ok,TWSE STOCK_DAY,2026-10-06,
+2026-10-06,wcr,-0.0013627655227136872,ok,國泰投信權重 + TWSE 個股收盤,2026-10-06,權重基準日 2026-10-06
+2026-10-07,avg_vol20,15871.13805,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,breadth_count,1,ok,國泰投信權重 + TWSE 個股收盤,2026-10-07,權重基準日 2026-10-07
+2026-10-07,close,53.95,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,close_adj,83.07357719423266,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,day_direction,down,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,dealer_net_100m,-77.96,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,drawdown20,-0.010091743119266083,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,drawdown60,-0.010091743119266083,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,foreign_net_100m,-130.44,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,high,54.45,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,institutional_net,-212.57,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,institutional_net_100m,-212.57,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,low,53.9,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ma120,74.23913044572265,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ma20,79.52197004319466,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ma60,75.897409110889,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,nav,54.12,ok,國泰投信 cwapi,2026-10-07,
+2026-10-07,ndx_ret,0.004460995979424176,ok,Yahoo Finance ^IXIC,2026-10-06,
+2026-10-07,nvda_ret,0.001423238197431731,ok,Yahoo Finance NVDA,2026-10-06,
+2026-10-07,open,54.4,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,premium,-0.0031,ok,國泰投信 cwapi,2026-10-07,
+2026-10-07,ret20,0.05063291139240578,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ret5,0.03352490421455956,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ret60,0.10629571938403415,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,rsi14,67.12293977288158,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,rv20,0.18934641647553124,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,sox_ret,0.003422447190968958,ok,Yahoo Finance ^SOX,2026-10-06,
+2026-10-07,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-07,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-07,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.386, ""close"": 2585.0, ""prev_close"": 2585.0, ""ret"": 0.0, ""contrib"": 0.0}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1076, ""close"": 4835.0, ""prev_close"": 4920.0, ""ret"": -0.017276422764227695, ""contrib"": -0.0018589430894309}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0617, ""close"": 1990.0, ""prev_close"": 2050.0, ""ret"": -0.029268292682926855, ""contrib"": -0.0018058536585365869}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0451, ""close"": 252.0, ""prev_close"": 256.0, ""ret"": -0.015625, ""contrib"": -0.0007046875}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.036699999999999997, ""close"": 1305.0, ""prev_close"": 1310.0, ""ret"": -0.003816793893129722, ""contrib"": -0.00014007633587786078}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.032799999999999996, ""close"": 148.5, ""prev_close"": 147.5, ""ret"": 0.006779661016949046, ""contrib"": 0.00022237288135592867}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0286, ""close"": 5950.0, ""prev_close"": 5995.0, ""ret"": -0.007506255212677226, ""contrib"": -0.00021467889908256867}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.024900000000000002, ""close"": 11790.0, ""prev_close"": 13100.0, ""ret"": -0.09999999999999998, ""contrib"": -0.0024899999999999996}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0222, ""close"": 3545.0, ""prev_close"": 3685.0, ""ret"": -0.037991858887381325, ""contrib"": -0.0008434192672998655}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0222, ""close"": 6845.0, ""prev_close"": 6855.0, ""ret"": -0.0014587892049598983, ""contrib"": -3.238512035010974e-05}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-07,權重基準日 2026-10-07
+2026-10-07,trust_net_100m,-4.17,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,tsm_ret,-0.007204611132043848,ok,Yahoo Finance TSM,2026-10-06,
+2026-10-07,turnover_100m,7.9213,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,twd_change,-0.0026072482171480837,ok,Yahoo Finance TWD=X,2026-10-06,
+2026-10-07,us10y,5.310999870300293,stale,Yahoo Finance ^TNX,2026-10-05,美股資料為 2026-10-05，較預期的 2026-10-06 舊 1 天（休市或缺值）
+2026-10-07,usdtwd,31.751399993896484,ok,Yahoo Finance TWD=X,2026-10-06,
+2026-10-07,vix,15.010000228881836,ok,Yahoo Finance ^VIX,2026-10-06,
+2026-10-07,volume_lots,14649,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,volume_ratio,0.9229999735274182,ok,TWSE STOCK_DAY,2026-10-07,
+2026-10-07,wcr,-0.007867670989221963,ok,國泰投信權重 + TWSE 個股收盤,2026-10-07,權重基準日 2026-10-07
+2026-10-08,avg_vol20,15815.645199999999,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,breadth_count,1,ok,國泰投信權重 + TWSE 個股收盤,2026-10-08,權重基準日 2026-10-08
+2026-10-08,close,53.3,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,close_adj,82.072690722013,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,day_direction,down,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,dealer_net_100m,-187.32,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,drawdown20,-0.0220183486238531,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,drawdown60,-0.0220183486238531,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,foreign_net_100m,-758.52,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,high,53.55,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,institutional_net,-898.95,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,institutional_net_100m,-898.95,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,low,53.1,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ma120,74.42292811384134,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ma20,79.7144482109292,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ma60,76.03841455440882,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,nav,53.39,ok,國泰投信 cwapi,2026-10-08,
+2026-10-08,ndx_ret,-0.002213700116027839,ok,Yahoo Finance ^IXIC,2026-10-07,
+2026-10-08,nvda_ret,-0.00739844604505957,ok,Yahoo Finance NVDA,2026-10-07,
+2026-10-08,open,53.45,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,premium,-0.0017000000000000001,ok,國泰投信 cwapi,2026-10-08,
+2026-10-08,ret20,0.04921259842519743,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ret5,0.013307984790874805,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ret60,0.11493078253066402,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,rsi14,61.4274335154592,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,rv20,0.19064279318264368,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,sox_ret,-0.011474728423571112,ok,Yahoo Finance ^SOX,2026-10-07,
+2026-10-08,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-08,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-08,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.386, ""close"": 2550.0, ""prev_close"": 2585.0, ""ret"": -0.013539651837524147, ""contrib"": -0.005226305609284321}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1059, ""close"": 4690.0, ""prev_close"": 4835.0, ""ret"": -0.02998965873836612, ""contrib"": -0.003175904860392972}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0617, ""close"": 1965.0, ""prev_close"": 1990.0, ""ret"": -0.012562814070351758, ""contrib"": -0.0007751256281407034}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0452, ""close"": 249.0, ""prev_close"": 252.0, ""ret"": -0.011904761904761862, ""contrib"": -0.0005380952380952362}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0362, ""close"": 1270.0, ""prev_close"": 1305.0, ""ret"": -0.026819923371647514, ""contrib"": -0.00097088122605364}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.033, ""close"": 147.5, ""prev_close"": 148.5, ""ret"": -0.006734006734006703, ""contrib"": -0.00022222222222222123}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0292, ""close"": 6000.0, ""prev_close"": 5950.0, ""ret"": 0.008403361344537785, ""contrib"": 0.00024537815126050334}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0227, ""close"": 10615.0, ""prev_close"": 11790.0, ""ret"": -0.09966072943172177, ""contrib"": -0.002262298558100084}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0219, ""close"": 6660.0, ""prev_close"": 6845.0, ""ret"": -0.027027027027026973, ""contrib"": -0.0005918918918918907}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0219, ""close"": 3440.0, ""prev_close"": 3545.0, ""ret"": -0.02961918194640334, ""contrib"": -0.0006486600846262331}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-08,權重基準日 2026-10-08
+2026-10-08,trust_net_100m,46.89,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,tsm_ret,-0.02094127273806401,ok,Yahoo Finance TSM,2026-10-07,
+2026-10-08,turnover_100m,5.9064,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,twd_change,0.0008030935290088692,ok,Yahoo Finance TWD=X,2026-10-07,
+2026-10-08,us10y,5.269000053405762,stale,Yahoo Finance ^TNX,2026-10-06,美股資料為 2026-10-06，較預期的 2026-10-07 舊 1 天（休市或缺值）
+2026-10-08,usdtwd,31.776899337768555,ok,Yahoo Finance TWD=X,2026-10-07,
+2026-10-08,vix,15.079999923706055,ok,Yahoo Finance ^VIX,2026-10-07,
+2026-10-08,volume_lots,11066,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,volume_ratio,0.6997056939542372,ok,TWSE STOCK_DAY,2026-10-08,
+2026-10-08,wcr,-0.014166007167546799,ok,國泰投信權重 + TWSE 個股收盤,2026-10-08,權重基準日 2026-10-08
+2026-10-09,breadth_count,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：3017 無 2026-10-09 收盤；2059 無 2026-10-09 收盤；2345 無 2026-10-09 收盤
+2026-10-09,close,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,close_adj_gt_ma120,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,close_adj_gt_ma20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,day_direction,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,drawdown20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,institutional_net,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,institutional_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,ma20_gt_ma60,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,nav,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
+2026-10-09,ndx_ret,-0.012540524485118887,ok,Yahoo Finance ^IXIC,2026-10-08,
+2026-10-09,nvda_ret,-0.029435320070881676,ok,Yahoo Finance NVDA,2026-10-08,
+2026-10-09,premium,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
+2026-10-09,ret60_positive,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,rsi14,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,rv20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,sox_ret,-0.03386157486790853,ok,Yahoo Finance ^SOX,2026-10-08,
+2026-10-09,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-09,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-09,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,tsm_ret,-0.030093226610138246,ok,Yahoo Finance TSM,2026-10-08,
+2026-10-09,turnover_100m,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,twd_change,0.002246965486165875,ok,Yahoo Finance TWD=X,2026-10-08,
+2026-10-09,us10y,5.230999946594238,ok,Yahoo Finance ^TNX,2026-10-08,
+2026-10-09,usdtwd,31.84830093383789,ok,Yahoo Finance TWD=X,2026-10-08,
+2026-10-09,vix,15.40999984741211,ok,Yahoo Finance ^VIX,2026-10-08,
+2026-10-09,volume_lots,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,volume_ratio,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-09,wcr,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：3017 無 2026-10-09 收盤；2059 無 2026-10-09 收盤；2345 無 2026-10-09 收盤
+2026-10-12,avg_vol20,16156.1359,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,breadth_count,2,ok,國泰投信權重 + TWSE 個股收盤,2026-10-12,權重基準日 2026-10-12
+2026-10-12,close,53.4,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,close_adj,82.22667325620063,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,day_direction,up,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,dealer_net_100m,-142.94,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,drawdown20,-0.020183486238532056,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,drawdown60,-0.020183486238532056,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,foreign_net_100m,-521.98,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,high,53.45,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,institutional_net,-593.69,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,institutional_net_100m,-593.69,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,low,52.55,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ma120,74.60847858610286,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ma20,79.90307681530908,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ma60,76.15967959649515,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,nav,53.26,ok,國泰投信 cwapi,2026-10-12,
+2026-10-12,ndx_ret,0.006355603214539318,stale,Yahoo Finance ^IXIC,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-11 舊 2 天（休市或缺值）
+2026-10-12,nvda_ret,-0.005206512367610272,stale,Yahoo Finance NVDA,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-11 舊 2 天（休市或缺值）
+2026-10-12,open,53.0,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,premium,0.0026,ok,國泰投信 cwapi,2026-10-12,
+2026-10-12,ret20,0.04808635917566284,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ret5,0.012322274881516604,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ret60,0.09707575324730677,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,rsi14,61.96218045156177,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,rv20,0.190645147426836,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,sox_ret,-0.004062992513390373,stale,Yahoo Finance ^SOX,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-11 舊 2 天（休市或缺值）
+2026-10-12,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-12,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-12,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.38539999999999996, ""close"": 2540.0, ""prev_close"": 2550.0, ""ret"": -0.0039215686274509665, ""contrib"": -0.0015113725490196023}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.10460000000000001, ""close"": 4625.0, ""prev_close"": 4690.0, ""ret"": -0.013859275053304865, ""contrib"": -0.001449680170575689}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.059800000000000006, ""close"": 1900.0, ""prev_close"": 1965.0, ""ret"": -0.0330788804071247, ""contrib"": -0.0019781170483460573}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.044500000000000005, ""close"": 244.5, ""prev_close"": 249.0, ""ret"": -0.01807228915662651, ""contrib"": -0.0008042168674698797}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0358, ""close"": 1255.0, ""prev_close"": 1270.0, ""ret"": -0.011811023622047223, ""contrib"": -0.0004228346456692906}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0327, ""close"": 145.5, ""prev_close"": 147.5, ""ret"": -0.013559322033898313, ""contrib"": -0.00044338983050847485}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.03, ""close"": 6150.0, ""prev_close"": 6000.0, ""ret"": 0.02499999999999991, ""contrib"": 0.0007499999999999973}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0241, ""close"": 7325.0, ""prev_close"": 6660.0, ""ret"": 0.0998498498498499, ""contrib"": 0.0024063813813813826}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0227, ""close"": 10580.0, ""prev_close"": 10615.0, ""ret"": -0.0032972209138012465, ""contrib"": -7.48469147432883e-05}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0216, ""close"": 3385.0, ""prev_close"": 3440.0, ""ret"": -0.015988372093023284, ""contrib"": -0.00034534883720930296}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-12,權重基準日 2026-10-12
+2026-10-12,trust_net_100m,71.24,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,tsm_ret,-0.01021854794989352,stale,Yahoo Finance TSM,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-11 舊 2 天（休市或缺值）
+2026-10-12,turnover_100m,8.8937,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,twd_change,-0.00026311223780184356,ok,Yahoo Finance TWD=X,2026-10-11,
+2026-10-12,us10y,5.230999946594238,stale,Yahoo Finance ^TNX,2026-10-08,美股資料為 2026-10-08，較預期的 2026-10-11 舊 3 天（休市或缺值）
+2026-10-12,usdtwd,31.91699981689453,ok,Yahoo Finance TWD=X,2026-10-11,
+2026-10-12,vix,14.84000015258789,stale,Yahoo Finance ^VIX,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-11 舊 2 天（休市或缺值）
+2026-10-12,volume_lots,16782,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,volume_ratio,1.0387407053192714,ok,TWSE STOCK_DAY,2026-10-12,
+2026-10-12,wcr,-0.003873425482160205,ok,國泰投信權重 + TWSE 個股收盤,2026-10-12,權重基準日 2026-10-12
+2026-10-13,avg_vol20,17217.65385,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,breadth_count,0,ok,國泰投信權重 + TWSE 個股收盤,2026-10-13,權重基準日 2026-10-13
+2026-10-13,close,52.0,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,close_adj,80.07091777757365,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,day_direction,down,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,dealer_net_100m,-569.76,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,drawdown20,-0.04587155963302736,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,drawdown60,-0.04587155963302736,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,foreign_net_100m,-1653.42,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,high,52.5,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,institutional_net,-1984.46,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,institutional_net_100m,-1984.46,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,low,51.6,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ma120,74.7713682657962,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ma20,80.01856371594981,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ma60,76.2485375032891,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,nav,51.77,ok,國泰投信 cwapi,2026-10-13,
+2026-10-13,ndx_ret,-0.004394753758686032,ok,Yahoo Finance ^IXIC,2026-10-12,
+2026-10-13,nvda_ret,-0.012909941865131391,ok,Yahoo Finance NVDA,2026-10-12,
+2026-10-13,open,52.15,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,premium,0.0044,ok,國泰投信 cwapi,2026-10-13,
+2026-10-13,ret20,0.02970297029702995,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ret5,-0.044995408631772205,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ret60,0.0713341465663273,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,rsi14,51.250031062007324,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,rv20,0.21293753364445855,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,sox_ret,-0.02669588178116189,ok,Yahoo Finance ^SOX,2026-10-12,
+2026-10-13,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-13,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-13,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3886, ""close"": 2490.0, ""prev_close"": 2540.0, ""ret"": -0.019685039370078705, ""contrib"": -0.007649606299212585}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.10529999999999999, ""close"": 4525.0, ""prev_close"": 4625.0, ""ret"": -0.021621621621621623, ""contrib"": -0.0022767567567567567}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0575, ""close"": 1775.0, ""prev_close"": 1900.0, ""ret"": -0.06578947368421051, ""contrib"": -0.0037828947368421044}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0449, ""close"": 240.0, ""prev_close"": 244.5, ""ret"": -0.018404907975460127, ""contrib"": -0.0008263803680981597}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0346, ""close"": 1180.0, ""prev_close"": 1255.0, ""ret"": -0.05976095617529875, ""contrib"": -0.0020677290836653367}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0327, ""close"": 141.5, ""prev_close"": 145.5, ""ret"": -0.027491408934707917, ""contrib"": -0.0008989690721649489}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0278, ""close"": 5545.0, ""prev_close"": 6150.0, ""ret"": -0.09837398373983741, ""contrib"": -0.00273479674796748}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.024700000000000003, ""close"": 7275.0, ""prev_close"": 7325.0, ""ret"": -0.0068259385665528916, ""contrib"": -0.00016860068259385644}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0222, ""close"": 10060.0, ""prev_close"": 10580.0, ""ret"": -0.04914933837429114, ""contrib"": -0.0010911153119092633}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0215, ""close"": 3280.0, ""prev_close"": 3385.0, ""ret"": -0.03101920236336775, ""contrib"": -0.0006669128508124065}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-13,權重基準日 2026-10-13
+2026-10-13,trust_net_100m,238.72,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,tsm_ret,-0.019765704492144986,ok,Yahoo Finance TSM,2026-10-12,
+2026-10-13,turnover_100m,17.3009,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,twd_change,0.0024208150568443276,stale,Yahoo Finance TWD=X,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-12 舊 3 天（休市或缺值）
+2026-10-13,us10y,5.24399995803833,stale,Yahoo Finance ^TNX,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-12 舊 3 天（休市或缺值）
+2026-10-13,usdtwd,31.925399780273438,stale,Yahoo Finance TWD=X,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-12 舊 3 天（休市或缺值）
+2026-10-13,vix,15.210000038146973,ok,Yahoo Finance ^VIX,2026-10-12,
+2026-10-13,volume_lots,33273,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,volume_ratio,1.9324974987808805,ok,TWSE STOCK_DAY,2026-10-13,
+2026-10-13,wcr,-0.022163761910022898,ok,國泰投信權重 + TWSE 個股收盤,2026-10-13,權重基準日 2026-10-13
+2026-10-14,avg_vol20,16339.519449999998,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,breadth_count,5,ok,國泰投信權重 + TWSE 個股收盤,2026-10-14,權重基準日 2026-10-14
+2026-10-14,close,52.1,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,close_adj,80.2249003117613,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,close_adj_gt_ma20,True,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,day_direction,up,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,dealer_net_100m,-114.71,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,drawdown20,-0.0440366972477062,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,drawdown60,-0.0440366972477062,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,foreign_net_100m,-200.37,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,high,52.55,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,institutional_net,-153.97,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,institutional_net_100m,-153.97,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,low,52.05,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ma120,74.92427034068331,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ma20,80.18332502753059,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ma60,76.42261426465447,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,nav,51.87,ok,國泰投信 cwapi,2026-10-14,
+2026-10-14,ndx_ret,-0.0015238817823868267,ok,Yahoo Finance ^IXIC,2026-10-13,
+2026-10-14,nvda_ret,0.009720735582561923,ok,Yahoo Finance NVDA,2026-10-13,
+2026-10-14,open,52.2,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,premium,0.0044,ok,國泰投信 cwapi,2026-10-14,
+2026-10-14,ret20,0.042834267413931926,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ret5,-0.044036697247706535,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ret60,0.14967844055871438,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,rsi14,51.889829931348004,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,rv20,0.207968087582332,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,sox_ret,-0.00228778275169661,ok,Yahoo Finance ^SOX,2026-10-13,
+2026-10-14,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-14,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-14,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.38780000000000003, ""close"": 2490.0, ""prev_close"": 2490.0, ""ret"": 0.0, ""contrib"": 0.0}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1039, ""close"": 4475.0, ""prev_close"": 4525.0, ""ret"": -0.011049723756906049, ""contrib"": -0.0011480662983425385}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.057699999999999994, ""close"": 1785.0, ""prev_close"": 1775.0, ""ret"": 0.005633802816901401, ""contrib"": 0.0003250704225352108}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0454, ""close"": 243.0, ""prev_close"": 240.0, ""ret"": 0.012499999999999956, ""contrib"": 0.000567499999999998}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0347, ""close"": 1185.0, ""prev_close"": 1180.0, ""ret"": 0.004237288135593209, ""contrib"": 0.00014703389830508437}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0327, ""close"": 142.0, ""prev_close"": 141.5, ""ret"": 0.0035335689045936647, ""contrib"": 0.00011554770318021284}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0276, ""close"": 5520.0, ""prev_close"": 5545.0, ""ret"": -0.0045085662759242195, ""contrib"": -0.00012443642921550844}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0233, ""close"": 6880.0, ""prev_close"": 7275.0, ""ret"": -0.05429553264604814, ""contrib"": -0.0012650859106529218}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.022000000000000002, ""close"": 10005.0, ""prev_close"": 10060.0, ""ret"": -0.005467196819085474, ""contrib"": -0.00012027833001988043}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0217, ""close"": 3315.0, ""prev_close"": 3280.0, ""ret"": 0.010670731707317138, ""contrib"": 0.0002315548780487819}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-14,權重基準日 2026-10-14
+2026-10-14,trust_net_100m,161.11,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,tsm_ret,0.0017328434862056152,ok,Yahoo Finance TSM,2026-10-13,
+2026-10-14,turnover_100m,4.5848,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,twd_change,0.0003665760127096185,ok,Yahoo Finance TWD=X,2026-10-13,
+2026-10-14,us10y,5.239999771118164,stale,Yahoo Finance ^TNX,2026-10-12,美股資料為 2026-10-12，較預期的 2026-10-13 舊 1 天（休市或缺值）
+2026-10-14,usdtwd,31.927799224853516,ok,Yahoo Finance TWD=X,2026-10-13,
+2026-10-14,vix,15.270000457763672,ok,Yahoo Finance ^VIX,2026-10-13,
+2026-10-14,volume_lots,8771,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,volume_ratio,0.5368005483172273,ok,TWSE STOCK_DAY,2026-10-14,
+2026-10-14,wcr,-0.0012711600661615612,ok,國泰投信權重 + TWSE 個股收盤,2026-10-14,權重基準日 2026-10-14
+2026-10-15,avg_vol20,17470.9141,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,breadth_count,0,ok,國泰投信權重 + TWSE 個股收盤,2026-10-15,權重基準日 2026-10-15
+2026-10-15,close,49.95,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,close_adj,76.91427582672702,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,close_adj_gt_ma20,False,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,day_direction,down,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,dealer_net_100m,-958.24,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,drawdown20,-0.08348623853210968,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,drawdown60,-0.08348623853210968,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,foreign_net_100m,-3025.55,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,high,50.5,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,institutional_net,-3700.76,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,institutional_net_100m,-3700.76,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,low,49.95,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ma120,75.04383107781008,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ma20,80.21489144703907,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ma60,76.55748090744004,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,nav,49.59,ok,國泰投信 cwapi,2026-10-15,
+2026-10-15,ndx_ret,-0.018802549537668578,ok,Yahoo Finance ^IXIC,2026-10-14,
+2026-10-15,nvda_ret,-0.03159461353805515,ok,Yahoo Finance NVDA,2026-10-14,
+2026-10-15,open,50.25,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,premium,0.0073,ok,國泰投信 cwapi,2026-10-15,
+2026-10-15,ret20,0.008276140492532447,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ret5,-0.07414272474513439,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ret60,0.11757818673467213,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,rsi14,39.79668696403348,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,rv20,0.25706898508657605,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,sox_ret,-0.042953251295553385,ok,Yahoo Finance ^SOX,2026-10-14,
+2026-10-15,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-15,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-15,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3997, ""close"": 2440.0, ""prev_close"": 2490.0, ""ret"": -0.02008032128514059, ""contrib"": -0.008026104417670694}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1009, ""close"": 4165.0, ""prev_close"": 4475.0, ""ret"": -0.06927374301675981, ""contrib"": -0.006989720670391065}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.055, ""close"": 1630.0, ""prev_close"": 1785.0, ""ret"": -0.08683473389355745, ""contrib"": -0.004775910364145659}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0466, ""close"": 239.5, ""prev_close"": 243.0, ""ret"": -0.014403292181069949, ""contrib"": -0.0006711934156378597}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0329, ""close"": 1075.0, ""prev_close"": 1185.0, ""ret"": -0.09282700421940926, ""contrib"": -0.0030540084388185644}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0321, ""close"": 133.5, ""prev_close"": 142.0, ""ret"": -0.059859154929577496, ""contrib"": -0.0019214788732394375}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.026699999999999998, ""close"": 5120.0, ""prev_close"": 5520.0, ""ret"": -0.07246376811594202, ""contrib"": -0.0019347826086956517}, {""code"": ""3008"", ""name"": ""大立光"", ""weight"": 0.0233, ""close"": 6605.0, ""prev_close"": 6880.0, ""ret"": -0.039970930232558155, ""contrib"": -0.0009313226744186051}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0223, ""close"": 9720.0, ""prev_close"": 10005.0, ""ret"": -0.028485757121439303, ""contrib"": -0.0006352323838080965}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.021099999999999997, ""close"": 3085.0, ""prev_close"": 3315.0, ""ret"": -0.06938159879336347, ""contrib"": -0.0014639517345399692}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-15,權重基準日 2026-10-15
+2026-10-15,trust_net_100m,283.03,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,tsm_ret,-0.03396835748348448,ok,Yahoo Finance TSM,2026-10-14,
+2026-10-15,turnover_100m,24.2033,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,twd_change,0.005550032313059505,ok,Yahoo Finance TWD=X,2026-10-14,
+2026-10-15,us10y,5.2170000076293945,stale,Yahoo Finance ^TNX,2026-10-13,美股資料為 2026-10-13，較預期的 2026-10-14 舊 1 天（休市或缺值）
+2026-10-15,usdtwd,32.10499954223633,ok,Yahoo Finance TWD=X,2026-10-14,
+2026-10-15,vix,16.8700008392334,ok,Yahoo Finance ^VIX,2026-10-14,
+2026-10-15,volume_lots,48272,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,volume_ratio,2.762975979602578,ok,TWSE STOCK_DAY,2026-10-15,
+2026-10-15,wcr,-0.0304037055813656,ok,國泰投信權重 + TWSE 個股收盤,2026-10-15,權重基準日 2026-10-15
+2026-10-16,avg_vol20,16905.34485,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,breadth_count,8,ok,國泰投信權重 + TWSE 個股收盤,2026-10-16,權重基準日 2026-10-16
+2026-10-16,close,50.0,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,close_adj,76.99126709382081,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,close_adj_gt_ma20,False,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,day_direction,up,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,dealer_net_100m,-334.14,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,drawdown20,-0.0825688073394496,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,drawdown60,-0.0825688073394496,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,foreign_net_100m,-461.47,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,high,50.5,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,institutional_net,-678.07,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,institutional_net_100m,-678.07,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,low,49.98,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ma120,75.1663814906191,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ma20,80.27571454804318,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ma60,76.64079889773957,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,nav,49.86,ok,國泰投信 cwapi,2026-10-16,
+2026-10-16,ndx_ret,0.0007551174020976603,ok,Yahoo Finance ^IXIC,2026-10-15,
+2026-10-16,nvda_ret,-0.018391356837292316,ok,Yahoo Finance NVDA,2026-10-15,
+2026-10-16,open,50.15,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,premium,0.0028000000000000004,ok,國泰投信 cwapi,2026-10-16,
+2026-10-16,ret20,0.016053647632595647,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ret5,-0.06191369606003749,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ret60,0.06943919304801338,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,rsi14,40.146041227640275,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,rv20,0.2556580553784019,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,sox_ret,-0.008829312303877956,ok,Yahoo Finance ^SOX,2026-10-15,
+2026-10-16,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-16,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-16,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3996, ""close"": 2420.0, ""prev_close"": 2440.0, ""ret"": -0.008196721311475419, ""contrib"": -0.0032754098360655774}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.10210000000000001, ""close"": 4250.0, ""prev_close"": 4165.0, ""ret"": 0.020408163265306145, ""contrib"": 0.0020836734693877577}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0547, ""close"": 1635.0, ""prev_close"": 1630.0, ""ret"": 0.0030674846625766694, ""contrib"": 0.0001677914110429438}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0471, ""close"": 244.0, ""prev_close"": 239.5, ""ret"": 0.018789144050104456, ""contrib"": 0.00088496868475992}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.030299999999999997, ""close"": 1090.0, ""prev_close"": 1075.0, ""ret"": 0.013953488372093092, ""contrib"": 0.00042279069767442066}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0288, ""close"": 133.0, ""prev_close"": 133.5, ""ret"": -0.0037453183520599342, ""contrib"": -0.0001078651685393261}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.026699999999999998, ""close"": 5165.0, ""prev_close"": 5120.0, ""ret"": 0.0087890625, ""contrib"": 0.00023466796874999999}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0232, ""close"": 3315.0, ""prev_close"": 3085.0, ""ret"": 0.07455429497568877, ""contrib"": 0.0017296596434359793}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.0227, ""close"": 9955.0, ""prev_close"": 9720.0, ""ret"": 0.02417695473251036, ""contrib"": 0.0005488168724279851}, {""code"": ""2345"", ""name"": ""智邦"", ""weight"": 0.0222, ""close"": 1980.0, ""prev_close"": 1950.0, ""ret"": 0.01538461538461533, ""contrib"": 0.00034153846153846035}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-16,權重基準日 2026-10-16
+2026-10-16,trust_net_100m,117.54,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,tsm_ret,-0.018023255813953476,ok,Yahoo Finance TSM,2026-10-15,
+2026-10-16,turnover_100m,5.2383,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,twd_change,0.0026444449012390514,ok,Yahoo Finance TWD=X,2026-10-15,
+2026-10-16,us10y,5.190000057220459,stale,Yahoo Finance ^TNX,2026-10-14,美股資料為 2026-10-14，較預期的 2026-10-15 舊 1 天（休市或缺值）
+2026-10-16,usdtwd,32.18989944458008,ok,Yahoo Finance TWD=X,2026-10-15,
+2026-10-16,vix,16.459999084472656,ok,Yahoo Finance ^VIX,2026-10-15,
+2026-10-16,volume_lots,10431,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,volume_ratio,0.6170396458963686,ok,TWSE STOCK_DAY,2026-10-16,
+2026-10-16,wcr,0.0030306322044125634,ok,國泰投信權重 + TWSE 個股收盤,2026-10-16,權重基準日 2026-10-16
+2026-10-19,avg_vol20,17187.91525,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,breadth_count,4,ok,國泰投信權重 + TWSE 個股收盤,2026-10-19,權重基準日 2026-10-19
+2026-10-19,close,49.64,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,close_adj,76.43692997074531,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,close_adj_gt_ma20,False,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,day_direction,down,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,dealer_net_100m,-362.63,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,drawdown20,-0.08917431192660541,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,drawdown60,-0.08917431192660541,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,foreign_net_100m,-767.43,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,high,49.82,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,institutional_net,-899.55,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,institutional_net_100m,-899.55,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,low,49.03,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ma120,75.26447113627854,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ma20,80.27494463537225,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ma60,76.69139711808967,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,nav,49.68,ok,國泰投信 cwapi,2026-10-19,
+2026-10-19,ndx_ret,-0.021450206699957897,stale,Yahoo Finance ^IXIC,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-18 舊 2 天（休市或缺值）
+2026-10-19,nvda_ret,-0.01427054691201457,stale,Yahoo Finance NVDA,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-18 舊 2 天（休市或缺值）
+2026-10-19,open,49.11,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,premium,0.0698,ok,國泰投信 cwapi,2026-10-19,
+2026-10-19,ret20,-0.00020140986908312453,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ret5,-0.07041198501872659,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ret60,0.0413603588646303,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,rsi14,38.41745355667003,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,rv20,0.2553618518248389,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,sox_ret,-0.0383310486013384,stale,Yahoo Finance ^SOX,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-18 舊 2 天（休市或缺值）
+2026-10-19,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-19,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-19,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.3986, ""close"": 2420.0, ""prev_close"": 2420.0, ""ret"": 0.0, ""contrib"": 0.0}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.1008, ""close"": 4205.0, ""prev_close"": 4250.0, ""ret"": -0.010588235294117676, ""contrib"": -0.0010672941176470617}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0547, ""close"": 1640.0, ""prev_close"": 1635.0, ""ret"": 0.003058103975535076, ""contrib"": 0.00016727828746176864}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0461, ""close"": 239.5, ""prev_close"": 244.0, ""ret"": -0.018442622950819665, ""contrib"": -0.0008502049180327866}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0292, ""close"": 1120.0, ""prev_close"": 1090.0, ""ret"": 0.02752293577981657, ""contrib"": 0.0008036697247706439}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0265, ""close"": 131.5, ""prev_close"": 133.0, ""ret"": -0.011278195488721776, ""contrib"": -0.00029887218045112707}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0265, ""close"": 5125.0, ""prev_close"": 5165.0, ""ret"": -0.007744433688286589, ""contrib"": -0.00020522749273959462}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0232, ""close"": 3320.0, ""prev_close"": 3315.0, ""ret"": 0.0015082956259426794, ""contrib"": 3.499245852187016e-05}, {""code"": ""2345"", ""name"": ""智邦"", ""weight"": 0.022400000000000003, ""close"": 2005.0, ""prev_close"": 1980.0, ""ret"": 0.012626262626262541, ""contrib"": 0.000282828282828281}, {""code"": ""2059"", ""name"": ""川湖"", ""weight"": 0.021, ""close"": 9920.0, ""prev_close"": 9955.0, ""ret"": -0.0035158211953791874, ""contrib"": -7.383224510296294e-05}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-19,權重基準日 2026-10-19
+2026-10-19,trust_net_100m,230.51,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,tsm_ret,-0.022830111660005925,stale,Yahoo Finance TSM,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-18 舊 2 天（休市或缺值）
+2026-10-19,turnover_100m,9.2979,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,twd_change,0.0031274548479089948,ok,Yahoo Finance TWD=X,2026-10-18,
+2026-10-19,us10y,5.089000225067139,stale,Yahoo Finance ^TNX,2026-10-15,美股資料為 2026-10-15，較預期的 2026-10-18 舊 3 天（休市或缺值）
+2026-10-19,usdtwd,32.428001403808594,ok,Yahoo Finance TWD=X,2026-10-18,
+2026-10-19,vix,19.989999771118164,stale,Yahoo Finance ^VIX,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-18 舊 2 天（休市或缺值）
+2026-10-19,volume_lots,18828,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,volume_ratio,1.0954231345770689,ok,TWSE STOCK_DAY,2026-10-19,
+2026-10-19,wcr,-0.0012066622003909693,ok,國泰投信權重 + TWSE 個股收盤,2026-10-19,權重基準日 2026-10-19
+2026-10-20,avg_vol20,17389.3079,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,breadth_count,3,ok,國泰投信權重 + TWSE 個股收盤,2026-10-20,權重基準日 2026-10-20
+2026-10-20,close,49.11,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,close_adj,75.62082253955082,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,close_adj_gt_ma20,False,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,day_direction,down,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,dealer_net_100m,-355.8,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,drawdown20,-0.0988990825688072,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,drawdown60,-0.0988990825688072,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,foreign_net_100m,-795.4,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,high,49.92,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,institutional_net,-968.04,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,institutional_net_100m,-968.04,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,low,49.1,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ma120,75.3429628409235,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ma20,80.22105074840658,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ma60,76.72017526165547,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,nav,49.07,ok,國泰投信 cwapi,2026-10-20,
+2026-10-20,ndx_ret,0.011126897317967899,ok,Yahoo Finance ^IXIC,2026-10-19,
+2026-10-20,nvda_ret,0.013823338101066396,ok,Yahoo Finance NVDA,2026-10-19,
+2026-10-20,open,49.52,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,premium,0.0008,ok,國泰投信 cwapi,2026-10-20,
+2026-10-20,ret20,-0.014053402931137882,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ret5,-0.05557692307692319,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ret60,0.02336705936207628,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,rsi14,35.96242945527334,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,rv20,0.25787136637494273,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,sox_ret,0.016076867330113265,ok,Yahoo Finance ^SOX,2026-10-19,
+2026-10-20,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-20,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-20,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.4031, ""close"": 2405.0, ""prev_close"": 2420.0, ""ret"": -0.006198347107438051, ""contrib"": -0.0024985537190082784}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.0974, ""close"": 4150.0, ""prev_close"": 4205.0, ""ret"": -0.013079667063020217, ""contrib"": -0.0012739595719381692}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0525, ""close"": 1605.0, ""prev_close"": 1640.0, ""ret"": -0.021341463414634165, ""contrib"": -0.0011204268292682937}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0471, ""close"": 241.5, ""prev_close"": 239.5, ""ret"": 0.008350730688935215, ""contrib"": 0.00039331941544884866}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0262, ""close"": 4945.0, ""prev_close"": 5125.0, ""ret"": -0.035121951219512226, ""contrib"": -0.0009201951219512203}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.026000000000000002, ""close"": 1055.0, ""prev_close"": 1120.0, ""ret"": -0.0580357142857143, ""contrib"": -0.0015089285714285719}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0241, ""close"": 3325.0, ""prev_close"": 3320.0, ""ret"": 0.001506024096385561, ""contrib"": 3.629518072289202e-05}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.024, ""close"": 127.0, ""prev_close"": 131.5, ""ret"": -0.034220532319391594, ""contrib"": -0.0008212927756653983}, {""code"": ""2345"", ""name"": ""智邦"", ""weight"": 0.0231, ""close"": 1970.0, ""prev_close"": 2005.0, ""ret"": -0.017456359102244412, ""contrib"": -0.0004032418952618459}, {""code"": ""2382"", ""name"": ""廣達"", ""weight"": 0.021400000000000002, ""close"": 320.5, ""prev_close"": 314.5, ""ret"": 0.019077901430842648, ""contrib"": 0.0004082670906200327}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-20,權重基準日 2026-10-20
+2026-10-20,trust_net_100m,183.15,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,tsm_ret,0.01844360567923853,ok,Yahoo Finance TSM,2026-10-19,
+2026-10-20,turnover_100m,8.0241,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,twd_change,0.0018591499501492414,ok,Yahoo Finance TWD=X,2026-10-19,
+2026-10-20,us10y,5.0980000495910645,stale,Yahoo Finance ^TNX,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-19 舊 3 天（休市或缺值）
+2026-10-20,usdtwd,32.387001037597656,ok,Yahoo Finance TWD=X,2026-10-19,
+2026-10-20,vix,18.440000534057617,ok,Yahoo Finance ^VIX,2026-10-19,
+2026-10-20,volume_lots,16213,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,volume_ratio,0.9323496422764475,ok,TWSE STOCK_DAY,2026-10-20,
+2026-10-20,wcr,-0.0077087167977300045,ok,國泰投信權重 + TWSE 個股收盤,2026-10-20,權重基準日 2026-10-20
+2026-10-21,avg_vol20,16934.257449999997,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,breadth_count,7,ok,國泰投信權重 + TWSE 個股收盤,2026-10-21,權重基準日 2026-10-21
+2026-10-21,close,49.55,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,close_adj,76.29834568997643,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,close_adj_gt_ma120,True,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,close_adj_gt_ma20,False,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,day_direction,up,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,dealer_net_100m,-133.11,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,drawdown20,-0.09082568807339442,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,drawdown60,-0.09082568807339442,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,foreign_net_100m,9.6,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,high,50.3,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,institutional_net,5.68,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,institutional_net_100m,5.68,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,low,49.35,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ma120,75.4286268249854,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ma20,80.10941341112054,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ma60,76.79077052099602,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,nav,49.52,ok,國泰投信 cwapi,2026-10-21,
+2026-10-21,ndx_ret,-0.0002298151369993784,ok,Yahoo Finance ^IXIC,2026-10-20,
+2026-10-21,nvda_ret,-0.0028559359143500718,ok,Yahoo Finance NVDA,2026-10-20,
+2026-10-21,open,50.05,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,premium,0.0006,ok,國泰投信 cwapi,2026-10-21,
+2026-10-21,ret20,-0.02843137254901973,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ret5,-0.04894433781190022,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ret60,0.05877825376091317,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,rsi14,39.42336732921712,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,rv20,0.2441597416562169,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,sox_ret,-0.0028744559426133742,ok,Yahoo Finance ^SOX,2026-10-20,
+2026-10-21,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-21,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-21,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.40659999999999996, ""close"": 2420.0, ""prev_close"": 2405.0, ""ret"": 0.006237006237006293, ""contrib"": 0.0025359667359667586}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.0947, ""close"": 4140.0, ""prev_close"": 4150.0, ""ret"": -0.002409638554216831, ""contrib"": -0.0002281927710843339}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0518, ""close"": 1625.0, ""prev_close"": 1605.0, ""ret"": 0.012461059190031154, ""contrib"": 0.0006454828660436137}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.0472, ""close"": 250.0, ""prev_close"": 241.5, ""ret"": 0.035196687370600444, ""contrib"": 0.0016612836438923409}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0268, ""close"": 4990.0, ""prev_close"": 4945.0, ""ret"": 0.009100101112234471, ""contrib"": 0.00024388270980788384}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.026000000000000002, ""close"": 1100.0, ""prev_close"": 1055.0, ""ret"": 0.042654028436019065, ""contrib"": 0.0011090047393364957}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.0245, ""close"": 3235.0, ""prev_close"": 3325.0, ""ret"": -0.02706766917293235, ""contrib"": -0.0006631578947368426}, {""code"": ""2382"", ""name"": ""廣達"", ""weight"": 0.023700000000000002, ""close"": 328.5, ""prev_close"": 320.5, ""ret"": 0.024960998439937487, ""contrib"": 0.0005915756630265185}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0231, ""close"": 128.0, ""prev_close"": 127.0, ""ret"": 0.007874015748031482, ""contrib"": 0.00018188976377952722}, {""code"": ""2345"", ""name"": ""智邦"", ""weight"": 0.0226, ""close"": 1815.0, ""prev_close"": 1970.0, ""ret"": -0.07868020304568524, ""contrib"": -0.0017781725888324862}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-21,權重基準日 2026-10-21
+2026-10-21,trust_net_100m,129.19,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,tsm_ret,0.01156533562763462,ok,Yahoo Finance TSM,2026-10-20,
+2026-10-21,turnover_100m,4.3985,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,twd_change,0.002877718856573175,ok,Yahoo Finance TWD=X,2026-10-20,
+2026-10-21,us10y,5.136000156402588,stale,Yahoo Finance ^TNX,2026-10-19,美股資料為 2026-10-19，較預期的 2026-10-20 舊 1 天（休市或缺值）
+2026-10-21,usdtwd,32.480201721191406,ok,Yahoo Finance TWD=X,2026-10-20,
+2026-10-21,vix,17.309999465942383,ok,Yahoo Finance ^VIX,2026-10-20,
+2026-10-21,volume_lots,8831,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,volume_ratio,0.5214799069917294,ok,TWSE STOCK_DAY,2026-10-21,
+2026-10-21,wcr,0.004299562867199476,ok,國泰投信權重 + TWSE 個股收盤,2026-10-21,權重基準日 2026-10-21
+2026-10-22,avg_vol20,16954.5651,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,breadth_count,1,ok,國泰投信權重 + TWSE 個股收盤,2026-10-22,權重基準日 2026-10-22
+2026-10-22,close,48.8,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,close_adj,75.14347668356912,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,close_adj_gt_ma120,False,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,close_adj_gt_ma20,False,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,day_direction,down,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,dealer_net_100m,-273.78,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,drawdown20,-0.1045871559633027,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,drawdown60,-0.1045871559633027,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,foreign_net_100m,-816.57,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,high,50.2,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,institutional_net,-1001.6,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,institutional_net_100m,-1001.6,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,low,48.77,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ma120,75.51006748877714,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ma20,79.87843960983909,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ma20_gt_ma60,True,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ma60,76.84446604535293,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,nav,48.48,ok,國泰投信 cwapi,2026-10-22,
+2026-10-22,ndx_ret,0.010521816462209843,ok,Yahoo Finance ^IXIC,2026-10-21,
+2026-10-22,nvda_ret,0.025407677594977418,ok,Yahoo Finance NVDA,2026-10-21,
+2026-10-22,open,50.2,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,premium,0.0066,ok,國泰投信 cwapi,2026-10-22,
+2026-10-22,ret20,-0.05791505791505791,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ret5,-0.02302302302302328,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ret60,0.04479495667775568,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,ret60_positive,True,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,rsi14,35.86520659074954,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,rv20,0.24015277745268612,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,sox_ret,0.01965170471623434,ok,Yahoo Finance ^SOX,2026-10-21,
+2026-10-22,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-22,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-22,top_holdings,"[{""code"": ""2330"", ""name"": ""台積電"", ""weight"": 0.419, ""close"": 2385.0, ""prev_close"": 2420.0, ""ret"": -0.01446280991735538, ""contrib"": -0.0060599173553719035}, {""code"": ""2454"", ""name"": ""聯發科"", ""weight"": 0.09369999999999999, ""close"": 4010.0, ""prev_close"": 4140.0, ""ret"": -0.03140096618357491, ""contrib"": -0.0029422705314009687}, {""code"": ""2308"", ""name"": ""台達電"", ""weight"": 0.0506, ""close"": 1560.0, ""prev_close"": 1625.0, ""ret"": -0.040000000000000036, ""contrib"": -0.002024000000000002}, {""code"": ""2317"", ""name"": ""鴻海"", ""weight"": 0.046799999999999994, ""close"": 245.0, ""prev_close"": 250.0, ""ret"": -0.020000000000000018, ""contrib"": -0.0009360000000000007}, {""code"": ""2383"", ""name"": ""台光電"", ""weight"": 0.0279, ""close"": 5070.0, ""prev_close"": 4990.0, ""ret"": 0.01603206412825653, ""contrib"": 0.0004472945891783572}, {""code"": ""3037"", ""name"": ""欣興"", ""weight"": 0.0258, ""close"": 1085.0, ""prev_close"": 1100.0, ""ret"": -0.013636363636363669, ""contrib"": -0.00035181818181818263}, {""code"": ""3017"", ""name"": ""奇鋐"", ""weight"": 0.024900000000000002, ""close"": 3145.0, ""prev_close"": 3235.0, ""ret"": -0.02782071097372485, ""contrib"": -0.0006927357032457488}, {""code"": ""2382"", ""name"": ""廣達"", ""weight"": 0.0245, ""close"": 322.0, ""prev_close"": 328.5, ""ret"": -0.019786910197869156, ""contrib"": -0.00048477929984779434}, {""code"": ""2345"", ""name"": ""智邦"", ""weight"": 0.023399999999999997, ""close"": 1775.0, ""prev_close"": 1815.0, ""ret"": -0.02203856749311295, ""contrib"": -0.000515702479338843}, {""code"": ""2303"", ""name"": ""聯電"", ""weight"": 0.0226, ""close"": 125.5, ""prev_close"": 128.0, ""ret"": -0.01953125, ""contrib"": -0.00044140624999999996}]",ok,國泰投信權重 + TWSE 個股收盤,2026-10-22,權重基準日 2026-10-22
+2026-10-22,trust_net_100m,88.75,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,tsm_ret,0.01602058034085818,ok,Yahoo Finance TSM,2026-10-21,
+2026-10-22,turnover_100m,9.3178,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,twd_change,0.002998652884670827,ok,Yahoo Finance TWD=X,2026-10-21,
+2026-10-22,us10y,5.117000102996826,stale,Yahoo Finance ^TNX,2026-10-20,美股資料為 2026-10-20，較預期的 2026-10-21 舊 1 天（休市或缺值）
+2026-10-22,usdtwd,32.577598571777344,ok,Yahoo Finance TWD=X,2026-10-21,
+2026-10-22,vix,16.68000030517578,ok,Yahoo Finance ^VIX,2026-10-21,
+2026-10-22,volume_lots,18917,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,volume_ratio,1.1157590824904142,ok,TWSE STOCK_DAY,2026-10-22,
+2026-10-22,wcr,-0.014001335211845087,ok,國泰投信權重 + TWSE 個股收盤,2026-10-22,權重基準日 2026-10-22

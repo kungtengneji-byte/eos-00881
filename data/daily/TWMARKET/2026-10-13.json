@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-13",
  "first_collected_at": "2026-10-13T05:49:38",
- "updated_at": "2026-10-14T09:30:50",
+ "updated_at": "2026-10-22T21:14:11",
  "windows": [
   "w1",
   "w2",
@@ -95,12 +95,13 @@
    }
   },
   "summary": {
-   "headline": "燈號 36/100，屬「賣壓風險升高」，較 10-12 下降 2 分",
+   "headline": "燈號 36/100，屬「賣壓風險升高」，較 10-12 下降 3 分",
    "drivers": [
     "F4 距前高壓力空間 +8.2"
    ],
    "drags": [
     "F7 美 10 年期公債殖利率 -0.1",
+    "F5 融資熱度（反向） -1.5",
     "F3 外資期貨 5 日回補 -1.9",
     "F1 本波連買天數餘裕 -2.5",
     "F6 前一美股費半 -5.7"
@@ -115,7 +116,7 @@
    "watch": [
     "距「可續買但進入賣壓測試區」（45 分）尚差 9 分"
    ],
-   "text": "燈號 36/100，屬「賣壓風險升高」，較 10-12 下降 2 分　改善：F4 距前高壓力空間 +8.2　拖累：F7 美 10 年期公債殖利率 -0.1、F3 外資期貨 5 日回補 -1.9、F1 本波連買天數餘裕 -2.5、F6 前一美股費半 -5.7　F4 距前高壓力空間：距前高 +3.37%　F6 前一美股費半：費半（前一時段） -2.67%　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 9 分"
+   "text": "燈號 36/100，屬「賣壓風險升高」，較 10-12 下降 3 分　改善：F4 距前高壓力空間 +8.2　拖累：F7 美 10 年期公債殖利率 -0.1、F5 融資熱度（反向） -1.5、F3 外資期貨 5 日回補 -1.9、F1 本波連買天數餘裕 -2.5、F6 前一美股費半 -5.7　F4 距前高壓力空間：距前高 +3.37%　F6 前一美股費半：費半（前一時段） -2.67%　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 9 分"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
@@ -313,17 +314,16 @@
   },
   "washout": {
    "rubric_version": "washout-0.2",
-   "eos": 16,
-   "raw_eos": 16.153846153846153,
-   "earned": 10.5,
-   "available": 65.0,
+   "eos": 32,
+   "raw_eos": 31.874999999999996,
+   "earned": 25.5,
+   "available": 80.0,
    "coverage_status": "provisional",
    "published": true,
    "rating": "偏派發／風險釋放",
    "missing": [
     "W1a",
-    "W1b",
-    "W4a"
+    "W1b"
    ],
    "dimensions": {
     "W1": {
@@ -413,19 +413,19 @@
     "W4": {
      "key": "W4",
      "name": "融資籌碼清洗",
-     "earned": null,
-     "available": 0.0,
+     "earned": 15.0,
+     "available": 15.0,
      "max": 15.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "W4a",
        "name": "融資餘額日變化",
-       "earned": null,
-       "available": 0.0,
+       "earned": 15.0,
+       "available": 15.0,
        "max": 15.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "-83.51 -> 15"
       }
      ]
     },
@@ -506,21 +506,22 @@
     }
    },
    "summary": {
-    "headline": "EOS 16/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）",
+    "headline": "EOS 32/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）",
     "drivers": [],
     "drags": [],
     "evidence": [],
     "quality": [
-     "3 個子項缺值不計分（W1a, W1b, W4a），EOS 以可得滿分 65 標準化",
+     "2 個子項缺值不計分（W1a, W1b），EOS 以可得滿分 80 標準化",
      "US10Y 為較舊時點資料",
      "覆蓋率未達 90，分數為暫定值，回補後會更新"
     ],
     "watch": [
-     "距「中性待確認」（40 分）尚差 24 分"
+     "距「中性待確認」（40 分）尚差 8 分"
     ],
-    "text": "EOS 16/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）　資料品質：3 個子項缺值不計分（W1a, W1b, W4a），EOS 以可得滿分 65 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「中性待確認」（40 分）尚差 24 分"
+    "text": "EOS 32/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）　資料品質：2 個子項缺值不計分（W1a, W1b），EOS 以可得滿分 80 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「中性待確認」（40 分）尚差 8 分"
    },
    "inputs": {
+    "margin_change_100m": -83.50875,
     "advance_ratio_pct": 26.93,
     "txo_pc_oi_pct": 68.95,
     "close_position": 0.25940881772980545,
@@ -845,27 +846,27 @@
    "note": "上市外資及陸資（不含外資自營商）現貨買賣超"
   },
   "margin_balance_100m": {
-   "value": null,
+   "value": 6449.78625,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261013&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或休市"
+   "as_of": "2026-10-13",
+   "status": "ok",
+   "note": "融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號"
   },
   "margin_prev_100m": {
-   "value": null,
+   "value": 6533.295,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261013&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或休市"
+   "as_of": "2026-10-13",
+   "status": "ok",
+   "note": ""
   },
   "margin_change_100m": {
-   "value": null,
+   "value": -83.50875,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261013&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
+   "as_of": "2026-10-13",
+   "status": "ok",
    "note": ""
   },
   "foreign_futures_net_oi": {

@@ -1785,3 +1785,1019 @@
 2026-09-24,wave_direction,sell,ok,marketflow,2026-09-24,由最近 35 個交易日的序列推導
 2026-09-24,wave_start,2026-09-24,ok,marketflow,2026-09-24,由最近 35 個交易日的序列推導
 2026-09-24,window_days,35,ok,marketflow,2026-09-24,由最近 35 個交易日的序列推導
+2026-09-28,advance_ratio_pct,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-09-28,advancing,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-09-28,avg_buy_wave_cumulative_100m,1370.6366666666665,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,avg_buy_wave_days,3.5,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,avg_sell_wave_cumulative_100m,-938.576,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,avg_sell_wave_days,2.4,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,completed_buy_waves,6,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,completed_sell_waves,5,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,declining,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-09-28,foreign_futures_oi_change_5d,1643.0,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,gap_to_resistance_pct,0.012013218225659357,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,institutional_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,latest_close,48024.6,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,limit_down,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-09-28,limit_up,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-09-28,margin_balance_100m,,missing,TWSE MI_MARGN,,當日尚未發布或休市
+2026-09-28,margin_change_100m,,missing,TWSE MI_MARGN,,
+2026-09-28,margin_change_2d_100m,102.41986999999972,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,margin_prev_100m,,missing,TWSE MI_MARGN,,當日尚未發布或休市
+2026-09-28,market_foreign_net_100m,,missing,TWSE BFI82U,,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-09-28,market_turnover_100m,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-09-28,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,max_buy_wave_days,6,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,resistance_close,48157.29,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,resistance_date,2026-09-23,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,resistance_high,48601.53,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,resistance_high_date,2026-09-22,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,sox_latest_session_ret,0.01411959840720578,stale,Yahoo Finance ^SOX,2026-09-25,最新已收完的美股時段，對應明日展望燈號
+2026-09-28,sox_prev_session_ret,0.01411959840720578,stale,Yahoo Finance ^SOX,2026-09-25,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-09-28,stock_flow_count,,missing,TWSE T86,,回傳空資料（休市或被限流）
+2026-09-28,taiex,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-09-28,taiex_change,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-09-28,taiex_change_pct,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-09-28,taiex_high,,missing,TWSE MI_5MINS_HIST,,當日無大盤開高低收（休市或尚未發布）
+2026-09-28,taiex_low,,missing,TWSE MI_5MINS_HIST,,當日無大盤開高低收（休市或尚未發布）
+2026-09-28,taiex_open,,missing,TWSE MI_5MINS_HIST,,當日無大盤開高低收（休市或尚未發布）
+2026-09-28,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-09-28,txo_pc_oi_pct,,missing,TAIFEX 選擇權買賣權比,,當日尚未發布或查無該日
+2026-09-28,txo_pc_volume_pct,,missing,TAIFEX 選擇權買賣權比,,當日尚未發布或查無該日
+2026-09-28,unchanged,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-09-28,us10y,5.1620001792907715,stale,Yahoo Finance ^TNX,2026-09-24,美股資料為 2026-09-24，較預期的 2026-09-27 舊 3 天（休市或缺值）
+2026-09-28,us10y_latest,5.1620001792907715,stale,Yahoo Finance ^TNX,2026-09-24,最新已收完的美股時段
+2026-09-28,wave_cumulative_100m,-329.65,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,wave_days,1,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,wave_direction,sell,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,wave_start,2026-09-24,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-28,window_days,36,ok,marketflow,2026-09-28,由最近 36 個交易日的序列推導
+2026-09-29,advance_ratio_pct,38.96,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-29,
+2026-09-29,advancing,374.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-29,
+2026-09-29,avg_buy_wave_cumulative_100m,1370.6366666666665,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,avg_buy_wave_days,3.5,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,avg_sell_wave_cumulative_100m,-938.576,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,avg_sell_wave_days,2.4,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,completed_buy_waves,6,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,completed_sell_waves,5,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,dealer_futures_net_oi,-488.0,ok,期交所 三大法人-區分各期貨契約,2026-09-29,
+2026-09-29,dealer_net_100m,-164.03,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,declining,586.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-29,
+2026-09-29,foreign_futures_long_oi,8788.0,ok,期交所 三大法人-區分各期貨契約,2026-09-29,
+2026-09-29,foreign_futures_net_oi,-79029.0,ok,期交所 三大法人-區分各期貨契約,2026-09-29,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-09-29,foreign_futures_oi_change_5d,-4948.0,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,foreign_futures_short_oi,87817.0,ok,期交所 三大法人-區分各期貨契約,2026-09-29,
+2026-09-29,foreign_net_100m,-632.01,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,gap_to_resistance_pct,0.020355450416065173,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,institutional_net_100m,-781.87,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,latest_close,47631.96,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,limit_down,0.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-29,
+2026-09-29,limit_up,24.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-29,
+2026-09-29,margin_balance_100m,6186.53344,ok,TWSE MI_MARGN,2026-09-29,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-09-29,margin_change_100m,35.49942,ok,TWSE MI_MARGN,2026-09-29,
+2026-09-29,margin_change_2d_100m,35.4994200000001,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,margin_prev_100m,6151.03402,ok,TWSE MI_MARGN,2026-09-29,
+2026-09-29,market_foreign_net_100m,-632.01,ok,TWSE BFI82U,2026-09-29,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-09-29,market_turnover_100m,8246.92107481,ok,TWSE FMTQIK,2026-09-29,
+2026-09-29,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,max_buy_wave_days,6,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,resistance_close,48157.29,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,resistance_date,2026-09-23,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,resistance_high,48601.53,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,resistance_high_date,2026-09-22,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,sox_latest_session_ret,-0.01607779675053944,stale,Yahoo Finance ^SOX,2026-09-28,最新已收完的美股時段，對應明日展望燈號
+2026-09-29,sox_prev_session_ret,-0.01607779675053944,ok,Yahoo Finance ^SOX,2026-09-28,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-09-29,stock_flow_count,1320,ok,TWSE T86,2026-09-29,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-09-29,taiex,47631.96,ok,TWSE FMTQIK,2026-09-29,
+2026-09-29,taiex_change,-392.64,ok,TWSE FMTQIK,2026-09-29,
+2026-09-29,taiex_change_pct,-0.008175809897427569,ok,TWSE FMTQIK,2026-09-29,
+2026-09-29,taiex_high,48045.13,ok,TWSE MI_5MINS_HIST,2026-09-29,
+2026-09-29,taiex_low,47573.09,ok,TWSE MI_5MINS_HIST,2026-09-29,
+2026-09-29,taiex_open,47873.89,ok,TWSE MI_5MINS_HIST,2026-09-29,
+2026-09-29,trust_futures_net_oi,72812.0,ok,期交所 三大法人-區分各期貨契約,2026-09-29,
+2026-09-29,trust_net_100m,14.17,ok,TWSE BFI82U,2026-09-29,
+2026-09-29,txo_pc_oi_pct,75.3,ok,TAIFEX 選擇權買賣權比,2026-09-29,
+2026-09-29,txo_pc_volume_pct,90.39,ok,TAIFEX 選擇權買賣權比,2026-09-29,
+2026-09-29,unchanged,112.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-29,
+2026-09-29,us10y,5.184000015258789,stale,Yahoo Finance ^TNX,2026-09-25,美股資料為 2026-09-25，較預期的 2026-09-28 舊 3 天（休市或缺值）
+2026-09-29,us10y_latest,5.184000015258789,stale,Yahoo Finance ^TNX,2026-09-25,最新已收完的美股時段
+2026-09-29,wave_cumulative_100m,-961.66,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,wave_days,2,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,wave_direction,sell,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,wave_start,2026-09-24,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-29,window_days,37,ok,marketflow,2026-09-29,由最近 37 個交易日的序列推導
+2026-09-30,advance_ratio_pct,81.58,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-30,
+2026-09-30,advancing,828.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-30,
+2026-09-30,avg_buy_wave_cumulative_100m,1370.6366666666665,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,avg_buy_wave_days,3.5,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,completed_buy_waves,6,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,completed_sell_waves,6,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,dealer_futures_net_oi,-1070.0,ok,期交所 三大法人-區分各期貨契約,2026-09-30,
+2026-09-30,dealer_net_100m,12.4,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,declining,187.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-30,
+2026-09-30,foreign_futures_long_oi,12351.0,ok,期交所 三大法人-區分各期貨契約,2026-09-30,
+2026-09-30,foreign_futures_net_oi,-78151.0,ok,期交所 三大法人-區分各期貨契約,2026-09-30,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-09-30,foreign_futures_oi_change_5d,-2583.0,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,foreign_futures_short_oi,90502.0,ok,期交所 三大法人-區分各期貨契約,2026-09-30,
+2026-09-30,foreign_net_100m,296.36,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,gap_to_resistance_pct,0.013796374769947464,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,institutional_net_100m,386.57,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,latest_close,47940.13,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,limit_down,0.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-30,
+2026-09-30,limit_up,32.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-30,
+2026-09-30,margin_balance_100m,6222.52453,ok,TWSE MI_MARGN,2026-09-30,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-09-30,margin_change_100m,35.99109,ok,TWSE MI_MARGN,2026-09-30,
+2026-09-30,margin_change_2d_100m,102.41986999999972,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,margin_prev_100m,6186.53344,ok,TWSE MI_MARGN,2026-09-30,
+2026-09-30,market_foreign_net_100m,296.36,ok,TWSE BFI82U,2026-09-30,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-09-30,market_turnover_100m,9091.6181556,ok,TWSE FMTQIK,2026-09-30,
+2026-09-30,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,max_buy_wave_days,6,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,resistance_close,48157.29,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,resistance_date,2026-09-23,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,resistance_high,48601.53,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,resistance_high_date,2026-09-22,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,sox_latest_session_ret,0.013150239815311382,stale,Yahoo Finance ^SOX,2026-09-29,最新已收完的美股時段，對應明日展望燈號
+2026-09-30,sox_prev_session_ret,0.013150239815311382,ok,Yahoo Finance ^SOX,2026-09-29,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-09-30,stock_flow_count,1323,ok,TWSE T86,2026-09-30,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-09-30,taiex,47940.13,ok,TWSE FMTQIK,2026-09-30,
+2026-09-30,taiex_change,308.17,ok,TWSE FMTQIK,2026-09-30,
+2026-09-30,taiex_change_pct,0.006469815644789759,ok,TWSE FMTQIK,2026-09-30,
+2026-09-30,taiex_high,48379.71,ok,TWSE MI_5MINS_HIST,2026-09-30,
+2026-09-30,taiex_low,47767.49,ok,TWSE MI_5MINS_HIST,2026-09-30,
+2026-09-30,taiex_open,47767.49,ok,TWSE MI_5MINS_HIST,2026-09-30,
+2026-09-30,trust_futures_net_oi,73839.0,ok,期交所 三大法人-區分各期貨契約,2026-09-30,
+2026-09-30,trust_net_100m,77.81,ok,TWSE BFI82U,2026-09-30,
+2026-09-30,txo_pc_oi_pct,80.57,ok,TAIFEX 選擇權買賣權比,2026-09-30,
+2026-09-30,txo_pc_volume_pct,99.2,ok,TAIFEX 選擇權買賣權比,2026-09-30,
+2026-09-30,unchanged,65.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-09-30,
+2026-09-30,us10y,5.239999771118164,stale,Yahoo Finance ^TNX,2026-09-28,美股資料為 2026-09-28，較預期的 2026-09-29 舊 1 天（休市或缺值）
+2026-09-30,us10y_latest,5.239999771118164,stale,Yahoo Finance ^TNX,2026-09-28,最新已收完的美股時段
+2026-09-30,wave_cumulative_100m,296.36,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,wave_days,1,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,wave_direction,buy,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,wave_start,2026-09-30,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-09-30,window_days,38,ok,marketflow,2026-09-30,由最近 38 個交易日的序列推導
+2026-10-01,advance_ratio_pct,43.37,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-01,
+2026-10-01,advancing,422.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-01,
+2026-10-01,avg_buy_wave_cumulative_100m,1370.6366666666665,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,avg_buy_wave_days,3.5,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,completed_buy_waves,6,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,completed_sell_waves,6,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,dealer_futures_net_oi,-1440.0,ok,期交所 三大法人-區分各期貨契約,2026-10-01,
+2026-10-01,dealer_net_100m,16.59,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,declining,551.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-01,
+2026-10-01,foreign_futures_long_oi,12373.0,ok,期交所 三大法人-區分各期貨契約,2026-10-01,
+2026-10-01,foreign_futures_net_oi,-79554.0,ok,期交所 三大法人-區分各期貨契約,2026-10-01,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-01,foreign_futures_oi_change_5d,-3470.0,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,foreign_futures_short_oi,91927.0,ok,期交所 三大法人-區分各期貨契約,2026-10-01,
+2026-10-01,foreign_net_100m,219.37,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,gap_to_resistance_pct,0.0051297227976719135,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,institutional_net_100m,292.53,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,latest_close,48353.49,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,limit_down,2.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-01,
+2026-10-01,limit_up,23.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-01,
+2026-10-01,margin_balance_100m,6298.67193,ok,TWSE MI_MARGN,2026-10-01,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-01,margin_change_100m,75.70608,ok,TWSE MI_MARGN,2026-10-01,
+2026-10-01,margin_change_2d_100m,112.13849000000027,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,margin_prev_100m,6222.96585,ok,TWSE MI_MARGN,2026-10-01,
+2026-10-01,market_foreign_net_100m,219.37,ok,TWSE BFI82U,2026-10-01,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-01,market_turnover_100m,8698.74080962,ok,TWSE FMTQIK,2026-10-01,
+2026-10-01,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,max_buy_wave_days,6,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,resistance_close,48353.49,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,resistance_date,2026-10-01,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,resistance_high,48601.53,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,resistance_high_date,2026-09-22,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,sox_latest_session_ret,-4.2451976684620973e-05,stale,Yahoo Finance ^SOX,2026-09-30,最新已收完的美股時段，對應明日展望燈號
+2026-10-01,sox_prev_session_ret,-4.2451976684620973e-05,ok,Yahoo Finance ^SOX,2026-09-30,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-01,stock_flow_count,1321,ok,TWSE T86,2026-10-01,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-01,taiex,48353.49,ok,TWSE FMTQIK,2026-10-01,
+2026-10-01,taiex_change,413.36,ok,TWSE FMTQIK,2026-10-01,
+2026-10-01,taiex_change_pct,0.008622421340951725,ok,TWSE FMTQIK,2026-10-01,
+2026-10-01,taiex_high,48353.49,ok,TWSE MI_5MINS_HIST,2026-10-01,
+2026-10-01,taiex_low,47893.42,ok,TWSE MI_5MINS_HIST,2026-10-01,
+2026-10-01,taiex_open,47961.98,ok,TWSE MI_5MINS_HIST,2026-10-01,
+2026-10-01,trust_futures_net_oi,74615.0,ok,期交所 三大法人-區分各期貨契約,2026-10-01,
+2026-10-01,trust_net_100m,56.57,ok,TWSE BFI82U,2026-10-01,
+2026-10-01,txo_pc_oi_pct,82.54,ok,TAIFEX 選擇權買賣權比,2026-10-01,
+2026-10-01,txo_pc_volume_pct,91.11,ok,TAIFEX 選擇權買賣權比,2026-10-01,
+2026-10-01,unchanged,107.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-01,
+2026-10-01,us10y,5.255000114440918,stale,Yahoo Finance ^TNX,2026-09-29,美股資料為 2026-09-29，較預期的 2026-09-30 舊 1 天（休市或缺值）
+2026-10-01,us10y_latest,5.255000114440918,stale,Yahoo Finance ^TNX,2026-09-29,最新已收完的美股時段
+2026-10-01,wave_cumulative_100m,515.73,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,wave_days,2,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,wave_direction,buy,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,wave_start,2026-09-30,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-01,window_days,39,ok,marketflow,2026-10-01,由最近 39 個交易日的序列推導
+2026-10-02,advance_ratio_pct,48.84,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-02,
+2026-10-02,advancing,483.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-02,
+2026-10-02,avg_buy_wave_cumulative_100m,1370.6366666666665,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,avg_buy_wave_days,3.5,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,completed_buy_waves,6,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,completed_sell_waves,6,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,dealer_futures_net_oi,-1006.0,ok,期交所 三大法人-區分各期貨契約,2026-10-02,
+2026-10-02,dealer_net_100m,20.26,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,declining,506.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-02,
+2026-10-02,foreign_futures_long_oi,11893.0,ok,期交所 三大法人-區分各期貨契約,2026-10-02,
+2026-10-02,foreign_futures_net_oi,-80304.0,ok,期交所 三大法人-區分各期貨契約,2026-10-02,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-02,foreign_futures_oi_change_5d,-3273.0,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,foreign_futures_short_oi,92197.0,ok,期交所 三大法人-區分各期貨契約,2026-10-02,
+2026-10-02,foreign_net_100m,26.22,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,gap_to_resistance_pct,0.002594906235572698,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,institutional_net_100m,95.57,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,latest_close,48475.74,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,limit_down,1.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-02,
+2026-10-02,limit_up,24.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-02,
+2026-10-02,margin_balance_100m,6351.04422,ok,TWSE MI_MARGN,2026-10-02,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-02,margin_change_100m,52.37229,ok,TWSE MI_MARGN,2026-10-02,
+2026-10-02,margin_change_2d_100m,128.51969000000008,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,margin_prev_100m,6298.67193,ok,TWSE MI_MARGN,2026-10-02,
+2026-10-02,market_foreign_net_100m,26.22,ok,TWSE BFI82U,2026-10-02,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-02,market_turnover_100m,9331.85030626,ok,TWSE FMTQIK,2026-10-02,
+2026-10-02,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,max_buy_wave_days,6,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,resistance_close,48475.74,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,resistance_date,2026-10-02,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,resistance_high,48601.53,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,resistance_high_date,2026-09-22,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,sox_latest_session_ret,0.015867124115942266,stale,Yahoo Finance ^SOX,2026-10-01,最新已收完的美股時段，對應明日展望燈號
+2026-10-02,sox_prev_session_ret,0.015867124115942266,ok,Yahoo Finance ^SOX,2026-10-01,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-02,stock_flow_count,1326,ok,TWSE T86,2026-10-02,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-02,taiex,48475.74,ok,TWSE FMTQIK,2026-10-02,
+2026-10-02,taiex_change,122.25,ok,TWSE FMTQIK,2026-10-02,
+2026-10-02,taiex_change_pct,0.0025282559749048106,ok,TWSE FMTQIK,2026-10-02,
+2026-10-02,taiex_high,48491.62,ok,TWSE MI_5MINS_HIST,2026-10-02,
+2026-10-02,taiex_low,48205.81,ok,TWSE MI_5MINS_HIST,2026-10-02,
+2026-10-02,taiex_open,48390.65,ok,TWSE MI_5MINS_HIST,2026-10-02,
+2026-10-02,trust_futures_net_oi,74669.0,ok,期交所 三大法人-區分各期貨契約,2026-10-02,
+2026-10-02,trust_net_100m,49.1,ok,TWSE BFI82U,2026-10-02,
+2026-10-02,txo_pc_oi_pct,80.84,ok,TAIFEX 選擇權買賣權比,2026-10-02,
+2026-10-02,txo_pc_volume_pct,89.16,ok,TAIFEX 選擇權買賣權比,2026-10-02,
+2026-10-02,unchanged,91.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-02,
+2026-10-02,us10y,5.293000221252441,stale,Yahoo Finance ^TNX,2026-09-30,美股資料為 2026-09-30，較預期的 2026-10-01 舊 1 天（休市或缺值）
+2026-10-02,us10y_latest,5.293000221252441,stale,Yahoo Finance ^TNX,2026-09-30,最新已收完的美股時段
+2026-10-02,wave_cumulative_100m,541.95,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,wave_days,3,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,wave_direction,buy,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,wave_start,2026-09-30,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-02,window_days,40,ok,marketflow,2026-10-02,由最近 40 個交易日的序列推導
+2026-10-05,advance_ratio_pct,36.58,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-05,
+2026-10-05,advancing,364.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-05,
+2026-10-05,avg_buy_wave_cumulative_100m,1370.6366666666665,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,avg_buy_wave_days,3.5,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,completed_buy_waves,6,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,completed_sell_waves,6,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,dealer_futures_net_oi,-2155.0,ok,期交所 三大法人-區分各期貨契約,2026-10-05,
+2026-10-05,dealer_net_100m,109.48,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,declining,631.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-05,
+2026-10-05,foreign_futures_long_oi,14760.0,ok,期交所 三大法人-區分各期貨契約,2026-10-05,
+2026-10-05,foreign_futures_net_oi,-77004.0,ok,期交所 三大法人-區分各期貨契約,2026-10-05,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-05,foreign_futures_oi_change_5d,-3273.0,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,foreign_futures_short_oi,91764.0,ok,期交所 三大法人-區分各期貨契約,2026-10-05,
+2026-10-05,foreign_net_100m,718.97,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,gap_to_resistance_pct,0.0011791911979472703,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,institutional_net_100m,764.5,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,latest_close,49712.04,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,limit_down,0.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-05,
+2026-10-05,limit_up,27.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-05,
+2026-10-05,margin_balance_100m,6333.51721,ok,TWSE MI_MARGN,2026-10-05,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-05,margin_change_100m,-17.52701,ok,TWSE MI_MARGN,2026-10-05,
+2026-10-05,margin_change_2d_100m,34.84527999999955,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,margin_prev_100m,6351.04422,ok,TWSE MI_MARGN,2026-10-05,
+2026-10-05,market_foreign_net_100m,718.97,ok,TWSE BFI82U,2026-10-05,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-05,market_turnover_100m,12033.54267481,ok,TWSE FMTQIK,2026-10-05,
+2026-10-05,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,max_buy_wave_days,6,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,resistance_close,49712.04,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,resistance_date,2026-10-05,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,resistance_high,49770.66,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,resistance_high_date,2026-10-05,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,sox_latest_session_ret,0.023982377572297153,stale,Yahoo Finance ^SOX,2026-10-02,最新已收完的美股時段，對應明日展望燈號
+2026-10-05,sox_prev_session_ret,0.023982377572297153,stale,Yahoo Finance ^SOX,2026-10-02,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-05,stock_flow_count,1325,ok,TWSE T86,2026-10-05,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-05,taiex,49712.04,ok,TWSE FMTQIK,2026-10-05,
+2026-10-05,taiex_change,1236.3,ok,TWSE FMTQIK,2026-10-05,
+2026-10-05,taiex_change_pct,0.02550347864725737,ok,TWSE FMTQIK,2026-10-05,
+2026-10-05,taiex_high,49770.66,ok,TWSE MI_5MINS_HIST,2026-10-05,
+2026-10-05,taiex_low,48574.95,ok,TWSE MI_5MINS_HIST,2026-10-05,
+2026-10-05,taiex_open,48574.95,ok,TWSE MI_5MINS_HIST,2026-10-05,
+2026-10-05,trust_futures_net_oi,75144.0,ok,期交所 三大法人-區分各期貨契約,2026-10-05,
+2026-10-05,trust_net_100m,-63.95,ok,TWSE BFI82U,2026-10-05,
+2026-10-05,txo_pc_oi_pct,91.95,ok,TAIFEX 選擇權買賣權比,2026-10-05,
+2026-10-05,txo_pc_volume_pct,101.76,ok,TAIFEX 選擇權買賣權比,2026-10-05,
+2026-10-05,unchanged,87.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-05,
+2026-10-05,us10y,5.236999988555908,stale,Yahoo Finance ^TNX,2026-10-01,美股資料為 2026-10-01，較預期的 2026-10-04 舊 3 天（休市或缺值）
+2026-10-05,us10y_latest,5.236999988555908,stale,Yahoo Finance ^TNX,2026-10-01,最新已收完的美股時段
+2026-10-05,wave_cumulative_100m,1260.92,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,wave_days,4,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,wave_direction,buy,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,wave_start,2026-09-30,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-05,window_days,41,ok,marketflow,2026-10-05,由最近 41 個交易日的序列推導
+2026-10-06,advance_ratio_pct,47.09,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-06,
+2026-10-06,advancing,462.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-06,
+2026-10-06,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,completed_buy_waves,7,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,completed_sell_waves,6,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,dealer_futures_net_oi,-1884.0,ok,期交所 三大法人-區分各期貨契約,2026-10-06,
+2026-10-06,dealer_net_100m,17.21,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,declining,519.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-06,
+2026-10-06,foreign_futures_long_oi,12968.0,ok,期交所 三大法人-區分各期貨契約,2026-10-06,
+2026-10-06,foreign_futures_net_oi,-79517.0,ok,期交所 三大法人-區分各期貨契約,2026-10-06,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-06,foreign_futures_oi_change_5d,-488.0,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,foreign_futures_short_oi,92485.0,ok,期交所 三大法人-區分各期貨契約,2026-10-06,
+2026-10-06,foreign_net_100m,-66.57,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,gap_to_resistance_pct,0.002937826345700799,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,institutional_net_100m,-207.87,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,latest_close,49822.55,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,limit_down,2.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-06,
+2026-10-06,limit_up,10.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-06,
+2026-10-06,margin_balance_100m,6376.57044,ok,TWSE MI_MARGN,2026-10-06,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-06,margin_change_100m,43.05323,ok,TWSE MI_MARGN,2026-10-06,
+2026-10-06,margin_change_2d_100m,25.52622000000065,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,margin_prev_100m,6333.51721,ok,TWSE MI_MARGN,2026-10-06,
+2026-10-06,market_foreign_net_100m,-66.57,ok,TWSE BFI82U,2026-10-06,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-06,market_turnover_100m,10217.22793978,ok,TWSE FMTQIK,2026-10-06,
+2026-10-06,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,max_buy_wave_days,6,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,resistance_close,49822.55,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,resistance_date,2026-10-06,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,resistance_high,49968.92,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,resistance_high_date,2026-10-06,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,sox_latest_session_ret,0.0027454755630225147,stale,Yahoo Finance ^SOX,2026-10-05,最新已收完的美股時段，對應明日展望燈號
+2026-10-06,sox_prev_session_ret,0.0027454755630225147,ok,Yahoo Finance ^SOX,2026-10-05,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-06,stock_flow_count,1330,ok,TWSE T86,2026-10-06,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-06,taiex,49822.55,ok,TWSE FMTQIK,2026-10-06,
+2026-10-06,taiex_change,110.51,ok,TWSE FMTQIK,2026-10-06,
+2026-10-06,taiex_change_pct,0.0022230027172491815,ok,TWSE FMTQIK,2026-10-06,
+2026-10-06,taiex_high,49968.92,ok,TWSE MI_5MINS_HIST,2026-10-06,
+2026-10-06,taiex_low,49479.69,ok,TWSE MI_5MINS_HIST,2026-10-06,
+2026-10-06,taiex_open,49736.37,ok,TWSE MI_5MINS_HIST,2026-10-06,
+2026-10-06,trust_futures_net_oi,76208.0,ok,期交所 三大法人-區分各期貨契約,2026-10-06,
+2026-10-06,trust_net_100m,-158.51,ok,TWSE BFI82U,2026-10-06,
+2026-10-06,txo_pc_oi_pct,95.47,ok,TAIFEX 選擇權買賣權比,2026-10-06,
+2026-10-06,txo_pc_volume_pct,107.91,ok,TAIFEX 選擇權買賣權比,2026-10-06,
+2026-10-06,unchanged,100.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-06,
+2026-10-06,us10y,5.2769999504089355,stale,Yahoo Finance ^TNX,2026-10-02,美股資料為 2026-10-02，較預期的 2026-10-05 舊 3 天（休市或缺值）
+2026-10-06,us10y_latest,5.2769999504089355,stale,Yahoo Finance ^TNX,2026-10-02,最新已收完的美股時段
+2026-10-06,wave_cumulative_100m,-66.57,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,wave_days,1,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,wave_direction,sell,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,wave_start,2026-10-06,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-06,window_days,42,ok,marketflow,2026-10-06,由最近 42 個交易日的序列推導
+2026-10-07,advance_ratio_pct,60.31,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-07,
+2026-10-07,advancing,588.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-07,
+2026-10-07,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,completed_buy_waves,7,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,completed_sell_waves,6,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,dealer_futures_net_oi,-2253.0,ok,期交所 三大法人-區分各期貨契約,2026-10-07,
+2026-10-07,dealer_net_100m,-77.96,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,declining,387.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-07,
+2026-10-07,foreign_futures_long_oi,13545.0,ok,期交所 三大法人-區分各期貨契約,2026-10-07,
+2026-10-07,foreign_futures_net_oi,-79101.0,ok,期交所 三大法人-區分各期貨契約,2026-10-07,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-07,foreign_futures_oi_change_5d,-950.0,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,foreign_futures_short_oi,92646.0,ok,期交所 三大法人-區分各期貨契約,2026-10-07,
+2026-10-07,foreign_net_100m,-130.44,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,gap_to_resistance_pct,0.003263638767490898,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,institutional_net_100m,-212.57,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,latest_close,49806.37,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,limit_down,4.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-07,
+2026-10-07,limit_up,12.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-07,
+2026-10-07,margin_balance_100m,6400.00774,ok,TWSE MI_MARGN,2026-10-07,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-07,margin_change_100m,23.4373,ok,TWSE MI_MARGN,2026-10-07,
+2026-10-07,margin_change_2d_100m,66.49053000000004,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,margin_prev_100m,6376.57044,ok,TWSE MI_MARGN,2026-10-07,
+2026-10-07,market_foreign_net_100m,-130.44,ok,TWSE BFI82U,2026-10-07,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-07,market_turnover_100m,9743.89407116,ok,TWSE FMTQIK,2026-10-07,
+2026-10-07,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,max_buy_wave_days,6,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,resistance_close,49822.55,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,resistance_date,2026-10-06,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,resistance_high,49968.92,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,resistance_high_date,2026-10-06,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,sox_latest_session_ret,0.003422447190968958,stale,Yahoo Finance ^SOX,2026-10-06,最新已收完的美股時段，對應明日展望燈號
+2026-10-07,sox_prev_session_ret,0.003422447190968958,ok,Yahoo Finance ^SOX,2026-10-06,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-07,stock_flow_count,1317,ok,TWSE T86,2026-10-07,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-07,taiex,49806.37,ok,TWSE FMTQIK,2026-10-07,
+2026-10-07,taiex_change,-16.18,ok,TWSE FMTQIK,2026-10-07,
+2026-10-07,taiex_change_pct,-0.00032475254678855257,ok,TWSE FMTQIK,2026-10-07,
+2026-10-07,taiex_high,49966.89,ok,TWSE MI_5MINS_HIST,2026-10-07,
+2026-10-07,taiex_low,49567.52,ok,TWSE MI_5MINS_HIST,2026-10-07,
+2026-10-07,taiex_open,49857.32,ok,TWSE MI_5MINS_HIST,2026-10-07,
+2026-10-07,trust_futures_net_oi,76268.0,ok,期交所 三大法人-區分各期貨契約,2026-10-07,
+2026-10-07,trust_net_100m,-4.17,ok,TWSE BFI82U,2026-10-07,
+2026-10-07,txo_pc_oi_pct,82.25,ok,TAIFEX 選擇權買賣權比,2026-10-07,
+2026-10-07,txo_pc_volume_pct,94.57,ok,TAIFEX 選擇權買賣權比,2026-10-07,
+2026-10-07,unchanged,99.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-07,
+2026-10-07,us10y,5.310999870300293,stale,Yahoo Finance ^TNX,2026-10-05,美股資料為 2026-10-05，較預期的 2026-10-06 舊 1 天（休市或缺值）
+2026-10-07,us10y_latest,5.310999870300293,stale,Yahoo Finance ^TNX,2026-10-05,最新已收完的美股時段
+2026-10-07,wave_cumulative_100m,-197.01,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,wave_days,2,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,wave_direction,sell,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,wave_start,2026-10-06,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-07,window_days,43,ok,marketflow,2026-10-07,由最近 43 個交易日的序列推導
+2026-10-08,advance_ratio_pct,44.04,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-08,
+2026-10-08,advancing,425.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-08,
+2026-10-08,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,completed_buy_waves,7,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,completed_sell_waves,6,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,dealer_futures_net_oi,-534.0,ok,期交所 三大法人-區分各期貨契約,2026-10-08,
+2026-10-08,dealer_net_100m,-187.32,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,declining,540.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-08,
+2026-10-08,foreign_futures_long_oi,11389.0,ok,期交所 三大法人-區分各期貨契約,2026-10-08,
+2026-10-08,foreign_futures_net_oi,-83194.0,ok,期交所 三大法人-區分各期貨契約,2026-10-08,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-08,foreign_futures_oi_change_5d,-3640.0,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,foreign_futures_short_oi,94583.0,ok,期交所 三大法人-區分各期貨契約,2026-10-08,
+2026-10-08,foreign_net_100m,-758.52,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,gap_to_resistance_pct,0.013292116713009595,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,institutional_net_100m,-898.95,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,latest_close,49313.44,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,limit_down,2.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-08,
+2026-10-08,limit_up,14.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-08,
+2026-10-08,margin_balance_100m,6464.05767,ok,TWSE MI_MARGN,2026-10-08,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-08,margin_change_100m,64.04993,ok,TWSE MI_MARGN,2026-10-08,
+2026-10-08,margin_change_2d_100m,87.48722999999973,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,margin_prev_100m,6400.00774,ok,TWSE MI_MARGN,2026-10-08,
+2026-10-08,market_foreign_net_100m,-758.52,ok,TWSE BFI82U,2026-10-08,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-08,market_turnover_100m,9201.7186456,ok,TWSE FMTQIK,2026-10-08,
+2026-10-08,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,max_buy_wave_days,6,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,resistance_close,49822.55,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,resistance_date,2026-10-06,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,resistance_high,49968.92,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,resistance_high_date,2026-10-06,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,sox_latest_session_ret,-0.011474728423571112,stale,Yahoo Finance ^SOX,2026-10-07,最新已收完的美股時段，對應明日展望燈號
+2026-10-08,sox_prev_session_ret,-0.011474728423571112,ok,Yahoo Finance ^SOX,2026-10-07,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-08,stock_flow_count,1300,ok,TWSE T86,2026-10-08,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-08,taiex,49313.44,ok,TWSE FMTQIK,2026-10-08,
+2026-10-08,taiex_change,-492.93,ok,TWSE FMTQIK,2026-10-08,
+2026-10-08,taiex_change_pct,-0.009896926838876231,ok,TWSE FMTQIK,2026-10-08,
+2026-10-08,taiex_high,49783.06,ok,TWSE MI_5MINS_HIST,2026-10-08,
+2026-10-08,taiex_low,49189.77,ok,TWSE MI_5MINS_HIST,2026-10-08,
+2026-10-08,taiex_open,49783.06,ok,TWSE MI_5MINS_HIST,2026-10-08,
+2026-10-08,trust_futures_net_oi,76339.0,ok,期交所 三大法人-區分各期貨契約,2026-10-08,
+2026-10-08,trust_net_100m,46.89,ok,TWSE BFI82U,2026-10-08,
+2026-10-08,txo_pc_oi_pct,80.18,ok,TAIFEX 選擇權買賣權比,2026-10-08,
+2026-10-08,txo_pc_volume_pct,87.14,ok,TAIFEX 選擇權買賣權比,2026-10-08,
+2026-10-08,unchanged,109.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-08,
+2026-10-08,us10y,5.269000053405762,stale,Yahoo Finance ^TNX,2026-10-06,美股資料為 2026-10-06，較預期的 2026-10-07 舊 1 天（休市或缺值）
+2026-10-08,us10y_latest,5.269000053405762,stale,Yahoo Finance ^TNX,2026-10-06,最新已收完的美股時段
+2026-10-08,wave_cumulative_100m,-955.53,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,wave_days,3,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,wave_direction,sell,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,wave_start,2026-10-06,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-08,window_days,44,ok,marketflow,2026-10-08,由最近 44 個交易日的序列推導
+2026-10-09,advance_ratio_pct,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-10-09,advancing,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-10-09,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,completed_buy_waves,7,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,completed_sell_waves,6,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,declining,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-10-09,foreign_futures_oi_change_5d,-3640.0,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,gap_to_resistance_pct,0.013292116713009595,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,institutional_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,latest_close,49313.44,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,limit_down,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-10-09,limit_up,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-10-09,margin_balance_100m,,missing,TWSE MI_MARGN,,當日尚未發布或休市
+2026-10-09,margin_change_100m,,missing,TWSE MI_MARGN,,
+2026-10-09,margin_change_2d_100m,87.48722999999973,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,margin_prev_100m,,missing,TWSE MI_MARGN,,當日尚未發布或休市
+2026-10-09,market_foreign_net_100m,,missing,TWSE BFI82U,,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-09,market_turnover_100m,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-10-09,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,max_buy_wave_days,6,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,resistance_close,49822.55,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,resistance_date,2026-10-06,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,resistance_high,49968.92,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,resistance_high_date,2026-10-06,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,sox_latest_session_ret,-0.03386120116851321,stale,Yahoo Finance ^SOX,2026-10-08,最新已收完的美股時段，對應明日展望燈號
+2026-10-09,sox_prev_session_ret,-0.03386120116851321,ok,Yahoo Finance ^SOX,2026-10-08,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-09,stock_flow_count,,missing,TWSE T86,,回傳空資料（休市或被限流）
+2026-10-09,taiex,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-10-09,taiex_change,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-10-09,taiex_change_pct,,missing,TWSE FMTQIK,,當日無大盤成交資訊（休市或尚未發布）
+2026-10-09,taiex_high,,missing,TWSE MI_5MINS_HIST,,當日無大盤開高低收（休市或尚未發布）
+2026-10-09,taiex_low,,missing,TWSE MI_5MINS_HIST,,當日無大盤開高低收（休市或尚未發布）
+2026-10-09,taiex_open,,missing,TWSE MI_5MINS_HIST,,當日無大盤開高低收（休市或尚未發布）
+2026-10-09,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-09,txo_pc_oi_pct,,missing,TAIFEX 選擇權買賣權比,,當日尚未發布或查無該日
+2026-10-09,txo_pc_volume_pct,,missing,TAIFEX 選擇權買賣權比,,當日尚未發布或查無該日
+2026-10-09,unchanged,,missing,TWSE MI_INDEX 漲跌證券數合計,,當日無此列或尚未發布
+2026-10-09,us10y,5.2769999504089355,stale,Yahoo Finance ^TNX,2026-10-07,美股資料為 2026-10-07，較預期的 2026-10-08 舊 1 天（休市或缺值）
+2026-10-09,us10y_latest,5.2769999504089355,stale,Yahoo Finance ^TNX,2026-10-07,最新已收完的美股時段
+2026-10-09,wave_cumulative_100m,-955.53,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,wave_days,3,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,wave_direction,sell,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,wave_start,2026-10-06,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-09,window_days,45,ok,marketflow,2026-10-09,由最近 45 個交易日的序列推導
+2026-10-12,advance_ratio_pct,54.4,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-12,
+2026-10-12,advancing,538.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-12,
+2026-10-12,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,completed_buy_waves,7,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,completed_sell_waves,6,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,dealer_futures_net_oi,147.0,ok,期交所 三大法人-區分各期貨契約,2026-10-12,
+2026-10-12,dealer_net_100m,-142.94,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,declining,451.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-12,
+2026-10-12,foreign_futures_long_oi,11899.0,ok,期交所 三大法人-區分各期貨契約,2026-10-12,
+2026-10-12,foreign_futures_net_oi,-82806.0,ok,期交所 三大法人-區分各期貨契約,2026-10-12,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-12,foreign_futures_oi_change_5d,-5802.0,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,foreign_futures_short_oi,94705.0,ok,期交所 三大法人-區分各期貨契約,2026-10-12,
+2026-10-12,foreign_net_100m,-521.98,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,gap_to_resistance_pct,0.01352806257601116,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,institutional_net_100m,-593.69,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,latest_close,49301.96,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,limit_down,2.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-12,
+2026-10-12,limit_up,25.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-12,
+2026-10-12,margin_balance_100m,6533.295,ok,TWSE MI_MARGN,2026-10-12,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-12,margin_change_100m,69.23733,ok,TWSE MI_MARGN,2026-10-12,
+2026-10-12,margin_change_2d_100m,69.23732999999993,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,margin_prev_100m,6464.05767,ok,TWSE MI_MARGN,2026-10-12,
+2026-10-12,market_foreign_net_100m,-521.98,ok,TWSE BFI82U,2026-10-12,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-12,market_turnover_100m,8894.58196182,ok,TWSE FMTQIK,2026-10-12,
+2026-10-12,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,max_buy_wave_days,6,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,resistance_close,49822.55,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,resistance_date,2026-10-06,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,resistance_high,49968.92,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,resistance_high_date,2026-10-06,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,sox_latest_session_ret,-0.004062992513390373,stale,Yahoo Finance ^SOX,2026-10-09,最新已收完的美股時段，對應明日展望燈號
+2026-10-12,sox_prev_session_ret,-0.004062992513390373,stale,Yahoo Finance ^SOX,2026-10-09,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-12,stock_flow_count,1327,ok,TWSE T86,2026-10-12,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-12,taiex,49301.96,ok,TWSE FMTQIK,2026-10-12,
+2026-10-12,taiex_change,-11.48,ok,TWSE FMTQIK,2026-10-12,
+2026-10-12,taiex_change_pct,-0.00023279657634916567,ok,TWSE FMTQIK,2026-10-12,
+2026-10-12,taiex_high,49412.9,ok,TWSE MI_5MINS_HIST,2026-10-12,
+2026-10-12,taiex_low,48768.82,ok,TWSE MI_5MINS_HIST,2026-10-12,
+2026-10-12,taiex_open,49272.08,ok,TWSE MI_5MINS_HIST,2026-10-12,
+2026-10-12,trust_futures_net_oi,76848.0,ok,期交所 三大法人-區分各期貨契約,2026-10-12,
+2026-10-12,trust_net_100m,71.24,ok,TWSE BFI82U,2026-10-12,
+2026-10-12,txo_pc_oi_pct,84.78,ok,TAIFEX 選擇權買賣權比,2026-10-12,
+2026-10-12,txo_pc_volume_pct,102.35,ok,TAIFEX 選擇權買賣權比,2026-10-12,
+2026-10-12,unchanged,86.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-12,
+2026-10-12,us10y,5.230999946594238,stale,Yahoo Finance ^TNX,2026-10-08,美股資料為 2026-10-08，較預期的 2026-10-11 舊 3 天（休市或缺值）
+2026-10-12,us10y_latest,5.230999946594238,stale,Yahoo Finance ^TNX,2026-10-08,最新已收完的美股時段
+2026-10-12,wave_cumulative_100m,-1477.51,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,wave_days,4,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,wave_direction,sell,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,wave_start,2026-10-06,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-12,window_days,46,ok,marketflow,2026-10-12,由最近 46 個交易日的序列推導
+2026-10-13,advance_ratio_pct,26.93,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-13,
+2026-10-13,advancing,269.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-13,
+2026-10-13,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,completed_buy_waves,7,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,completed_sell_waves,6,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,dealer_futures_net_oi,1491.0,ok,期交所 三大法人-區分各期貨契約,2026-10-13,
+2026-10-13,dealer_net_100m,-569.76,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,declining,730.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-13,
+2026-10-13,foreign_futures_long_oi,10640.0,ok,期交所 三大法人-區分各期貨契約,2026-10-13,
+2026-10-13,foreign_futures_net_oi,-87239.0,ok,期交所 三大法人-區分各期貨契約,2026-10-13,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-13,foreign_futures_oi_change_5d,-7722.0,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,foreign_futures_short_oi,97879.0,ok,期交所 三大法人-區分各期貨契約,2026-10-13,
+2026-10-13,foreign_net_100m,-1653.42,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,gap_to_resistance_pct,0.033669133087208446,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,institutional_net_100m,-1984.46,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,latest_close,48341.31,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,limit_down,5.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-13,
+2026-10-13,limit_up,13.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-13,
+2026-10-13,margin_balance_100m,6449.78625,ok,TWSE MI_MARGN,2026-10-13,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-13,margin_change_100m,-83.50875,ok,TWSE MI_MARGN,2026-10-13,
+2026-10-13,margin_change_2d_100m,102.41986999999972,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,margin_prev_100m,6533.295,ok,TWSE MI_MARGN,2026-10-13,
+2026-10-13,market_foreign_net_100m,-1653.42,ok,TWSE BFI82U,2026-10-13,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-13,market_turnover_100m,11986.29946866,ok,TWSE FMTQIK,2026-10-13,
+2026-10-13,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,max_buy_wave_days,6,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,resistance_close,49822.55,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,resistance_date,2026-10-06,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,resistance_high,49968.92,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,resistance_high_date,2026-10-06,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,sox_latest_session_ret,-0.02669588178116189,stale,Yahoo Finance ^SOX,2026-10-12,最新已收完的美股時段，對應明日展望燈號
+2026-10-13,sox_prev_session_ret,-0.02669588178116189,ok,Yahoo Finance ^SOX,2026-10-12,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-13,stock_flow_count,1320,ok,TWSE T86,2026-10-13,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-13,taiex,48341.31,ok,TWSE FMTQIK,2026-10-13,
+2026-10-13,taiex_change,-960.65,ok,TWSE FMTQIK,2026-10-13,
+2026-10-13,taiex_change_pct,-0.019485026558781843,ok,TWSE FMTQIK,2026-10-13,
+2026-10-13,taiex_high,49126.27,ok,TWSE MI_5MINS_HIST,2026-10-13,
+2026-10-13,taiex_low,48066.36,ok,TWSE MI_5MINS_HIST,2026-10-13,
+2026-10-13,taiex_open,49126.27,ok,TWSE MI_5MINS_HIST,2026-10-13,
+2026-10-13,trust_futures_net_oi,77838.0,ok,期交所 三大法人-區分各期貨契約,2026-10-13,
+2026-10-13,trust_net_100m,238.72,ok,TWSE BFI82U,2026-10-13,
+2026-10-13,txo_pc_oi_pct,68.95,ok,TAIFEX 選擇權買賣權比,2026-10-13,
+2026-10-13,txo_pc_volume_pct,88.76,ok,TAIFEX 選擇權買賣權比,2026-10-13,
+2026-10-13,unchanged,78.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-13,
+2026-10-13,us10y,5.24399995803833,stale,Yahoo Finance ^TNX,2026-10-09,美股資料為 2026-10-09，較預期的 2026-10-12 舊 3 天（休市或缺值）
+2026-10-13,us10y_latest,5.24399995803833,stale,Yahoo Finance ^TNX,2026-10-09,最新已收完的美股時段
+2026-10-13,wave_cumulative_100m,-3130.93,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,wave_days,5,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,wave_direction,sell,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,wave_start,2026-10-06,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-13,window_days,47,ok,marketflow,2026-10-13,由最近 47 個交易日的序列推導
+2026-10-14,advance_ratio_pct,75.54,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-14,
+2026-10-14,advancing,741.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-14,
+2026-10-14,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,completed_buy_waves,7,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,completed_sell_waves,6,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,dealer_futures_net_oi,2314.0,ok,期交所 三大法人-區分各期貨契約,2026-10-14,
+2026-10-14,dealer_net_100m,-114.71,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,declining,240.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-14,
+2026-10-14,foreign_futures_long_oi,11352.0,ok,期交所 三大法人-區分各期貨契約,2026-10-14,
+2026-10-14,foreign_futures_net_oi,-86814.0,ok,期交所 三大法人-區分各期貨契約,2026-10-14,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-14,foreign_futures_oi_change_5d,-7713.0,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,foreign_futures_short_oi,98166.0,ok,期交所 三大法人-區分各期貨契約,2026-10-14,
+2026-10-14,foreign_net_100m,-200.37,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,gap_to_resistance_pct,0.027620916702090152,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,institutional_net_100m,-153.97,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,latest_close,48625.83,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,limit_down,2.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-14,
+2026-10-14,limit_up,26.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-14,
+2026-10-14,margin_balance_100m,6515.6739,ok,TWSE MI_MARGN,2026-10-14,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-14,margin_change_100m,65.88765,ok,TWSE MI_MARGN,2026-10-14,
+2026-10-14,margin_change_2d_100m,-17.621100000000297,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,margin_prev_100m,6449.78625,ok,TWSE MI_MARGN,2026-10-14,
+2026-10-14,market_foreign_net_100m,-200.37,ok,TWSE BFI82U,2026-10-14,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-14,market_turnover_100m,9665.68257708,ok,TWSE FMTQIK,2026-10-14,
+2026-10-14,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,max_buy_wave_days,6,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,resistance_close,49822.55,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,resistance_date,2026-10-06,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,resistance_high,49968.92,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,resistance_high_date,2026-10-06,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,sox_latest_session_ret,-0.00228778275169661,stale,Yahoo Finance ^SOX,2026-10-13,最新已收完的美股時段，對應明日展望燈號
+2026-10-14,sox_prev_session_ret,-0.00228778275169661,ok,Yahoo Finance ^SOX,2026-10-13,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-14,stock_flow_count,1332,ok,TWSE T86,2026-10-14,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-14,taiex,48625.83,ok,TWSE FMTQIK,2026-10-14,
+2026-10-14,taiex_change,284.52,ok,TWSE FMTQIK,2026-10-14,
+2026-10-14,taiex_change_pct,0.005885649354558244,ok,TWSE FMTQIK,2026-10-14,
+2026-10-14,taiex_high,49059.12,ok,TWSE MI_5MINS_HIST,2026-10-14,
+2026-10-14,taiex_low,48382.64,ok,TWSE MI_5MINS_HIST,2026-10-14,
+2026-10-14,taiex_open,48382.64,ok,TWSE MI_5MINS_HIST,2026-10-14,
+2026-10-14,trust_futures_net_oi,78417.0,ok,期交所 三大法人-區分各期貨契約,2026-10-14,
+2026-10-14,trust_net_100m,161.11,ok,TWSE BFI82U,2026-10-14,
+2026-10-14,txo_pc_oi_pct,74.44,ok,TAIFEX 選擇權買賣權比,2026-10-14,
+2026-10-14,txo_pc_volume_pct,103.47,ok,TAIFEX 選擇權買賣權比,2026-10-14,
+2026-10-14,unchanged,99.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-14,
+2026-10-14,us10y,5.239999771118164,stale,Yahoo Finance ^TNX,2026-10-12,美股資料為 2026-10-12，較預期的 2026-10-13 舊 1 天（休市或缺值）
+2026-10-14,us10y_latest,5.239999771118164,stale,Yahoo Finance ^TNX,2026-10-12,最新已收完的美股時段
+2026-10-14,wave_cumulative_100m,-3331.3,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,wave_days,6,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,wave_direction,sell,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,wave_start,2026-10-06,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-14,window_days,48,ok,marketflow,2026-10-14,由最近 48 個交易日的序列推導
+2026-10-15,advance_ratio_pct,19.9,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-15,
+2026-10-15,advancing,200.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-15,
+2026-10-15,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,completed_buy_waves,7,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,completed_sell_waves,6,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,dealer_futures_net_oi,6894.0,ok,期交所 三大法人-區分各期貨契約,2026-10-15,
+2026-10-15,dealer_net_100m,-958.24,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,declining,805.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-15,
+2026-10-15,foreign_futures_long_oi,9171.0,ok,期交所 三大法人-區分各期貨契約,2026-10-15,
+2026-10-15,foreign_futures_net_oi,-97582.0,ok,期交所 三大法人-區分各期貨契約,2026-10-15,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-15,foreign_futures_oi_change_5d,-14388.0,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,foreign_futures_short_oi,106753.0,ok,期交所 三大法人-區分各期貨契約,2026-10-15,
+2026-10-15,foreign_net_100m,-3025.55,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,gap_to_resistance_pct,0.0638505067184558,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,institutional_net_100m,-3700.76,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,latest_close,46969.87,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,limit_down,21.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-15,
+2026-10-15,limit_up,4.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-15,
+2026-10-15,margin_balance_100m,6464.15015,ok,TWSE MI_MARGN,2026-10-15,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-15,margin_change_100m,-51.41344,ok,TWSE MI_MARGN,2026-10-15,
+2026-10-15,margin_change_2d_100m,14.363900000000285,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,margin_prev_100m,6515.56359,ok,TWSE MI_MARGN,2026-10-15,
+2026-10-15,market_foreign_net_100m,-3025.55,ok,TWSE BFI82U,2026-10-15,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-15,market_turnover_100m,14312.83807384,ok,TWSE FMTQIK,2026-10-15,
+2026-10-15,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,max_buy_wave_days,6,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,resistance_close,49822.55,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,resistance_date,2026-10-06,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,resistance_high,49968.92,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,resistance_high_date,2026-10-06,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,sox_latest_session_ret,-0.042953251295553385,stale,Yahoo Finance ^SOX,2026-10-14,最新已收完的美股時段，對應明日展望燈號
+2026-10-15,sox_prev_session_ret,-0.042953251295553385,ok,Yahoo Finance ^SOX,2026-10-14,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-15,stock_flow_count,1333,ok,TWSE T86,2026-10-15,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-15,taiex,46969.87,ok,TWSE FMTQIK,2026-10-15,
+2026-10-15,taiex_change,-1655.96,ok,TWSE FMTQIK,2026-10-15,
+2026-10-15,taiex_change_pct,-0.03405515134651686,ok,TWSE FMTQIK,2026-10-15,
+2026-10-15,taiex_high,48382.75,ok,TWSE MI_5MINS_HIST,2026-10-15,
+2026-10-15,taiex_low,46795.38,ok,TWSE MI_5MINS_HIST,2026-10-15,
+2026-10-15,taiex_open,48382.75,ok,TWSE MI_5MINS_HIST,2026-10-15,
+2026-10-15,trust_futures_net_oi,78929.0,ok,期交所 三大法人-區分各期貨契約,2026-10-15,
+2026-10-15,trust_net_100m,283.03,ok,TWSE BFI82U,2026-10-15,
+2026-10-15,txo_pc_oi_pct,60.84,ok,TAIFEX 選擇權買賣權比,2026-10-15,
+2026-10-15,txo_pc_volume_pct,74.99,ok,TAIFEX 選擇權買賣權比,2026-10-15,
+2026-10-15,unchanged,72.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-15,
+2026-10-15,us10y,5.2170000076293945,stale,Yahoo Finance ^TNX,2026-10-13,美股資料為 2026-10-13，較預期的 2026-10-14 舊 1 天（休市或缺值）
+2026-10-15,us10y_latest,5.2170000076293945,stale,Yahoo Finance ^TNX,2026-10-13,最新已收完的美股時段
+2026-10-15,wave_cumulative_100m,-6356.85,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,wave_days,7,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,wave_direction,sell,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,wave_start,2026-10-06,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-15,window_days,49,ok,marketflow,2026-10-15,由最近 49 個交易日的序列推導
+2026-10-16,advance_ratio_pct,70.52,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-16,
+2026-10-16,advancing,684.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-16,
+2026-10-16,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,completed_buy_waves,7,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,completed_sell_waves,6,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,dealer_futures_net_oi,3197.0,ok,期交所 三大法人-區分各期貨契約,2026-10-16,
+2026-10-16,dealer_net_100m,-334.14,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,declining,286.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-16,
+2026-10-16,foreign_futures_long_oi,9812.0,ok,期交所 三大法人-區分各期貨契約,2026-10-16,
+2026-10-16,foreign_futures_net_oi,-93675.0,ok,期交所 三大法人-區分各期貨契約,2026-10-16,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-16,foreign_futures_oi_change_5d,-14388.0,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,foreign_futures_short_oi,103487.0,ok,期交所 三大法人-區分各期貨契約,2026-10-16,
+2026-10-16,foreign_net_100m,-461.47,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,gap_to_resistance_pct,0.060657685657314116,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,institutional_net_100m,-678.07,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,latest_close,47111.26,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,limit_down,0.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-16,
+2026-10-16,limit_up,19.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-16,
+2026-10-16,margin_balance_100m,6455.94048,ok,TWSE MI_MARGN,2026-10-16,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-16,margin_change_100m,-8.21823,ok,TWSE MI_MARGN,2026-10-16,
+2026-10-16,margin_change_2d_100m,-59.73341999999957,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,margin_prev_100m,6464.15871,ok,TWSE MI_MARGN,2026-10-16,
+2026-10-16,market_foreign_net_100m,-461.47,ok,TWSE BFI82U,2026-10-16,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-16,market_turnover_100m,9864.30123055,ok,TWSE FMTQIK,2026-10-16,
+2026-10-16,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,max_buy_wave_days,6,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,resistance_close,49822.55,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,resistance_date,2026-10-06,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,resistance_high,49968.92,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,resistance_high_date,2026-10-06,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,sox_latest_session_ret,-0.008829312303877956,stale,Yahoo Finance ^SOX,2026-10-15,最新已收完的美股時段，對應明日展望燈號
+2026-10-16,sox_prev_session_ret,-0.008829312303877956,ok,Yahoo Finance ^SOX,2026-10-15,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-16,stock_flow_count,1316,ok,TWSE T86,2026-10-16,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-16,taiex,47111.26,ok,TWSE FMTQIK,2026-10-16,
+2026-10-16,taiex_change,141.39,ok,TWSE FMTQIK,2026-10-16,
+2026-10-16,taiex_change_pct,0.0030102276203872818,ok,TWSE FMTQIK,2026-10-16,
+2026-10-16,taiex_high,47520.6,ok,TWSE MI_5MINS_HIST,2026-10-16,
+2026-10-16,taiex_low,46995.03,ok,TWSE MI_5MINS_HIST,2026-10-16,
+2026-10-16,taiex_open,46995.03,ok,TWSE MI_5MINS_HIST,2026-10-16,
+2026-10-16,trust_futures_net_oi,82464.0,ok,期交所 三大法人-區分各期貨契約,2026-10-16,
+2026-10-16,trust_net_100m,117.54,ok,TWSE BFI82U,2026-10-16,
+2026-10-16,txo_pc_oi_pct,67.6,ok,TAIFEX 選擇權買賣權比,2026-10-16,
+2026-10-16,txo_pc_volume_pct,88.75,ok,TAIFEX 選擇權買賣權比,2026-10-16,
+2026-10-16,unchanged,106.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-16,
+2026-10-16,us10y,5.190000057220459,stale,Yahoo Finance ^TNX,2026-10-14,美股資料為 2026-10-14，較預期的 2026-10-15 舊 1 天（休市或缺值）
+2026-10-16,us10y_latest,5.190000057220459,stale,Yahoo Finance ^TNX,2026-10-14,最新已收完的美股時段
+2026-10-16,wave_cumulative_100m,-6818.32,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,wave_days,8,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,wave_direction,sell,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,wave_start,2026-10-06,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-16,window_days,50,ok,marketflow,2026-10-16,由最近 50 個交易日的序列推導
+2026-10-19,advance_ratio_pct,16.11,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-19,
+2026-10-19,advancing,163.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-19,
+2026-10-19,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,completed_buy_waves,7,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,completed_sell_waves,6,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,dealer_futures_net_oi,2829.0,ok,期交所 三大法人-區分各期貨契約,2026-10-19,
+2026-10-19,dealer_net_100m,-362.63,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,declining,849.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-19,
+2026-10-19,foreign_futures_long_oi,11962.0,ok,期交所 三大法人-區分各期貨契約,2026-10-19,
+2026-10-19,foreign_futures_net_oi,-91145.0,ok,期交所 三大法人-區分各期貨契約,2026-10-19,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-19,foreign_futures_oi_change_5d,-8339.0,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,foreign_futures_short_oi,103107.0,ok,期交所 三大法人-區分各期貨契約,2026-10-19,
+2026-10-19,foreign_net_100m,-767.43,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,gap_to_resistance_pct,0.06720846233230127,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,institutional_net_100m,-899.55,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,latest_close,46822.08,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,limit_down,2.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-19,
+2026-10-19,limit_up,7.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-19,
+2026-10-19,margin_balance_100m,6406.18432,ok,TWSE MI_MARGN,2026-10-19,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-19,margin_change_100m,-49.75616,ok,TWSE MI_MARGN,2026-10-19,
+2026-10-19,margin_change_2d_100m,-57.965830000000096,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,margin_prev_100m,6455.94048,ok,TWSE MI_MARGN,2026-10-19,
+2026-10-19,market_foreign_net_100m,-767.43,ok,TWSE BFI82U,2026-10-19,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-19,market_turnover_100m,8644.44044683,ok,TWSE FMTQIK,2026-10-19,
+2026-10-19,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,max_buy_wave_days,6,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,resistance_close,49822.55,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,resistance_date,2026-10-06,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,resistance_high,49968.92,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,resistance_high_date,2026-10-06,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,sox_latest_session_ret,-0.0383310486013384,stale,Yahoo Finance ^SOX,2026-10-16,最新已收完的美股時段，對應明日展望燈號
+2026-10-19,sox_prev_session_ret,-0.0383310486013384,stale,Yahoo Finance ^SOX,2026-10-16,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-19,stock_flow_count,1326,ok,TWSE T86,2026-10-19,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-19,taiex,46822.08,ok,TWSE FMTQIK,2026-10-19,
+2026-10-19,taiex_change,-289.18,ok,TWSE FMTQIK,2026-10-19,
+2026-10-19,taiex_change_pct,-0.006138235317841212,ok,TWSE FMTQIK,2026-10-19,
+2026-10-19,taiex_high,46844.64,ok,TWSE MI_5MINS_HIST,2026-10-19,
+2026-10-19,taiex_low,46170.0,ok,TWSE MI_5MINS_HIST,2026-10-19,
+2026-10-19,taiex_open,46844.64,ok,TWSE MI_5MINS_HIST,2026-10-19,
+2026-10-19,trust_futures_net_oi,84100.0,ok,期交所 三大法人-區分各期貨契約,2026-10-19,
+2026-10-19,trust_net_100m,230.51,ok,TWSE BFI82U,2026-10-19,
+2026-10-19,txo_pc_oi_pct,61.6,ok,TAIFEX 選擇權買賣權比,2026-10-19,
+2026-10-19,txo_pc_volume_pct,94.54,ok,TAIFEX 選擇權買賣權比,2026-10-19,
+2026-10-19,unchanged,61.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-19,
+2026-10-19,us10y,5.089000225067139,stale,Yahoo Finance ^TNX,2026-10-15,美股資料為 2026-10-15，較預期的 2026-10-18 舊 3 天（休市或缺值）
+2026-10-19,us10y_latest,5.089000225067139,stale,Yahoo Finance ^TNX,2026-10-15,最新已收完的美股時段
+2026-10-19,wave_cumulative_100m,-7585.75,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,wave_days,9,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,wave_direction,sell,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,wave_start,2026-10-06,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-19,window_days,51,ok,marketflow,2026-10-19,由最近 51 個交易日的序列推導
+2026-10-20,advance_ratio_pct,27.73,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-20,
+2026-10-20,advancing,269.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-20,
+2026-10-20,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,avg_sell_wave_cumulative_100m,-942.4233333333333,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,avg_sell_wave_days,2.3333333333333335,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,completed_buy_waves,7,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,completed_sell_waves,6,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,dealer_futures_net_oi,2700.0,ok,期交所 三大法人-區分各期貨契約,2026-10-20,
+2026-10-20,dealer_net_100m,-355.8,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,declining,701.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-20,
+2026-10-20,foreign_futures_long_oi,11524.0,ok,期交所 三大法人-區分各期貨契約,2026-10-20,
+2026-10-20,foreign_futures_net_oi,-89748.0,ok,期交所 三大法人-區分各期貨契約,2026-10-20,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-20,foreign_futures_oi_change_5d,-2509.0,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,foreign_futures_short_oi,101272.0,ok,期交所 三大法人-區分各期貨契約,2026-10-20,
+2026-10-20,foreign_net_100m,-795.4,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,gap_to_resistance_pct,0.07940715785326179,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,institutional_net_100m,-968.04,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,latest_close,46292.93,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,limit_down,0.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-20,
+2026-10-20,limit_up,8.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-20,
+2026-10-20,margin_balance_100m,6381.00111,ok,TWSE MI_MARGN,2026-10-20,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-20,margin_change_100m,-25.17817,ok,TWSE MI_MARGN,2026-10-20,
+2026-10-20,margin_change_2d_100m,-74.93937000000005,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,margin_prev_100m,6406.17928,ok,TWSE MI_MARGN,2026-10-20,
+2026-10-20,market_foreign_net_100m,-795.4,ok,TWSE BFI82U,2026-10-20,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-20,market_turnover_100m,7986.90781399,ok,TWSE FMTQIK,2026-10-20,
+2026-10-20,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,max_buy_wave_days,6,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,resistance_close,49822.55,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,resistance_date,2026-10-06,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,resistance_high,49968.92,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,resistance_high_date,2026-10-06,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,sox_latest_session_ret,0.016076867330113265,stale,Yahoo Finance ^SOX,2026-10-19,最新已收完的美股時段，對應明日展望燈號
+2026-10-20,sox_prev_session_ret,0.016076867330113265,ok,Yahoo Finance ^SOX,2026-10-19,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-20,stock_flow_count,1329,ok,TWSE T86,2026-10-20,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-20,taiex,46292.93,ok,TWSE FMTQIK,2026-10-20,
+2026-10-20,taiex_change,-529.15,ok,TWSE FMTQIK,2026-10-20,
+2026-10-20,taiex_change_pct,-0.011301292039994805,ok,TWSE FMTQIK,2026-10-20,
+2026-10-20,taiex_high,46967.91,ok,TWSE MI_5MINS_HIST,2026-10-20,
+2026-10-20,taiex_low,46163.03,ok,TWSE MI_5MINS_HIST,2026-10-20,
+2026-10-20,taiex_open,46712.57,ok,TWSE MI_5MINS_HIST,2026-10-20,
+2026-10-20,trust_futures_net_oi,84389.0,ok,期交所 三大法人-區分各期貨契約,2026-10-20,
+2026-10-20,trust_net_100m,183.15,ok,TWSE BFI82U,2026-10-20,
+2026-10-20,txo_pc_oi_pct,66.17,ok,TAIFEX 選擇權買賣權比,2026-10-20,
+2026-10-20,txo_pc_volume_pct,129.06,ok,TAIFEX 選擇權買賣權比,2026-10-20,
+2026-10-20,unchanged,104.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-20,
+2026-10-20,us10y,5.0980000495910645,stale,Yahoo Finance ^TNX,2026-10-16,美股資料為 2026-10-16，較預期的 2026-10-19 舊 3 天（休市或缺值）
+2026-10-20,us10y_latest,5.0980000495910645,stale,Yahoo Finance ^TNX,2026-10-16,最新已收完的美股時段
+2026-10-20,wave_cumulative_100m,-8381.15,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,wave_days,10,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,wave_direction,sell,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,wave_start,2026-10-06,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-20,window_days,52,ok,marketflow,2026-10-20,由最近 52 個交易日的序列推導
+2026-10-21,advance_ratio_pct,61.22,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-21,
+2026-10-21,advancing,600.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-21,
+2026-10-21,avg_buy_wave_cumulative_100m,1354.962857142857,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,avg_buy_wave_days,3.5714285714285716,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,avg_sell_wave_cumulative_100m,-2005.0985714285712,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,avg_sell_wave_days,3.4285714285714284,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,completed_buy_waves,7,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,completed_sell_waves,7,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,dealer_futures_net_oi,1716.0,ok,期交所 三大法人-區分各期貨契約,2026-10-21,
+2026-10-21,dealer_net_100m,-133.11,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,declining,380.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-21,
+2026-10-21,foreign_futures_long_oi,9410.0,ok,期交所 三大法人-區分各期貨契約,2026-10-21,
+2026-10-21,foreign_futures_net_oi,-86072.0,ok,期交所 三大法人-區分各期貨契約,2026-10-21,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-21,foreign_futures_oi_change_5d,742.0,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,foreign_futures_short_oi,95482.0,ok,期交所 三大法人-區分各期貨契約,2026-10-21,
+2026-10-21,foreign_net_100m,9.6,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,gap_to_resistance_pct,0.06571329794528513,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,institutional_net_100m,5.68,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,latest_close,46887.77,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,limit_down,1.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-21,
+2026-10-21,limit_up,24.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-21,
+2026-10-21,margin_balance_100m,6443.73559,ok,TWSE MI_MARGN,2026-10-21,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-21,margin_change_100m,62.73448,ok,TWSE MI_MARGN,2026-10-21,
+2026-10-21,margin_change_2d_100m,37.55126999999993,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,margin_prev_100m,6381.00111,ok,TWSE MI_MARGN,2026-10-21,
+2026-10-21,market_foreign_net_100m,9.6,ok,TWSE BFI82U,2026-10-21,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-21,market_turnover_100m,8628.28961216,ok,TWSE FMTQIK,2026-10-21,
+2026-10-21,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,max_buy_wave_days,6,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,resistance_close,49822.55,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,resistance_date,2026-10-06,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,resistance_high,49968.92,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,resistance_high_date,2026-10-06,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,sox_latest_session_ret,-0.0028744559426133742,stale,Yahoo Finance ^SOX,2026-10-20,最新已收完的美股時段，對應明日展望燈號
+2026-10-21,sox_prev_session_ret,-0.0028744559426133742,ok,Yahoo Finance ^SOX,2026-10-20,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-21,stock_flow_count,1329,ok,TWSE T86,2026-10-21,當日有法人交易紀錄的檔數，明細存於 data/stocks/
+2026-10-21,taiex,46887.77,ok,TWSE FMTQIK,2026-10-21,
+2026-10-21,taiex_change,594.84,ok,TWSE FMTQIK,2026-10-21,
+2026-10-21,taiex_change_pct,0.01284947831126697,ok,TWSE FMTQIK,2026-10-21,
+2026-10-21,taiex_high,47254.93,ok,TWSE MI_5MINS_HIST,2026-10-21,
+2026-10-21,taiex_low,46454.33,ok,TWSE MI_5MINS_HIST,2026-10-21,
+2026-10-21,taiex_open,46454.33,ok,TWSE MI_5MINS_HIST,2026-10-21,
+2026-10-21,trust_futures_net_oi,83778.0,ok,期交所 三大法人-區分各期貨契約,2026-10-21,
+2026-10-21,trust_net_100m,129.19,ok,TWSE BFI82U,2026-10-21,
+2026-10-21,txo_pc_oi_pct,62.86,ok,TAIFEX 選擇權買賣權比,2026-10-21,
+2026-10-21,txo_pc_volume_pct,111.88,ok,TAIFEX 選擇權買賣權比,2026-10-21,
+2026-10-21,unchanged,101.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-21,
+2026-10-21,us10y,5.136000156402588,stale,Yahoo Finance ^TNX,2026-10-19,美股資料為 2026-10-19，較預期的 2026-10-20 舊 1 天（休市或缺值）
+2026-10-21,us10y_latest,5.136000156402588,stale,Yahoo Finance ^TNX,2026-10-19,最新已收完的美股時段
+2026-10-21,wave_cumulative_100m,9.6,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,wave_days,1,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,wave_direction,buy,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,wave_start,2026-10-21,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-21,window_days,53,ok,marketflow,2026-10-21,由最近 53 個交易日的序列推導
+2026-10-22,advance_ratio_pct,24.63,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-22,
+2026-10-22,advancing,247.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-22,
+2026-10-22,avg_buy_wave_cumulative_100m,1186.7925,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,avg_buy_wave_days,3.25,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,avg_sell_wave_cumulative_100m,-2005.0985714285712,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,avg_sell_wave_days,3.4285714285714284,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,completed_buy_waves,8,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,completed_sell_waves,7,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,dealer_futures_net_oi,3260.0,ok,期交所 三大法人-區分各期貨契約,2026-10-22,
+2026-10-22,dealer_net_100m,-273.78,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,declining,756.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-22,
+2026-10-22,foreign_futures_long_oi,8126.0,ok,期交所 三大法人-區分各期貨契約,2026-10-22,
+2026-10-22,foreign_futures_net_oi,-87297.0,ok,期交所 三大法人-區分各期貨契約,2026-10-22,負值為淨空單；淨空擴大代表外資對後市偏空避險
+2026-10-22,foreign_futures_oi_change_5d,10285.0,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,foreign_futures_short_oi,95423.0,ok,期交所 三大法人-區分各期貨契約,2026-10-22,
+2026-10-22,foreign_net_100m,-816.57,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,gap_to_resistance_pct,0.08530338870882155,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,institutional_net_100m,-1001.6,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,latest_close,46041.43,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,limit_down,5.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-22,
+2026-10-22,limit_up,3.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-22,
+2026-10-22,margin_balance_100m,6338.80174,ok,TWSE MI_MARGN,2026-10-22,融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號
+2026-10-22,margin_change_100m,-104.9345,ok,TWSE MI_MARGN,2026-10-22,
+2026-10-22,margin_change_2d_100m,-42.19937000000027,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,margin_prev_100m,6443.73624,ok,TWSE MI_MARGN,2026-10-22,
+2026-10-22,market_foreign_net_100m,-816.57,ok,TWSE BFI82U,2026-10-22,上市外資及陸資（不含外資自營商）現貨買賣超
+2026-10-22,market_turnover_100m,9267.32582844,ok,TWSE FMTQIK,2026-10-22,
+2026-10-22,max_buy_wave_cumulative_100m,2515.84,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,max_buy_wave_days,6,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,resistance_close,49822.55,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,resistance_date,2026-10-06,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,resistance_high,49968.92,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,resistance_high_date,2026-10-06,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,sox_latest_session_ret,0.01965170471623434,stale,Yahoo Finance ^SOX,2026-10-21,最新已收完的美股時段，對應明日展望燈號
+2026-10-22,sox_prev_session_ret,0.01965170471623434,ok,Yahoo Finance ^SOX,2026-10-21,前一完整美股時段（T-1）的費半漲跌，對應當日燈號
+2026-10-22,stock_flow_count,,missing,TWSE T86,,回傳空資料（休市或被限流）
+2026-10-22,taiex,46041.43,ok,TWSE FMTQIK,2026-10-22,
+2026-10-22,taiex_change,-846.34,ok,TWSE FMTQIK,2026-10-22,
+2026-10-22,taiex_change_pct,-0.018050335940480857,ok,TWSE FMTQIK,2026-10-22,
+2026-10-22,taiex_high,47332.18,ok,TWSE MI_5MINS_HIST,2026-10-22,
+2026-10-22,taiex_low,46041.43,ok,TWSE MI_5MINS_HIST,2026-10-22,
+2026-10-22,taiex_open,46942.75,ok,TWSE MI_5MINS_HIST,2026-10-22,
+2026-10-22,trust_futures_net_oi,83601.0,ok,期交所 三大法人-區分各期貨契約,2026-10-22,
+2026-10-22,trust_net_100m,88.75,ok,TWSE BFI82U,2026-10-22,
+2026-10-22,txo_pc_oi_pct,66.18,ok,TAIFEX 選擇權買賣權比,2026-10-22,
+2026-10-22,txo_pc_volume_pct,86.21,ok,TAIFEX 選擇權買賣權比,2026-10-22,
+2026-10-22,unchanged,74.0,ok,TWSE MI_INDEX 漲跌證券數合計,2026-10-22,
+2026-10-22,us10y,5.117000102996826,stale,Yahoo Finance ^TNX,2026-10-20,美股資料為 2026-10-20，較預期的 2026-10-21 舊 1 天（休市或缺值）
+2026-10-22,us10y_latest,5.117000102996826,stale,Yahoo Finance ^TNX,2026-10-20,最新已收完的美股時段
+2026-10-22,wave_cumulative_100m,-816.57,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,wave_days,1,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,wave_direction,sell,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,wave_start,2026-10-22,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導
+2026-10-22,window_days,54,ok,marketflow,2026-10-22,由最近 54 個交易日的序列推導

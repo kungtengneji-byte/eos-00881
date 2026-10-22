@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-08",
  "first_collected_at": "2026-10-08T05:49:00",
- "updated_at": "2026-10-09T09:19:51",
+ "updated_at": "2026-10-22T21:14:11",
  "windows": [
   "w1",
   "w2",
@@ -11,9 +11,9 @@
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
-  "eos": 40,
-  "raw_eos": 40.137376250612014,
-  "earned": 40.1374,
+  "eos": 41,
+  "raw_eos": 40.76301475061203,
+  "earned": 40.763,
   "available": 100.0,
   "coverage_status": "confirmed",
   "published": true,
@@ -23,7 +23,7 @@
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 40.137376250612014,
+    "earned": 40.76301475061203,
     "available": 100.0,
     "max": 100.0,
     "complete": true,
@@ -67,11 +67,11 @@
      {
       "id": "F5",
       "name": "融資熱度（反向）",
-      "earned": 0.0,
+      "earned": 0.6256385000000136,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "102.42 -> 0.0000 x 10"
+      "detail": "87.4872 -> 0.0626 x 10"
      },
      {
       "id": "F6",
@@ -95,11 +95,12 @@
    }
   },
   "summary": {
-   "headline": "燈號 40/100，屬「賣壓風險升高」，較 10-07 下降 4 分",
+   "headline": "燈號 41/100，屬「賣壓風險升高」，較 10-07 下降 5 分",
    "drivers": [
     "F4 距前高壓力空間 +5.0"
    ],
    "drags": [
+    "F5 融資熱度（反向） -1.1",
     "F1 本波連買天數餘裕 -2.5",
     "F3 外資期貨 5 日回補 -2.7",
     "F6 前一美股費半 -3.7"
@@ -112,15 +113,15 @@
     "US10Y 為較舊時點資料"
    ],
    "watch": [
-    "距「可續買但進入賣壓測試區」（45 分）尚差 5 分"
+    "距「可續買但進入賣壓測試區」（45 分）尚差 4 分"
    ],
-   "text": "燈號 40/100，屬「賣壓風險升高」，較 10-07 下降 4 分　改善：F4 距前高壓力空間 +5.0　拖累：F1 本波連買天數餘裕 -2.5、F3 外資期貨 5 日回補 -2.7、F6 前一美股費半 -3.7　F4 距前高壓力空間：距前高 +1.33%　F6 前一美股費半：費半（前一時段） -1.15%　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 5 分"
+   "text": "燈號 41/100，屬「賣壓風險升高」，較 10-07 下降 5 分　改善：F4 距前高壓力空間 +5.0　拖累：F5 融資熱度（反向） -1.1、F1 本波連買天數餘裕 -2.5、F3 外資期貨 5 日回補 -2.7、F6 前一美股費半 -3.7　F4 距前高壓力空間：距前高 +1.33%　F6 前一美股費半：費半（前一時段） -1.15%　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 4 分"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
-   "eos": 40,
-   "raw_eos": 40.137376250612014,
-   "earned": 40.1374,
+   "eos": 41,
+   "raw_eos": 40.76301475061203,
+   "earned": 40.763,
    "available": 100.0,
    "coverage_status": "confirmed",
    "published": true,
@@ -130,7 +131,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 40.137376250612014,
+     "earned": 40.76301475061203,
      "available": 100.0,
      "max": 100.0,
      "complete": true,
@@ -174,11 +175,11 @@
       {
        "id": "F5",
        "name": "融資熱度（反向）",
-       "earned": 0.0,
+       "earned": 0.6256385000000136,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "102.42 -> 0.0000 x 10"
+       "detail": "87.4872 -> 0.0626 x 10"
       },
       {
        "id": "F6",
@@ -303,16 +304,14 @@
   },
   "washout": {
    "rubric_version": "washout-0.2",
-   "eos": 31,
-   "raw_eos": 30.58823529411765,
-   "earned": 26.0,
-   "available": 85.0,
+   "eos": 28,
+   "raw_eos": 28.000000000000004,
+   "earned": 28.0,
+   "available": 100.0,
    "coverage_status": "confirmed",
    "published": true,
    "rating": "偏派發／風險釋放",
-   "missing": [
-    "W4a"
-   ],
+   "missing": [],
    "dimensions": {
     "W1": {
      "key": "W1",
@@ -401,19 +400,19 @@
     "W4": {
      "key": "W4",
      "name": "融資籌碼清洗",
-     "earned": null,
-     "available": 0.0,
+     "earned": 2.0,
+     "available": 15.0,
      "max": 15.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "W4a",
        "name": "融資餘額日變化",
-       "earned": null,
-       "available": 0.0,
+       "earned": 2.0,
+       "available": 15.0,
        "max": 15.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "64.05 -> 2"
       }
      ]
     },
@@ -494,20 +493,20 @@
     }
    },
    "summary": {
-    "headline": "EOS 31/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）",
+    "headline": "EOS 28/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）",
     "drivers": [],
     "drags": [],
     "evidence": [],
     "quality": [
-     "1 個子項缺值不計分（W4a），EOS 以可得滿分 85 標準化",
      "US10Y 為較舊時點資料"
     ],
     "watch": [
-     "距「中性待確認」（40 分）尚差 9 分"
+     "距「中性待確認」（40 分）尚差 12 分"
     ],
-    "text": "EOS 31/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）　資料品質：1 個子項缺值不計分（W4a），EOS 以可得滿分 85 標準化；US10Y 為較舊時點資料　待觀察：距「中性待確認」（40 分）尚差 9 分"
+    "text": "EOS 28/100，屬「偏派發／風險釋放」（前一交易日無已發布分數，或當日未達發布門檻）　資料品質：US10Y 為較舊時點資料　待觀察：距「中性待確認」（40 分）尚差 12 分"
    },
    "inputs": {
+    "margin_change_100m": 64.04993,
     "advance_ratio_pct": 44.04,
     "txo_pc_oi_pct": 80.18,
     "institutional_net_3d_100m": -1319.39,
@@ -714,7 +713,7 @@
    "note": "由最近 44 個交易日的序列推導"
   },
   "margin_change_2d_100m": {
-   "value": 102.41986999999972,
+   "value": 87.48722999999973,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-10-08",
@@ -834,27 +833,27 @@
    "note": "上市外資及陸資（不含外資自營商）現貨買賣超"
   },
   "margin_balance_100m": {
-   "value": null,
+   "value": 6464.05767,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261008&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或休市"
+   "as_of": "2026-10-08",
+   "status": "ok",
+   "note": "融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號"
   },
   "margin_prev_100m": {
-   "value": null,
+   "value": 6400.00774,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261008&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或休市"
+   "as_of": "2026-10-08",
+   "status": "ok",
+   "note": ""
   },
   "margin_change_100m": {
-   "value": null,
+   "value": 64.04993,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261008&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
+   "as_of": "2026-10-08",
+   "status": "ok",
    "note": ""
   },
   "foreign_futures_net_oi": {

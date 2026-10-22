@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-09",
  "first_collected_at": "2026-10-09T05:49:43",
- "updated_at": "2026-10-17T09:29:13",
+ "updated_at": "2026-10-22T21:14:11",
  "windows": [
   "w1",
   "w2",
@@ -12,8 +12,8 @@
  "eos": {
   "rubric_version": "market-1.0-draft",
   "eos": 36,
-  "raw_eos": 35.506058356504795,
-  "earned": 35.5061,
+  "raw_eos": 36.13169685650481,
+  "earned": 36.1317,
   "available": 100.0,
   "coverage_status": "confirmed",
   "published": true,
@@ -23,7 +23,7 @@
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 35.506058356504795,
+    "earned": 36.13169685650481,
     "available": 100.0,
     "max": 100.0,
     "complete": true,
@@ -67,11 +67,11 @@
      {
       "id": "F5",
       "name": "融資熱度（反向）",
-      "earned": 0.0,
+      "earned": 0.6256385000000136,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "102.42 -> 0.0000 x 10"
+      "detail": "87.4872 -> 0.0626 x 10"
      },
      {
       "id": "F6",
@@ -95,7 +95,7 @@
    }
   },
   "summary": {
-   "headline": "燈號 36/100，屬「賣壓風險升高」，較 10-08 下降 4 分",
+   "headline": "燈號 36/100，屬「賣壓風險升高」，較 10-08 下降 5 分",
    "drivers": [],
    "drags": [
     "F6 前一美股費半 -4.6"
@@ -109,13 +109,13 @@
    "watch": [
     "距「可續買但進入賣壓測試區」（45 分）尚差 9 分"
    ],
-   "text": "燈號 36/100，屬「賣壓風險升高」，較 10-08 下降 4 分　拖累：F6 前一美股費半 -4.6　F6 前一美股費半：費半（前一時段） -3.39%　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 9 分"
+   "text": "燈號 36/100，屬「賣壓風險升高」，較 10-08 下降 5 分　拖累：F6 前一美股費半 -4.6　F6 前一美股費半：費半（前一時段） -3.39%　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 9 分"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
    "eos": 36,
-   "raw_eos": 35.506058356504795,
-   "earned": 35.5061,
+   "raw_eos": 36.13169685650481,
+   "earned": 36.1317,
    "available": 100.0,
    "coverage_status": "confirmed",
    "published": true,
@@ -125,7 +125,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 35.506058356504795,
+     "earned": 36.13169685650481,
      "available": 100.0,
      "max": 100.0,
      "complete": true,
@@ -169,11 +169,11 @@
       {
        "id": "F5",
        "name": "融資熱度（反向）",
-       "earned": 0.0,
+       "earned": 0.6256385000000136,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "102.42 -> 0.0000 x 10"
+       "detail": "87.4872 -> 0.0626 x 10"
       },
       {
        "id": "F6",
@@ -704,7 +704,7 @@
    "note": "由最近 45 個交易日的序列推導"
   },
   "margin_change_2d_100m": {
-   "value": 102.41986999999972,
+   "value": 87.48722999999973,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-10-09",

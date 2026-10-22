@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-09-29",
  "first_collected_at": "2026-09-29T05:44:57",
- "updated_at": "2026-09-30T09:18:00",
+ "updated_at": "2026-10-22T21:14:11",
  "windows": [
   "w1",
   "w2",
@@ -11,19 +11,19 @@
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
-  "eos": 44,
-  "raw_eos": 44.37027586780983,
-  "earned": 44.3703,
+  "eos": 48,
+  "raw_eos": 47.59530486780982,
+  "earned": 47.5953,
   "available": 100.0,
   "coverage_status": "confirmed",
   "published": true,
-  "rating": "賣壓風險升高",
+  "rating": "可續買但進入賣壓測試區",
   "missing": [],
   "dimensions": {
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 44.37027586780983,
+    "earned": 47.59530486780982,
     "available": 100.0,
     "max": 100.0,
     "complete": true,
@@ -67,11 +67,11 @@
      {
       "id": "F5",
       "name": "融資熱度（反向）",
-      "earned": 0.0,
+      "earned": 3.225028999999995,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "102.42 -> 0.0000 x 10"
+      "detail": "35.4994 -> 0.3225 x 10"
      },
      {
       "id": "F6",
@@ -95,9 +95,10 @@
    }
   },
   "summary": {
-   "headline": "燈號 44/100，屬「賣壓風險升高」，較 09-28 下降 13 分",
+   "headline": "燈號 48/100，屬「可續買但進入賣壓測試區」，較 09-28 下降 9 分",
    "drivers": [
-    "F4 距前高壓力空間 +4.2"
+    "F4 距前高壓力空間 +4.2",
+    "F5 融資熱度（反向） +3.2"
    ],
    "drags": [
     "F7 美 10 年期公債殖利率 -0.2",
@@ -113,25 +114,25 @@
     "US10Y 為較舊時點資料"
    ],
    "watch": [
-    "距「可續買但進入賣壓測試區」（45 分）尚差 1 分"
+    "距「續買動能明確」（65 分）尚差 17 分"
    ],
-   "text": "燈號 44/100，屬「賣壓風險升高」，較 09-28 下降 13 分　改善：F4 距前高壓力空間 +4.2　拖累：F7 美 10 年期公債殖利率 -0.2、F1 本波連買天數餘裕 -2.5、F3 外資期貨 5 日回補 -6.6、F6 前一美股費半 -7.5　F6 前一美股費半：費半（前一時段） -1.61%　F3 外資期貨 5 日回補：外資期貨5日變化 -4,948 口　資料品質：US10Y 為較舊時點資料　待觀察：距「可續買但進入賣壓測試區」（45 分）尚差 1 分"
+   "text": "燈號 48/100，屬「可續買但進入賣壓測試區」，較 09-28 下降 9 分　改善：F4 距前高壓力空間 +4.2、F5 融資熱度（反向） +3.2　拖累：F7 美 10 年期公債殖利率 -0.2、F1 本波連買天數餘裕 -2.5、F3 外資期貨 5 日回補 -6.6、F6 前一美股費半 -7.5　F6 前一美股費半：費半（前一時段） -1.61%　F3 外資期貨 5 日回補：外資期貨5日變化 -4,948 口　資料品質：US10Y 為較舊時點資料　待觀察：距「續買動能明確」（65 分）尚差 17 分"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
-   "eos": 44,
-   "raw_eos": 44.37027586780983,
-   "earned": 44.3703,
+   "eos": 48,
+   "raw_eos": 47.59530486780982,
+   "earned": 47.5953,
    "available": 100.0,
    "coverage_status": "confirmed",
    "published": true,
-   "rating": "賣壓風險升高",
+   "rating": "可續買但進入賣壓測試區",
    "missing": [],
    "dimensions": {
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 44.37027586780983,
+     "earned": 47.59530486780982,
      "available": 100.0,
      "max": 100.0,
      "complete": true,
@@ -175,11 +176,11 @@
       {
        "id": "F5",
        "name": "融資熱度（反向）",
-       "earned": 0.0,
+       "earned": 3.225028999999995,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "102.42 -> 0.0000 x 10"
+       "detail": "35.4994 -> 0.3225 x 10"
       },
       {
        "id": "F6",
@@ -305,9 +306,9 @@
   "washout": {
    "rubric_version": "washout-0.2",
    "eos": null,
-   "raw_eos": 29.545454545454547,
-   "earned": 13.0,
-   "available": 44.0,
+   "raw_eos": 25.423728813559322,
+   "earned": 15.0,
+   "available": 59.0,
    "coverage_status": "insufficient",
    "published": false,
    "rating": null,
@@ -315,7 +316,6 @@
     "W1a",
     "W1b",
     "W2a",
-    "W4a",
     "W5a"
    ],
    "dimensions": {
@@ -406,19 +406,19 @@
     "W4": {
      "key": "W4",
      "name": "融資籌碼清洗",
-     "earned": null,
-     "available": 0.0,
+     "earned": 2.0,
+     "available": 15.0,
      "max": 15.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "W4a",
        "name": "融資餘額日變化",
-       "earned": null,
-       "available": 0.0,
+       "earned": 2.0,
+       "available": 15.0,
        "max": 15.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "35.5 -> 2"
       }
      ]
     },
@@ -499,18 +499,19 @@
     }
    },
    "summary": {
-    "headline": "當日可計分項目僅 44/100，依規則不計算 EOS；已取得的項目仍列於下方",
+    "headline": "當日可計分項目僅 59/100，依規則不計算 EOS；已取得的項目仍列於下方",
     "drivers": [],
     "drags": [],
     "evidence": [],
     "quality": [
-     "5 個子項缺值不計分（W1a, W1b, W2a, W4a），EOS 以可得滿分 44 標準化",
+     "4 個子項缺值不計分（W1a, W1b, W2a, W5a），EOS 以可得滿分 59 標準化",
      "US10Y 為較舊時點資料"
     ],
     "watch": [],
-    "text": "當日可計分項目僅 44/100，依規則不計算 EOS；已取得的項目仍列於下方　5 個子項缺值不計分（W1a, W1b, W2a, W4a），EOS 以可得滿分 44 標準化　US10Y 為較舊時點資料"
+    "text": "當日可計分項目僅 59/100，依規則不計算 EOS；已取得的項目仍列於下方　4 個子項缺值不計分（W1a, W1b, W2a, W5a），EOS 以可得滿分 59 標準化　US10Y 為較舊時點資料"
    },
    "inputs": {
+    "margin_change_100m": 35.49942,
     "advance_ratio_pct": 38.96,
     "txo_pc_oi_pct": 75.3,
     "close_position": 0.12471400728752333,
@@ -713,7 +714,7 @@
    "note": "由最近 37 個交易日的序列推導"
   },
   "margin_change_2d_100m": {
-   "value": 102.41986999999972,
+   "value": 35.4994200000001,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-09-29",
@@ -833,27 +834,27 @@
    "note": "上市外資及陸資（不含外資自營商）現貨買賣超"
   },
   "margin_balance_100m": {
-   "value": null,
+   "value": 6186.53344,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260929&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或休市"
+   "as_of": "2026-09-29",
+   "status": "ok",
+   "note": "融資餘額；散戶槓桿水位，續增而指數收黑為接刀訊號"
   },
   "margin_prev_100m": {
-   "value": null,
+   "value": 6151.03402,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260929&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或休市"
+   "as_of": "2026-09-29",
+   "status": "ok",
+   "note": ""
   },
   "margin_change_100m": {
-   "value": null,
+   "value": 35.49942,
    "source": "TWSE MI_MARGN",
    "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260929&selectType=MS&response=json",
-   "as_of": null,
-   "status": "missing",
+   "as_of": "2026-09-29",
+   "status": "ok",
    "note": ""
   },
   "foreign_futures_net_oi": {

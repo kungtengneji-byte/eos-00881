@@ -491,17 +491,17 @@
  },
  {
   "date": "2026-09-29",
-  "eos": 44,
-  "rating": "賣壓風險升高",
+  "eos": 48,
+  "rating": "可續買但進入賣壓測試區",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 44.37027586780983,
+  "LIGHT": 47.59530486780982,
   "LIGHT_avail": 100.0,
   "taiex": 47631.96,
   "taiex_change_pct": -0.008175809897427569,
   "market_foreign_net_100m": -632.01,
   "foreign_futures_net_oi": -79029.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6186.53344
  },
  {
   "date": "2026-09-30",
@@ -515,7 +515,7 @@
   "taiex_change_pct": 0.006469815644789759,
   "market_foreign_net_100m": 296.36,
   "foreign_futures_net_oi": -78151.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6222.52453
  },
  {
   "date": "2026-10-01",
@@ -529,7 +529,7 @@
   "taiex_change_pct": 0.008622421340951725,
   "market_foreign_net_100m": 219.37,
   "foreign_futures_net_oi": -79554.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6298.67193
  },
  {
   "date": "2026-10-02",
@@ -543,77 +543,77 @@
   "taiex_change_pct": 0.0025282559749048106,
   "market_foreign_net_100m": 26.22,
   "foreign_futures_net_oi": -80304.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6351.04422
  },
  {
   "date": "2026-10-05",
-  "eos": 33,
+  "eos": 37,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 33.424303436430336,
+  "LIGHT": 36.68203943643036,
   "LIGHT_avail": 100.0,
   "taiex": 49712.04,
   "taiex_change_pct": 0.02550347864725737,
   "market_foreign_net_100m": 718.97,
   "foreign_futures_net_oi": -77004.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6333.51721
  },
  {
   "date": "2026-10-06",
-  "eos": 47,
+  "eos": 50,
   "rating": "可續買但進入賣壓測試區",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 46.667282063606024,
+  "LIGHT": 50.39097106360599,
   "LIGHT_avail": 100.0,
   "taiex": 49822.55,
   "taiex_change_pct": 0.0022230027172491815,
   "market_foreign_net_100m": -66.57,
   "foreign_futures_net_oi": -79517.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6376.57044
  },
  {
   "date": "2026-10-07",
-  "eos": 44,
-  "rating": "賣壓風險升高",
+  "eos": 46,
+  "rating": "可續買但進入賣壓測試區",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 44.03743118148769,
+  "LIGHT": 45.712904681487686,
   "LIGHT_avail": 100.0,
   "taiex": 49806.37,
   "taiex_change_pct": -0.00032475254678855257,
   "market_foreign_net_100m": -130.44,
   "foreign_futures_net_oi": -79101.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6400.00774
  },
  {
   "date": "2026-10-08",
-  "eos": 40,
+  "eos": 41,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 40.137376250612014,
+  "LIGHT": 40.76301475061203,
   "LIGHT_avail": 100.0,
   "taiex": 49313.44,
   "taiex_change_pct": -0.009896926838876231,
   "market_foreign_net_100m": -758.52,
   "foreign_futures_net_oi": -83194.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6464.05767
  },
  {
   "date": "2026-10-12",
-  "eos": 38,
+  "eos": 39,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 37.636283693715605,
+  "LIGHT": 39.174417193715605,
   "LIGHT_avail": 100.0,
   "taiex": 49301.96,
   "taiex_change_pct": -0.00023279657634916567,
   "market_foreign_net_100m": -521.98,
   "foreign_futures_net_oi": -82806.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6533.295
  },
  {
   "date": "2026-10-13",
@@ -627,104 +627,104 @@
   "taiex_change_pct": -0.019485026558781843,
   "market_foreign_net_100m": -1653.42,
   "foreign_futures_net_oi": -87239.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6449.78625
  },
  {
   "date": "2026-10-14",
-  "eos": 38,
+  "eos": 44,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 38.12551495193928,
+  "LIGHT": 44.0065699519393,
   "LIGHT_avail": 100.0,
   "taiex": 48625.83,
   "taiex_change_pct": 0.005885649354558244,
   "market_foreign_net_100m": -200.37,
   "foreign_futures_net_oi": -86814.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6515.6739
  },
  {
   "date": "2026-10-15",
-  "eos": 30,
+  "eos": 35,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 30.329999923706055,
+  "LIGHT": 34.61180492370604,
   "LIGHT_avail": 100.0,
   "taiex": 46969.87,
   "taiex_change_pct": -0.03405515134651686,
   "market_foreign_net_100m": -3025.55,
   "foreign_futures_net_oi": -97582.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6464.15015
  },
  {
   "date": "2026-10-16",
-  "eos": 36,
+  "eos": 44,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 35.89267135182592,
+  "LIGHT": 43.8793423518259,
   "LIGHT_avail": 100.0,
   "taiex": 47111.26,
   "taiex_change_pct": 0.0030102276203872818,
   "market_foreign_net_100m": -461.47,
   "foreign_futures_net_oi": -93675.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6455.94048
  },
  {
   "date": "2026-10-19",
-  "eos": 33,
+  "eos": 41,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 33.270997749328615,
+  "LIGHT": 41.16928924932862,
   "LIGHT_avail": 100.0,
   "taiex": 46822.08,
   "taiex_change_pct": -0.006138235317841212,
   "market_foreign_net_100m": -767.43,
   "foreign_futures_net_oi": -91145.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6406.18432
  },
  {
   "date": "2026-10-20",
-  "eos": 51,
+  "eos": 59,
   "rating": "可續買但進入賣壓測試區",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 50.53021633661767,
+  "LIGHT": 59.27718483661767,
   "LIGHT_avail": 100.0,
   "taiex": 46292.93,
   "taiex_change_pct": -0.011301292039994805,
   "market_foreign_net_100m": -795.4,
   "foreign_futures_net_oi": -89748.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6381.00111
  },
  {
   "date": "2026-10-21",
-  "eos": 61,
+  "eos": 64,
   "rating": "可續買但進入賣壓測試區",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 61.106147106133555,
+  "LIGHT": 64.22858360613355,
   "LIGHT_avail": 100.0,
   "taiex": 46887.77,
   "taiex_change_pct": 0.01284947831126697,
   "market_foreign_net_100m": 9.6,
   "foreign_futures_net_oi": -86072.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6443.73559
  },
  {
   "date": "2026-10-22",
-  "eos": 76,
+  "eos": 83,
   "rating": "續買動能明確",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 76.24292514909033,
+  "LIGHT": 83.35289364909033,
   "LIGHT_avail": 100.0,
   "taiex": 46041.43,
   "taiex_change_pct": -0.018050335940480857,
   "market_foreign_net_100m": -816.57,
   "foreign_futures_net_oi": -87297.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 6338.80174
  }
 ]

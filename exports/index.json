@@ -1,54 +1,54 @@
 {
- "generated_at": "2026-09-28T13:54:25",
+ "generated_at": "2026-10-22T21:14:14",
  "files": [
   {
    "file": "00881_每日分數.csv",
-   "bytes": 3920,
-   "rows": 30
+   "bytes": 6007,
+   "rows": 47
   },
   {
    "file": "00881_每日欄位明細.csv",
-   "bytes": 158415,
-   "rows": 1318
+   "bytes": 250884,
+   "rows": 2132
   },
   {
    "file": "TWMARKET_每日分數.csv",
-   "bytes": 4775,
-   "rows": 35
+   "bytes": 7009,
+   "rows": 52
   },
   {
    "file": "TWMARKET_每日欄位明細.csv",
-   "bytes": 166340,
-   "rows": 1786
+   "bytes": 266658,
+   "rows": 2802
   },
   {
    "file": "TWMARKET_壓力與支撐.csv",
-   "bytes": 1376,
-   "rows": 11
+   "bytes": 1481,
+   "rows": 12
   },
   {
    "file": "TWMARKET_洗盤假說.csv",
-   "bytes": 2988,
-   "rows": 35
+   "bytes": 4414,
+   "rows": 54
   },
   {
    "file": "連續買賣超.csv",
-   "bytes": 27767,
+   "bytes": 27798,
    "rows": 200
   },
   {
    "file": "產業資金輪動.csv",
-   "bytes": 38633,
+   "bytes": 38639,
    "rows": 120
   },
   {
    "file": "個股法人明細.csv",
-   "bytes": 104830,
+   "bytes": 103078,
    "rows": 1280
   },
   {
    "file": "美股映射.csv",
-   "bytes": 5790,
+   "bytes": 6001,
    "rows": 30
   }
  ]
