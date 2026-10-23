@@ -2131,3 +2131,34 @@
 2026-10-22,volume_lots,18917,ok,TWSE STOCK_DAY,2026-10-22,
 2026-10-22,volume_ratio,1.1157590824904142,ok,TWSE STOCK_DAY,2026-10-22,
 2026-10-22,wcr,-0.014001335211845087,ok,國泰投信權重 + TWSE 個股收盤,2026-10-22,權重基準日 2026-10-22
+2026-10-23,breadth_count,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：2382 無 2026-10-23 收盤；2345 無 2026-10-23 收盤；2303 無 2026-10-23 收盤
+2026-10-23,close,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,close_adj_gt_ma120,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,close_adj_gt_ma20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,day_direction,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,dealer_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-23,drawdown20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,foreign_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-23,institutional_net,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-23,institutional_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-23,ma20_gt_ma60,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,nav,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
+2026-10-23,ndx_ret,-0.02598972605344818,ok,Yahoo Finance ^IXIC,2026-10-22,
+2026-10-23,nvda_ret,-0.04396988085399722,ok,Yahoo Finance NVDA,2026-10-22,
+2026-10-23,premium,,missing,國泰投信 cwapi,,當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價
+2026-10-23,ret60_positive,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,rsi14,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,rv20,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,sox_ret,-0.06723549832778697,ok,Yahoo Finance ^SOX,2026-10-22,
+2026-10-23,stock_foreign_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-23,stock_institutional_net_lots,,missing,TWSE T86,,00881 當日無法人交易紀錄
+2026-10-23,trust_net_100m,,missing,TWSE BFI82U,,當日尚未發布或查無資料
+2026-10-23,tsm_ret,-0.04524301994068469,ok,Yahoo Finance TSM,2026-10-22,
+2026-10-23,turnover_100m,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,twd_change,-0.006498343915273264,ok,Yahoo Finance TWD=X,2026-10-22,
+2026-10-23,us10y,5.145999908447266,stale,Yahoo Finance ^TNX,2026-10-21,美股資料為 2026-10-21，較預期的 2026-10-22 舊 1 天（休市或缺值）
+2026-10-23,usdtwd,32.36589813232422,ok,Yahoo Finance TWD=X,2026-10-22,
+2026-10-23,vix,19.030000686645508,ok,Yahoo Finance ^VIX,2026-10-22,
+2026-10-23,volume_lots,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,volume_ratio,,missing,TWSE STOCK_DAY,,TWSE 尚未發布該日資料（休市或收盤資料未更新）
+2026-10-23,wcr,,missing,國泰投信權重 + TWSE 個股收盤,,僅 0/10 檔取得報酬：2382 無 2026-10-23 收盤；2345 無 2026-10-23 收盤；2303 無 2026-10-23 收盤

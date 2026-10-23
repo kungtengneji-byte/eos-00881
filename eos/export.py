@@ -35,14 +35,35 @@ EXPORTS = ROOT / "exports"
 ENCODING = "utf-8-sig"
 
 
+# Excel 與 LibreOffice 看到儲存格以這些字元開頭就會當成公式求值。
+# 這些檔案的存在目的就是「用 Excel 開」，所以中和是必要的，不是多慮。
+_FORMULA_LEAD = ("=", "+", "-", "@", "\t", "\r")
+
+
+def neutralise(value: Any) -> Any:
+    """把會被 Excel 當成公式的字串前面加一個單引號。
+
+    個股名稱與產業別來自 TWSE，是**不可信的外部輸入**。今天沒有一檔股票
+    叫 `=cmd|…`，但這些 CSV 的用途就是給 Excel 開，而「來源永遠不會送出
+    惡意字串」不是一個可以靠的假設 —— 中和的成本是一個字元。
+
+    **只處理字串。** 數字與 None 不可能被當成公式，而且負數加了引號會讓
+    Excel 把整欄讀成文字 —— 買賣超與漲跌幅有一半是負的，那會直接毀掉
+    這些檔案的可用性。
+    """
+    if not isinstance(value, str) or not value.startswith(_FORMULA_LEAD):
+        return value
+    return "'" + value
+
+
 def write_csv(path: Path, header: Sequence[str],
               rows: Iterable[Sequence[Any]]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     buf = io.StringIO(newline="")
     w = csv.writer(buf, lineterminator="\n")
-    w.writerow(header)
+    w.writerow([neutralise(h) for h in header])
     for r in rows:
-        w.writerow(["" if v is None else v for v in r])
+        w.writerow(["" if v is None else neutralise(v) for v in r])
     path.write_text(buf.getvalue(), encoding=ENCODING)
     return path
 

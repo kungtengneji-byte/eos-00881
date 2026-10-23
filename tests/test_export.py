@@ -96,3 +96,46 @@ def test_levels_export_inserts_the_latest_close_in_price_order(fake_root):
     p = export.export_levels("TWMARKET")
     rows = list(csv.reader(io.StringIO(p.read_text(encoding="utf-8-sig"))))[1:]
     assert [r[1] for r in rows] == ["壓力", "最新收盤", "支撐"]
+
+
+# ---------------------------------------------------------------- 公式注入
+
+def _cells(tmp_path, header, rows):
+    p = export.write_csv(tmp_path / "t.csv", header, rows)
+    with p.open(encoding=export.ENCODING, newline="") as fh:
+        return list(csv.reader(fh))
+
+
+@pytest.mark.parametrize("payload", ["=cmd|' /c calc'!A1", "+1+1", "-1+1",
+                                     "@SUM(A1)", "\tfoo", "\rfoo"])
+def test_formula_leads_are_neutralised(tmp_path, payload):
+    """這些檔案的用途就是給 Excel 開，股名又來自 TWSE —— 不可信的外部輸入。
+
+    今天沒有一檔股票叫 `=cmd|…`，但「來源永遠不會送出惡意字串」不是
+    可以靠的假設，而中和的成本是一個字元。
+    """
+    assert _cells(tmp_path, ["名稱"], [[payload]])[1][0] == "'" + payload
+
+
+def test_numbers_are_left_alone(tmp_path):
+    """**負數不可以加引號。** 買賣超與漲跌幅有一半是負的，
+    加了引號 Excel 會把整欄讀成文字，直接毀掉這些檔案的可用性。
+    """
+    row = _cells(tmp_path, ["買賣超", "漲跌幅", "零"], [[-2037.0, -0.0276, 0]])[1]
+    assert row == ["-2037.0", "-0.0276", "0"]
+
+
+def test_ordinary_names_are_untouched(tmp_path):
+    """真實股名不該被動到 —— 中和若誤傷正常值，這張表就沒人要看了。"""
+    names = ["玉山金", "臻鼎-KY", "00865B", "可寧衛*", "元大台灣50正2"]
+    assert _cells(tmp_path, ["名稱"], [[n] for n in names])[1:] == [[n] for n in names]
+
+
+def test_header_is_neutralised_too(tmp_path):
+    """標題列同樣會被 Excel 求值，構面名稱來自 YAML 也一併處理。"""
+    assert _cells(tmp_path, ["=BAD()"], [["x"]])[0][0] == "'=BAD()"
+
+
+def test_none_still_becomes_empty_after_neutralising(tmp_path):
+    """中和不可以把 None 變成 'None 之類的東西。"""
+    assert _cells(tmp_path, ["a"], [[None]])[1] == [""]
