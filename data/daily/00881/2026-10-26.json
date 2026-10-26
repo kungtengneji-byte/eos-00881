@@ -2,8 +2,9 @@
  "instrument": "00881",
  "trade_date": "2026-10-26",
  "first_collected_at": "2026-10-26T05:56:30",
- "updated_at": "2026-10-26T05:56:30",
+ "updated_at": "2026-10-26T16:03:01",
  "windows": [
+  "w1",
   "w3"
  ],
  "eos": {
@@ -309,6 +310,158 @@
    "as_of": "2026-10-25",
    "status": "ok",
    "note": ""
+  },
+  "close": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "volume_lots": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "turnover_100m": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "rsi14": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "rv20": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "drawdown20": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "volume_ratio": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "day_direction": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "close_adj_gt_ma20": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "ma20_gt_ma60": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "close_adj_gt_ma120": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "ret60_positive": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "foreign_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261026&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "trust_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261026&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "dealer_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261026&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "institutional_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261026&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "institutional_net": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261026&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "stock_foreign_net_lots": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261026&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "00881 當日無法人交易紀錄"
+  },
+  "stock_institutional_net_lots": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261026&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "00881 當日無法人交易紀錄"
   }
  }
 }
