@@ -1,222 +1,8 @@
 {
- "as_of": "2026-10-22",
+ "as_of": "2026-10-27",
  "days": 20,
  "source": "TWSE T86 + MI_INDEX + 上市公司基本資料",
  "rows": [
-  {
-   "date": "2026-09-22",
-   "leading": "foreign",
-   "leading_label": "外資",
-   "inflow": [
-    {
-     "key": "24",
-     "label": "半導體",
-     "amount_100m": 267.73,
-     "lots": 112612.7,
-     "stocks": 96,
-     "confirm_ratio": 0.942,
-     "top": [
-      {
-       "code": "2454",
-       "name": "聯發科",
-       "lots": 1972.4,
-       "amount_100m": 102.17,
-       "ret": 0.033932135728542916,
-       "confirmed": true
-      },
-      {
-       "code": "2303",
-       "name": "聯電",
-       "lots": 60104.0,
-       "amount_100m": 96.17,
-       "ret": 0.01910828025477707,
-       "confirmed": true
-      },
-      {
-       "code": "3189",
-       "name": "景碩",
-       "lots": 10209.8,
-       "amount_100m": 92.81,
-       "ret": 0.09915356711003627,
-       "confirmed": true
-      }
-     ]
-    },
-    {
-     "key": "28",
-     "label": "電子零組件",
-     "amount_100m": 240.92,
-     "lots": 41812.8,
-     "stocks": 103,
-     "confirm_ratio": 0.967,
-     "top": [
-      {
-       "code": "8046",
-       "name": "南電",
-       "lots": 5982.3,
-       "amount_100m": 69.69,
-       "ret": 0.09905660377358491,
-       "confirmed": true
-      },
-      {
-       "code": "3037",
-       "name": "欣興",
-       "lots": 5835.8,
-       "amount_100m": 65.36,
-       "ret": 0.09803921568627451,
-       "confirmed": true
-      },
-      {
-       "code": "4958",
-       "name": "臻鼎-KY",
-       "lots": 11245.6,
-       "amount_100m": 54.99,
-       "ret": 0.04042553191489362,
-       "confirmed": true
-      }
-     ]
-    },
-    {
-     "key": "ETF",
-     "label": "ETF／受益憑證",
-     "amount_100m": 215.73,
-     "lots": 1327435.0,
-     "stocks": 252,
-     "confirm_ratio": 0.983,
-     "top": [
-      {
-       "code": "00981A",
-       "name": "主動統一台股增長",
-       "lots": 147971.6,
-       "amount_100m": 44.61,
-       "ret": 0.019614474129184982,
-       "confirmed": true
-      },
-      {
-       "code": "00403A",
-       "name": "主動統一升級50",
-       "lots": 395763.9,
-       "amount_100m": 42.35,
-       "ret": 0.02001906577693041,
-       "confirmed": true
-      },
-      {
-       "code": "00631L",
-       "name": "元大台灣50正2",
-       "lots": 72991.2,
-       "amount_100m": 28.12,
-       "ret": 0.0018205461638491549,
-       "confirmed": true
-      }
-     ]
-    }
-   ],
-   "outflow": [
-    {
-     "key": "25",
-     "label": "電腦及週邊",
-     "amount_100m": -87.94,
-     "lots": -72668.5,
-     "stocks": 64,
-     "confirm_ratio": 0.997,
-     "top": [
-      {
-       "code": "3231",
-       "name": "緯創",
-       "lots": -36167.1,
-       "amount_100m": -65.28,
-       "ret": -0.032171581769437,
-       "confirmed": true
-      },
-      {
-       "code": "2324",
-       "name": "仁寶",
-       "lots": -19530.3,
-       "amount_100m": -7.24,
-       "ret": -0.014627659574468089,
-       "confirmed": true
-      },
-      {
-       "code": "3017",
-       "name": "奇鋐",
-       "lots": -194.3,
-       "amount_100m": -6.59,
-       "ret": -0.007320644216691069,
-       "confirmed": true
-      }
-     ]
-    },
-    {
-     "key": "03",
-     "label": "塑膠工業",
-     "amount_100m": -62.42,
-     "lots": -54587.6,
-     "stocks": 20,
-     "confirm_ratio": 1.0,
-     "top": [
-      {
-       "code": "1303",
-       "name": "南亞",
-       "lots": -24579.3,
-       "amount_100m": -56.9,
-       "ret": -0.033402922755741124,
-       "confirmed": true
-      },
-      {
-       "code": "1301",
-       "name": "台塑",
-       "lots": -5179.2,
-       "amount_100m": -3.35,
-       "ret": -0.009202453987730062,
-       "confirmed": true
-      },
-      {
-       "code": "1314",
-       "name": "中石化",
-       "lots": -28054.1,
-       "amount_100m": -2.45,
-       "ret": -0.04793028322440087,
-       "confirmed": true
-      }
-     ]
-    },
-    {
-     "key": "27",
-     "label": "通信網路",
-     "amount_100m": -23.57,
-     "lots": -8367.4,
-     "stocks": 45,
-     "confirm_ratio": 0.846,
-     "top": [
-      {
-       "code": "2455",
-       "name": "全新",
-       "lots": -3369.7,
-       "amount_100m": -18.43,
-       "ret": -0.043706293706293704,
-       "confirmed": true
-      },
-      {
-       "code": "2345",
-       "name": "智邦",
-       "lots": -271.0,
-       "amount_100m": -5.19,
-       "ret": 0.04076086956521739,
-       "confirmed": false
-      },
-      {
-       "code": "6442",
-       "name": "光聖",
-       "lots": -235.1,
-       "amount_100m": -3.55,
-       "ret": -0.009836065573770493,
-       "confirmed": true
-      }
-     ]
-    }
-   ],
-   "read": "資金流入半導體（聯發科／聯電） +267.7 億，價格同向 94%；流出電腦及週邊（緯創／仁寶） -87.9 億，價格同向 100%；主導法人為外資。"
-  },
   {
    "date": "2026-09-23",
    "leading": "foreign",
@@ -4258,6 +4044,220 @@
     }
    ],
    "read": "資金流入金融保險（元大金／中信金） +58.4 億，價格同向 87%；流出ETF／受益憑證（元大台灣50／主動中信台灣收益） -423.6 億，價格同向 100%；主導法人為外資。"
+  },
+  {
+   "date": "2026-10-27",
+   "leading": "foreign",
+   "leading_label": "外資",
+   "inflow": [
+    {
+     "key": "24",
+     "label": "半導體",
+     "amount_100m": 220.53,
+     "lots": 127987.8,
+     "stocks": 95,
+     "confirm_ratio": 0.9,
+     "top": [
+      {
+       "code": "2330",
+       "name": "台積電",
+       "lots": 2709.0,
+       "amount_100m": 65.02,
+       "ret": 0.006289308176100629,
+       "confirmed": true
+      },
+      {
+       "code": "2408",
+       "name": "南亞科",
+       "lots": 12923.4,
+       "amount_100m": 56.99,
+       "ret": 0.06521739130434782,
+       "confirmed": true
+      },
+      {
+       "code": "6770",
+       "name": "力積電",
+       "lots": 62635.6,
+       "amount_100m": 43.47,
+       "ret": 0.04518072289156626,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "key": "25",
+     "label": "電腦及週邊",
+     "amount_100m": 79.68,
+     "lots": 57774.8,
+     "stocks": 64,
+     "confirm_ratio": 0.912,
+     "top": [
+      {
+       "code": "6669",
+       "name": "緯穎",
+       "lots": 1163.2,
+       "amount_100m": 22.68,
+       "ret": 0.059782608695652176,
+       "confirmed": true
+      },
+      {
+       "code": "2382",
+       "name": "廣達",
+       "lots": 4890.7,
+       "amount_100m": 16.02,
+       "ret": 0.017080745341614908,
+       "confirmed": true
+      },
+      {
+       "code": "2356",
+       "name": "英業達",
+       "lots": 17761.5,
+       "amount_100m": 11.19,
+       "ret": 0.04132231404958678,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "key": "17",
+     "label": "金融保險",
+     "amount_100m": 38.97,
+     "lots": 63117.9,
+     "stocks": 31,
+     "confirm_ratio": 0.915,
+     "top": [
+      {
+       "code": "2881",
+       "name": "富邦金",
+       "lots": 4267.6,
+       "amount_100m": 6.91,
+       "ret": 0.022082018927444796,
+       "confirmed": true
+      },
+      {
+       "code": "2891",
+       "name": "中信金",
+       "lots": 8370.1,
+       "amount_100m": 6.28,
+       "ret": 0.0013351134846461949,
+       "confirmed": true
+      },
+      {
+       "code": "2885",
+       "name": "元大金",
+       "lots": 8455.3,
+       "amount_100m": 6.19,
+       "ret": 0.011049723756906077,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "outflow": [
+    {
+     "key": "ETF",
+     "label": "ETF／受益憑證",
+     "amount_100m": -305.32,
+     "lots": -1608880.3,
+     "stocks": 247,
+     "confirm_ratio": 0.953,
+     "top": [
+      {
+       "code": "00406A",
+       "name": "主動中信台灣收益",
+       "lots": -921902.4,
+       "amount_100m": -81.4,
+       "ret": -0.025386313465783666,
+       "confirmed": true
+      },
+      {
+       "code": "0050",
+       "name": "元大台灣50",
+       "lots": -69796.1,
+       "amount_100m": -74.4,
+       "ret": -0.0028063610851262865,
+       "confirmed": true
+      },
+      {
+       "code": "00981A",
+       "name": "主動統一台股增長",
+       "lots": -132731.6,
+       "amount_100m": -36.37,
+       "ret": -0.028024122029088334,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "key": "28",
+     "label": "電子零組件",
+     "amount_100m": -56.58,
+     "lots": -21499.2,
+     "stocks": 102,
+     "confirm_ratio": 0.998,
+     "top": [
+      {
+       "code": "4958",
+       "name": "臻鼎-KY",
+       "lots": -8340.4,
+       "amount_100m": -43.37,
+       "ret": -0.08289241622574955,
+       "confirmed": true
+      },
+      {
+       "code": "2308",
+       "name": "台達電",
+       "lots": -2661.6,
+       "amount_100m": -40.19,
+       "ret": -0.03205128205128205,
+       "confirmed": true
+      },
+      {
+       "code": "2383",
+       "name": "台光電",
+       "lots": -759.8,
+       "amount_100m": -36.09,
+       "ret": -0.0631163708086785,
+       "confirmed": true
+      }
+     ]
+    },
+    {
+     "key": "26",
+     "label": "光電",
+     "amount_100m": -30.74,
+     "lots": -102413.4,
+     "stocks": 68,
+     "confirm_ratio": 0.764,
+     "top": [
+      {
+       "code": "2409",
+       "name": "友達",
+       "lots": -95215.1,
+       "amount_100m": -31.85,
+       "ret": -0.055084745762711856,
+       "confirmed": true
+      },
+      {
+       "code": "3406",
+       "name": "玉晶光",
+       "lots": -932.3,
+       "amount_100m": -11.28,
+       "ret": 0.04310344827586207,
+       "confirmed": false
+      },
+      {
+       "code": "6456",
+       "name": "GIS-KY",
+       "lots": -2709.0,
+       "amount_100m": -2.65,
+       "ret": -0.041176470588235294,
+       "confirmed": true
+      }
+     ]
+    }
+   ],
+   "read": "資金流入半導體（台積電／南亞科） +220.5 億，價格同向 90%；流出ETF／受益憑證（主動中信台灣收益／元大台灣50） -305.3 億，價格同向 95%；主導法人為外資。"
   }
  ]
 }
