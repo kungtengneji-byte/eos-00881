@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-23",
  "first_collected_at": "2026-10-23T06:03:51",
- "updated_at": "2026-10-24T09:39:05",
+ "updated_at": "2026-10-27T09:41:31",
  "windows": [
   "w1",
   "w2",
@@ -113,8 +113,8 @@
   "outlook": {
    "rubric_version": "market-1.0-draft",
    "eos": 81,
-   "raw_eos": 81.1860870095216,
-   "earned": 81.1861,
+   "raw_eos": 80.8359975398473,
+   "earned": 80.836,
    "available": 100.0,
    "coverage_status": "confirmed",
    "published": true,
@@ -124,7 +124,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 81.1860870095216,
+     "earned": 80.8359975398473,
      "available": 100.0,
      "max": 100.0,
      "complete": true,
@@ -177,20 +177,20 @@
       {
        "id": "F6",
        "name": "前一美股費半",
-       "earned": 8.6061191961671,
+       "earned": 8.606028200613896,
        "available": 15.0,
        "max": 15.0,
        "scored": true,
-       "detail": "0.00442448 -> 0.5737 x 15"
+       "detail": "0.00442411 -> 0.5737 x 15"
       },
       {
        "id": "F7",
        "name": "美 10 年期公債殖利率",
-       "earned": 2.969999313354492,
+       "earned": 2.6200008392333984,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "4.953 -> 0.2970 x 10"
+       "detail": "4.988 -> 0.2620 x 10"
       }
      ]
     }
@@ -543,7 +543,7 @@
    "note": ""
   },
   "sox_latest_session_ret": {
-   "value": 0.004424476784668396,
+   "value": 0.004424112802455582,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
    "as_of": "2026-10-23",
@@ -551,11 +551,11 @@
    "note": "最新已收完的美股時段，對應明日展望燈號"
   },
   "us10y_latest": {
-   "value": 4.953000068664551,
+   "value": 4.98799991607666,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-22",
-   "status": "stale",
+   "as_of": "2026-10-23",
+   "status": "ok",
    "note": "最新已收完的美股時段"
   },
   "completed_buy_waves": {

@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-10-23",
  "first_collected_at": "2026-10-23T06:03:50",
- "updated_at": "2026-10-24T09:38:44",
+ "updated_at": "2026-10-27T09:40:09",
  "windows": [
   "w1",
   "w3",
@@ -11,8 +11,8 @@
  "eos": {
   "rubric_version": "1.1-draft",
   "eos": null,
-  "raw_eos": 30.0,
-  "earned": 9.0,
+  "raw_eos": 20.0,
+  "earned": 6.0,
   "available": 30.0,
   "coverage_status": "insufficient",
   "published": false,
@@ -171,7 +171,7 @@
    "E": {
     "key": "E",
     "name": "波動與總經風險",
-    "earned": 9.0,
+    "earned": 6.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -197,11 +197,11 @@
      {
       "id": "E3",
       "name": "USD/TWD 日變動",
-      "earned": 4.0,
+      "earned": 1.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "-0.006498 -> 4"
+      "detail": "0.00714 -> 1"
      }
     ]
    },
@@ -298,7 +298,7 @@
    "note": ""
   },
   "usdtwd": {
-   "value": 32.36589813232422,
+   "value": 32.59700012207031,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
    "as_of": "2026-10-22",
@@ -306,7 +306,7 @@
    "note": ""
   },
   "twd_change": {
-   "value": -0.006498343915273264,
+   "value": 0.007140292810700277,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
    "as_of": "2026-10-22",

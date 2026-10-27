@@ -2,10 +2,11 @@
  "instrument": "00881",
  "trade_date": "2026-10-26",
  "first_collected_at": "2026-10-26T05:56:30",
- "updated_at": "2026-10-26T16:03:01",
+ "updated_at": "2026-10-27T09:40:06",
  "windows": [
   "w1",
-  "w3"
+  "w3",
+  "w4"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
@@ -191,7 +192,7 @@
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "4.953 -> 2"
+      "detail": "4.988 -> 2"
      },
      {
       "id": "E3",
@@ -242,7 +243,9 @@
     "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
     "Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX 為較舊時點資料"
    ],
-   "watch": [],
+   "watch": [
+    "當日正式 NAV 尚未發布，折溢價待回補"
+   ],
    "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　Nasdaq、NVDA、SOX、TSM ADR、US10Y、VIX 為較舊時點資料"
   }
  },
@@ -288,12 +291,12 @@
    "note": "美股資料為 2026-10-23，較預期的 2026-10-25 舊 2 天（休市或缺值）"
   },
   "us10y": {
-   "value": 4.953000068664551,
+   "value": 4.98799991607666,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-22",
+   "as_of": "2026-10-23",
    "status": "stale",
-   "note": "美股資料為 2026-10-22，較預期的 2026-10-25 舊 3 天（休市或缺值）"
+   "note": "美股資料為 2026-10-23，較預期的 2026-10-25 舊 2 天（休市或缺值）"
   },
   "usdtwd": {
    "value": 32.551998138427734,
@@ -462,6 +465,38 @@
    "as_of": null,
    "status": "missing",
    "note": "00881 當日無法人交易紀錄"
+  },
+  "wcr": {
+   "value": null,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "僅 0/10 檔取得報酬：2382 無 2026-10-26 收盤；2345 無 2026-10-26 收盤；2303 無 2026-10-26 收盤"
+  },
+  "breadth_count": {
+   "value": null,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "僅 0/10 檔取得報酬：2382 無 2026-10-26 收盤；2345 無 2026-10-26 收盤；2303 無 2026-10-26 收盤"
+  },
+  "nav": {
+   "value": null,
+   "source": "國泰投信 cwapi",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+  },
+  "premium": {
+   "value": null,
+   "source": "國泰投信 cwapi",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
   }
  }
 }
