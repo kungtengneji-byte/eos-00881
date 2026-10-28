@@ -1,7 +1,9 @@
 {
- "as_of": "2026-10-27",
+ "as_of": "2026-10-28",
  "days": 30,
  "off_session_fields": [
+  "nvda_ret",
+  "tsm_ret",
   "us10y"
  ],
  "rule": "台股 T 日對應美股 T−1 時段（避免前視偏誤）",
@@ -54,44 +56,16 @@
  },
  "stats": {
   "days": 30,
-  "usable": 23,
-  "agree": 18,
-  "agree_ratio": 0.782608695652174,
+  "usable": 22,
+  "agree": 17,
+  "agree_ratio": 0.7727272727272727,
   "taiex_avg_after_sox_up": 0.004649744912635646,
-  "taiex_avg_after_sox_down": -0.006058899967758227,
+  "taiex_avg_after_sox_down": -0.005899393732490979,
   "sox_up_days": 14,
-  "sox_down_days": 11,
+  "sox_down_days": 10,
   "flat_band": 0.001
  },
  "rows": [
-  {
-   "tw_date": "2026-09-15",
-   "us_date": "2026-09-14",
-   "us": {
-    "sox_ret": -0.058585903802647166,
-    "ndx_ret": -0.005568248537587528,
-    "tsm_ret": -0.03515368112835304,
-    "nvda_ret": -0.03357912317427003,
-    "vix": 17.100000381469727,
-    "us10y": 4.960999965667725
-   },
-   "tw": {
-    "taiex_change_pct": -0.0076539623204307135,
-    "market_foreign_net_100m": -626.99
-   },
-   "us_as_of": {
-    "sox_ret": "2026-09-14",
-    "ndx_ret": "2026-09-14",
-    "tsm_ret": "2026-09-14",
-    "nvda_ret": "2026-09-14",
-    "vix": "2026-09-14",
-    "us10y": "2026-09-14"
-   },
-   "off_session": [],
-   "sox_dir": "down",
-   "taiex_dir": "down",
-   "agree": true
-  },
   {
    "tw_date": "2026-09-16",
    "us_date": "2026-09-15",
@@ -939,6 +913,38 @@
    "sox_dir": "up",
    "taiex_dir": "up",
    "agree": true
+  },
+  {
+   "tw_date": "2026-10-28",
+   "us_date": "2026-10-27",
+   "us": {
+    "sox_ret": 0.03600272893728196,
+    "ndx_ret": 0.011785899298015101,
+    "tsm_ret": 0.014002019580951597,
+    "nvda_ret": 0.023890752397295545,
+    "vix": 17.520000457763672,
+    "us10y": 4.986000061035156
+   },
+   "tw": {
+    "taiex_change_pct": null,
+    "market_foreign_net_100m": null
+   },
+   "us_as_of": {
+    "sox_ret": "2026-10-27",
+    "ndx_ret": "2026-10-27",
+    "tsm_ret": "2026-10-26",
+    "nvda_ret": "2026-10-26",
+    "vix": "2026-10-27",
+    "us10y": "2026-10-26"
+   },
+   "off_session": [
+    "tsm_ret",
+    "nvda_ret",
+    "us10y"
+   ],
+   "sox_dir": "up",
+   "taiex_dir": null,
+   "agree": null
   }
  ]
 }
