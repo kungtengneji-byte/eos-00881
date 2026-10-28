@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-10-27",
  "first_collected_at": "2026-10-27T08:44:13",
- "updated_at": "2026-10-27T21:15:38",
+ "updated_at": "2026-10-28T14:46:01",
  "windows": [
   "w1",
   "w3",
@@ -10,33 +10,31 @@
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 52,
-  "raw_eos": 52.47058823529412,
-  "earned": 44.6,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 55,
+  "raw_eos": 54.6,
+  "earned": 54.6,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "中性等待",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 10.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 10.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.0017 -> 10"
      }
     ]
    },
@@ -184,7 +182,7 @@
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "4.988 -> 2"
+      "detail": "4.986 -> 2"
      },
      {
       "id": "E3",
@@ -227,29 +225,25 @@
    }
   },
   "summary": {
-   "headline": "EOS 52/100，屬「中性等待」，較 10-22 上升 7 分",
+   "headline": "EOS 55/100，屬「中性等待」，較 10-22 上升 10 分",
    "drivers": [
-    "C 成分股廣度 +6.0"
+    "C 成分股廣度 +6.0",
+    "A 價格/折溢價 +4.0"
    ],
    "drags": [
     "D 海外科技 -0.8"
    ],
    "evidence": [
     "C 成分股廣度：Top10加權貢獻 -0.23%、Top10上漲家數 3/10 檔",
-    "D 海外科技：SOX +2.82%、Nasdaq +0.82%、TSM ADR +1.40%、NVDA +2.39%",
+    "A 價格/折溢價：折溢價 +0.17%",
     "Top10 最大貢獻 台積電 +0.63%（+0.268%）；最大拖累 台光電 -6.31%（-0.170%）"
    ],
-   "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "US10Y 為較舊時點資料",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
-   ],
+   "quality": [],
    "watch": [
-    "距「偏有利」（65 分）尚差 13 分",
-    "距完整填息 55.15 元尚需 14.32%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距「偏有利」（65 分）尚差 10 分",
+    "距完整填息 55.15 元尚需 14.32%"
    ],
-   "text": "EOS 52/100，屬「中性等待」，較 10-22 上升 7 分　改善：C 成分股廣度 +6.0　拖累：D 海外科技 -0.8　C 成分股廣度：Top10加權貢獻 -0.23%、Top10上漲家數 3/10 檔　D 海外科技：SOX +2.82%、Nasdaq +0.82%、TSM ADR +1.40%、NVDA +2.39%　Top10 最大貢獻 台積電 +0.63%（+0.268%）；最大拖累 台光電 -6.31%（-0.170%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「偏有利」（65 分）尚差 13 分；距完整填息 55.15 元尚需 14.32%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 55/100，屬「中性等待」，較 10-22 上升 10 分　改善：C 成分股廣度 +6.0、A 價格/折溢價 +4.0　拖累：D 海外科技 -0.8　C 成分股廣度：Top10加權貢獻 -0.23%、Top10上漲家數 3/10 檔　A 價格/折溢價：折溢價 +0.17%　Top10 最大貢獻 台積電 +0.63%（+0.268%）；最大拖累 台光電 -6.31%（-0.170%）　待觀察：距「偏有利」（65 分）尚差 10 分；距完整填息 55.15 元尚需 14.32%"
   }
  },
  "fields": {
@@ -294,12 +288,12 @@
    "note": ""
   },
   "us10y": {
-   "value": 4.98799991607666,
+   "value": 4.986000061035156,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-23",
-   "status": "stale",
-   "note": "美股資料為 2026-10-23，較預期的 2026-10-26 舊 3 天（休市或缺值）"
+   "as_of": "2026-10-26",
+   "status": "ok",
+   "note": ""
   },
   "usdtwd": {
    "value": 32.57080078125,
@@ -486,20 +480,20 @@
    "note": "權重基準日 2026-10-27"
   },
   "nav": {
-   "value": null,
+   "value": 48.16,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-27",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": 0.0017000000000000001,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-27",
+   "status": "ok",
+   "note": ""
   },
   "open": {
    "value": 49.02,

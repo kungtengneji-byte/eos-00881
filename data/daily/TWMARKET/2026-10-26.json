@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-26",
  "first_collected_at": "2026-10-26T05:56:30",
- "updated_at": "2026-10-27T09:41:12",
+ "updated_at": "2026-10-28T14:46:50",
  "windows": [
   "w1",
   "w2",
@@ -115,8 +115,8 @@
   "outlook": {
    "rubric_version": "market-1.0-draft",
    "eos": 87,
-   "raw_eos": 86.78064179236809,
-   "earned": 86.7806,
+   "raw_eos": 86.80064034278313,
+   "earned": 86.8006,
    "available": 100.0,
    "coverage_status": "confirmed",
    "published": true,
@@ -126,7 +126,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 86.78064179236809,
+     "earned": 86.80064034278313,
      "available": 100.0,
      "max": 100.0,
      "complete": true,
@@ -188,11 +188,11 @@
       {
        "id": "F7",
        "name": "美 10 年期公債殖利率",
-       "earned": 2.6200008392333984,
+       "earned": 2.6399993896484375,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "4.988 -> 0.2620 x 10"
+       "detail": "4.986 -> 0.2640 x 10"
       }
      ]
     }
@@ -554,11 +554,11 @@
    "note": "最新已收完的美股時段，對應明日展望燈號"
   },
   "us10y_latest": {
-   "value": 4.98799991607666,
+   "value": 4.986000061035156,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-23",
-   "status": "stale",
+   "as_of": "2026-10-26",
+   "status": "ok",
    "note": "最新已收完的美股時段"
   },
   "completed_buy_waves": {
