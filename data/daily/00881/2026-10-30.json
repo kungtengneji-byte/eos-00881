@@ -1,0 +1,290 @@
+{
+ "instrument": "00881",
+ "trade_date": "2026-10-30",
+ "first_collected_at": "2026-10-30T01:30:19",
+ "updated_at": "2026-10-30T01:30:19",
+ "windows": [
+  "w2"
+ ],
+ "eos": {
+  "rubric_version": "1.1-draft",
+  "eos": null,
+  "raw_eos": null,
+  "earned": 0.0,
+  "available": 0.0,
+  "coverage_status": "insufficient",
+  "published": false,
+  "rating": null,
+  "missing": [
+   "A1",
+   "B1",
+   "B2",
+   "B3",
+   "B4",
+   "C1",
+   "C2",
+   "D1",
+   "D2",
+   "D3",
+   "D4",
+   "E1",
+   "E2",
+   "E3",
+   "F1",
+   "F2"
+  ],
+  "dimensions": {
+   "A": {
+    "key": "A",
+    "name": "ETF 合理交易價格／折溢價",
+    "earned": null,
+    "available": 0.0,
+    "max": 15.0,
+    "complete": false,
+    "items": [
+     {
+      "id": "A1",
+      "name": "折溢價 (P-NAV)/NAV",
+      "earned": null,
+      "available": 0.0,
+      "max": 15.0,
+      "scored": false,
+      "detail": "缺值"
+     }
+    ]
+   },
+   "B": {
+    "key": "B",
+    "name": "含息趨勢與健康回檔",
+    "earned": null,
+    "available": 0.0,
+    "max": 25.0,
+    "complete": false,
+    "items": [
+     {
+      "id": "B1",
+      "name": "趨勢",
+      "earned": null,
+      "available": 0.0,
+      "max": 10.0,
+      "scored": false,
+      "detail": "四項條件全缺"
+     },
+     {
+      "id": "B2",
+      "name": "距 20 日高點回檔",
+      "earned": null,
+      "available": 0.0,
+      "max": 7.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "B3",
+      "name": "RSI14 (Wilder, 含息序列)",
+      "earned": null,
+      "available": 0.0,
+      "max": 4.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "B4",
+      "name": "RV20 實現波動率",
+      "earned": null,
+      "available": 0.0,
+      "max": 4.0,
+      "scored": false,
+      "detail": "缺值"
+     }
+    ]
+   },
+   "C": {
+    "key": "C",
+    "name": "成分股廣度與加權貢獻",
+    "earned": null,
+    "available": 0.0,
+    "max": 20.0,
+    "complete": false,
+    "items": [
+     {
+      "id": "C1",
+      "name": "Top10 加權報酬貢獻 WCR",
+      "earned": null,
+      "available": 0.0,
+      "max": 12.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "C2",
+      "name": "Top10 上漲家數",
+      "earned": null,
+      "available": 0.0,
+      "max": 8.0,
+      "scored": false,
+      "detail": "缺值"
+     }
+    ]
+   },
+   "D": {
+    "key": "D",
+    "name": "海外科技領先因子",
+    "earned": null,
+    "available": 0.0,
+    "max": 15.0,
+    "complete": false,
+    "items": [
+     {
+      "id": "D1",
+      "name": "SOX",
+      "earned": null,
+      "available": 0.0,
+      "max": 5.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "D2",
+      "name": "TSM ADR",
+      "earned": null,
+      "available": 0.0,
+      "max": 4.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "D3",
+      "name": "Nasdaq",
+      "earned": null,
+      "available": 0.0,
+      "max": 3.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "D4",
+      "name": "NVDA",
+      "earned": null,
+      "available": 0.0,
+      "max": 3.0,
+      "scored": false,
+      "detail": "缺值"
+     }
+    ]
+   },
+   "E": {
+    "key": "E",
+    "name": "波動與總經風險",
+    "earned": null,
+    "available": 0.0,
+    "max": 15.0,
+    "complete": false,
+    "items": [
+     {
+      "id": "E1",
+      "name": "VIX 水準",
+      "earned": null,
+      "available": 0.0,
+      "max": 6.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "E2",
+      "name": "US10Y 殖利率",
+      "earned": null,
+      "available": 0.0,
+      "max": 5.0,
+      "scored": false,
+      "detail": "缺值"
+     },
+     {
+      "id": "E3",
+      "name": "USD/TWD 日變動",
+      "earned": null,
+      "available": 0.0,
+      "max": 4.0,
+      "scored": false,
+      "detail": "缺值"
+     }
+    ]
+   },
+   "F": {
+    "key": "F",
+    "name": "成交量與法人資金流",
+    "earned": null,
+    "available": 0.0,
+    "max": 10.0,
+    "complete": false,
+    "items": [
+     {
+      "id": "F1",
+      "name": "量比（全日量 / 20日均量）",
+      "earned": null,
+      "available": 0.0,
+      "max": 5.0,
+      "scored": false,
+      "detail": "缺值（量比或漲跌方向）"
+     },
+     {
+      "id": "F2",
+      "name": "三大法人買賣超（億元）",
+      "earned": null,
+      "available": 0.0,
+      "max": 5.0,
+      "scored": false,
+      "detail": "缺值"
+     }
+    ]
+   }
+  },
+  "summary": {
+   "headline": "當日可計分項目僅 0/100，依規則不計算 EOS；已取得的項目仍列於下方",
+   "drivers": [],
+   "drags": [],
+   "evidence": [],
+   "quality": [
+    "16 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 0 標準化"
+   ],
+   "watch": [
+    "當日正式 NAV 尚未發布，折溢價待回補"
+   ],
+   "text": "當日可計分項目僅 0/100，依規則不計算 EOS；已取得的項目仍列於下方　16 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 0 標準化"
+  }
+ },
+ "fields": {
+  "nav": {
+   "value": null,
+   "source": "國泰投信 cwapi",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+  },
+  "premium": {
+   "value": null,
+   "source": "國泰投信 cwapi",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+  },
+  "wcr": {
+   "value": null,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "僅 0/10 檔取得報酬：3037 無 2026-10-30 收盤；2345 無 2026-10-30 收盤；2303 無 2026-10-30 收盤"
+  },
+  "breadth_count": {
+   "value": null,
+   "source": "國泰投信權重 + TWSE 個股收盤",
+   "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
+   "as_of": null,
+   "status": "missing",
+   "note": "僅 0/10 檔取得報酬：3037 無 2026-10-30 收盤；2345 無 2026-10-30 收盤；2303 無 2026-10-30 收盤"
+  }
+ }
+}
