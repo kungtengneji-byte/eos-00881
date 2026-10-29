@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-10-28",
  "first_collected_at": "2026-10-28T00:48:54",
- "updated_at": "2026-10-28T22:03:56",
+ "updated_at": "2026-10-29T14:54:43",
  "windows": [
   "w1",
   "w2",
@@ -11,33 +11,31 @@
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 80,
-  "raw_eos": 79.76470588235294,
-  "earned": 67.8,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 81,
+  "raw_eos": 80.8,
+  "earned": 80.8,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "高機會區",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 13.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 13.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-0.0012 -> 13"
      }
     ]
    },
@@ -228,10 +226,11 @@
    }
   },
   "summary": {
-   "headline": "EOS 80/100，屬「高機會區」，較 10-27 上升 25 分",
+   "headline": "EOS 81/100，屬「高機會區」，較 10-27 上升 26 分",
    "drivers": [
     "C 成分股廣度 +14.0",
     "F 量價/法人 +4.0",
+    "A 價格/折溢價 +3.0",
     "B 含息趨勢/回檔 +3.0",
     "E 波動/風險 +2.0",
     "D 海外科技 +0.2"
@@ -242,33 +241,29 @@
     "F 量價/法人：量比 0.58x、三大法人 +324.4 億元",
     "Top10 最大貢獻 聯發科 +6.94%（+0.673%）"
    ],
-   "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
-   ],
+   "quality": [],
    "watch": [
-    "距完整填息 55.15 元尚需 11.62%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距完整填息 55.15 元尚需 11.62%"
    ],
-   "text": "EOS 80/100，屬「高機會區」，較 10-27 上升 25 分　改善：C 成分股廣度 +14.0、F 量價/法人 +4.0、B 含息趨勢/回檔 +3.0、E 波動/風險 +2.0、D 海外科技 +0.2　C 成分股廣度：Top10加權貢獻 +1.84%、Top10上漲家數 10/10 檔　F 量價/法人：量比 0.58x、三大法人 +324.4 億元　Top10 最大貢獻 聯發科 +6.94%（+0.673%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距完整填息 55.15 元尚需 11.62%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 81/100，屬「高機會區」，較 10-27 上升 26 分　改善：C 成分股廣度 +14.0、F 量價/法人 +4.0、A 價格/折溢價 +3.0、B 含息趨勢/回檔 +3.0、E 波動/風險 +2.0、D 海外科技 +0.2　C 成分股廣度：Top10加權貢獻 +1.84%、Top10上漲家數 10/10 檔　F 量價/法人：量比 0.58x、三大法人 +324.4 億元　Top10 最大貢獻 聯發科 +6.94%（+0.673%）　待觀察：距完整填息 55.15 元尚需 11.62%"
   }
  },
  "fields": {
   "nav": {
-   "value": null,
+   "value": 49.47,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-28",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": -0.0012,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-28",
+   "status": "ok",
+   "note": ""
   },
   "wcr": {
    "value": 0.018375955991368615,

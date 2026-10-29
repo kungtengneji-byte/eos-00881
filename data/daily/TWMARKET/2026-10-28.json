@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-10-28",
  "first_collected_at": "2026-10-28T00:48:58",
- "updated_at": "2026-10-28T22:04:16",
+ "updated_at": "2026-10-29T14:55:39",
  "windows": [
   "w1",
   "w2",
@@ -119,9 +119,9 @@
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
-   "eos": 78,
-   "raw_eos": 78.08178634934679,
-   "earned": 70.2736,
+   "eos": 74,
+   "raw_eos": 74.0452423082919,
+   "earned": 66.6407,
    "available": 90.0,
    "coverage_status": "confirmed",
    "published": true,
@@ -133,7 +133,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 70.27360771441211,
+     "earned": 66.64071807746271,
      "available": 90.0,
      "max": 100.0,
      "complete": false,
@@ -186,26 +186,26 @@
       {
        "id": "F6",
        "name": "前一美股費半",
-       "earned": 15.0,
+       "earned": 11.887110820814279,
        "available": 15.0,
        "max": 15.0,
        "scored": true,
-       "detail": "0.0360023 -> 1.0000 x 15"
+       "detail": "0.0175484 -> 0.7925 x 15"
       },
       {
        "id": "F7",
        "name": "美 10 年期公債殖利率",
-       "earned": 2.5699996948242188,
+       "earned": 2.049999237060547,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "4.993 -> 0.2570 x 10"
+       "detail": "5.045 -> 0.2050 x 10"
       }
      ]
     }
    },
-   "us_session": "2026-10-27",
-   "same_as_today": true
+   "us_session": "2026-10-28",
+   "same_as_today": false
   },
   "levels": {
    "as_of": "2026-10-28",
@@ -766,19 +766,19 @@
    "note": ""
   },
   "sox_latest_session_ret": {
-   "value": 0.03600228838819208,
+   "value": 0.01754844328325711,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
-   "as_of": "2026-10-27",
-   "status": "stale",
+   "as_of": "2026-10-28",
+   "status": "ok",
    "note": "最新已收完的美股時段，對應明日展望燈號"
   },
   "us10y_latest": {
-   "value": 4.993000030517578,
+   "value": 5.045000076293945,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-27",
-   "status": "stale",
+   "as_of": "2026-10-28",
+   "status": "ok",
    "note": "最新已收完的美股時段"
   },
   "stock_flow_count": {
