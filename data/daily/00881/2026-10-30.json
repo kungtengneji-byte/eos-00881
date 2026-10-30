@@ -2,16 +2,17 @@
  "instrument": "00881",
  "trade_date": "2026-10-30",
  "first_collected_at": "2026-10-30T01:30:19",
- "updated_at": "2026-10-30T09:18:13",
+ "updated_at": "2026-10-30T14:57:02",
  "windows": [
   "w2",
-  "w3"
+  "w3",
+  "w4"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
   "eos": null,
-  "raw_eos": 49.83333333333333,
-  "earned": 14.95,
+  "raw_eos": 42.5,
+  "earned": 12.75,
   "available": 30.0,
   "coverage_status": "insufficient",
   "published": false,
@@ -124,7 +125,7 @@
    "D": {
     "key": "D",
     "name": "海外科技領先因子",
-    "earned": 5.95,
+    "earned": 2.75,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -141,11 +142,11 @@
      {
       "id": "D2",
       "name": "TSM ADR",
-      "earned": 3.2,
+      "earned": 0.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "0.006043 -> 80% x 4"
+      "detail": "-0.01752 -> 0% x 4"
      },
      {
       "id": "D3",
@@ -163,14 +164,14 @@
       "available": 3.0,
       "max": 3.0,
       "scored": true,
-      "detail": "-0.01175 -> 25% x 3"
+      "detail": "-0.007986 -> 25% x 3"
      }
     ]
    },
    "E": {
     "key": "E",
     "name": "波動與總經風險",
-    "earned": 9.0,
+    "earned": 10.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -187,11 +188,11 @@
      {
       "id": "E2",
       "name": "US10Y 殖利率",
-      "earned": 1.0,
+      "earned": 2.0,
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "5.045 -> 1"
+      "detail": "4.989 -> 2"
      },
      {
       "id": "E3",
@@ -239,13 +240,12 @@
    "drags": [],
    "evidence": [],
    "quality": [
-    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
-    "NVDA、TSM ADR、US10Y 為較舊時點資料"
+    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
    ],
    "watch": [
     "當日正式 NAV 尚未發布，折溢價待回補"
    ],
-   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　NVDA、TSM ADR、US10Y 為較舊時點資料"
+   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
   }
  },
  "fields": {
@@ -282,7 +282,7 @@
    "note": "僅 0/10 檔取得報酬：3037 無 2026-10-30 收盤；2345 無 2026-10-30 收盤；2303 無 2026-10-30 收盤"
   },
   "sox_ret": {
-   "value": -0.014190412636939431,
+   "value": -0.01419032905576001,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
    "as_of": "2026-10-29",
@@ -290,7 +290,7 @@
    "note": ""
   },
   "ndx_ret": {
-   "value": -0.013752431948656718,
+   "value": -0.013752579077550342,
    "source": "Yahoo Finance ^IXIC",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?interval=1d&range=3mo",
    "as_of": "2026-10-29",
@@ -298,20 +298,20 @@
    "note": ""
   },
   "tsm_ret": {
-   "value": 0.006043021214421795,
+   "value": -0.017519537748724723,
    "source": "Yahoo Finance TSM",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TSM?interval=1d&range=3mo",
-   "as_of": "2026-10-28",
-   "status": "stale",
-   "note": "美股資料為 2026-10-28，較預期的 2026-10-29 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-29",
+   "status": "ok",
+   "note": ""
   },
   "nvda_ret": {
-   "value": -0.011746340873250216,
+   "value": -0.00798589089845625,
    "source": "Yahoo Finance NVDA",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?interval=1d&range=3mo",
-   "as_of": "2026-10-28",
-   "status": "stale",
-   "note": "美股資料為 2026-10-28，較預期的 2026-10-29 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-29",
+   "status": "ok",
+   "note": ""
   },
   "vix": {
    "value": 17.200000762939453,
@@ -322,12 +322,12 @@
    "note": ""
   },
   "us10y": {
-   "value": 5.045000076293945,
+   "value": 4.988999843597412,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-28",
-   "status": "stale",
-   "note": "美股資料為 2026-10-28，較預期的 2026-10-29 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-29",
+   "status": "ok",
+   "note": ""
   },
   "usdtwd": {
    "value": 32.3828010559082,
@@ -344,6 +344,158 @@
    "as_of": "2026-10-29",
    "status": "ok",
    "note": ""
+  },
+  "close": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "volume_lots": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "turnover_100m": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "rsi14": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "rv20": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "drawdown20": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "volume_ratio": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "day_direction": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "close_adj_gt_ma20": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "ma20_gt_ma60": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "close_adj_gt_ma120": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "ret60_positive": {
+   "value": null,
+   "source": "TWSE STOCK_DAY",
+   "url": "https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=20261001&stockNo=00881&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
+  },
+  "foreign_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261030&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "trust_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261030&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "dealer_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261030&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "institutional_net_100m": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261030&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "institutional_net": {
+   "value": null,
+   "source": "TWSE BFI82U",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261030&type=day&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "當日尚未發布或查無資料"
+  },
+  "stock_foreign_net_lots": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261030&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "00881 當日無法人交易紀錄"
+  },
+  "stock_institutional_net_lots": {
+   "value": null,
+   "source": "TWSE T86",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20261030&selectType=ALLBUT0999&response=json",
+   "as_of": null,
+   "status": "missing",
+   "note": "00881 當日無法人交易紀錄"
   }
  }
 }

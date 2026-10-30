@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-10-29",
  "first_collected_at": "2026-10-29T01:18:04",
- "updated_at": "2026-10-29T22:24:16",
+ "updated_at": "2026-10-30T14:57:06",
  "windows": [
   "w1",
   "w2",
@@ -11,33 +11,31 @@
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 43,
-  "raw_eos": 42.88235294117647,
-  "earned": 36.45,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 46,
+  "raw_eos": 46.45,
+  "earned": 46.45,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "偏不利",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 10.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 10.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.001 -> 10"
      }
     ]
    },
@@ -228,9 +226,10 @@
    }
   },
   "summary": {
-   "headline": "EOS 43/100，屬「偏不利」，較 10-28 下降 38 分",
+   "headline": "EOS 46/100，屬「偏不利」，較 10-28 下降 35 分",
    "drivers": [],
    "drags": [
+    "A 價格/折溢價 -3.0",
     "D 海外科技 -3.4",
     "B 含息趨勢/回檔 -4.0",
     "F 量價/法人 -4.0",
@@ -241,34 +240,30 @@
     "B 含息趨勢/回檔：RSI14 37.53、20日回檔 -11.23%、RV20 +26.35%",
     "Top10 最大拖累 聯發科 -4.49%（-0.425%）"
    ],
-   "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
-   ],
+   "quality": [],
    "watch": [
-    "距「中性等待」（50 分）尚差 7 分",
-    "距完整填息 55.15 元尚需 13.99%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距「中性等待」（50 分）尚差 4 分",
+    "距完整填息 55.15 元尚需 13.99%"
    ],
-   "text": "EOS 43/100，屬「偏不利」，較 10-28 下降 38 分　拖累：D 海外科技 -3.4、B 含息趨勢/回檔 -4.0、F 量價/法人 -4.0、C 成分股廣度 -20.0　C 成分股廣度：Top10加權貢獻 -1.49%、Top10上漲家數 0/10 檔　B 含息趨勢/回檔：RSI14 37.53、20日回檔 -11.23%、RV20 +26.35%　Top10 最大拖累 聯發科 -4.49%（-0.425%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「中性等待」（50 分）尚差 7 分；距完整填息 55.15 元尚需 13.99%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 46/100，屬「偏不利」，較 10-28 下降 35 分　拖累：A 價格/折溢價 -3.0、D 海外科技 -3.4、B 含息趨勢/回檔 -4.0、F 量價/法人 -4.0、C 成分股廣度 -20.0　C 成分股廣度：Top10加權貢獻 -1.49%、Top10上漲家數 0/10 檔　B 含息趨勢/回檔：RSI14 37.53、20日回檔 -11.23%、RV20 +26.35%　Top10 最大拖累 聯發科 -4.49%（-0.425%）　待觀察：距「中性等待」（50 分）尚差 4 分；距完整填息 55.15 元尚需 13.99%"
   }
  },
  "fields": {
   "nav": {
-   "value": null,
+   "value": 48.33,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-29",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": 0.001,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-10-29",
+   "status": "ok",
+   "note": ""
   },
   "wcr": {
    "value": -0.014873963713094802,
