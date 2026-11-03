@@ -1194,5 +1194,28 @@
   "premium": 0.0013,
   "rsi14": 30.861529617314545,
   "volume_ratio": 1.18903956270074
+ },
+ {
+  "date": "2026-11-03",
+  "eos": 21,
+  "rating": "高風險區",
+  "coverage": 85.0,
+  "status": "provisional",
+  "A": null,
+  "A_avail": 0.0,
+  "B": 8.0,
+  "B_avail": 25.0,
+  "C": 0.0,
+  "C_avail": 20.0,
+  "D": 1.5,
+  "D_avail": 15.0,
+  "E": 7.0,
+  "E_avail": 15.0,
+  "F": 1.0,
+  "F_avail": 10.0,
+  "close": 44.6,
+  "premium": null,
+  "rsi14": 25.370274077479337,
+  "volume_ratio": 1.541206140396089
  }
 ]
