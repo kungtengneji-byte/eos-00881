@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-02",
+ "as_of": "2026-11-03",
  "days": 30,
  "off_session_fields": [
   "us10y"
@@ -56,44 +56,16 @@
  },
  "stats": {
   "days": 30,
-  "usable": 21,
-  "agree": 15,
-  "agree_ratio": 0.7142857142857143,
-  "taiex_avg_after_sox_up": 0.001967151593112243,
+  "usable": 20,
+  "agree": 14,
+  "agree_ratio": 0.7,
+  "taiex_avg_after_sox_up": 0.001991041894429992,
   "taiex_avg_after_sox_down": -0.00763050272749983,
-  "sox_up_days": 12,
+  "sox_up_days": 11,
   "sox_down_days": 11,
   "flat_band": 0.001
  },
  "rows": [
-  {
-   "tw_date": "2026-09-22",
-   "us_date": "2026-09-21",
-   "us": {
-    "sox_ret": 0.042903269062733784,
-    "ndx_ret": 0.02260533125569797,
-    "tsm_ret": 0.024087240659042664,
-    "nvda_ret": 0.022990059441793553,
-    "vix": 14.869999885559082,
-    "us10y": 4.9629998207092285
-   },
-   "tw": {
-    "taiex_change_pct": 0.0017043582786169993,
-    "market_foreign_net_100m": 453.21
-   },
-   "us_as_of": {
-    "sox_ret": "2026-09-21",
-    "ndx_ret": "2026-09-21",
-    "tsm_ret": "2026-09-21",
-    "nvda_ret": "2026-09-21",
-    "vix": "2026-09-21",
-    "us10y": "2026-09-21"
-   },
-   "off_session": [],
-   "sox_dir": "up",
-   "taiex_dir": "up",
-   "agree": true
-  },
   {
    "tw_date": "2026-09-23",
    "us_date": "2026-09-22",
@@ -936,6 +908,36 @@
     "nvda_ret": "2026-10-30",
     "vix": "2026-10-30",
     "us10y": "2026-10-29"
+   },
+   "off_session": [
+    "us10y"
+   ],
+   "sox_dir": "down",
+   "taiex_dir": null,
+   "agree": null
+  },
+  {
+   "tw_date": "2026-11-03",
+   "us_date": "2026-11-02",
+   "us": {
+    "sox_ret": -0.03372415142127727,
+    "ndx_ret": -0.010718116080905782,
+    "tsm_ret": -0.01846699310523514,
+    "nvda_ret": -0.012607514849246049,
+    "vix": 21.149999618530273,
+    "us10y": 4.928999900817871
+   },
+   "tw": {
+    "taiex_change_pct": null,
+    "market_foreign_net_100m": null
+   },
+   "us_as_of": {
+    "sox_ret": "2026-11-02",
+    "ndx_ret": "2026-11-02",
+    "tsm_ret": "2026-11-02",
+    "nvda_ret": "2026-11-02",
+    "vix": "2026-11-02",
+    "us10y": "2026-10-30"
    },
    "off_session": [
     "us10y"
