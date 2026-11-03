@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-10-31",
  "first_collected_at": "2026-10-31T01:06:54",
- "updated_at": "2026-10-31T14:51:51",
+ "updated_at": "2026-11-03T15:46:07",
  "windows": [
   "w2",
   "w4"
@@ -10,8 +10,8 @@
  "eos": {
   "rubric_version": "1.1-draft",
   "eos": null,
-  "raw_eos": 26.666666666666668,
-  "earned": 8.0,
+  "raw_eos": 20.0,
+  "earned": 6.0,
   "available": 30.0,
   "coverage_status": "insufficient",
   "published": false,
@@ -170,7 +170,7 @@
    "E": {
     "key": "E",
     "name": "波動與總經風險",
-    "earned": 8.0,
+    "earned": 6.0,
     "available": 15.0,
     "max": 15.0,
     "complete": true,
@@ -191,16 +191,16 @@
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "4.989 -> 2"
+      "detail": "4.929 -> 2"
      },
      {
       "id": "E3",
       "name": "USD/TWD 日變動",
-      "earned": 3.0,
+      "earned": 1.0,
       "available": 4.0,
       "max": 4.0,
       "scored": true,
-      "detail": "-0.001317 -> 3"
+      "detail": "0.005685 -> 1"
      }
     ]
    },
@@ -239,13 +239,12 @@
    "drags": [],
    "evidence": [],
    "quality": [
-    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
-    "台幣日變動、US10Y 為較舊時點資料"
+    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
    ],
    "watch": [
     "當日正式 NAV 尚未發布，折溢價待回補"
    ],
-   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　台幣日變動、US10Y 為較舊時點資料"
+   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化"
   }
  },
  "fields": {
@@ -474,28 +473,28 @@
    "note": ""
   },
   "us10y": {
-   "value": 4.988999843597412,
+   "value": 4.928999900817871,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-29",
-   "status": "stale",
-   "note": "美股資料為 2026-10-29，較預期的 2026-10-30 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-30",
+   "status": "ok",
+   "note": ""
   },
   "usdtwd": {
-   "value": 32.3828010559082,
+   "value": 32.566898345947266,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-10-29",
-   "status": "stale",
-   "note": "美股資料為 2026-10-29，較預期的 2026-10-30 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-30",
+   "status": "ok",
+   "note": ""
   },
   "twd_change": {
-   "value": -0.0013168002917595123,
+   "value": 0.005685032919827471,
    "source": "Yahoo Finance TWD=X",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX?interval=1d&range=3mo",
-   "as_of": "2026-10-29",
-   "status": "stale",
-   "note": "美股資料為 2026-10-29，較預期的 2026-10-30 舊 1 天（休市或缺值）"
+   "as_of": "2026-10-30",
+   "status": "ok",
+   "note": ""
   }
  }
 }

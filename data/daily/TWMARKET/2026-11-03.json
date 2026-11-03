@@ -2,41 +2,40 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-11-03",
  "first_collected_at": "2026-11-03T01:07:59",
- "updated_at": "2026-11-03T11:01:50",
+ "updated_at": "2026-11-03T15:46:37",
  "windows": [
   "w1",
   "w2",
-  "w3"
+  "w3",
+  "w4"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
-  "eos": 65,
-  "raw_eos": 64.53229248977664,
-  "earned": 51.6258,
-  "available": 80.0,
-  "coverage_status": "provisional",
+  "eos": 52,
+  "raw_eos": 52.08083246594241,
+  "earned": 52.0808,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
-  "rating": "續買動能明確",
-  "missing": [
-   "F3"
-  ],
+  "rating": "可續買但進入賣壓測試區",
+  "missing": [],
   "dimensions": {
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 51.62583399182131,
-    "available": 80.0,
+    "earned": 52.08083246594241,
+    "available": 100.0,
     "max": 100.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "F1",
       "name": "本波連買天數餘裕",
-      "earned": 9.0,
+      "earned": 6.0,
       "available": 15.0,
       "max": 15.0,
       "scored": true,
-      "detail": "2 -> 0.6000 x 15"
+      "detail": "3 -> 0.4000 x 15"
      },
      {
       "id": "F2",
@@ -45,16 +44,16 @@
       "available": 15.0,
       "max": 15.0,
       "scored": true,
-      "detail": "-1812.82 -> 1.0000 x 15"
+      "detail": "-2885.89 -> 1.0000 x 15"
      },
      {
       "id": "F3",
       "name": "外資期貨 5 日回補",
-      "earned": null,
-      "available": 0.0,
+      "earned": 3.105,
+      "available": 20.0,
       "max": 20.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-6895 -> 0.1552 x 20"
      },
      {
       "id": "F4",
@@ -63,7 +62,7 @@
       "available": 15.0,
       "max": 15.0,
       "scored": true,
-      "detail": "0.105218 -> 1.0000 x 15"
+      "detail": "0.153816 -> 1.0000 x 15"
      },
      {
       "id": "F5",
@@ -81,66 +80,65 @@
       "available": 15.0,
       "max": 15.0,
       "scored": true,
-      "detail": "-0.0337242 -> 0.0000 x 15"
+      "detail": "-0.0337241 -> 0.0000 x 15"
      },
      {
       "id": "F7",
       "name": "美 10 年期公債殖利率",
-      "earned": 3.210000991821289,
+      "earned": 3.559999465942383,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "4.929 -> 0.3210 x 10"
+      "detail": "4.894 -> 0.3560 x 10"
      }
     ]
    }
   },
   "summary": {
-   "headline": "燈號 65/100，屬「續買動能明確」，較 11-02 上升 1 分",
+   "headline": "燈號 52/100，屬「可續買但進入賣壓測試區」，較 11-02 下降 12 分",
    "drivers": [
-    "F7 美 10 年期公債殖利率 +0.6"
+    "F7 美 10 年期公債殖利率 +0.9"
    ],
-   "drags": [],
+   "drags": [
+    "F1 本波連買天數餘裕 -3.0"
+   ],
    "evidence": [
-    "F7 美 10 年期公債殖利率：US10Y 4.93"
+    "F1 本波連買天數餘裕：本波連買天數 3 天",
+    "F7 美 10 年期公債殖利率：US10Y 4.89"
    ],
-   "quality": [
-    "1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化",
-    "US10Y 為較舊時點資料",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
+   "quality": [],
+   "watch": [
+    "距「續買動能明確」（65 分）尚差 13 分"
    ],
-   "watch": [],
-   "text": "燈號 65/100，屬「續買動能明確」，較 11-02 上升 1 分　改善：F7 美 10 年期公債殖利率 +0.6　F7 美 10 年期公債殖利率：US10Y 4.93　資料品質：1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新"
+   "text": "燈號 52/100，屬「可續買但進入賣壓測試區」，較 11-02 下降 12 分　改善：F7 美 10 年期公債殖利率 +0.9　拖累：F1 本波連買天數餘裕 -3.0　F1 本波連買天數餘裕：本波連買天數 3 天　F7 美 10 年期公債殖利率：US10Y 4.89　待觀察：距「續買動能明確」（65 分）尚差 13 分"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
-   "eos": 65,
-   "raw_eos": 64.53229248977664,
-   "earned": 51.6258,
-   "available": 80.0,
-   "coverage_status": "provisional",
+   "eos": 52,
+   "raw_eos": 52.08083246594241,
+   "earned": 52.0808,
+   "available": 100.0,
+   "coverage_status": "confirmed",
    "published": true,
-   "rating": "續買動能明確",
-   "missing": [
-    "F3"
-   ],
+   "rating": "可續買但進入賣壓測試區",
+   "missing": [],
    "dimensions": {
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 51.62583399182131,
-     "available": 80.0,
+     "earned": 52.08083246594241,
+     "available": 100.0,
      "max": 100.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "F1",
        "name": "本波連買天數餘裕",
-       "earned": 9.0,
+       "earned": 6.0,
        "available": 15.0,
        "max": 15.0,
        "scored": true,
-       "detail": "2 -> 0.6000 x 15"
+       "detail": "3 -> 0.4000 x 15"
       },
       {
        "id": "F2",
@@ -149,16 +147,16 @@
        "available": 15.0,
        "max": 15.0,
        "scored": true,
-       "detail": "-1812.82 -> 1.0000 x 15"
+       "detail": "-2885.89 -> 1.0000 x 15"
       },
       {
        "id": "F3",
        "name": "外資期貨 5 日回補",
-       "earned": null,
-       "available": 0.0,
+       "earned": 3.105,
+       "available": 20.0,
        "max": 20.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "-6895 -> 0.1552 x 20"
       },
       {
        "id": "F4",
@@ -167,7 +165,7 @@
        "available": 15.0,
        "max": 15.0,
        "scored": true,
-       "detail": "0.105218 -> 1.0000 x 15"
+       "detail": "0.153816 -> 1.0000 x 15"
       },
       {
        "id": "F5",
@@ -185,16 +183,16 @@
        "available": 15.0,
        "max": 15.0,
        "scored": true,
-       "detail": "-0.0337242 -> 0.0000 x 15"
+       "detail": "-0.0337241 -> 0.0000 x 15"
       },
       {
        "id": "F7",
        "name": "美 10 年期公債殖利率",
-       "earned": 3.210000991821289,
+       "earned": 3.559999465942383,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "4.929 -> 0.3210 x 10"
+       "detail": "4.894 -> 0.3560 x 10"
       }
      ]
     }
@@ -204,7 +202,7 @@
   },
   "levels": {
    "as_of": "2026-11-03",
-   "latest_close": 45211.83,
+   "latest_close": 43307.54,
    "window_days": 60,
    "rows": [
     {
@@ -214,7 +212,7 @@
      "kind": "區間",
      "date": "2026-10-06",
      "basis": "視窗內最高盤中價，也是 F4 的分母",
-     "gap_pct": 0.10521781577963107
+     "gap_pct": 0.153815709689352
     },
     {
      "key": "resistance_1",
@@ -223,7 +221,7 @@
      "kind": "區間",
      "date": "2026-10-07",
      "basis": "與壓力2 構成前高壓力帶",
-     "gap_pct": 0.10517291602662393
+     "gap_pct": 0.15376883563462607
     },
     {
      "key": "band_low",
@@ -232,7 +230,7 @@
      "kind": "區間",
      "date": "2026-10-06",
      "basis": "期間最高收盤與前波外資成本取高者",
-     "gap_pct": 0.10198038876108306
+     "gap_pct": 0.15043592870895006
     },
     {
      "key": "foreign_cost",
@@ -241,7 +239,7 @@
      "kind": "資金",
      "date": null,
      "basis": "2026-10-28~2026-10-28 買超金額加權的指數平均",
-     "gap_pct": 0.04033789386538866
+     "gap_pct": 0.0860829315172369
     },
     {
      "key": "res_swing_2",
@@ -250,7 +248,7 @@
      "kind": "K線",
      "date": "2026-09-01",
      "basis": "前後各 2 日皆不高於它的轉折高",
-     "gap_pct": 0.03841671527120227
+     "gap_pct": 0.08407727615098892
     },
     {
      "key": "res_swing_1",
@@ -259,61 +257,25 @@
      "kind": "K線",
      "date": "2026-08-14",
      "basis": "前後各 2 日皆不高於它的轉折高",
-     "gap_pct": 0.02633757580703988
-    },
-    {
-     "key": "support_1",
-     "label": "支撐1　壓力轉支撐",
-     "value": 45169.46,
-     "kind": "K線",
-     "date": "2026-08-25",
-     "basis": "最近被收盤站上的前一日盤中高",
-     "gap_pct": -0.0009371441058678709
-    },
-    {
-     "key": "support_2",
-     "label": "支撐2　壓力轉支撐",
-     "value": 45160.05,
-     "kind": "K線",
-     "date": "2026-08-20",
-     "basis": "曾被收盤站上的前高，跌破代表這一段漲勢的結構被破壞",
-     "gap_pct": -0.0011452754732554915
+     "gap_pct": 0.07146700089637958
     },
     {
      "key": "range_low",
      "label": "期間最低收盤",
-     "value": 44719.35,
+     "value": 43307.54,
      "kind": "區間",
-     "date": "2026-08-19",
+     "date": "2026-11-03",
      "basis": "視窗內最低收盤",
-     "gap_pct": -0.010892724315737734
-    },
-    {
-     "key": "support_3",
-     "label": "支撐3　波段低點",
-     "value": 44308.71,
-     "kind": "K線",
-     "date": "2026-08-19",
-     "basis": "前後各 2 日皆不低於它的轉折低",
-     "gap_pct": -0.0199753029240356
-    },
-    {
-     "key": "support_4",
-     "label": "支撐4　波段低點",
-     "value": 44210.31,
-     "kind": "K線",
-     "date": "2026-08-25",
-     "basis": "前後各 2 日皆不低於它的轉折低",
-     "gap_pct": -0.022151724449109955
+     "gap_pct": 0.0
     }
    ]
   },
   "washout": {
    "rubric_version": "washout-0.2",
    "eos": null,
-   "raw_eos": 0.0,
-   "earned": 0.0,
-   "available": 8.0,
+   "raw_eos": 9.090909090909092,
+   "earned": 4.0,
+   "available": 44.0,
    "coverage_status": "insufficient",
    "published": false,
    "rating": null,
@@ -321,14 +283,8 @@
     "W1a",
     "W1b",
     "W2a",
-    "W2b",
-    "W3a",
-    "W3b",
     "W4a",
-    "W5a",
-    "W5b",
-    "W6a",
-    "W7b"
+    "W5a"
    ],
    "dimensions": {
     "W1": {
@@ -362,8 +318,8 @@
     "W2": {
      "key": "W2",
      "name": "回檔量與市場廣度",
-     "earned": null,
-     "available": 0.0,
+     "earned": 0.0,
+     "available": 6.0,
      "max": 20.0,
      "complete": false,
      "items": [
@@ -379,39 +335,39 @@
       {
        "id": "W2b",
        "name": "市場廣度（上漲佔比）",
-       "earned": null,
-       "available": 0.0,
+       "earned": 0.0,
+       "available": 6.0,
        "max": 6.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "5.48 -> 0"
       }
      ]
     },
     "W3": {
      "key": "W3",
      "name": "K線與支撐結構",
-     "earned": null,
-     "available": 0.0,
+     "earned": 0.0,
+     "available": 15.0,
      "max": 15.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "W3a",
        "name": "均線結構",
-       "earned": null,
-       "available": 0.0,
+       "earned": 0.0,
+       "available": 5.0,
        "max": 5.0,
-       "scored": false,
-       "detail": "四項條件全缺"
+       "scored": true,
+       "detail": "0/5 成立(無)"
       },
       {
        "id": "W3b",
        "name": "收盤在當日區間的位置",
-       "earned": null,
-       "available": 0.0,
+       "earned": 0.0,
+       "available": 10.0,
        "max": 10.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "0.08149 -> 0"
       }
      ]
     },
@@ -437,8 +393,8 @@
     "W5": {
      "key": "W5",
      "name": "期貨與選擇權",
-     "earned": null,
-     "available": 0.0,
+     "earned": 1.0,
+     "available": 3.0,
      "max": 10.0,
      "complete": false,
      "items": [
@@ -454,30 +410,30 @@
       {
        "id": "W5b",
        "name": "臺指選擇權未平倉 P/C 比",
-       "earned": null,
-       "available": 0.0,
+       "earned": 1.0,
+       "available": 3.0,
        "max": 3.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "47.77 -> 1"
       }
      ]
     },
     "W6": {
      "key": "W6",
      "name": "法人別一致性",
-     "earned": null,
-     "available": 0.0,
+     "earned": 3.0,
+     "available": 10.0,
      "max": 10.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "W6a",
        "name": "三大法人當日同向家數",
-       "earned": null,
-       "available": 0.0,
+       "earned": 3.0,
+       "available": 10.0,
        "max": 10.0,
-       "scored": false,
-       "detail": "缺值"
+       "scored": true,
+       "detail": "1 -> 3"
       }
      ]
     },
@@ -485,9 +441,9 @@
      "key": "W7",
      "name": "近一至三日重新站回",
      "earned": 0.0,
-     "available": 8.0,
+     "available": 10.0,
      "max": 10.0,
-     "complete": false,
+     "complete": true,
      "items": [
       {
        "id": "W7a",
@@ -501,130 +457,138 @@
       {
        "id": "W7b",
        "name": "廣度是否同步",
-       "earned": null,
-       "available": 0.0,
+       "earned": 0.0,
+       "available": 2.0,
        "max": 2.0,
-       "scored": false,
-       "detail": "四項條件全缺"
+       "scored": true,
+       "detail": "0/1 成立(無)"
       }
      ]
     }
    },
    "summary": {
-    "headline": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方",
+    "headline": "當日可計分項目僅 44/100，依規則不計算 EOS；已取得的項目仍列於下方",
     "drivers": [],
     "drags": [],
     "evidence": [],
     "quality": [
-     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化",
-     "US10Y 為較舊時點資料"
+     "5 個子項缺值不計分（W1a, W1b, W2a, W4a），EOS 以可得滿分 44 標準化"
     ],
     "watch": [],
-    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化　US10Y 為較舊時點資料"
+    "text": "當日可計分項目僅 44/100，依規則不計算 EOS；已取得的項目仍列於下方　5 個子項缺值不計分（W1a, W1b, W2a, W4a），EOS 以可得滿分 44 標準化"
    },
    "inputs": {
-    "taiex_ma5": 46150.68000000001,
-    "taiex_ma10": 46483.731,
-    "taiex_ma20": 47726.5085,
+    "advance_ratio_pct": 5.48,
+    "txo_pc_oi_pct": 47.77,
+    "close_position": 0.08148637443256034,
+    "taiex_direction": "down",
+    "breadth_positive": false,
+    "taiex_gt_ma5": false,
+    "taiex_ma5": 45603.902,
+    "taiex_gt_ma10": false,
+    "taiex_ma10": 46117.498,
+    "taiex_gt_ma20": false,
+    "taiex_ma20": 47494.879,
+    "institutions_buying": 1,
     "recovered_days_3": 0
    }
   }
  },
  "fields": {
   "taiex": {
-   "value": null,
+   "value": 43307.54,
    "source": "TWSE FMTQIK",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤成交資訊（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "taiex_change": {
-   "value": null,
+   "value": -1612.6,
    "source": "TWSE FMTQIK",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤成交資訊（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "taiex_change_pct": {
-   "value": null,
+   "value": -0.035899264784125785,
    "source": "TWSE FMTQIK",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤成交資訊（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "market_turnover_100m": {
-   "value": null,
+   "value": 9905.06200725,
    "source": "TWSE FMTQIK",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/FMTQIK?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤成交資訊（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "taiex_open": {
-   "value": null,
+   "value": 44481.59,
    "source": "TWSE MI_5MINS_HIST",
    "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤開高低收（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "taiex_high": {
-   "value": null,
+   "value": 44614.64,
    "source": "TWSE MI_5MINS_HIST",
    "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤開高低收（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "taiex_low": {
-   "value": null,
+   "value": 43191.58,
    "source": "TWSE MI_5MINS_HIST",
    "url": "https://www.twse.com.tw/rwd/zh/TAIEX/MI_5MINS_HIST?date=20261101&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無大盤開高低收（休市或尚未發布）"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "foreign_net_100m": {
-   "value": null,
+   "value": -1073.07,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261103&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "trust_net_100m": {
-   "value": null,
+   "value": 199.05,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261103&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "dealer_net_100m": {
-   "value": null,
+   "value": -590.55,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261103&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "institutional_net_100m": {
-   "value": null,
+   "value": -1464.57,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261103&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "market_foreign_net_100m": {
-   "value": null,
+   "value": -1073.07,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261103&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
+   "as_of": "2026-11-03",
+   "status": "ok",
    "note": "上市外資及陸資（不含外資自營商）現貨買賣超"
   },
   "margin_balance_100m": {
@@ -660,68 +624,68 @@
    "note": "回傳空資料（休市或被限流）"
   },
   "advancing": {
-   "value": null,
+   "value": 58.0,
    "source": "TWSE MI_INDEX 漲跌證券數合計",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無此列或尚未發布"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "declining": {
-   "value": null,
+   "value": 1000.0,
    "source": "TWSE MI_INDEX 漲跌證券數合計",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無此列或尚未發布"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "unchanged": {
-   "value": null,
+   "value": 22.0,
    "source": "TWSE MI_INDEX 漲跌證券數合計",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無此列或尚未發布"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "limit_up": {
-   "value": null,
+   "value": 2.0,
    "source": "TWSE MI_INDEX 漲跌證券數合計",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無此列或尚未發布"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "limit_down": {
-   "value": null,
+   "value": 33.0,
    "source": "TWSE MI_INDEX 漲跌證券數合計",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無此列或尚未發布"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "advance_ratio_pct": {
-   "value": null,
+   "value": 5.48,
    "source": "TWSE MI_INDEX 漲跌證券數合計",
    "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日無此列或尚未發布"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "txo_pc_volume_pct": {
-   "value": null,
+   "value": 79.99,
    "source": "TAIFEX 選擇權買賣權比",
    "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無該日"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "txo_pc_oi_pct": {
-   "value": null,
+   "value": 47.77,
    "source": "TAIFEX 選擇權買賣權比",
    "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無該日"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   },
   "completed_buy_waves": {
    "value": 8,
@@ -796,7 +760,7 @@
    "note": "由最近 60 個交易日的序列推導"
   },
   "wave_days": {
-   "value": 2,
+   "value": 3,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-11-03",
@@ -804,7 +768,7 @@
    "note": "由最近 60 個交易日的序列推導"
   },
   "wave_cumulative_100m": {
-   "value": -1812.82,
+   "value": -2885.89,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-11-03",
@@ -852,7 +816,7 @@
    "note": "由最近 60 個交易日的序列推導"
   },
   "latest_close": {
-   "value": 45211.83,
+   "value": 43307.54,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-11-03",
@@ -860,7 +824,7 @@
    "note": "由最近 60 個交易日的序列推導"
   },
   "gap_to_resistance_pct": {
-   "value": 0.10521781577963105,
+   "value": 0.15381570968935196,
    "source": "marketflow",
    "url": "",
    "as_of": "2026-11-03",
@@ -868,12 +832,12 @@
    "note": "由最近 60 個交易日的序列推導"
   },
   "foreign_futures_oi_change_5d": {
-   "value": null,
+   "value": -6895.0,
    "source": "marketflow",
    "url": "",
-   "as_of": null,
-   "status": "missing",
-   "note": "歷史序列不足"
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": "由最近 60 個交易日的序列推導"
   },
   "margin_change_2d_100m": {
    "value": -88.31666000000041,
@@ -892,7 +856,7 @@
    "note": "由最近 60 個交易日的序列推導"
   },
   "sox_prev_session_ret": {
-   "value": -0.03372415142127727,
+   "value": -0.03372406005811979,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
    "as_of": "2026-11-02",
@@ -900,15 +864,15 @@
    "note": "前一完整美股時段（T-1）的費半漲跌，對應當日燈號"
   },
   "us10y": {
-   "value": 4.928999900817871,
+   "value": 4.894000053405762,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-30",
-   "status": "stale",
-   "note": "美股資料為 2026-10-30，較預期的 2026-11-02 舊 3 天（休市或缺值）"
+   "as_of": "2026-11-02",
+   "status": "ok",
+   "note": ""
   },
   "sox_latest_session_ret": {
-   "value": -0.03372415142127727,
+   "value": -0.03372406005811979,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
    "as_of": "2026-11-02",
@@ -916,12 +880,52 @@
    "note": "最新已收完的美股時段，對應明日展望燈號"
   },
   "us10y_latest": {
-   "value": 4.928999900817871,
+   "value": 4.894000053405762,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-10-30",
+   "as_of": "2026-11-02",
    "status": "stale",
    "note": "最新已收完的美股時段"
+  },
+  "foreign_futures_net_oi": {
+   "value": -91812.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": "負值為淨空單；淨空擴大代表外資對後市偏空避險"
+  },
+  "foreign_futures_long_oi": {
+   "value": 10506.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
+  },
+  "foreign_futures_short_oi": {
+   "value": 102318.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
+  },
+  "dealer_futures_net_oi": {
+   "value": 3976.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
+  },
+  "trust_futures_net_oi": {
+   "value": 86998.0,
+   "source": "期交所 三大法人-區分各期貨契約",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "as_of": "2026-11-03",
+   "status": "ok",
+   "note": ""
   }
  }
 }
