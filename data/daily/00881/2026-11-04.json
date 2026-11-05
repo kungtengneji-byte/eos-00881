@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-11-04",
  "first_collected_at": "2026-11-04T02:37:39",
- "updated_at": "2026-11-04T23:28:34",
+ "updated_at": "2026-11-05T15:50:18",
  "windows": [
   "w1",
   "w2",
@@ -11,33 +11,31 @@
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 37,
-  "raw_eos": 36.94117647058823,
-  "earned": 31.4,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 41,
+  "raw_eos": 41.4,
+  "earned": 41.4,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "偏不利",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 10.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 10.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.0027 -> 10"
      }
     ]
    },
@@ -228,7 +226,7 @@
    }
   },
   "summary": {
-   "headline": "EOS 37/100，屬「偏不利」，較 11-03 上升 9 分",
+   "headline": "EOS 41/100，屬「偏不利」，較 11-03 上升 13 分",
    "drivers": [
     "D 海外科技 +12.9",
     "C 成分股廣度 +2.0",
@@ -242,34 +240,30 @@
     "B 含息趨勢/回檔：RSI14 24.27、20日回檔 -19.01%、RV20 +29.70%",
     "Top10 最大貢獻 聯發科 +1.09%（+0.104%）；最大拖累 台積電 -1.53%（-0.665%）"
    ],
-   "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
-   ],
+   "quality": [],
    "watch": [
-    "距「中性等待」（50 分）尚差 13 分",
-    "距完整填息 55.15 元尚需 24.94%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距「中性等待」（50 分）尚差 9 分",
+    "距完整填息 55.15 元尚需 24.94%"
    ],
-   "text": "EOS 37/100，屬「偏不利」，較 11-03 上升 9 分　改善：D 海外科技 +12.9、C 成分股廣度 +2.0、E 波動/風險 +1.0　拖累：B 含息趨勢/回檔 -2.0　D 海外科技：SOX +2.63%、Nasdaq +0.83%、TSM ADR +1.55%、NVDA +2.29%　B 含息趨勢/回檔：RSI14 24.27、20日回檔 -19.01%、RV20 +29.70%　Top10 最大貢獻 聯發科 +1.09%（+0.104%）；最大拖累 台積電 -1.53%（-0.665%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「中性等待」（50 分）尚差 13 分；距完整填息 55.15 元尚需 24.94%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 41/100，屬「偏不利」，較 11-03 上升 13 分　改善：D 海外科技 +12.9、C 成分股廣度 +2.0、E 波動/風險 +1.0　拖累：B 含息趨勢/回檔 -2.0　D 海外科技：SOX +2.63%、Nasdaq +0.83%、TSM ADR +1.55%、NVDA +2.29%　B 含息趨勢/回檔：RSI14 24.27、20日回檔 -19.01%、RV20 +29.70%　Top10 最大貢獻 聯發科 +1.09%（+0.104%）；最大拖累 台積電 -1.53%（-0.665%）　待觀察：距「中性等待」（50 分）尚差 9 分；距完整填息 55.15 元尚需 24.94%"
   }
  },
  "fields": {
   "nav": {
-   "value": null,
+   "value": 44.02,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-11-04",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": 0.0027,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-11-04",
+   "status": "ok",
+   "note": ""
   },
   "wcr": {
    "value": -0.009231124515794067,
