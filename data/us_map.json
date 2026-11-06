@@ -1,7 +1,9 @@
 {
- "as_of": "2026-11-05",
+ "as_of": "2026-11-06",
  "days": 30,
  "off_session_fields": [
+  "nvda_ret",
+  "tsm_ret",
   "us10y"
  ],
  "rule": "台股 T 日對應美股 T−1 時段（避免前視偏誤）",
@@ -66,34 +68,6 @@
   "flat_band": 0.001
  },
  "rows": [
-  {
-   "tw_date": "2026-09-28",
-   "us_date": "2026-09-25",
-   "us": {
-    "sox_ret": 0.01411959840720578,
-    "ndx_ret": 0.00480158098078598,
-    "tsm_ret": -0.0011969601068990698,
-    "nvda_ret": 0.0021818750074313886,
-    "vix": 14.869999885559082,
-    "us10y": 5.184000015258789
-   },
-   "tw": {
-    "taiex_change_pct": null,
-    "market_foreign_net_100m": null
-   },
-   "us_as_of": {
-    "sox_ret": "2026-09-25",
-    "ndx_ret": "2026-09-25",
-    "tsm_ret": "2026-09-25",
-    "nvda_ret": "2026-09-25",
-    "vix": "2026-09-25",
-    "us10y": "2026-09-25"
-   },
-   "off_session": [],
-   "sox_dir": "up",
-   "taiex_dir": null,
-   "agree": null
-  },
   {
    "tw_date": "2026-09-29",
    "us_date": "2026-09-28",
@@ -939,6 +913,38 @@
    "sox_dir": "down",
    "taiex_dir": "down",
    "agree": true
+  },
+  {
+   "tw_date": "2026-11-06",
+   "us_date": "2026-11-05",
+   "us": {
+    "sox_ret": -0.12246134082630522,
+    "ndx_ret": -0.055233274896064,
+    "tsm_ret": -0.02235668988606121,
+    "nvda_ret": -0.031738339934721416,
+    "vix": 28.18000030517578,
+    "us10y": 4.894000053405762
+   },
+   "tw": {
+    "taiex_change_pct": null,
+    "market_foreign_net_100m": null
+   },
+   "us_as_of": {
+    "sox_ret": "2026-11-05",
+    "ndx_ret": "2026-11-05",
+    "tsm_ret": "2026-11-04",
+    "nvda_ret": "2026-11-04",
+    "vix": "2026-11-05",
+    "us10y": "2026-11-04"
+   },
+   "off_session": [
+    "tsm_ret",
+    "nvda_ret",
+    "us10y"
+   ],
+   "sox_dir": "down",
+   "taiex_dir": null,
+   "agree": null
   }
  ]
 }
