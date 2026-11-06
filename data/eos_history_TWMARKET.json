@@ -838,5 +838,19 @@
   "market_foreign_net_100m": -1024.61,
   "foreign_futures_net_oi": -95651.0,
   "margin_balance_100m": 5764.09039
+ },
+ {
+  "date": "2026-11-06",
+  "eos": 51,
+  "rating": "可續買但進入賣壓測試區",
+  "coverage": 100.0,
+  "status": "confirmed",
+  "LIGHT": 50.72000106811524,
+  "LIGHT_avail": 100.0,
+  "taiex": 39701.64,
+  "taiex_change_pct": -0.04505334010668021,
+  "market_foreign_net_100m": -911.88,
+  "foreign_futures_net_oi": -99930.0,
+  "margin_balance_100m": null
  }
 ]
