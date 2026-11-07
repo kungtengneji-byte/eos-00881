@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-11-06",
  "first_collected_at": "2026-11-06T02:55:38",
- "updated_at": "2026-11-06T23:06:45",
+ "updated_at": "2026-11-07T14:58:23",
  "windows": [
   "w1",
   "w2",
@@ -11,33 +11,31 @@
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 14,
-  "raw_eos": 14.117647058823529,
-  "earned": 12.0,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 22,
+  "raw_eos": 22.0,
+  "earned": 22.0,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "高風險區",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 10.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 10.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.0015 -> 10"
      }
     ]
    },
@@ -228,7 +226,7 @@
    }
   },
   "summary": {
-   "headline": "EOS 14/100，屬「高風險區」，較 11-05 下降 13 分",
+   "headline": "EOS 22/100，屬「高風險區」，較 11-05 下降 5 分",
    "drivers": [],
    "drags": [
     "D 海外科技 -2.4",
@@ -239,34 +237,30 @@
     "D 海外科技：SOX -12.25%、Nasdaq -5.52%、TSM ADR -10.78%、NVDA -9.26%",
     "Top10 最大拖累 台積電 -4.69%（-2.123%）"
    ],
-   "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
-   ],
+   "quality": [],
    "watch": [
-    "距「偏不利」（35 分）尚差 21 分",
-    "距完整填息 55.15 元尚需 37.43%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距「偏不利」（35 分）尚差 13 分",
+    "距完整填息 55.15 元尚需 37.43%"
    ],
-   "text": "EOS 14/100，屬「高風險區」，較 11-05 下降 13 分　拖累：D 海外科技 -2.4、E 波動/風險 -3.0　E 波動/風險：VIX 28.18、US10Y 4.84、台幣日變動 +0.27%　D 海外科技：SOX -12.25%、Nasdaq -5.52%、TSM ADR -10.78%、NVDA -9.26%　Top10 最大拖累 台積電 -4.69%（-2.123%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「偏不利」（35 分）尚差 21 分；距完整填息 55.15 元尚需 37.43%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 22/100，屬「高風險區」，較 11-05 下降 5 分　拖累：D 海外科技 -2.4、E 波動/風險 -3.0　E 波動/風險：VIX 28.18、US10Y 4.84、台幣日變動 +0.27%　D 海外科技：SOX -12.25%、Nasdaq -5.52%、TSM ADR -10.78%、NVDA -9.26%　Top10 最大拖累 台積電 -4.69%（-2.123%）　待觀察：距「偏不利」（35 分）尚差 13 分；距完整填息 55.15 元尚需 37.43%"
   }
  },
  "fields": {
   "nav": {
-   "value": null,
+   "value": 40.07,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-11-06",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": 0.0015,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-11-06",
+   "status": "ok",
+   "note": ""
   },
   "wcr": {
    "value": -0.0377892547443109,
