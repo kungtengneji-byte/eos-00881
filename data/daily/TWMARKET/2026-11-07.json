@@ -2,7 +2,7 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-11-07",
  "first_collected_at": "2026-11-07T02:18:27",
- "updated_at": "2026-11-07T14:58:51",
+ "updated_at": "2026-11-10T16:12:47",
  "windows": [
   "w2",
   "w4"
@@ -10,8 +10,8 @@
  "eos": {
   "rubric_version": "market-1.0-draft",
   "eos": 74,
-  "raw_eos": 73.91250133514404,
-  "earned": 59.13,
+  "raw_eos": 73.63749742507935,
+  "earned": 58.91,
   "available": 80.0,
   "coverage_status": "provisional",
   "published": true,
@@ -23,7 +23,7 @@
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 59.130001068115234,
+    "earned": 58.90999794006348,
     "available": 80.0,
     "max": 100.0,
     "complete": false,
@@ -85,11 +85,11 @@
      {
       "id": "F7",
       "name": "美 10 年期公債殖利率",
-      "earned": 4.130001068115234,
+      "earned": 3.9099979400634766,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "4.837 -> 0.4130 x 10"
+      "detail": "4.859 -> 0.3910 x 10"
      }
     ]
    }
@@ -99,23 +99,25 @@
    "drivers": [
     "F6 前一美股費半 +15.0"
    ],
-   "drags": [],
+   "drags": [
+    "F7 美 10 年期公債殖利率 -0.2"
+   ],
    "evidence": [
-    "F6 前一美股費半：費半（前一時段） +4.21%"
+    "F6 前一美股費半：費半（前一時段） +4.21%",
+    "F7 美 10 年期公債殖利率：US10Y 4.86"
    ],
    "quality": [
     "1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化",
-    "US10Y 為較舊時點資料",
     "覆蓋率未達 90，分數為暫定值，回補後會更新"
    ],
    "watch": [],
-   "text": "燈號 74/100，屬「續買動能明確」，較 11-06 上升 23 分　改善：F6 前一美股費半 +15.0　F6 前一美股費半：費半（前一時段） +4.21%　資料品質：1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新"
+   "text": "燈號 74/100，屬「續買動能明確」，較 11-06 上升 23 分　改善：F6 前一美股費半 +15.0　拖累：F7 美 10 年期公債殖利率 -0.2　F6 前一美股費半：費半（前一時段） +4.21%　F7 美 10 年期公債殖利率：US10Y 4.86　資料品質：1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
    "eos": 74,
-   "raw_eos": 73.91250133514404,
-   "earned": 59.13,
+   "raw_eos": 73.63749742507935,
+   "earned": 58.91,
    "available": 80.0,
    "coverage_status": "provisional",
    "published": true,
@@ -127,7 +129,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 59.130001068115234,
+     "earned": 58.90999794006348,
      "available": 80.0,
      "max": 100.0,
      "complete": false,
@@ -189,11 +191,11 @@
       {
        "id": "F7",
        "name": "美 10 年期公債殖利率",
-       "earned": 4.130001068115234,
+       "earned": 3.9099979400634766,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "4.837 -> 0.4130 x 10"
+       "detail": "4.859 -> 0.3910 x 10"
       }
      ]
     }
@@ -479,11 +481,10 @@
     "drags": [],
     "evidence": [],
     "quality": [
-     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化",
-     "US10Y 為較舊時點資料"
+     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化"
     ],
     "watch": [],
-    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化　US10Y 為較舊時點資料"
+    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化"
    },
    "inputs": {
     "taiex_ma5": 42490.590000000004,
@@ -863,12 +864,12 @@
    "note": "前一完整美股時段（T-1）的費半漲跌，對應當日燈號"
   },
   "us10y": {
-   "value": 4.836999893188477,
+   "value": 4.859000205993652,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-11-05",
-   "status": "stale",
-   "note": "美股資料為 2026-11-05，較預期的 2026-11-06 舊 1 天（休市或缺值）"
+   "as_of": "2026-11-06",
+   "status": "ok",
+   "note": ""
   },
   "sox_latest_session_ret": {
    "value": 0.04207129912011043,
@@ -879,10 +880,10 @@
    "note": "最新已收完的美股時段，對應明日展望燈號"
   },
   "us10y_latest": {
-   "value": 4.836999893188477,
+   "value": 4.859000205993652,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-11-05",
+   "as_of": "2026-11-06",
    "status": "stale",
    "note": "最新已收完的美股時段"
   }
