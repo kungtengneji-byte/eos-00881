@@ -885,14 +885,14 @@
   "date": "2026-11-11",
   "eos": 45,
   "rating": "可續買但進入賣壓測試區",
-  "coverage": 90.0,
+  "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 40.663021247188226,
-  "LIGHT_avail": 90.0,
+  "LIGHT": 45.041845247188206,
+  "LIGHT_avail": 100.0,
   "taiex": 44257.15,
   "taiex_change_pct": 0.0361779568794847,
   "market_foreign_net_100m": -7.66,
   "foreign_futures_net_oi": -104271.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 5411.58093
  }
 ]
