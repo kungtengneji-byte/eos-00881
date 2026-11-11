@@ -1312,12 +1312,12 @@
  },
  {
   "date": "2026-11-10",
-  "eos": 62,
+  "eos": 63,
   "rating": "中性等待",
-  "coverage": 85.0,
-  "status": "provisional",
-  "A": null,
-  "A_avail": 0.0,
+  "coverage": 100.0,
+  "status": "confirmed",
+  "A": 10.0,
+  "A_avail": 15.0,
   "B": 6.0,
   "B_avail": 25.0,
   "C": 20.0,
@@ -1329,7 +1329,7 @@
   "F": 6.0,
   "F_avail": 10.0,
   "close": 43.99,
-  "premium": null,
+  "premium": 0.0014000000000000002,
   "rsi14": 37.54303208925002,
   "volume_ratio": 0.8728812701754303
  }
