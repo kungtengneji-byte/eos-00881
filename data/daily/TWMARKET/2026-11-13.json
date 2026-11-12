@@ -2,9 +2,10 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-11-13",
  "first_collected_at": "2026-11-13T00:00:32",
- "updated_at": "2026-11-13T00:00:32",
+ "updated_at": "2026-11-13T03:03:57",
  "windows": [
-  "w1"
+  "w1",
+  "w2"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
