@@ -1358,12 +1358,12 @@
  },
  {
   "date": "2026-11-12",
-  "eos": 41,
+  "eos": 48,
   "rating": "偏不利",
-  "coverage": 85.0,
-  "status": "provisional",
-  "A": null,
-  "A_avail": 0.0,
+  "coverage": 100.0,
+  "status": "confirmed",
+  "A": 13.0,
+  "A_avail": 15.0,
   "B": 6.0,
   "B_avail": 25.0,
   "C": 0.0,
@@ -1375,7 +1375,7 @@
   "F": 6.0,
   "F_avail": 10.0,
   "close": 44.03,
-  "premium": null,
+  "premium": -0.0036,
   "rsi14": 39.598761903854616,
   "volume_ratio": 0.7498960022489526
  }
