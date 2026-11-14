@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-11-13",
  "first_collected_at": "2026-11-13T03:03:54",
- "updated_at": "2026-11-13T23:26:10",
+ "updated_at": "2026-11-14T15:30:11",
  "windows": [
   "w1",
   "w2",
@@ -11,33 +11,31 @@
  ],
  "eos": {
   "rubric_version": "1.1-draft",
-  "eos": 54,
-  "raw_eos": 53.8235294117647,
-  "earned": 45.75,
-  "available": 85.0,
-  "coverage_status": "provisional",
+  "eos": 56,
+  "raw_eos": 55.75,
+  "earned": 55.75,
+  "available": 100.0,
+  "coverage_status": "confirmed",
   "published": true,
   "rating": "中性等待",
-  "missing": [
-   "A1"
-  ],
+  "missing": [],
   "dimensions": {
    "A": {
     "key": "A",
     "name": "ETF 合理交易價格／折溢價",
-    "earned": null,
-    "available": 0.0,
+    "earned": 10.0,
+    "available": 15.0,
     "max": 15.0,
-    "complete": false,
+    "complete": true,
     "items": [
      {
       "id": "A1",
       "name": "折溢價 (P-NAV)/NAV",
-      "earned": null,
-      "available": 0.0,
+      "earned": 10.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-0.0004 -> 10"
      }
     ]
    },
@@ -228,7 +226,7 @@
    }
   },
   "summary": {
-   "headline": "EOS 54/100，屬「中性等待」，較 11-12 上升 6 分",
+   "headline": "EOS 56/100，屬「中性等待」，較 11-12 上升 8 分",
    "drivers": [
     "C 成分股廣度 +17.0",
     "F 量價/法人 +4.0",
@@ -236,6 +234,7 @@
    ],
    "drags": [
     "E 波動/風險 -1.0",
+    "A 價格/折溢價 -3.0",
     "D 海外科技 -12.2"
    ],
    "evidence": [
@@ -243,34 +242,30 @@
     "D 海外科技：SOX -0.54%、Nasdaq -0.39%、TSM ADR -1.90%、NVDA -4.34%",
     "Top10 最大貢獻 聯發科 +7.01%（+0.730%）；最大拖累 欣興 -0.88%（-0.018%）"
    ],
-   "quality": [
-    "1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化",
-    "覆蓋率未達 90，分數為暫定值，回補後會更新"
-   ],
+   "quality": [],
    "watch": [
-    "距「偏有利」（65 分）尚差 11 分",
-    "距完整填息 55.15 元尚需 23.10%",
-    "當日正式 NAV 尚未發布，折溢價待回補"
+    "距「偏有利」（65 分）尚差 9 分",
+    "距完整填息 55.15 元尚需 23.10%"
    ],
-   "text": "EOS 54/100，屬「中性等待」，較 11-12 上升 6 分　改善：C 成分股廣度 +17.0、F 量價/法人 +4.0、B 含息趨勢/回檔 +3.0　拖累：E 波動/風險 -1.0、D 海外科技 -12.2　C 成分股廣度：Top10加權貢獻 +1.23%、Top10上漲家數 6/10 檔　D 海外科技：SOX -0.54%、Nasdaq -0.39%、TSM ADR -1.90%、NVDA -4.34%　Top10 最大貢獻 聯發科 +7.01%（+0.730%）；最大拖累 欣興 -0.88%（-0.018%）　資料品質：1 個子項缺值不計分（A1），EOS 以可得滿分 85 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「偏有利」（65 分）尚差 11 分；距完整填息 55.15 元尚需 23.10%；當日正式 NAV 尚未發布，折溢價待回補"
+   "text": "EOS 56/100，屬「中性等待」，較 11-12 上升 8 分　改善：C 成分股廣度 +17.0、F 量價/法人 +4.0、B 含息趨勢/回檔 +3.0　拖累：E 波動/風險 -1.0、A 價格/折溢價 -3.0、D 海外科技 -12.2　C 成分股廣度：Top10加權貢獻 +1.23%、Top10上漲家數 6/10 檔　D 海外科技：SOX -0.54%、Nasdaq -0.39%、TSM ADR -1.90%、NVDA -4.34%　Top10 最大貢獻 聯發科 +7.01%（+0.730%）；最大拖累 欣興 -0.88%（-0.018%）　待觀察：距「偏有利」（65 分）尚差 9 分；距完整填息 55.15 元尚需 23.10%"
   }
  },
  "fields": {
   "nav": {
-   "value": null,
+   "value": 44.82,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-11-13",
+   "status": "ok",
+   "note": ""
   },
   "premium": {
-   "value": null,
+   "value": -0.0004,
    "source": "國泰投信 cwapi",
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetEtf30DaysNavAndPrice?FundCode=CR",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
+   "as_of": "2026-11-13",
+   "status": "ok",
+   "note": ""
   },
   "wcr": {
    "value": 0.012300272431617859,
