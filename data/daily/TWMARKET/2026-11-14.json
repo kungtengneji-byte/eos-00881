@@ -2,16 +2,16 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-11-14",
  "first_collected_at": "2026-11-14T02:41:39",
- "updated_at": "2026-11-14T15:30:36",
+ "updated_at": "2026-11-17T17:00:08",
  "windows": [
   "w2",
   "w4"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
-  "eos": 61,
-  "raw_eos": 60.7641317983807,
-  "earned": 48.6113,
+  "eos": 60,
+  "raw_eos": 60.12663628064999,
+  "earned": 48.1013,
   "available": 80.0,
   "coverage_status": "provisional",
   "published": true,
@@ -23,7 +23,7 @@
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 48.61130543870456,
+    "earned": 48.10130902451999,
     "available": 80.0,
     "max": 100.0,
     "complete": false,
@@ -85,39 +85,40 @@
      {
       "id": "F7",
       "name": "美 10 年期公債殖利率",
-      "earned": 1.4699983596801758,
+      "earned": 0.9600019454956055,
       "available": 10.0,
       "max": 10.0,
       "scored": true,
-      "detail": "5.103 -> 0.1470 x 10"
+      "detail": "5.154 -> 0.0960 x 10"
      }
     ]
    }
   },
   "summary": {
-   "headline": "燈號 61/100，屬「可續買但進入賣壓測試區」，較 11-13 下降 4 分",
+   "headline": "燈號 60/100，屬「可續買但進入賣壓測試區」，較 11-13 下降 5 分",
    "drivers": [],
    "drags": [
+    "F7 美 10 年期公債殖利率 -0.5",
     "F6 前一美股費半 -6.1"
    ],
    "evidence": [
-    "F6 前一美股費半：費半（前一時段） -3.43%"
+    "F6 前一美股費半：費半（前一時段） -3.43%",
+    "F7 美 10 年期公債殖利率：US10Y 5.15"
    ],
    "quality": [
     "1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化",
-    "US10Y 為較舊時點資料",
     "覆蓋率未達 90，分數為暫定值，回補後會更新"
    ],
    "watch": [
-    "距「續買動能明確」（65 分）尚差 4 分"
+    "距「續買動能明確」（65 分）尚差 5 分"
    ],
-   "text": "燈號 61/100，屬「可續買但進入賣壓測試區」，較 11-13 下降 4 分　拖累：F6 前一美股費半 -6.1　F6 前一美股費半：費半（前一時段） -3.43%　資料品質：1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「續買動能明確」（65 分）尚差 4 分"
+   "text": "燈號 60/100，屬「可續買但進入賣壓測試區」，較 11-13 下降 5 分　拖累：F7 美 10 年期公債殖利率 -0.5、F6 前一美股費半 -6.1　F6 前一美股費半：費半（前一時段） -3.43%　F7 美 10 年期公債殖利率：US10Y 5.15　資料品質：1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化；覆蓋率未達 90，分數為暫定值，回補後會更新　待觀察：距「續買動能明確」（65 分）尚差 5 分"
   },
   "outlook": {
    "rubric_version": "market-1.0-draft",
-   "eos": 61,
-   "raw_eos": 60.7641317983807,
-   "earned": 48.6113,
+   "eos": 60,
+   "raw_eos": 60.12663628064999,
+   "earned": 48.1013,
    "available": 80.0,
    "coverage_status": "provisional",
    "published": true,
@@ -129,7 +130,7 @@
     "LIGHT": {
      "key": "LIGHT",
      "name": "外資續買燈號",
-     "earned": 48.61130543870456,
+     "earned": 48.10130902451999,
      "available": 80.0,
      "max": 100.0,
      "complete": false,
@@ -191,11 +192,11 @@
       {
        "id": "F7",
        "name": "美 10 年期公債殖利率",
-       "earned": 1.4699983596801758,
+       "earned": 0.9600019454956055,
        "available": 10.0,
        "max": 10.0,
        "scored": true,
-       "detail": "5.103 -> 0.1470 x 10"
+       "detail": "5.154 -> 0.0960 x 10"
       }
      ]
     }
@@ -499,11 +500,10 @@
     "drags": [],
     "evidence": [],
     "quality": [
-     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化",
-     "US10Y 為較舊時點資料"
+     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化"
     ],
     "watch": [],
-    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化　US10Y 為較舊時點資料"
+    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化"
    },
    "inputs": {
     "taiex_ma5": 43079.552,
@@ -883,12 +883,12 @@
    "note": "前一完整美股時段（T-1）的費半漲跌，對應當日燈號"
   },
   "us10y": {
-   "value": 5.103000164031982,
+   "value": 5.1539998054504395,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-11-12",
-   "status": "stale",
-   "note": "美股資料為 2026-11-12，較預期的 2026-11-13 舊 1 天（休市或缺值）"
+   "as_of": "2026-11-13",
+   "status": "ok",
+   "note": ""
   },
   "sox_latest_session_ret": {
    "value": -0.03429722376875555,
@@ -899,10 +899,10 @@
    "note": "最新已收完的美股時段，對應明日展望燈號"
   },
   "us10y_latest": {
-   "value": 5.103000164031982,
+   "value": 5.1539998054504395,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-11-12",
+   "as_of": "2026-11-13",
    "status": "stale",
    "note": "最新已收完的美股時段"
   }
