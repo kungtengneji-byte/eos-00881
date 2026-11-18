@@ -939,16 +939,30 @@
  },
  {
   "date": "2026-11-17",
-  "eos": 67,
-  "rating": "續買動能明確",
+  "eos": 64,
+  "rating": "可續買但進入賣壓測試區",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 66.94457936920166,
+  "LIGHT": 63.94457936920166,
   "LIGHT_avail": 100.0,
   "taiex": 40092.11,
   "taiex_change_pct": -0.023098639183939212,
   "market_foreign_net_100m": -380.94,
   "foreign_futures_net_oi": -97896.0,
+  "margin_balance_100m": 5087.21233
+ },
+ {
+  "date": "2026-11-18",
+  "eos": 66,
+  "rating": "續買動能明確",
+  "coverage": 100.0,
+  "status": "confirmed",
+  "LIGHT": 65.94337794060166,
+  "LIGHT_avail": 100.0,
+  "taiex": 40194.91,
+  "taiex_change_pct": 0.002564095529020548,
+  "market_foreign_net_100m": -765.64,
+  "foreign_futures_net_oi": -99438.0,
   "margin_balance_100m": null
  }
 ]
