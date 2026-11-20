@@ -4079,8 +4079,8 @@
     {
      "key": "31",
      "label": "其他電子",
-     "amount_100m": 37.2,
-     "lots": 11657.0,
+     "amount_100m": 36.23,
+     "lots": 11549.0,
      "stocks": 45,
      "confirm_ratio": 0.0,
      "top": [
@@ -4113,8 +4113,8 @@
     {
      "key": "25",
      "label": "電腦及週邊",
-     "amount_100m": 32.62,
-     "lots": -18068.9,
+     "amount_100m": 32.9,
+     "lots": -18032.1,
      "stocks": 65,
      "confirm_ratio": 0.0,
      "top": [
@@ -4129,8 +4129,8 @@
       {
        "code": "6669",
        "name": "緯穎",
-       "lots": 1044.8,
-       "amount_100m": 14.73,
+       "lots": 1054.1,
+       "amount_100m": 14.86,
        "ret": -0.04406779661016949,
        "confirmed": false
       },
@@ -4183,24 +4183,24 @@
     {
      "key": "24",
      "label": "半導體",
-     "amount_100m": -123.95,
-     "lots": 12346.3,
+     "amount_100m": -107.3,
+     "lots": 12928.1,
      "stocks": 96,
      "confirm_ratio": 1.0,
      "top": [
       {
        "code": "2454",
        "name": "聯發科",
-       "lots": -2216.7,
-       "amount_100m": -82.46,
+       "lots": -2203.0,
+       "amount_100m": -81.95,
        "ret": -0.05583756345177665,
        "confirmed": true
       },
       {
        "code": "2330",
        "name": "台積電",
-       "lots": -3217.9,
-       "amount_100m": -67.58,
+       "lots": -2503.9,
+       "amount_100m": -52.58,
        "ret": -0.034482758620689655,
        "confirmed": true
       },

@@ -2,18 +2,19 @@
  "instrument": "00881",
  "trade_date": "2026-11-20",
  "first_collected_at": "2026-11-20T00:36:17",
- "updated_at": "2026-11-20T10:31:27",
+ "updated_at": "2026-11-20T16:18:13",
  "windows": [
   "w1",
   "w2",
-  "w3"
+  "w3",
+  "w4"
  ],
  "eos": {
   "rubric_version": "1.1-draft",
   "eos": null,
-  "raw_eos": 13.333333333333334,
-  "earned": 4.0,
-  "available": 30.0,
+  "raw_eos": 14.285714285714285,
+  "earned": 5.0,
+  "available": 35.0,
   "coverage_status": "insufficient",
   "published": false,
   "rating": null,
@@ -25,8 +26,7 @@
    "B4",
    "C1",
    "C2",
-   "F1",
-   "F2"
+   "F1"
   ],
   "dimensions": {
    "A": {
@@ -192,7 +192,7 @@
       "available": 5.0,
       "max": 5.0,
       "scored": true,
-      "detail": "5.066 -> 1"
+      "detail": "5.052 -> 1"
      },
      {
       "id": "E3",
@@ -208,8 +208,8 @@
    "F": {
     "key": "F",
     "name": "成交量與法人資金流",
-    "earned": null,
-    "available": 0.0,
+    "earned": 1.0,
+    "available": 5.0,
     "max": 10.0,
     "complete": false,
     "items": [
@@ -225,28 +225,27 @@
      {
       "id": "F2",
       "name": "三大法人買賣超（億元）",
-      "earned": null,
-      "available": 0.0,
+      "earned": 1.0,
+      "available": 5.0,
       "max": 5.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "-522.5 -> 1"
      }
     ]
    }
   },
   "summary": {
-   "headline": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方",
+   "headline": "當日可計分項目僅 35/100，依規則不計算 EOS；已取得的項目仍列於下方",
    "drivers": [],
    "drags": [],
    "evidence": [],
    "quality": [
-    "9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化",
-    "US10Y 為較舊時點資料"
+    "8 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 35 標準化"
    ],
    "watch": [
     "當日正式 NAV 尚未發布，折溢價待回補"
    ],
-   "text": "當日可計分項目僅 30/100，依規則不計算 EOS；已取得的項目仍列於下方　9 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 30 標準化　US10Y 為較舊時點資料"
+   "text": "當日可計分項目僅 35/100，依規則不計算 EOS；已取得的項目仍列於下方　8 個子項缺值不計分（A1, B1, B2, B3），EOS 以可得滿分 35 標準化"
   }
  },
  "fields": {
@@ -347,44 +346,44 @@
    "note": "TWSE 尚未發布該日資料（休市或收盤資料未更新）"
   },
   "foreign_net_100m": {
-   "value": null,
+   "value": -94.13,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261120&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-20",
+   "status": "ok",
+   "note": ""
   },
   "trust_net_100m": {
-   "value": null,
+   "value": -87.49,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261120&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-20",
+   "status": "ok",
+   "note": ""
   },
   "dealer_net_100m": {
-   "value": null,
+   "value": -340.84,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261120&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-20",
+   "status": "ok",
+   "note": ""
   },
   "institutional_net_100m": {
-   "value": null,
+   "value": -522.46,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261120&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-20",
+   "status": "ok",
+   "note": ""
   },
   "institutional_net": {
-   "value": null,
+   "value": -522.46,
    "source": "TWSE BFI82U",
    "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20261120&type=day&response=json",
-   "as_of": null,
-   "status": "missing",
-   "note": "當日尚未發布或查無資料"
+   "as_of": "2026-11-20",
+   "status": "ok",
+   "note": ""
   },
   "stock_foreign_net_lots": {
    "value": null,
@@ -435,7 +434,7 @@
    "note": "當日正式 NAV 尚未發布；不以前一日 NAV 代算折溢價"
   },
   "sox_ret": {
-   "value": -0.02414606675301767,
+   "value": -0.024146370259519268,
    "source": "Yahoo Finance ^SOX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
    "as_of": "2026-11-19",
@@ -475,12 +474,12 @@
    "note": ""
   },
   "us10y": {
-   "value": 5.065999984741211,
+   "value": 5.052000045776367,
    "source": "Yahoo Finance ^TNX",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
-   "as_of": "2026-11-18",
-   "status": "stale",
-   "note": "美股資料為 2026-11-18，較預期的 2026-11-19 舊 1 天（休市或缺值）"
+   "as_of": "2026-11-19",
+   "status": "ok",
+   "note": ""
   },
   "usdtwd": {
    "value": 32.929901123046875,
