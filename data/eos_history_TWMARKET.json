@@ -989,8 +989,8 @@
   "LIGHT_avail": 100.0,
   "taiex": 36033.29,
   "taiex_change_pct": -0.06228971431203514,
-  "market_foreign_net_100m": -94.13,
+  "market_foreign_net_100m": -95.11,
   "foreign_futures_net_oi": -97863.0,
-  "margin_balance_100m": null
+  "margin_balance_100m": 4352.27267
  }
 ]

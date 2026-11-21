@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-20",
+ "as_of": "2026-11-21",
  "days": 30,
  "off_session_fields": [
   "us10y"
@@ -58,46 +58,16 @@
  },
  "stats": {
   "days": 30,
-  "usable": 25,
-  "agree": 15,
-  "agree_ratio": 0.6,
+  "usable": 24,
+  "agree": 14,
+  "agree_ratio": 0.5833333333333334,
   "taiex_avg_after_sox_up": -0.0021294766134478376,
-  "taiex_avg_after_sox_down": -0.018905967115179924,
+  "taiex_avg_after_sox_down": -0.017740645251230928,
   "sox_up_days": 11,
-  "sox_down_days": 14,
+  "sox_down_days": 13,
   "flat_band": 0.001
  },
  "rows": [
-  {
-   "tw_date": "2026-10-15",
-   "us_date": "2026-10-14",
-   "us": {
-    "sox_ret": -0.042953251295553385,
-    "ndx_ret": -0.018802549537668578,
-    "tsm_ret": -0.03396835748348448,
-    "nvda_ret": -0.03159461353805515,
-    "vix": 16.8700008392334,
-    "us10y": 5.2170000076293945
-   },
-   "tw": {
-    "taiex_change_pct": -0.03405515134651686,
-    "market_foreign_net_100m": -3025.55
-   },
-   "us_as_of": {
-    "sox_ret": "2026-10-14",
-    "ndx_ret": "2026-10-14",
-    "tsm_ret": "2026-10-14",
-    "nvda_ret": "2026-10-14",
-    "vix": "2026-10-14",
-    "us10y": "2026-10-13"
-   },
-   "off_session": [
-    "us10y"
-   ],
-   "sox_dir": "down",
-   "taiex_dir": "down",
-   "agree": true
-  },
   {
    "tw_date": "2026-10-16",
    "us_date": "2026-10-15",
@@ -905,7 +875,7 @@
    },
    "tw": {
     "taiex_change_pct": -0.06228971431203514,
-    "market_foreign_net_100m": -94.13
+    "market_foreign_net_100m": -95.11
    },
    "us_as_of": {
     "sox_ret": "2026-11-19",
@@ -919,6 +889,36 @@
    "sox_dir": "down",
    "taiex_dir": "down",
    "agree": true
+  },
+  {
+   "tw_date": "2026-11-21",
+   "us_date": "2026-11-20",
+   "us": {
+    "sox_ret": -0.10734182249194024,
+    "ndx_ret": -0.05282709601959734,
+    "tsm_ret": -0.09480532031582822,
+    "nvda_ret": -0.14008766643897297,
+    "vix": 35.88999938964844,
+    "us10y": 5.052000045776367
+   },
+   "tw": {
+    "taiex_change_pct": null,
+    "market_foreign_net_100m": null
+   },
+   "us_as_of": {
+    "sox_ret": "2026-11-20",
+    "ndx_ret": "2026-11-20",
+    "tsm_ret": "2026-11-20",
+    "nvda_ret": "2026-11-20",
+    "vix": "2026-11-20",
+    "us10y": "2026-11-19"
+   },
+   "off_session": [
+    "us10y"
+   ],
+   "sox_dir": "down",
+   "taiex_dir": null,
+   "agree": null
   }
  ]
 }
