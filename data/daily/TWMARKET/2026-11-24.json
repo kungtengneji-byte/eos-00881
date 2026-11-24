@@ -2,31 +2,30 @@
  "instrument": "TWMARKET",
  "trade_date": "2026-11-24",
  "first_collected_at": "2026-11-24T03:16:53",
- "updated_at": "2026-11-24T09:07:41",
+ "updated_at": "2026-11-24T13:28:41",
  "windows": [
   "w1",
-  "w2"
+  "w2",
+  "w3"
  ],
  "eos": {
   "rubric_version": "market-1.0-draft",
-  "eos": null,
-  "raw_eos": 72.72727272727273,
-  "earned": 40.0,
-  "available": 55.0,
-  "coverage_status": "insufficient",
-  "published": false,
-  "rating": null,
+  "eos": 73,
+  "raw_eos": 72.97499775886536,
+  "earned": 58.38,
+  "available": 80.0,
+  "coverage_status": "provisional",
+  "published": true,
+  "rating": "續買動能明確",
   "missing": [
-   "F3",
-   "F6",
-   "F7"
+   "F3"
   ],
   "dimensions": {
    "LIGHT": {
     "key": "LIGHT",
     "name": "外資續買燈號",
-    "earned": 40.0,
-    "available": 55.0,
+    "earned": 58.379998207092285,
+    "available": 80.0,
     "max": 100.0,
     "complete": false,
     "items": [
@@ -78,34 +77,132 @@
      {
       "id": "F6",
       "name": "前一美股費半",
-      "earned": null,
-      "available": 0.0,
+      "earned": 15.0,
+      "available": 15.0,
       "max": 15.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "0.140268 -> 1.0000 x 15"
      },
      {
       "id": "F7",
       "name": "美 10 年期公債殖利率",
-      "earned": null,
-      "available": 0.0,
+      "earned": 3.379998207092285,
+      "available": 10.0,
       "max": 10.0,
-      "scored": false,
-      "detail": "缺值"
+      "scored": true,
+      "detail": "4.912 -> 0.3380 x 10"
      }
     ]
    }
   },
   "summary": {
-   "headline": "當日可計分項目僅 55/100，依規則不計算燈號；已取得的項目仍列於下方",
-   "drivers": [],
+   "headline": "燈號 73/100，屬「續買動能明確」，較 11-23 上升 21 分",
+   "drivers": [
+    "F6 前一美股費半 +15.0",
+    "F7 美 10 年期公債殖利率 +1.4"
+   ],
    "drags": [],
-   "evidence": [],
+   "evidence": [
+    "F6 前一美股費半：費半（前一時段） +14.03%",
+    "F7 美 10 年期公債殖利率：US10Y 4.91"
+   ],
    "quality": [
-    "3 個子項缺值不計分（F3, F6, F7），EOS 以可得滿分 55 標準化"
+    "1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化",
+    "US10Y 為較舊時點資料",
+    "覆蓋率未達 90，分數為暫定值，回補後會更新"
    ],
    "watch": [],
-   "text": "當日可計分項目僅 55/100，依規則不計算燈號；已取得的項目仍列於下方　3 個子項缺值不計分（F3, F6, F7），EOS 以可得滿分 55 標準化"
+   "text": "燈號 73/100，屬「續買動能明確」，較 11-23 上升 21 分　改善：F6 前一美股費半 +15.0、F7 美 10 年期公債殖利率 +1.4　F6 前一美股費半：費半（前一時段） +14.03%　F7 美 10 年期公債殖利率：US10Y 4.91　資料品質：1 個子項缺值不計分（F3），EOS 以可得滿分 80 標準化；US10Y 為較舊時點資料；覆蓋率未達 90，分數為暫定值，回補後會更新"
+  },
+  "outlook": {
+   "rubric_version": "market-1.0-draft",
+   "eos": 73,
+   "raw_eos": 72.97499775886536,
+   "earned": 58.38,
+   "available": 80.0,
+   "coverage_status": "provisional",
+   "published": true,
+   "rating": "續買動能明確",
+   "missing": [
+    "F3"
+   ],
+   "dimensions": {
+    "LIGHT": {
+     "key": "LIGHT",
+     "name": "外資續買燈號",
+     "earned": 58.379998207092285,
+     "available": 80.0,
+     "max": 100.0,
+     "complete": false,
+     "items": [
+      {
+       "id": "F1",
+       "name": "本波連買天數餘裕",
+       "earned": 0.0,
+       "available": 15.0,
+       "max": 15.0,
+       "scored": true,
+       "detail": "5 -> 0.0000 x 15"
+      },
+      {
+       "id": "F2",
+       "name": "本波累計規模餘裕",
+       "earned": 15.0,
+       "available": 15.0,
+       "max": 15.0,
+       "scored": true,
+       "detail": "-2186.7 -> 1.0000 x 15"
+      },
+      {
+       "id": "F3",
+       "name": "外資期貨 5 日回補",
+       "earned": null,
+       "available": 0.0,
+       "max": 20.0,
+       "scored": false,
+       "detail": "缺值"
+      },
+      {
+       "id": "F4",
+       "name": "距前高壓力空間",
+       "earned": 15.0,
+       "available": 15.0,
+       "max": 15.0,
+       "scored": true,
+       "detail": "0.386743 -> 1.0000 x 15"
+      },
+      {
+       "id": "F5",
+       "name": "融資熱度（反向）",
+       "earned": 10.0,
+       "available": 10.0,
+       "max": 10.0,
+       "scored": true,
+       "detail": "-727.993 -> 1.0000 x 10"
+      },
+      {
+       "id": "F6",
+       "name": "前一美股費半",
+       "earned": 15.0,
+       "available": 15.0,
+       "max": 15.0,
+       "scored": true,
+       "detail": "0.140268 -> 1.0000 x 15"
+      },
+      {
+       "id": "F7",
+       "name": "美 10 年期公債殖利率",
+       "earned": 3.379998207092285,
+       "available": 10.0,
+       "max": 10.0,
+       "scored": true,
+       "detail": "4.912 -> 0.3380 x 10"
+      }
+     ]
+    }
+   },
+   "us_session": "2026-11-23",
+   "same_as_today": true
   },
   "levels": {
    "as_of": "2026-11-24",
@@ -376,10 +473,11 @@
     "drags": [],
     "evidence": [],
     "quality": [
-     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化"
+     "11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化",
+     "US10Y 為較舊時點資料"
     ],
     "watch": [],
-    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化"
+    "text": "當日可計分項目僅 8/100，依規則不計算 EOS；已取得的項目仍列於下方　11 個子項缺值不計分（W1a, W1b, W2a, W2b），EOS 以可得滿分 8 標準化　US10Y 為較舊時點資料"
    },
    "inputs": {
     "taiex_ma5": 39157.456,
@@ -749,6 +847,38 @@
    "as_of": "2026-11-24",
    "status": "ok",
    "note": "由最近 60 個交易日的序列推導"
+  },
+  "sox_prev_session_ret": {
+   "value": 0.14026846152023675,
+   "source": "Yahoo Finance ^SOX",
+   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
+   "as_of": "2026-11-23",
+   "status": "ok",
+   "note": "前一完整美股時段（T-1）的費半漲跌，對應當日燈號"
+  },
+  "us10y": {
+   "value": 4.9120001792907715,
+   "source": "Yahoo Finance ^TNX",
+   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
+   "as_of": "2026-11-20",
+   "status": "stale",
+   "note": "美股資料為 2026-11-20，較預期的 2026-11-23 舊 3 天（休市或缺值）"
+  },
+  "sox_latest_session_ret": {
+   "value": 0.14026846152023675,
+   "source": "Yahoo Finance ^SOX",
+   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=3mo",
+   "as_of": "2026-11-23",
+   "status": "stale",
+   "note": "最新已收完的美股時段，對應明日展望燈號"
+  },
+  "us10y_latest": {
+   "value": 4.9120001792907715,
+   "source": "Yahoo Finance ^TNX",
+   "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=3mo",
+   "as_of": "2026-11-20",
+   "status": "stale",
+   "note": "最新已收完的美股時段"
   }
  }
 }
