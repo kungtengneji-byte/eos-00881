@@ -1023,16 +1023,30 @@
  },
  {
   "date": "2026-11-25",
-  "eos": 43,
+  "eos": 42,
   "rating": "賣壓風險升高",
   "coverage": 100.0,
   "status": "confirmed",
-  "LIGHT": 42.6798739454956,
+  "LIGHT": 41.804769945495636,
   "LIGHT_avail": 100.0,
   "taiex": 38195.43,
   "taiex_change_pct": -0.04802610016611689,
   "market_foreign_net_100m": -1236.55,
   "foreign_futures_net_oi": -105709.0,
+  "margin_balance_100m": 4341.37987
+ },
+ {
+  "date": "2026-11-26",
+  "eos": 45,
+  "rating": "可續買但進入賣壓測試區",
+  "coverage": 90.0,
+  "status": "confirmed",
+  "LIGHT": 40.916537228894995,
+  "LIGHT_avail": 90.0,
+  "taiex": 39151.81,
+  "taiex_change_pct": 0.025039121172349677,
+  "market_foreign_net_100m": -491.81,
+  "foreign_futures_net_oi": -106275.0,
   "margin_balance_100m": null
  }
 ]

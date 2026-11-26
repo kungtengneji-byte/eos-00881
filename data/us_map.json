@@ -59,13 +59,13 @@
  },
  "stats": {
   "days": 30,
-  "usable": 23,
+  "usable": 24,
   "agree": 15,
-  "agree_ratio": 0.6521739130434783,
+  "agree_ratio": 0.625,
   "taiex_avg_after_sox_up": 0.007073285960952011,
-  "taiex_avg_after_sox_down": -0.022230680206484502,
+  "taiex_avg_after_sox_down": -0.01859454163888187,
   "sox_up_days": 11,
-  "sox_down_days": 12,
+  "sox_down_days": 13,
   "flat_band": 0.001
  },
  "rows": [
@@ -887,16 +887,16 @@
    "tw_date": "2026-11-26",
    "us_date": "2026-11-25",
    "us": {
-    "sox_ret": -0.006525637737050616,
-    "ndx_ret": -0.006224791327410162,
+    "sox_ret": -0.006525858866402445,
+    "ndx_ret": -0.0062248736212895395,
     "tsm_ret": -0.019644947392136736,
     "nvda_ret": -0.03912988569951603,
     "vix": 28.290000915527344,
     "us10y": 4.9039998054504395
    },
    "tw": {
-    "taiex_change_pct": null,
-    "market_foreign_net_100m": null
+    "taiex_change_pct": 0.025039121172349677,
+    "market_foreign_net_100m": -491.81
    },
    "us_as_of": {
     "sox_ret": "2026-11-25",
@@ -910,8 +910,8 @@
     "us10y"
    ],
    "sox_dir": "down",
-   "taiex_dir": null,
-   "agree": null
+   "taiex_dir": "up",
+   "agree": false
   }
  ]
 }
