@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-25",
+ "as_of": "2026-11-26",
  "days": 30,
  "off_session_fields": [
   "us10y"
@@ -59,46 +59,16 @@
  },
  "stats": {
   "days": 30,
-  "usable": 24,
+  "usable": 23,
   "agree": 15,
-  "agree_ratio": 0.625,
+  "agree_ratio": 0.6521739130434783,
   "taiex_avg_after_sox_up": 0.007073285960952011,
-  "taiex_avg_after_sox_down": -0.019532206474349775,
+  "taiex_avg_after_sox_down": -0.022230680206484502,
   "sox_up_days": 11,
-  "sox_down_days": 13,
+  "sox_down_days": 12,
   "flat_band": 0.001
  },
  "rows": [
-  {
-   "tw_date": "2026-10-21",
-   "us_date": "2026-10-20",
-   "us": {
-    "sox_ret": -0.0028744559426133742,
-    "ndx_ret": -0.0002298151369993784,
-    "tsm_ret": 0.01156533562763462,
-    "nvda_ret": -0.0028559359143500718,
-    "vix": 17.309999465942383,
-    "us10y": 5.136000156402588
-   },
-   "tw": {
-    "taiex_change_pct": 0.01284947831126697,
-    "market_foreign_net_100m": 9.6
-   },
-   "us_as_of": {
-    "sox_ret": "2026-10-20",
-    "ndx_ret": "2026-10-20",
-    "tsm_ret": "2026-10-20",
-    "nvda_ret": "2026-10-20",
-    "vix": "2026-10-20",
-    "us10y": "2026-10-19"
-   },
-   "off_session": [
-    "us10y"
-   ],
-   "sox_dir": "down",
-   "taiex_dir": "up",
-   "agree": false
-  },
   {
    "tw_date": "2026-10-22",
    "us_date": "2026-10-21",
@@ -912,6 +882,36 @@
    "sox_dir": "down",
    "taiex_dir": "down",
    "agree": true
+  },
+  {
+   "tw_date": "2026-11-26",
+   "us_date": "2026-11-25",
+   "us": {
+    "sox_ret": -0.006525637737050616,
+    "ndx_ret": -0.006224791327410162,
+    "tsm_ret": -0.019644947392136736,
+    "nvda_ret": -0.03912988569951603,
+    "vix": 28.290000915527344,
+    "us10y": 4.9039998054504395
+   },
+   "tw": {
+    "taiex_change_pct": null,
+    "market_foreign_net_100m": null
+   },
+   "us_as_of": {
+    "sox_ret": "2026-11-25",
+    "ndx_ret": "2026-11-25",
+    "tsm_ret": "2026-11-25",
+    "nvda_ret": "2026-11-25",
+    "vix": "2026-11-25",
+    "us10y": "2026-11-24"
+   },
+   "off_session": [
+    "us10y"
+   ],
+   "sox_dir": "down",
+   "taiex_dir": null,
+   "agree": null
   }
  ]
 }
