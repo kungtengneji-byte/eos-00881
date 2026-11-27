@@ -2,7 +2,7 @@
  "instrument": "00881",
  "trade_date": "2026-11-21",
  "first_collected_at": "2026-11-21T00:12:00",
- "updated_at": "2026-11-26T17:19:54",
+ "updated_at": "2026-11-27T17:34:33",
  "windows": [
   "w1",
   "w2",
@@ -407,7 +407,7 @@
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
    "as_of": null,
    "status": "missing",
-   "note": "僅 0/10 檔取得報酬：2383 無 2026-11-21 收盤；2303 無 2026-11-21 收盤；3231 無 2026-11-21 收盤"
+   "note": "僅 0/10 檔取得報酬：2383 無 2026-11-21 收盤；2303 無 2026-11-21 收盤；3037 無 2026-11-21 收盤"
   },
   "breadth_count": {
    "value": null,
@@ -415,7 +415,7 @@
    "url": "https://cwapi.cathaysite.com.tw/api/ETF/GetIndexStockWeights?FundCode=CR",
    "as_of": null,
    "status": "missing",
-   "note": "僅 0/10 檔取得報酬：2383 無 2026-11-21 收盤；2303 無 2026-11-21 收盤；3231 無 2026-11-21 收盤"
+   "note": "僅 0/10 檔取得報酬：2383 無 2026-11-21 收盤；2303 無 2026-11-21 收盤；3037 無 2026-11-21 收盤"
   },
   "nav": {
    "value": null,
